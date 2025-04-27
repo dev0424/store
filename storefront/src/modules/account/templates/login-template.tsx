@@ -2,8 +2,8 @@
 
 import { useState } from "react"
 
-import Register from "@modules/account/components/register"
 import Login from "@modules/account/components/login"
+import RegisterTemplate from "@modules/account/templates/register-template"
 
 export enum LOGIN_VIEW {
   SIGN_IN = "sign-in",
@@ -18,7 +18,7 @@ const LoginTemplate = () => {
       {currentView === "sign-in" ? (
         <Login setCurrentView={setCurrentView} />
       ) : (
-        <Register setCurrentView={setCurrentView} />
+        <RegisterTemplate setCurrentView={setCurrentView} />
       )}
     </div>
   )
