@@ -56,7 +56,6 @@ const Login = ({ setCurrentView }: Props) => {
         >
           Join us
         </button>
-        .
       </span>
     </div>
   )
