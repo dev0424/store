@@ -30,7 +30,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
             </span>
           </span>
         </div>
-        {customer?.metadata?.approved === false ? (
+        {customer?.metadata?.status === "pending" ? (
           <AccountReviewMessage />
         ) : null}
         <div className="flex flex-col py-8">

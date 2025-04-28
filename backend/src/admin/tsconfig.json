@@ -4,5 +4,5 @@
     "module": "esnext"
   },
   "include": ["."],
-  "exclude": ["**/*.spec.js"]
+  "exclude": ["**/*.spec.js"],
 }

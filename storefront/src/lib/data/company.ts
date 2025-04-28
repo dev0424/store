@@ -1,11 +1,12 @@
 "use server"
 
 import { sdk } from "@lib/config"
-import { redirect } from "next/navigation"
+import { setAuthToken } from "@lib/data/cookies"
+import { revalidateTag } from "next/cache"
 
 export async function signup(_currentState: unknown, formData: FormData) {
   const password = formData.get("password") as string
-  const customerData = {
+  const customerForm = {
     email: formData.get("email") as string,
     first_name: formData.get("first_name") as string,
     last_name: formData.get("last_name") as string,
@@ -13,22 +14,33 @@ export async function signup(_currentState: unknown, formData: FormData) {
     company_name: formData.get("company_name") as string,
     metadata: {
       tax_number: formData.get("tax_number"),
-      approved: false,
     },
   }
 
   try {
     const token = await sdk.auth.register("customer", "emailpass", {
-      email: customerData.email,
+      email: customerForm.email,
       password: password,
     })
 
-    const customHeaders = { authorization: `Bearer ${token}` }
+    const createdCustomer = await sdk.client.fetch("/store/company", {
+      method: "POST",
+      body: customerForm,
+      headers: { authorization: `Bearer ${token}` },
+    })
 
-    await sdk.store.customer.create(customerData, {}, customHeaders)
+    const loginToken = await sdk.auth.login("customer", "emailpass", {
+      email: customerForm.email,
+      password,
+    })
+
+    setAuthToken(
+      typeof loginToken === "string" ? loginToken : loginToken.location
+    )
+
+    revalidateTag("customer")
+    return createdCustomer
   } catch (error: any) {
     return error.toString()
   }
-
-  redirect("/account/pending")
 }

@@ -13,6 +13,10 @@ const CartTemplate = ({
   cart: HttpTypes.StoreCart | null
   customer: HttpTypes.StoreCustomer | null
 }) => {
+  if (customer?.metadata?.status === "pending") {
+    return <AccountReviewMessage />
+  }
+
   return (
     <div className="py-12">
       <div className="content-container" data-testid="cart-container">
@@ -38,10 +42,6 @@ const CartTemplate = ({
                 )}
               </div>
             </div>
-          </div>
-        ) : customer?.metadata?.approved === false ? (
-          <div>
-            <AccountReviewMessage />
           </div>
         ) : (
           <div>
