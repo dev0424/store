@@ -65,6 +65,9 @@ importers:
       '@rokmohar/medusa-plugin-meilisearch':
         specifier: ^1.0.3
         version: 1.0.6(qepjfaeeeapvogjfrexvlanzpq)
+      '@tanstack/react-query':
+        specifier: 5.64.2
+        version: 5.64.2(react@18.3.1)
       awilix:
         specifier: ^8.0.1
         version: 8.0.1
@@ -99,9 +102,6 @@ importers:
       '@swc/jest':
         specifier: ^0.2.37
         version: 0.2.37(@swc/core@1.5.7(@swc/helpers@0.5.15))
-      '@tanstack/react-query':
-        specifier: ^5.64.2
-        version: 5.74.7(react@18.3.1)
       '@types/jest':
         specifier: ^29.5.14
         version: 29.5.14
@@ -3842,16 +3842,8 @@ packages:
   '@tanstack/query-core@5.64.2':
     resolution: {integrity: sha512-hdO8SZpWXoADNTWXV9We8CwTkXU88OVWRBcsiFrk7xJQnhm6WRlweDzMD+uH+GnuieTBVSML6xFa17C2cNV8+g==}
 
-  '@tanstack/query-core@5.74.7':
-    resolution: {integrity: sha512-X3StkN/Y6KGHndTjJf8H8th7AX4bKfbRpiVhVqevf0QWlxl6DhyJ0TYG3R0LARa/+xqDwzU9mA4pbJxzPCI29A==}
-
   '@tanstack/react-query@5.64.2':
     resolution: {integrity: sha512-3pakNscZNm8KJkxmovvtZ4RaXLyiYYobwleTMvpIGUoKRa8j8VlrQKNl5W8VUEfVfZKkikvXVddLuWMbcSCA1Q==}
-    peerDependencies:
-      react: ^18 || ^19
-
-  '@tanstack/react-query@5.74.7':
-    resolution: {integrity: sha512-u4o/RIWnnrq26orGZu2NDPwmVof1vtAiiV6KYUXd49GuK+8HX+gyxoAYqIaZogvCE1cqOuZAhQKcrKGYGkrLxg==}
     peerDependencies:
       react: ^18 || ^19
 
@@ -12358,16 +12350,9 @@ snapshots:
 
   '@tanstack/query-core@5.64.2': {}
 
-  '@tanstack/query-core@5.74.7': {}
-
   '@tanstack/react-query@5.64.2(react@18.3.1)':
     dependencies:
       '@tanstack/query-core': 5.64.2
-      react: 18.3.1
-
-  '@tanstack/react-query@5.74.7(react@18.3.1)':
-    dependencies:
-      '@tanstack/query-core': 5.74.7
       react: 18.3.1
 
   '@tanstack/react-table@8.20.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
