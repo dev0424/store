@@ -1,10 +1,8 @@
-import { XMarkMini } from "@medusajs/icons"
-import { FormEvent } from "react"
-import { useRouter } from "next/navigation"
-
+import { XMarkMini } from "@medusajs/icons";
+import { FormEvent } from "react";
 import SearchBoxWrapper, {
   ControlledSearchBoxProps,
-} from "../search-box-wrapper"
+} from "../search-box-wrapper";
 
 const ControlledSearchBox = ({
   inputRef,
@@ -16,28 +14,28 @@ const ControlledSearchBox = ({
   ...props
 }: ControlledSearchBoxProps) => {
   const handleSubmit = (event: FormEvent) => {
-    event.preventDefault()
-    event.stopPropagation()
+    event.preventDefault();
+    event.stopPropagation();
 
     if (onSubmit) {
-      onSubmit(event)
+      onSubmit(event);
     }
 
     if (inputRef.current) {
-      inputRef.current.blur()
+      inputRef.current.blur();
     }
-  }
+  };
 
   const handleReset = (event: FormEvent) => {
-    event.preventDefault()
-    event.stopPropagation()
+    event.preventDefault();
+    event.stopPropagation();
 
-    onReset(event)
+    onReset(event);
 
     if (inputRef.current) {
-      inputRef.current.focus()
+      inputRef.current.focus();
     }
-  }
+  };
 
   return (
     <div {...props} className="w-full">
@@ -54,13 +52,13 @@ const ControlledSearchBox = ({
             type="search"
             value={value}
             onChange={onChange}
-            className="txt-compact-large h-6 placeholder:text-ui-fg-on-color placeholder:transition-colors focus:outline-none flex-1 bg-transparent "
+            className="txt-compact-large h-6 flex-1 bg-transparent placeholder:text-ui-fg-subtle placeholder:transition-colors focus:outline-none"
           />
           {value && (
             <button
               onClick={handleReset}
               type="button"
-              className="items-center justify-center text-ui-fg-on-color focus:outline-none gap-x-2 px-2 txt-compact-large flex"
+              className="txt-compact-large flex items-center justify-center gap-x-2 px-2 text-ui-fg-subtle focus:outline-none"
             >
               <XMarkMini />
               Cancel
@@ -69,23 +67,21 @@ const ControlledSearchBox = ({
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
-const SearchBox = () => {
-  const router = useRouter()
-
+const SearchBox = ({ onClick }: { onClick?: VoidFunction }) => {
   return (
     <SearchBoxWrapper>
       {(props) => {
         return (
           <>
-            <ControlledSearchBox {...props} />
+            <ControlledSearchBox {...props} onClick={onClick} />
           </>
-        )
+        );
       }}
     </SearchBoxWrapper>
-  )
-}
+  );
+};
 
-export default SearchBox
+export default SearchBox;

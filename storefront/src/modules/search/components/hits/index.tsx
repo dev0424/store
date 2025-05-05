@@ -1,40 +1,39 @@
-import { clx } from "@medusajs/ui"
-import React from "react"
+import { clx } from "@medusajs/ui";
+import React from "react";
 import {
   UseHitsProps,
   useHits,
   useSearchBox,
-} from "react-instantsearch-hooks-web"
-
-import { ProductHit } from "../hit"
-import ShowAll from "../show-all"
+} from "react-instantsearch-hooks-web";
+import { ProductHit } from "../hit";
+import ShowAll from "../show-all";
 
 type HitsProps<THit> = React.ComponentProps<"div"> &
   UseHitsProps & {
-    hitComponent: (props: { hit: THit }) => JSX.Element
-  }
+    hitComponent: (props: { hit: THit }) => JSX.Element;
+  };
 
 const Hits = ({
   hitComponent: Hit,
   className,
   ...props
 }: HitsProps<ProductHit>) => {
-  const { query } = useSearchBox()
-  const { hits } = useHits(props)
+  const { query } = useSearchBox();
+  const { hits } = useHits(props);
 
   return (
     <div
       className={clx(
-        "transition-[height,max-height,opacity] duration-300 ease-in-out sm:overflow-hidden w-full sm:w-[50vw] mb-1 p-px",
+        "w-full p-px transition-[height,max-height,opacity] duration-300 ease-in-out sm:overflow-hidden",
         className,
         {
           "max-h-full opacity-100": !!query,
           "max-h-0 opacity-0": !query && !hits.length,
-        }
+        },
       )}
     >
       <div
-        className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4"
+        className="grid grid-cols-1 gap-4 sm:grid-cols-4"
         data-testid="search-results"
       >
         {hits.slice(0, 6).map((hit, index) => (
@@ -50,7 +49,7 @@ const Hits = ({
       </div>
       <ShowAll />
     </div>
-  )
-}
+  );
+};
 
-export default Hits
+export default Hits;

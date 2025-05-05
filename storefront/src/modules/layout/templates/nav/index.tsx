@@ -1,58 +1,53 @@
-import { Suspense } from "react"
-
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import CartButton from "@modules/layout/components/cart-button"
-import SideMenu from "@modules/layout/components/side-menu"
+import { ShoppingCart, User } from "@medusajs/icons";
+import LocalizedClientLink from "@modules/common/components/localized-client-link";
+import CartButton from "@modules/layout/components/cart-button";
+import SideMenu from "@modules/layout/components/side-menu";
+import SearchHeader from "@modules/search/templates/search-header";
+import { Suspense } from "react";
 
 export default async function Nav() {
   return (
-    <div className="sticky top-0 inset-x-0 z-50 group">
-      <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base">
-        <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular">
-          <div className="flex-1 basis-0 h-full flex items-center">
-            <div className="h-full">
-              <SideMenu />
-            </div>
+    <div className="group sticky inset-x-0 top-0 z-50 text-white">
+      <header className="relative mx-auto border-b border-ui-border-base bg-white duration-200">
+        <nav className="content-container text-small-regular txt-xsmall-plus flex h-full w-full flex-wrap items-center justify-between gap-4 p-4 text-ui-fg-subtle sm:flex-nowrap">
+          <div className="flex h-full flex-1 basis-0 items-center sm:hidden">
+            <SideMenu />
           </div>
 
-          <div className="flex items-center h-full">
+          <div className="flex h-full items-center">
             <LocalizedClientLink
               href="/"
-              className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
+              className="txt-compact-xlarge-plus uppercase hover:text-ui-fg-base"
               data-testid="nav-store-link"
             >
               Store
             </LocalizedClientLink>
           </div>
 
-          <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
-            <div className="hidden small:flex items-center gap-x-6 h-full">
-              {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (
-                <LocalizedClientLink
-                  className="hover:text-ui-fg-base"
-                  href="/search"
-                  scroll={false}
-                  data-testid="nav-search-link"
-                >
-                  Search
-                </LocalizedClientLink>
-              )}
+          <div className="order-1 flex h-[42px] w-full justify-center sm:order-none">
+            <div className="w-full sm:w-1/2">
+              <SearchHeader />
+            </div>
+          </div>
+
+          <div className="flex h-full flex-1 basis-0 items-center justify-end gap-x-6">
+            <div className="flex h-full items-center gap-x-6">
               <LocalizedClientLink
                 className="hover:text-ui-fg-base"
                 href="/account"
                 data-testid="nav-account-link"
               >
-                Account
+                <User />
               </LocalizedClientLink>
             </div>
             <Suspense
               fallback={
                 <LocalizedClientLink
-                  className="hover:text-ui-fg-base flex gap-2"
+                  className="flex whitespace-nowrap hover:text-ui-fg-base"
                   href="/cart"
                   data-testid="nav-cart-link"
                 >
-                  Cart (0)
+                  <ShoppingCart />
                 </LocalizedClientLink>
               }
             >
@@ -62,5 +57,5 @@ export default async function Nav() {
         </nav>
       </header>
     </div>
-  )
+  );
 }
