@@ -4,6 +4,7 @@ import CartButton from "@modules/layout/components/cart-button";
 import SideMenu from "@modules/layout/components/side-menu";
 import SearchHeader from "@modules/search/templates/search-header";
 import { Suspense } from "react";
+import CategoryNavigation from "modules/categories/components/category-navigation";
 
 export default async function Nav() {
   return (
@@ -55,6 +56,9 @@ export default async function Nav() {
             </Suspense>
           </div>
         </nav>
+        <div className={"hidden sm:block"}>
+          <CategoryNavigation />
+        </div>
       </header>
     </div>
   );
