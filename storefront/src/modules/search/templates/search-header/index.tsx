@@ -1,7 +1,12 @@
 "use client";
 
 import { Fragment, useRef } from "react";
-import { Popover, Transition } from "@headlessui/react";
+import {
+  Popover,
+  Transition,
+  PopoverButton,
+  PopoverPanel,
+} from "@headlessui/react";
 import { SEARCH_INDEX_NAME, searchClient } from "@lib/search-client";
 import { MagnifyingGlassMini } from "@medusajs/icons";
 import Hit from "@modules/search/components/hit";
@@ -22,7 +27,7 @@ export default function SearchHeader() {
       <Popover className="relative flex h-full">
         {({ open, close }) => (
           <>
-            <Popover.Button ref={buttonRef} className="hidden" />
+            <PopoverButton ref={buttonRef} className="hidden" />
             <div className="flex h-fit w-full flex-col">
               <div className="flex w-full items-center gap-x-2 rounded-md border border-ui-border-base bg-ui-bg-field p-2">
                 <MagnifyingGlassMini />
@@ -39,14 +44,14 @@ export default function SearchHeader() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Popover.Panel
+              <PopoverPanel
                 onClick={close}
                 className="absolute left-0 top-0 z-50 flex w-full flex-col text-sm text-ui-fg-on-color"
               >
                 <div className="absolute top-12 w-full rounded-md border border-ui-border-base bg-white p-2">
                   <Hits hitComponent={Hit} />
                 </div>
-              </Popover.Panel>
+              </PopoverPanel>
             </Transition>
           </>
         )}

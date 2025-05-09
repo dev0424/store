@@ -8,6 +8,7 @@ import { Fragment } from "react";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import CountrySelect from "../country-select";
 import { HttpTypes } from "@medusajs/types";
+import {BarsThree} from "@medusajs/icons"
 
 const SideMenuItems = {
   Home: "/",
@@ -30,7 +31,7 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                   data-testid="nav-menu-button"
                   className="relative flex h-full items-center transition-all duration-200 ease-out hover:text-ui-fg-base focus:outline-none"
                 >
-                  Menu
+                  <BarsThree />
                 </Popover.Button>
               </div>
 
