@@ -1,19 +1,18 @@
-"use client"
+"use client";
 
-import React, { useEffect, useMemo } from "react"
+import React, { useEffect, useMemo, useActionState } from "react";
 
-import Input from "@modules/common/components/input"
-import NativeSelect from "@modules/common/components/native-select"
+import Input from "@modules/common/components/input";
+import NativeSelect from "@modules/common/components/native-select";
 
-import AccountInfo from "../account-info"
-import { useFormState } from "react-dom"
-import { HttpTypes } from "@medusajs/types"
-import { updateCustomerAddress } from "@lib/data/customer"
+import AccountInfo from "../account-info";
+import { HttpTypes } from "@medusajs/types";
+import { addCustomerAddress, updateCustomerAddress } from "@lib/data/customer";
 
 type MyInformationProps = {
-  customer: HttpTypes.StoreCustomer
-  regions: HttpTypes.StoreRegion[]
-}
+  customer: HttpTypes.StoreCustomer;
+  regions: HttpTypes.StoreRegion[];
+};
 
 const ProfileBillingAddress: React.FC<MyInformationProps> = ({
   customer,
@@ -26,40 +25,51 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({
           return region.countries?.map((country) => ({
             value: country.iso_2,
             label: country.display_name,
-          }))
+          }));
         })
         .flat() || []
-    )
-  }, [regions])
+    );
+  }, [regions]);
 
-  const [successState, setSuccessState] = React.useState(false)
-
-  const [state, formAction] = useFormState(updateCustomerAddress, {
-    error: false,
-    success: false,
-  })
-
-  const clearState = () => {
-    setSuccessState(false)
-  }
-
-  useEffect(() => {
-    setSuccessState(state.success)
-  }, [state])
+  const [successState, setSuccessState] = React.useState(false);
 
   const billingAddress = customer.addresses?.find(
-    (addr) => addr.is_default_billing
-  )
+    (addr) => addr.is_default_billing,
+  );
+
+  const initialState: Record<string, any> = {
+    isDefaultBilling: true,
+    isDefaultShipping: false,
+    error: false,
+    success: false,
+  };
+
+  if (billingAddress) {
+    initialState.addressId = billingAddress.id;
+  }
+
+  const [state, formAction] = useActionState(
+    billingAddress ? updateCustomerAddress : addCustomerAddress,
+    initialState,
+  );
+
+  const clearState = () => {
+    setSuccessState(false);
+  };
+
+  useEffect(() => {
+    setSuccessState(state.success);
+  }, [state]);
 
   const currentInfo = useMemo(() => {
     if (!billingAddress) {
-      return "No billing address"
+      return "No billing address";
     }
 
     const country =
       regionOptions?.find(
-        (country) => country?.value === billingAddress.country_code
-      )?.label || billingAddress.country_code?.toUpperCase()
+        (country) => country?.value === billingAddress.country_code,
+      )?.label || billingAddress.country_code?.toUpperCase();
 
     return (
       <div className="flex flex-col font-semibold" data-testid="current-info">
@@ -76,11 +86,12 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({
         </span>
         <span>{country}</span>
       </div>
-    )
-  }, [billingAddress, regionOptions])
+    );
+  }, [billingAddress, regionOptions]);
 
   return (
     <form action={formAction} onReset={() => clearState()} className="w-full">
+      <input type="hidden" name="addressId" value={billingAddress?.id} />
       <AccountInfo
         label="Billing address"
         currentInfo={currentInfo}
@@ -93,14 +104,14 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({
           <div className="grid grid-cols-2 gap-x-2">
             <Input
               label="First name"
-              name="billing_address.first_name"
+              name="first_name"
               defaultValue={billingAddress?.first_name || undefined}
               required
               data-testid="billing-first-name-input"
             />
             <Input
               label="Last name"
-              name="billing_address.last_name"
+              name="last_name"
               defaultValue={billingAddress?.last_name || undefined}
               required
               data-testid="billing-last-name-input"
@@ -108,34 +119,34 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({
           </div>
           <Input
             label="Company"
-            name="billing_address.company"
+            name="company"
             defaultValue={billingAddress?.company || undefined}
             data-testid="billing-company-input"
           />
           <Input
             label="Address"
-            name="billing_address.address_1"
+            name="address_1"
             defaultValue={billingAddress?.address_1 || undefined}
             required
             data-testid="billing-address-1-input"
           />
           <Input
             label="Apartment, suite, etc."
-            name="billing_address.address_2"
+            name="address_2"
             defaultValue={billingAddress?.address_2 || undefined}
             data-testid="billing-address-2-input"
           />
           <div className="grid grid-cols-[144px_1fr] gap-x-2">
             <Input
               label="Postal code"
-              name="billing_address.postal_code"
+              name="postal_code"
               defaultValue={billingAddress?.postal_code || undefined}
               required
               data-testid="billing-postcal-code-input"
             />
             <Input
               label="City"
-              name="billing_address.city"
+              name="city"
               defaultValue={billingAddress?.city || undefined}
               required
               data-testid="billing-city-input"
@@ -143,12 +154,12 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({
           </div>
           <Input
             label="Province"
-            name="billing_address.province"
+            name="province"
             defaultValue={billingAddress?.province || undefined}
             data-testid="billing-province-input"
           />
           <NativeSelect
-            name="billing_address.country_code"
+            name="country_code"
             defaultValue={billingAddress?.country_code || undefined}
             required
             data-testid="billing-country-code-select"
@@ -159,13 +170,13 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({
                 <option key={i} value={option?.value}>
                   {option?.label}
                 </option>
-              )
+              );
             })}
           </NativeSelect>
         </div>
       </AccountInfo>
     </form>
-  )
-}
+  );
+};
 
-export default ProfileBillingAddress
+export default ProfileBillingAddress;

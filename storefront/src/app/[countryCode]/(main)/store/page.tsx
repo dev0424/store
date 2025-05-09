@@ -1,25 +1,27 @@
-import { Metadata } from "next"
+import { Metadata } from "next";
 
-import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
-import StoreTemplate from "@modules/store/templates"
+import { SortOptions } from "@modules/store/components/refinement-list/sort-products";
+import StoreTemplate from "@modules/store/templates";
 
 export const metadata: Metadata = {
   title: "Store",
   description: "Explore all of our products.",
-}
+};
 
 type Params = {
-  searchParams: {
-    sortBy?: SortOptions
-    page?: string
-  }
-  params: {
-    countryCode: string
-  }
-}
+  searchParams: Promise<{
+    sortBy?: SortOptions;
+    page?: string;
+  }>;
+  params: Promise<{
+    countryCode: string;
+  }>;
+};
 
-export default async function StorePage({ searchParams, params }: Params) {
-  const { sortBy, page } = searchParams
+export default async function StorePage(props: Params) {
+  const params = await props.params;
+  const searchParams = await props.searchParams;
+  const { sortBy, page } = searchParams;
 
   return (
     <StoreTemplate
@@ -27,5 +29,5 @@ export default async function StorePage({ searchParams, params }: Params) {
       page={page}
       countryCode={params.countryCode}
     />
-  )
+  );
 }

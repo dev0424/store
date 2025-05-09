@@ -1,18 +1,18 @@
-import { Container, clx } from "@medusajs/ui"
-import Image from "next/image"
-import React from "react"
+import { Container, clx } from "@medusajs/ui";
+import Image from "next/image";
+import React from "react";
 
-import PlaceholderImage from "@modules/common/icons/placeholder-image"
+import PlaceholderImage from "@modules/common/icons/placeholder-image";
 
 type ThumbnailProps = {
-  thumbnail?: string | null
+  thumbnail?: string | null;
   // TODO: Fix image typings
-  images?: any[] | null
-  size?: "small" | "medium" | "large" | "full" | "square"
-  isFeatured?: boolean
-  className?: string
-  "data-testid"?: string
-}
+  images?: any[] | null;
+  size?: "small" | "medium" | "large" | "full" | "square";
+  isFeatured?: boolean;
+  className?: string;
+  "data-testid"?: string;
+};
 
 const Thumbnail: React.FC<ThumbnailProps> = ({
   thumbnail,
@@ -22,12 +22,12 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
   className,
   "data-testid": dataTestid,
 }) => {
-  const initialImage = thumbnail || images?.[0]?.url
+  const initialImage = thumbnail || images?.[0]?.url;
 
   return (
     <Container
       className={clx(
-        "relative w-full overflow-hidden p-4 bg-ui-bg-subtle shadow-elevation-card-rest rounded-large group-hover:shadow-elevation-card-hover transition-shadow ease-in-out duration-150",
+        "relative w-full overflow-hidden rounded-large bg-ui-bg-subtle p-4 shadow-elevation-card-rest transition-shadow duration-150 ease-in-out group-hover:shadow-elevation-card-hover",
         className,
         {
           "aspect-[11/14]": isFeatured,
@@ -37,14 +37,14 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
           "w-[290px]": size === "medium",
           "w-[440px]": size === "large",
           "w-full": size === "full",
-        }
+        },
       )}
       data-testid={dataTestid}
     >
       <ImageOrPlaceholder image={initialImage} size={size} />
     </Container>
-  )
-}
+  );
+};
 
 const ImageOrPlaceholder = ({
   image,
@@ -61,10 +61,10 @@ const ImageOrPlaceholder = ({
       fill
     />
   ) : (
-    <div className="w-full h-full absolute inset-0 flex items-center justify-center">
+    <div className="absolute inset-0 flex h-full w-full items-center justify-center">
       <PlaceholderImage size={size === "small" ? 16 : 24} />
     </div>
-  )
-}
+  );
+};
 
-export default Thumbnail
+export default Thumbnail;

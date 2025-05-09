@@ -1,15 +1,15 @@
-import { HttpTypes } from "@medusajs/types"
-import { Container } from "@medusajs/ui"
-import Image from "next/image"
+import { HttpTypes } from "@medusajs/types";
+import { Container } from "@medusajs/ui";
+import Image from "next/image";
 
 type ImageGalleryProps = {
-  images: HttpTypes.StoreProductImage[]
-}
+  images: HttpTypes.StoreProductImage[];
+};
 
 const ImageGallery = ({ images }: ImageGalleryProps) => {
   return (
-    <div className="flex items-start relative">
-      <div className="flex flex-col flex-1 small:mx-16 gap-y-4">
+    <div className="relative flex items-start">
+      <div className="flex flex-1 flex-col gap-y-4 small:mx-16">
         {images.map((image, index) => {
           return (
             <Container
@@ -31,11 +31,11 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
                 />
               )}
             </Container>
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ImageGallery
+export default ImageGallery;
