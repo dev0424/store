@@ -1,7 +1,5 @@
-"use client";
 import { HttpTypes } from "@medusajs/types";
-import ProductRail from "@modules/home/components/featured-products/product-rail";
-import ProductCarousel from "@modules/home/components/featured-products/product-carousel";
+import ProductCarouselTemplate from "@modules/home/templates/product-carousel-template";
 
 export default function FeaturedProducts({
   collections,
@@ -12,8 +10,7 @@ export default function FeaturedProducts({
 }) {
   return collections.map((collection) => (
     <li key={collection.id}>
-      <ProductRail collection={collection} region={region} />
-      {/*<ProductCarousel products={collection.products} region={region} />*/}
+      <ProductCarouselTemplate region={region} collection={collection} />
     </li>
   ));
 }

@@ -10,10 +10,12 @@ export default async function ProductPreview({
   product,
   isFeatured,
   region,
+  size = "full",
 }: {
   product: HttpTypes.StoreProduct;
   isFeatured?: boolean;
   region: HttpTypes.StoreRegion;
+  size?: "small" | "full" | "medium" | "large" | "square" | undefined;
 }) {
   // const pricedProduct = await listProducts({
   //   regionId: region.id,
@@ -34,7 +36,7 @@ export default async function ProductPreview({
         <Thumbnail
           thumbnail={product.thumbnail}
           images={product.images}
-          size="full"
+          size={size}
           isFeatured={isFeatured}
         />
         <div className="txt-compact-medium mt-4 flex justify-between">

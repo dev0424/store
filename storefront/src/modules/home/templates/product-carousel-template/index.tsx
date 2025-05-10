@@ -1,17 +1,19 @@
+import React from "react";
 import { listProducts } from "@lib/data/products";
 import { HttpTypes } from "@medusajs/types";
-import { Text } from "@medusajs/ui";
-
+import ProductCarousel from "@modules/home/components/featured-products/product-carousel";
 import InteractiveLink from "@modules/common/components/interactive-link";
 import ProductPreview from "@modules/products/components/product-preview";
 
-export default async function ProductRail({
-  collection,
-  region,
-}: {
+type Props = {
   collection: HttpTypes.StoreCollection;
   region: HttpTypes.StoreRegion;
-}) {
+};
+
+export default async function ProductCarouselTemplate({
+  collection,
+  region,
+}: Props) {
   const {
     response: { products: pricedProducts },
   } = await listProducts({
@@ -26,22 +28,25 @@ export default async function ProductRail({
     return null;
   }
 
+  const productPreviews = pricedProducts.map((product) => (
+    <ProductPreview
+      key={product.id}
+      product={product}
+      region={region}
+      isFeatured={false}
+      size={"small"}
+    />
+  ));
+
   return (
-    <div className="content-container py-12 small:py-24">
-      <div className="mb-8 flex justify-between">
-        <Text className="txt-xlarge">{collection.title}</Text>
+    <section className="flex flex-col gap-4 p-4">
+      <div className="flex flex-col items-center">
+        <h1 className="text-2xl-regular text-ui-fg-base">{collection.title}</h1>
         <InteractiveLink href={`/collections/${collection.handle}`}>
           View all
         </InteractiveLink>
       </div>
-      <ul className="grid grid-cols-2 gap-x-6 gap-y-24 small:grid-cols-3 small:gap-y-36">
-        {pricedProducts &&
-          pricedProducts.map((product) => (
-            <li key={product.id}>
-              <ProductPreview product={product} region={region} isFeatured />
-            </li>
-          ))}
-      </ul>
-    </div>
+      <ProductCarousel>{productPreviews}</ProductCarousel>
+    </section>
   );
 }
