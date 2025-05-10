@@ -1,7 +1,7 @@
 import React from "react";
 import { StoreProductCategory } from "@medusajs/types";
-import { ChevronDown } from "@medusajs/icons";
-import Link from "next/link";
+import { HiChevronDown as ChevronDown } from "react-icons/hi";
+import LocalizedClientLink from "@modules/common/components/localized-client-link";
 
 type Props = {
   category: StoreProductCategory;
@@ -10,7 +10,9 @@ type Props = {
 const CategoryMenu = ({ category }: Props) => {
   return (
     <div className="flex gap-1">
-      <Link href={`/categories/${category.handle}`}>{category.name}</Link>
+      <LocalizedClientLink href={`/categories/${category.handle}`}>
+        {category.name}
+      </LocalizedClientLink>
       <ChevronDown
         className="duration-[250] relative top-px transition-transform ease-in group-data-[state=open]:-rotate-180"
         aria-hidden

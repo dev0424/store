@@ -7,20 +7,20 @@ import {
 } from "@lib/util/categories";
 import CategoryMenu from "@modules/categories/components/category-menu";
 import CategoryMenuContent from "@modules/categories/components/category-menu-content";
-import Link from "next/link";
+import LocalizedClientLink from "@modules/common/components/localized-client-link";
 
 const CategoryNavigation = async () => {
   const product_categories = await listCategories();
   const categories = filterMainCategories(product_categories);
 
   return (
-    <NavigationMenu.Root className="relative z-10 flex w-screen justify-center">
-      <NavigationMenu.List className="center m-0 flex list-none p-1">
+    <NavigationMenu.Root className="relative z-10 flex w-screen">
+      <NavigationMenu.List className="center m-0 flex list-none gap-6">
         {categories.map((category) => (
           <NavigationMenu.Item key={category.id}>
             {hasChildrenCategory(category) ? (
               <>
-                <NavigationMenu.Trigger className="group flex select-none items-center justify-between gap-1 px-3 py-2 font-medium leading-none text-black outline-none">
+                <NavigationMenu.Trigger className="group flex select-none items-center justify-between gap-1 font-medium leading-none text-black outline-none">
                   <CategoryMenu category={category} />
                 </NavigationMenu.Trigger>
                 <NavigationMenu.Content className="absolute left-0 top-0 w-full bg-white p-4 text-black data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft sm:w-auto">
@@ -28,12 +28,12 @@ const CategoryNavigation = async () => {
                 </NavigationMenu.Content>
               </>
             ) : (
-              <Link
-                className="block select-none rounded px-3 py-2 font-medium leading-none text-black no-underline outline-none"
+              <LocalizedClientLink
+                className="block select-none rounded font-medium leading-none text-black no-underline outline-none"
                 href={`/categories/${category.handle}`}
               >
                 {category.name}
-              </Link>
+              </LocalizedClientLink>
             )}
           </NavigationMenu.Item>
         ))}

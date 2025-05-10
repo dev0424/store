@@ -1,6 +1,11 @@
 "use client";
 
-import { Popover, PopoverPanel, Transition } from "@headlessui/react";
+import {
+  Popover,
+  PopoverPanel,
+  Transition,
+  PopoverButton,
+} from "@headlessui/react";
 import { ArrowRightMini, XMark } from "@medusajs/icons";
 import { Text, clx, useToggleState } from "@medusajs/ui";
 import { Fragment } from "react";
@@ -8,7 +13,7 @@ import { Fragment } from "react";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import CountrySelect from "../country-select";
 import { HttpTypes } from "@medusajs/types";
-import {BarsThree} from "@medusajs/icons"
+import { HiMenu } from "react-icons/hi";
 
 const SideMenuItems = {
   Home: "/",
@@ -27,12 +32,12 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
           {({ open, close }) => (
             <>
               <div className="relative flex h-full">
-                <Popover.Button
+                <PopoverButton
                   data-testid="nav-menu-button"
                   className="relative flex h-full items-center transition-all duration-200 ease-out hover:text-ui-fg-base focus:outline-none"
                 >
-                  <BarsThree />
-                </Popover.Button>
+                  <HiMenu size={24} />
+                </PopoverButton>
               </div>
 
               <Transition

@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-
 import { listRegions } from "@lib/data/regions";
 import { StoreRegion } from "@medusajs/types";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
@@ -7,15 +6,18 @@ import CartButton from "@modules/layout/components/cart-button";
 import SideMenu from "@modules/layout/components/side-menu";
 import CategoryNavigation from "@modules/categories/components/category-navigation";
 import SearchHeader from "@modules/search/templates/search-header";
-import { ShoppingCart, User } from "@medusajs/icons";
+import {
+  HiOutlineUser as UserIcon,
+  HiOutlineShoppingCart as ShoppingCartIcon,
+} from "react-icons/hi";
 
 export default async function Nav() {
   const regions = await listRegions().then((regions: StoreRegion[]) => regions);
 
   return (
     <div className="group sticky inset-x-0 top-0 z-50 text-white">
-      <header className="relative mx-auto border-b border-ui-border-base bg-white duration-200">
-        <nav className="content-container text-small-regular txt-xsmall-plus flex h-full w-full flex-wrap items-center justify-between gap-4 p-4 text-ui-fg-subtle sm:flex-nowrap">
+      <header className="relative mx-auto flex flex-col gap-4 border-b border-ui-border-base bg-white p-4 duration-200">
+        <nav className="text-small-regular txt-xsmall-plus flex h-full w-full flex-wrap items-center justify-between gap-4 text-ui-fg-subtle sm:flex-nowrap">
           <div className="flex h-full flex-1 basis-0 items-center sm:hidden">
             <SideMenu regions={regions} />
           </div>
@@ -43,7 +45,7 @@ export default async function Nav() {
                 href="/account"
                 data-testid="nav-account-link"
               >
-                <User />
+                <UserIcon size={24} />
               </LocalizedClientLink>
             </div>
             <Suspense
@@ -53,7 +55,7 @@ export default async function Nav() {
                   href="/cart"
                   data-testid="nav-cart-link"
                 >
-                  <ShoppingCart />
+                  <ShoppingCartIcon size={24} />
                 </LocalizedClientLink>
               }
             >
@@ -61,8 +63,14 @@ export default async function Nav() {
             </Suspense>
           </div>
         </nav>
-        <div className={"hidden sm:block"}>
+        <div className={"hidden gap-6 sm:flex sm:items-center"}>
           <CategoryNavigation />
+          <LocalizedClientLink className="text-black" href="#">
+            Help
+          </LocalizedClientLink>
+          <LocalizedClientLink className="text-black" href="#">
+            Contact
+          </LocalizedClientLink>
         </div>
       </header>
     </div>
