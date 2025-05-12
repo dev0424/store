@@ -9,7 +9,7 @@ type Props = {
 
 const CategoryMenuContent = ({ category }: Props) => {
   return (
-    <ul className="flex list-none gap-8 sm:w-max">
+    <ul className="flex list-none gap-8 bg-white p-4 text-black sm:w-max">
       {category.category_children.map((subCategory) => (
         <li key={subCategory.id} className={"flex flex-col gap-2"}>
           <Link

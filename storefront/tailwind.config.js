@@ -1,5 +1,3 @@
-const path = require("path");
-
 module.exports = {
   darkMode: "class",
   presets: [require("@medusajs/ui-preset")],
@@ -140,38 +138,6 @@ module.exports = {
           "0%": { transform: "translateY(-100%)" },
           "100%": { transform: "translateY(0)" },
         },
-        enterFromRight: {
-          from: { opacity: "0", transform: "translateX(200px)" },
-          to: { opacity: "1", transform: "translateX(0)" },
-        },
-        enterFromLeft: {
-          from: { opacity: "0", transform: "translateX(-200px)" },
-          to: { opacity: "1", transform: "translateX(0)" },
-        },
-        exitToRight: {
-          from: { opacity: "1", transform: "translateX(0)" },
-          to: { opacity: "0", transform: "translateX(200px)" },
-        },
-        exitToLeft: {
-          from: { opacity: "1", transform: "translateX(0)" },
-          to: { opacity: "0", transform: "translateX(-200px)" },
-        },
-        scaleIn: {
-          from: { opacity: "0", transform: "rotateX(-10deg) scale(0.9)" },
-          to: { opacity: "1", transform: "rotateX(0deg) scale(1)" },
-        },
-        scaleOut: {
-          from: { opacity: "1", transform: "rotateX(0deg) scale(1)" },
-          to: { opacity: "0", transform: "rotateX(-10deg) scale(0.95)" },
-        },
-        fadeIn: {
-          from: { opacity: "0" },
-          to: { opacity: "1" },
-        },
-        fadeOut: {
-          from: { opacity: "1" },
-          to: { opacity: "0" },
-        },
       },
       animation: {
         ring: "ring 2.2s cubic-bezier(0.5, 0, 0.5, 1) infinite",
@@ -187,14 +153,6 @@ module.exports = {
         enter: "enter 200ms ease-out",
         "slide-in": "slide-in 1.2s cubic-bezier(.41,.73,.51,1.02)",
         leave: "leave 150ms ease-in forwards",
-        scaleIn: "scaleIn 200ms ease",
-        scaleOut: "scaleOut 200ms ease",
-        fadeIn: "fadeIn 200ms ease",
-        fadeOut: "fadeOut 200ms ease",
-        enterFromLeft: "enterFromLeft 250ms ease",
-        enterFromRight: "enterFromRight 250ms ease",
-        exitToLeft: "exitToLeft 250ms ease",
-        exitToRight: "exitToRight 250ms ease",
       },
     },
   },

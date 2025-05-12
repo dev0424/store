@@ -2,22 +2,37 @@ import React from "react";
 import { StoreProductCategory } from "@medusajs/types";
 import { HiChevronDown as ChevronDown } from "react-icons/hi";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
+import { clx } from "@medusajs/ui";
+import { hasChildrenCategory } from "@lib/util/categories";
 
 type Props = {
   category: StoreProductCategory;
+  isOpen: boolean;
 };
 
-const CategoryMenu = ({ category }: Props) => {
+const CategoryMenu = ({ category, isOpen }: Props) => {
+  if (hasChildrenCategory(category)) {
+    return (
+      <div className="flex items-center gap-1">
+        <LocalizedClientLink href={`/categories/${category.handle}`}>
+          {category.name}
+        </LocalizedClientLink>
+        <ChevronDown
+          className={clx(
+            "relative top-px transition-transform duration-200 ease-in",
+            {
+              "-rotate-180": !isOpen,
+            },
+          )}
+        />
+      </div>
+    );
+  }
+
   return (
-    <div className="flex gap-1">
-      <LocalizedClientLink href={`/categories/${category.handle}`}>
-        {category.name}
-      </LocalizedClientLink>
-      <ChevronDown
-        className="duration-[250] relative top-px transition-transform ease-in group-data-[state=open]:-rotate-180"
-        aria-hidden
-      />
-    </div>
+    <LocalizedClientLink href={`/categories/${category.handle}`}>
+      {category.name}
+    </LocalizedClientLink>
   );
 };
 
