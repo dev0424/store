@@ -9,7 +9,7 @@ type ImageGalleryProps = {
 const ImageGallery = ({ images }: ImageGalleryProps) => {
   return (
     <div className="relative flex items-start">
-      <div className="flex flex-1 flex-col gap-y-4 small:mx-16">
+      <div className="flex flex-1 flex-col gap-y-4">
         {images.map((image, index) => {
           return (
             <Container
@@ -20,7 +20,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
               {!!image.url && (
                 <Image
                   src={image.url}
-                  priority={index <= 2 ? true : false}
+                  priority={index <= 2}
                   className="absolute inset-0 rounded-rounded"
                   alt={`Product image ${index + 1}`}
                   fill

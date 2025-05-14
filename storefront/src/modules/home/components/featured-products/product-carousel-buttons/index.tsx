@@ -1,10 +1,11 @@
 import React from "react";
 import { ChevronLeft, ChevronRight } from "@medusajs/icons";
-import { IconButton } from "@medusajs/ui";
+import { clx, IconButton } from "@medusajs/ui";
 
 type Props = {
   onClick: VoidFunction;
   disabled?: boolean;
+  isSelected?: boolean;
 };
 
 export const PrevButton = ({ onClick, disabled }: Props) => {
@@ -20,5 +21,17 @@ export const NextButton = ({ onClick, disabled }: Props) => {
     <IconButton onClick={onClick} disabled={disabled}>
       <ChevronRight />
     </IconButton>
+  );
+};
+
+export const DotButton = ({ isSelected, onClick }: Props) => {
+  return (
+    <button
+      type={"button"}
+      className={clx("h-2 w-2 rounded-full border border-black", {
+        "bg-black": isSelected,
+      })}
+      onClick={onClick}
+    />
   );
 };

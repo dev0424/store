@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 
-import ImageGallery from "@modules/products/components/image-gallery";
 import ProductActions from "@modules/products/components/product-actions";
 import ProductOnboardingCta from "@modules/products/components/product-onboarding-cta";
 import ProductTabs from "@modules/products/components/product-tabs";
@@ -10,6 +9,7 @@ import SkeletonRelatedProducts from "@modules/skeletons/templates/skeleton-relat
 import { notFound } from "next/navigation";
 import ProductActionsWrapper from "./product-actions-wrapper";
 import { HttpTypes } from "@medusajs/types";
+import ImageCarousel from "@modules/products/components/image-carousel";
 
 type ProductTemplateProps = {
   product: HttpTypes.StoreProduct;
@@ -29,17 +29,15 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   return (
     <>
       <div
-        className="content-container relative flex flex-col py-6 small:flex-row small:items-start"
+        className="content-container grid grid-cols-1 gap-6 py-6 md:grid-cols-[3fr_2fr]"
         data-testid="product-container"
       >
-        <div className="flex w-full flex-col gap-y-6 py-8 small:sticky small:top-48 small:max-w-[300px] small:py-0">
+        <div className="relative block">
+          <ImageCarousel images={product?.images || []} />
+        </div>
+        <div className="flex flex-col gap-y-6">
           <ProductInfo product={product} />
           <ProductTabs product={product} />
-        </div>
-        <div className="relative block w-full">
-          <ImageGallery images={product?.images || []} />
-        </div>
-        <div className="flex w-full flex-col gap-y-12 py-8 small:sticky small:top-48 small:max-w-[300px] small:py-0">
           <ProductOnboardingCta />
           <Suspense
             fallback={
