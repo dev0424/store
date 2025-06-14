@@ -1,9 +1,8 @@
 import { listCategories } from "@lib/data/categories";
 import { listCollections } from "@lib/data/collections";
-import { Text, clx } from "@medusajs/ui";
-
+import { clx } from "@medusajs/ui";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
-import MedusaCTA from "@modules/layout/components/medusa-cta";
+import Image from "next/image";
 
 export default async function Footer() {
   const { collections } = await listCollections({
@@ -12,23 +11,28 @@ export default async function Footer() {
   const productCategories = await listCategories();
 
   return (
-    <footer className="w-full border-t border-ui-border-base">
+    <footer className="w-full bg-[#141414] text-white">
       <div className="content-container flex w-full flex-col">
-        <div className="flex flex-col items-start justify-between gap-y-6 py-40 xsmall:flex-row">
-          <div>
-            <LocalizedClientLink
-              href="/"
-              className="txt-compact-xlarge-plus uppercase text-ui-fg-subtle hover:text-ui-fg-base"
-            >
-              Store
+        <div className="flex flex-col items-start justify-between gap-y-6 py-32 small:flex-row">
+          <div className="flex flex-col gap-6">
+            <LocalizedClientLink href="/" data-testid="nav-store-link">
+              <Image
+                src={"/images/logo.png"}
+                width={200}
+                height={50}
+                alt="RSPI logo"
+                className={"object-cover"}
+              />
             </LocalizedClientLink>
+            <p className="max-w-lg">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
           </div>
-          <div className="text-small-regular grid grid-cols-2 gap-10 sm:grid-cols-3 md:gap-x-16">
+          <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 md:gap-x-16">
             {productCategories && productCategories?.length > 0 && (
               <div className="flex flex-col gap-y-2">
-                <span className="txt-ui-fg-base txt-small-plus">
-                  Categories
-                </span>
+                <span className="text-sm font-black">Categories</span>
                 <ul
                   className="grid grid-cols-1 gap-2"
                   data-testid="footer-categories"
@@ -46,36 +50,14 @@ export default async function Footer() {
                       })) || null;
 
                     return (
-                      <li
-                        className="txt-small flex flex-col gap-2 text-ui-fg-subtle"
-                        key={c.id}
-                      >
+                      <li className="flex flex-col text-white" key={c.id}>
                         <LocalizedClientLink
-                          className={clx(
-                            "hover:text-ui-fg-base",
-                            children && "txt-small-plus",
-                          )}
+                          className={clx(children && "text-sm")}
                           href={`/categories/${c.handle}`}
                           data-testid="category-link"
                         >
                           {c.name}
                         </LocalizedClientLink>
-                        {children && (
-                          <ul className="ml-3 grid grid-cols-1 gap-2">
-                            {children &&
-                              children.map((child) => (
-                                <li key={child.id}>
-                                  <LocalizedClientLink
-                                    className="hover:text-ui-fg-base"
-                                    href={`/categories/${child.handle}`}
-                                    data-testid="category-link"
-                                  >
-                                    {child.name}
-                                  </LocalizedClientLink>
-                                </li>
-                              ))}
-                          </ul>
-                        )}
                       </li>
                     );
                   })}
@@ -84,21 +66,18 @@ export default async function Footer() {
             )}
             {collections && collections.length > 0 && (
               <div className="flex flex-col gap-y-2">
-                <span className="txt-ui-fg-base txt-small-plus">
+                <span className="text-sm font-black text-white">
                   Collections
                 </span>
                 <ul
-                  className={clx(
-                    "txt-small grid grid-cols-1 gap-2 text-ui-fg-subtle",
-                    {
-                      "grid-cols-2": (collections?.length || 0) > 3,
-                    },
-                  )}
+                  className={clx("grid grid-cols-1 gap-2 text-sm", {
+                    "grid-cols-2": (collections?.length || 0) > 3,
+                  })}
                 >
                   {collections?.slice(0, 6).map((c) => (
                     <li key={c.id}>
                       <LocalizedClientLink
-                        className="hover:text-ui-fg-base"
+                        className="text-sm"
                         href={`/collections/${c.handle}`}
                       >
                         {c.title}
@@ -109,37 +88,21 @@ export default async function Footer() {
               </div>
             )}
             <div className="flex flex-col gap-y-2">
-              <span className="txt-ui-fg-base txt-small-plus">Links</span>
-              <ul className="txt-small grid grid-cols-1 gap-y-2 text-ui-fg-subtle">
+              <span className="text-sm font-black">Links</span>
+              <ul className="grid grid-cols-1 gap-y-2 text-sm">
                 <li>
-                  <LocalizedClientLink
-                    className="hover:text-ui-fg-base"
-                    href="#"
-                  >
-                    Help
-                  </LocalizedClientLink>
+                  <LocalizedClientLink href="#">Help</LocalizedClientLink>
                 </li>
                 <li>
-                  <LocalizedClientLink
-                    className="hover:text-ui-fg-base"
-                    href="#"
-                  >
-                    Contact
-                  </LocalizedClientLink>
+                  <LocalizedClientLink href="#">Contact</LocalizedClientLink>
                 </li>
                 <li>
-                  <LocalizedClientLink
-                    className="hover:text-ui-fg-base"
-                    href="#"
-                  >
+                  <LocalizedClientLink href="#">
                     Privacy policy
                   </LocalizedClientLink>
                 </li>
                 <li>
-                  <LocalizedClientLink
-                    className="hover:text-ui-fg-base"
-                    href="#"
-                  >
+                  <LocalizedClientLink href="#">
                     Cookie policy
                   </LocalizedClientLink>
                 </li>
@@ -147,10 +110,8 @@ export default async function Footer() {
             </div>
           </div>
         </div>
-        <div className="mb-16 flex w-full justify-between text-ui-fg-muted">
-          <Text className="txt-compact-small">
-            © {new Date().getFullYear()} Store. All rights reserved.
-          </Text>
+        <div className="mb-16 flex w-full justify-between text-sm text-ui-fg-muted">
+          <p>© {new Date().getFullYear()} RSPI. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -1,5 +1,5 @@
+import React, { ReactNode } from "react";
 import { Metadata } from "next";
-
 import { listCartOptions, retrieveCart } from "@lib/data/cart";
 import { retrieveCustomer } from "@lib/data/customer";
 import { getBaseURL } from "@lib/util/env";
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
 };
 
-export default async function PageLayout(props: { children: React.ReactNode }) {
+export default async function PageLayout(props: { children: ReactNode }) {
   const customer = await retrieveCustomer();
   const cart = await retrieveCart();
   let shippingOptions: StoreCartShippingOption[] = [];

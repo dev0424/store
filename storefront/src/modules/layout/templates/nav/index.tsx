@@ -17,8 +17,8 @@ export default async function Nav() {
 
   return (
     <div className="group sticky inset-x-0 top-0 z-50 bg-header text-white">
-      <header className="relative mx-auto flex max-w-[1440px] flex-col gap-4 p-4 duration-200">
-        <nav className="text-small-regular txt-xsmall-plus flex h-full w-full flex-wrap items-center justify-between gap-4 text-ui-fg-subtle sm:flex-nowrap">
+      <header className="content-container relative mx-auto flex flex-col gap-4 py-4 duration-200">
+        <nav className="text-small-regular txt-xsmall-plus flex h-full w-full flex-wrap items-center justify-between gap-4 sm:flex-nowrap">
           <div className="flex h-full flex-1 basis-0 items-center sm:hidden">
             <SideMenu regions={regions} />
           </div>
