@@ -10,30 +10,31 @@ import {
   HiOutlineUser as UserIcon,
   HiOutlineShoppingCart as ShoppingCartIcon,
 } from "react-icons/hi";
+import Image from "next/image";
 
 export default async function Nav() {
   const regions = await listRegions().then((regions: StoreRegion[]) => regions);
 
   return (
-    <div className="group sticky inset-x-0 top-0 z-50 text-white">
-      <header className="relative mx-auto flex flex-col gap-4 border-b border-ui-border-base bg-white p-4 duration-200">
+    <div className="group sticky inset-x-0 top-0 z-50 bg-header text-white">
+      <header className="relative mx-auto flex max-w-[1440px] flex-col gap-4 p-4 duration-200">
         <nav className="text-small-regular txt-xsmall-plus flex h-full w-full flex-wrap items-center justify-between gap-4 text-ui-fg-subtle sm:flex-nowrap">
           <div className="flex h-full flex-1 basis-0 items-center sm:hidden">
             <SideMenu regions={regions} />
           </div>
 
-          <div className="flex h-full items-center">
-            <LocalizedClientLink
-              href="/"
-              className="txt-compact-xlarge-plus uppercase hover:text-ui-fg-base"
-              data-testid="nav-store-link"
-            >
-              Store
-            </LocalizedClientLink>
-          </div>
+          <LocalizedClientLink href="/" data-testid="nav-store-link">
+            <Image
+              src={"/images/logo.png"}
+              width={200}
+              height={50}
+              alt="RSPI logo"
+              className={"object-cover"}
+            />
+          </LocalizedClientLink>
 
           <div className="order-1 flex h-[42px] w-full justify-center sm:order-none">
-            <div className="w-full sm:w-1/2">
+            <div className="w-full sm:w-2/3">
               <SearchHeader />
             </div>
           </div>
@@ -41,7 +42,7 @@ export default async function Nav() {
           <div className="flex h-full flex-1 basis-0 items-center justify-end gap-x-6">
             <div className="flex h-full items-center gap-x-6">
               <LocalizedClientLink
-                className="hover:text-ui-fg-base"
+                className="text-white"
                 href="/account"
                 data-testid="nav-account-link"
               >
@@ -51,7 +52,7 @@ export default async function Nav() {
             <Suspense
               fallback={
                 <LocalizedClientLink
-                  className="flex whitespace-nowrap hover:text-ui-fg-base"
+                  className="flex whitespace-nowrap text-white"
                   href="/cart"
                   data-testid="nav-cart-link"
                 >
@@ -63,14 +64,16 @@ export default async function Nav() {
             </Suspense>
           </div>
         </nav>
-        <div className={"hidden gap-6 sm:flex sm:items-center"}>
+        <div className={"hidden justify-between gap-6 sm:flex sm:items-center"}>
           <CategoryNavigation />
-          <LocalizedClientLink className="text-black" href="#">
-            Help
-          </LocalizedClientLink>
-          <LocalizedClientLink className="text-black" href="#">
-            Contact
-          </LocalizedClientLink>
+          <div className={"flex gap-6"}>
+            <LocalizedClientLink className="text-white" href="#">
+              Help
+            </LocalizedClientLink>
+            <LocalizedClientLink className="text-white" href="#">
+              Contact
+            </LocalizedClientLink>
+          </div>
         </div>
       </header>
     </div>

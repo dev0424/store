@@ -39,7 +39,7 @@ const CategoryMenuItem = ({ category }: Props) => {
           onMouseEnter={() => onMouseEnter(open)}
           onMouseLeave={() => onMouseLeave(open)}
         >
-          <PopoverButton ref={triggerRef} className="text-black outline-none">
+          <PopoverButton ref={triggerRef} className="text-white outline-none">
             <CategoryMenu category={category} isOpen={open} />
           </PopoverButton>
           {hasChildrenCategory(category) ? (

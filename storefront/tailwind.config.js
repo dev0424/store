@@ -32,6 +32,8 @@ module.exports = {
           80: "#1F2937",
           90: "#111827",
         },
+        header: "#212F2F",
+        search: "#3E444A",
       },
       borderRadius: {
         none: "0px",

@@ -21,17 +21,16 @@ type HitProps = {
 const Hit = ({ hit }: HitProps) => {
   return (
     <LocalizedClientLink
+      key={hit.id}
       href={`/products/${hit.handle}`}
       data-testid="search-result"
+      className={"w-full"}
     >
-      <div
-        key={hit.id}
-        className="flex w-full items-center gap-2 p-4 sm:flex-col sm:justify-center"
-      >
+      <div className="flex items-center gap-6">
         <Thumbnail
           thumbnail={hit.thumbnail}
           size="square"
-          className="group h-12 w-12 sm:h-full sm:w-full"
+          className="group h-20 w-20"
         />
         <div className="group flex flex-col justify-between">
           <div className="flex flex-col">

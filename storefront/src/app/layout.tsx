@@ -1,9 +1,10 @@
+import React, { ReactNode } from "react";
 import { getBaseURL } from "@lib/util/env";
 import { Metadata } from "next";
 import localFont from "next/font/local";
 import "styles/globals.css";
 
-export const font = localFont({
+const font = localFont({
   src: [
     {
       path: "./fonts/Nexa-Thin.woff2",
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
 };
 
-export default function RootLayout(props: { children: React.ReactNode }) {
+export default function RootLayout(props: { children: ReactNode }) {
   return (
     <html lang="en" data-mode="light" className={font.variable}>
       <body>
