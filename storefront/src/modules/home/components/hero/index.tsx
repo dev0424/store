@@ -34,8 +34,8 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative h-[40vh] w-full sm:h-[60vh]" style={style}>
-      <div className="content-container absolute z-10 grid grid-cols-1 items-center justify-center gap-6 p-6 text-center sm:inset-0 sm:grid-cols-2 sm:text-left">
+    <div className="relative w-full sm:h-[60vh]" style={style}>
+      <div className="content-container z-10 grid h-full grid-cols-1 items-center justify-center gap-6 p-6 text-center sm:inset-0 sm:grid-cols-2 sm:text-left">
         <span className={"flex flex-col gap-2"}>
           <h1
             className={
@@ -44,7 +44,7 @@ const Hero = () => {
           >
             Lorem ipsum dolor sit amet.
           </h1>
-          <h2 className={"text-xl font-light text-white sm:text-2xl"}>
+          <h2 className={"text-xl font-normal text-white sm:text-2xl"}>
             Id maxime natus nisi quae quisquam sed.
           </h2>
         </span>
