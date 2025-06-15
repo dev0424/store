@@ -32,8 +32,19 @@ module.exports = {
           80: "#1F2937",
           90: "#111827",
         },
-        header: "#212F2F",
-        search: "#3E444A",
+        background: {
+          primary: "#212F2F",
+          secondary: "#3E444A",
+        },
+        accent: {
+          primary: "#66D86F",
+          secondary: "#8CD8CC",
+        },
+        hover: {
+          accent: {
+            primary: "#59C762",
+          },
+        },
       },
       borderRadius: {
         none: "0px",

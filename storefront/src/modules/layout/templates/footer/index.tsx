@@ -24,7 +24,7 @@ export default async function Footer() {
                 className={"object-cover"}
               />
             </LocalizedClientLink>
-            <p className="max-w-lg">
+            <p className="max-w-lg text-sm">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
