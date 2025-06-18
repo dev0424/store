@@ -34,14 +34,14 @@ export default async function ProductCarouselTemplate({
       product={product}
       region={region}
       isFeatured={false}
-      size={"small"}
+      size={"square"}
     />
   ));
 
   return (
     <section className="flex flex-col gap-4 py-4">
-      <div className="flex flex-col items-center">
-        <h1 className="text-2xl-regular text-ui-fg-base">{collection.title}</h1>
+      <div className="flex flex-col items-center sm:flex-row sm:justify-between">
+        <h1 className="text-2xl-regular font-black">{collection.title}</h1>
         <InteractiveLink href={`/collections/${collection.handle}`}>
           View all
         </InteractiveLink>

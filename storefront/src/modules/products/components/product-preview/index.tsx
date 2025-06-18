@@ -1,5 +1,3 @@
-import { Text } from "@medusajs/ui";
-import { listProducts } from "@lib/data/products";
 import { getProductPrice } from "@lib/util/get-product-price";
 import { HttpTypes } from "@medusajs/types";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
@@ -39,10 +37,10 @@ export default async function ProductPreview({
           size={size}
           isFeatured={isFeatured}
         />
-        <div className="txt-compact-medium mt-4 flex flex-col items-center">
-          <Text className="text-ui-fg-subtle" data-testid="product-title">
+        <div className="mt-4 flex flex-col items-start">
+          <p className="text-md text-ui-fg-subtle" data-testid="product-title">
             {product.title}
-          </Text>
+          </p>
           <div className="flex items-center gap-x-2">
             {cheapestPrice && <PreviewPrice price={cheapestPrice} />}
           </div>
