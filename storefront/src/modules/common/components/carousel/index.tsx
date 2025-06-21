@@ -5,13 +5,13 @@ import React, { ReactNode, useCallback } from "react";
 import {
   PrevButton,
   NextButton,
-} from "@modules/home/components/featured-products/product-carousel-buttons";
+} from "@modules/common/components/carousel-buttons";
 
 type Props = {
   children: ReactNode;
 };
 
-const ProductCarousel = ({ children }: Props) => {
+const Carousel = ({ children }: Props) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ slidesToScroll: "auto" });
 
   const scrollPrev = useCallback(() => {
@@ -37,4 +37,4 @@ const ProductCarousel = ({ children }: Props) => {
   );
 };
 
-export default ProductCarousel;
+export default Carousel;

@@ -1,7 +1,7 @@
 import React from "react";
 import { listProducts } from "@lib/data/products";
 import { HttpTypes } from "@medusajs/types";
-import ProductCarousel from "@modules/home/components/featured-products/product-carousel";
+import Carousel from "@modules/common/components/carousel";
 import InteractiveLink from "@modules/common/components/interactive-link";
 import ProductPreview from "@modules/products/components/product-preview";
 
@@ -46,7 +46,7 @@ export default async function ProductCarouselTemplate({
           View all
         </InteractiveLink>
       </div>
-      <ProductCarousel>{productPreviews}</ProductCarousel>
+      <Carousel>{productPreviews}</Carousel>
     </section>
   );
 }

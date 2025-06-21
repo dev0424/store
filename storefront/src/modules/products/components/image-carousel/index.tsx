@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { DotButton } from "@modules/home/components/featured-products/product-carousel-buttons";
+import { DotButton } from "@modules/common/components/carousel-buttons";
 import { StoreProductImage } from "@medusajs/types";
 import Image from "next/image";
 import ImageCarouselThumbnails from "@modules/products/components/image-carousel-thumbnails";
