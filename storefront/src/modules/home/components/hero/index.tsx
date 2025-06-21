@@ -34,8 +34,23 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative w-full sm:h-[60vh]" style={style}>
-      <div className="content-container z-10 grid h-full grid-cols-1 items-center justify-center gap-6 p-6 text-center sm:inset-0 sm:grid-cols-2 sm:text-left">
+    <div className="relative w-full sm:h-[60vh]">
+      {/* Video visible on sm and up */}
+      <video
+        className="absolute inset-0 z-0 hidden h-full w-full object-cover object-top sm:block"
+        src="/images/background.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+      />
+
+      {/* Image visible on mobile only */}
+      <div className="absolute inset-0 z-0 block sm:hidden" style={style} />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 z-10 bg-black/40" />
+
+      <div className="content-container relative z-10 grid h-full grid-cols-1 items-center justify-center gap-6 p-6 text-center sm:inset-0 sm:grid-cols-2 sm:text-left">
         <span className={"flex flex-col gap-2"}>
           <h1
             className={
