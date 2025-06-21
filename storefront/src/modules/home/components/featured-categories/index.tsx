@@ -2,7 +2,7 @@ import React from "react";
 import { listCategories } from "@lib/data/categories";
 import { filterMainCategories } from "@lib/util/categories";
 import Carousel from "@modules/common/components/carousel";
-import CategoryPreview from "@modules/products/components/category-preview";
+import CategoryPreview from "@modules/home/components/category-preview";
 
 const FeaturedCategories = async () => {
   const product_categories = await listCategories();
