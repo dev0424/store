@@ -45,6 +45,11 @@ module.exports = {
             primary: "#59C762",
           },
         },
+        disabled: {
+          accent: {
+            primary: "#7dc282",
+          },
+        },
       },
       borderRadius: {
         none: "0px",

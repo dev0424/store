@@ -1,19 +1,76 @@
-import React from "react";
+"use client";
+
+import React, { useMemo, useState } from "react";
 import CategorySelect from "@modules/home/components/category-select";
 import { SubmitButton } from "@modules/checkout/components/submit-button";
+import { StoreProductCategory } from "@medusajs/types";
+import { useRouter } from "next/navigation";
+import { filterMainCategories } from "@lib/util/categories";
 
-const BrowserWidget = () => {
+type Props = {
+  categories: StoreProductCategory[];
+};
+
+const BrowserWidget = ({ categories }: Props) => {
+  const [selectedCategory, setSelectedCategory] =
+    useState<StoreProductCategory | null>(null);
+
+  const router = useRouter();
+
+  const onChangeCategory = (category: StoreProductCategory | null) =>
+    setSelectedCategory(category);
+
+  const mainCategories = filterMainCategories(categories);
+
+  const subCategories = useMemo(
+    () => selectedCategory?.category_children || [],
+    [selectedCategory],
+  );
+
+  const getButtonText = (category: StoreProductCategory | null) => {
+    if (!category || !category.products?.length) {
+      return "Search";
+    }
+
+    if (category.products.length === 1) {
+      return "Show 1 product";
+    }
+
+    return `Show ${category.products.length} products`;
+  };
+
+  const onClick = () => {
+    if (!selectedCategory) {
+      return;
+    }
+
+    router.push(`/categories/${selectedCategory?.handle}`);
+  };
+
   return (
     <div
       className={
-        "flex h-fit flex-col gap-4 rounded-md bg-background-primary p-4 text-white"
+        "flex h-fit flex-col gap-4 rounded-md bg-background-primary p-6 text-white"
       }
     >
       <h2 className={"text-center text-lg font-bold"}>Browse our products</h2>
-      <CategorySelect placeholder={"Select a department"} />
-      <CategorySelect placeholder={"Select a category"} />
-      <SubmitButton className="w-full bg-accent-primary py-1 font-sans text-lg font-black hover:bg-hover-accent-primary">
-        Search
+      <CategorySelect
+        placeholder={"Select category"}
+        categories={mainCategories}
+        onChange={onChangeCategory}
+      />
+      <CategorySelect
+        placeholder={"Select a sub-category"}
+        categories={subCategories}
+        onChange={onChangeCategory}
+        disabled={!selectedCategory}
+      />
+      <SubmitButton
+        className="mt-2 w-full bg-accent-primary py-1 font-sans text-lg font-bold hover:bg-hover-accent-primary disabled:bg-disabled-accent-primary disabled:text-gray-200"
+        disabled={!selectedCategory}
+        onClick={onClick}
+      >
+        {getButtonText(selectedCategory)}
       </SubmitButton>
     </div>
   );

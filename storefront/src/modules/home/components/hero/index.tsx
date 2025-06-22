@@ -1,8 +1,7 @@
-"use client";
-
 import React from "react";
 import { getImageProps } from "next/image";
 import BrowserWidget from "@modules/home/components/browser-widget";
+import { listCategories } from "@lib/data/categories";
 
 function getBackgroundImage(srcSet = "") {
   const imageSet = srcSet
@@ -15,7 +14,9 @@ function getBackgroundImage(srcSet = "") {
   return `image-set(${imageSet})`;
 }
 
-const Hero = () => {
+const Hero = async () => {
+  const categories = await listCategories();
+
   const {
     props: { srcSet },
   } = getImageProps({
@@ -64,7 +65,7 @@ const Hero = () => {
           </h2>
         </span>
         <div className={"sm:max-w-lg"}>
-          <BrowserWidget />
+          <BrowserWidget categories={categories} />
         </div>
       </div>
     </div>
