@@ -33,6 +33,7 @@
     "@stripe/stripe-js": "^1.29.0",
     "algoliasearch": "^4.20.0",
     "axios": "^1.6.7",
+    "embla-carousel": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "instantsearch.css": "^8.5.1",
     "lodash": "^4.17.21",
