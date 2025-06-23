@@ -152,7 +152,7 @@ export default function ProductActions({
             !isValidVariant
           }
           variant="primary"
-          className="h-10 w-full bg-accent-primary py-1 font-sans text-lg font-bold shadow-none hover:bg-hover-accent-primary disabled:bg-disabled-accent-primary disabled:text-gray-200"
+          className="text-md h-10 w-full bg-accent-primary py-1 font-sans font-bold text-white shadow-none hover:bg-hover-accent-primary disabled:bg-disabled-accent-primary disabled:text-[#6d866f] disabled:shadow-none"
           isLoading={isAdding}
           data-testid="add-product-button"
         >

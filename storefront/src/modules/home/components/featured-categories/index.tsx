@@ -10,7 +10,7 @@ const FeaturedCategories = async () => {
 
   return (
     <div className={"flex flex-col gap-4"}>
-      <h1 className="text-2xl-regular text-center font-black sm:text-left">
+      <h1 className="text-xl-semi text-center text-ui-fg-base sm:text-left">
         Top categories
       </h1>
       <Carousel>

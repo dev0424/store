@@ -19,7 +19,7 @@ const CategoryMenu = ({ category, isOpen }: Props) => {
         </LocalizedClientLink>
         <ChevronDown
           className={clx(
-            "relative top-px transition-transform duration-200 ease-in",
+            "relative top-px -translate-y-[2px] transition-transform duration-200 ease-in",
             {
               "-rotate-180": !isOpen,
             },

@@ -27,7 +27,7 @@ function CategorySelect({
     <Listbox onChange={onChange} disabled={disabled}>
       <ListboxButton
         className={
-          "z-10 flex w-full items-center justify-between rounded-md bg-background-secondary px-4 py-2 text-sm text-[#9FA2A5] outline-none"
+          "z-10 flex w-full items-center justify-between rounded-md bg-background-secondary px-4 py-2 pt-[10px] text-sm text-[#9FA2A5] outline-none"
         }
       >
         {({ open, value }) => (
@@ -51,7 +51,7 @@ function CategorySelect({
           anchor="bottom"
           transition
           className={
-            "z-10 mt-2 flex w-[--button-width] flex-col rounded-md bg-white text-sm text-ui-fg-subtle outline-none"
+            "z-10 mt-2 flex w-[--button-width] flex-col rounded-md bg-white text-sm text-ui-fg-subtle outline-none py-2"
           }
         >
           {categories.length ? (

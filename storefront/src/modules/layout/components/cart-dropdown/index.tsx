@@ -90,7 +90,7 @@ const CartDropdown = ({
             <div className="flex">
               <ShoppingCartIcon size={24} />
               {totalItems > 0 ? (
-                <div className="text-small-regular flex h-6 w-6 items-center justify-center rounded-full bg-gray-900 text-white">
+                <div className="text-small-regular flex h-6 w-6 items-center justify-center rounded-full bg-accent-primary text-white">
                   <span>{totalItems}</span>
                 </div>
               ) : null}

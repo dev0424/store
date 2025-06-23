@@ -47,7 +47,7 @@ module.exports = {
         },
         disabled: {
           accent: {
-            primary: "#7dc282",
+            primary: "#b5e3b8",
           },
         },
       },

@@ -13,7 +13,7 @@ export default async function Footer() {
   return (
     <footer className="w-full bg-[#141414] text-white">
       <div className="content-container flex w-full flex-col">
-        <div className="flex flex-col items-start justify-between gap-y-6 py-32 small:flex-row">
+        <div className="flex flex-col items-start justify-between gap-y-6 py-16 sm:py-32 small:flex-row">
           <div className="flex flex-col gap-6">
             <LocalizedClientLink href="/" data-testid="nav-store-link">
               <Image
@@ -21,7 +21,7 @@ export default async function Footer() {
                 width={200}
                 height={50}
                 alt="RSPI logo"
-                className={"object-cover"}
+                className={"max-w-32 object-cover"}
               />
             </LocalizedClientLink>
             <p className="max-w-lg text-sm">

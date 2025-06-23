@@ -27,7 +27,7 @@ export default function SearchHeader() {
         classNames={{
           form: "bg-transparent text-white",
           input:
-            "bg-background-secondary rounded-3xl border-none text-base text-white placeholder:text-[#9FA2A5] caret-inherit font-sans shadow-none",
+            "bg-background-secondary rounded-3xl border-none text-sm text-white placeholder:text-[#9FA2A5] caret-inherit font-sans shadow-none pt-[2px]",
           reset: "fill-white",
           submit: "text-white fill-white stroke-white",
         }}

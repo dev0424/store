@@ -17,7 +17,7 @@ export default async function Nav() {
 
   return (
     <div className="group sticky inset-x-0 top-0 z-50 border-b border-background-secondary bg-background-primary text-white">
-      <header className="content-container relative mx-auto flex flex-col gap-4 py-4 duration-200">
+      <header className="content-container relative mx-auto flex flex-col gap-4 pb-2 pt-4 duration-200">
         <nav className="text-small-regular txt-xsmall-plus flex h-full w-full flex-wrap items-center justify-between gap-4 sm:flex-nowrap">
           <div className="flex h-full flex-1 basis-0 items-center sm:hidden">
             <SideMenu regions={regions} />
@@ -29,7 +29,7 @@ export default async function Nav() {
               width={200}
               height={50}
               alt="RSPI logo"
-              className={"object-cover"}
+              className={"max-w-32 object-cover"}
             />
           </LocalizedClientLink>
 

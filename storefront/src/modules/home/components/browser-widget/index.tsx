@@ -66,7 +66,7 @@ const BrowserWidget = ({ categories }: Props) => {
         disabled={!selectedCategory}
       />
       <SubmitButton
-        className="mt-2 w-full bg-accent-primary py-1 font-sans text-lg font-bold hover:bg-hover-accent-primary disabled:bg-disabled-accent-primary disabled:text-gray-200"
+        className="text-md mt-2 flex h-10 w-full items-center bg-accent-primary py-1 font-sans font-bold hover:bg-hover-accent-primary disabled:bg-disabled-accent-primary disabled:text-[#6d866f]"
         disabled={!selectedCategory}
         onClick={onClick}
       >
