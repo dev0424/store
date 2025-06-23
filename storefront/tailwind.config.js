@@ -66,6 +66,7 @@ module.exports = {
         "2xsmall": "320px",
         xsmall: "512px",
         small: "1024px",
+        "sm-only": { max: "1024px" },
         medium: "1280px",
         large: "1440px",
         xlarge: "1680px",

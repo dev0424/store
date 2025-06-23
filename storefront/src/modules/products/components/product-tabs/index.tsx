@@ -21,6 +21,10 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
       label: "Shipping & Returns",
       component: <ShippingInfoTab />,
     },
+    {
+      label: "Certifications",
+      component: <CertificationsTab />,
+    },
   ];
 
   return (
@@ -116,6 +120,10 @@ const ShippingInfoTab = () => {
       </div>
     </div>
   );
+};
+
+const CertificationsTab = () => {
+  return <div className="text-small-regular py-8">TODO</div>;
 };
 
 export default ProductTabs;

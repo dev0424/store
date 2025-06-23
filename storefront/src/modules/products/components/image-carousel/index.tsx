@@ -66,13 +66,13 @@ const ImageCarousel = ({ images }: Props) => {
   }, [emblaMainApi, onSelect]);
 
   return (
-    <div className="relative flex flex-col gap-2 p-1">
+    <div className="relative flex flex-col gap-2">
       <div className="overflow-hidden" ref={emblaMainRef}>
         <div className="flex">
           {images.map((image, index) => (
             <div
               key={index}
-              className="relative aspect-[16/9] w-full min-w-0 flex-[0_0_100%] transform-gpu"
+              className="relative aspect-[4/3] w-full min-w-0 flex-[0_0_100%] transform-gpu"
             >
               <Image
                 src={image.url}
@@ -82,7 +82,7 @@ const ImageCarousel = ({ images }: Props) => {
                 fill
                 sizes="(max-width: 576px) 280px, (max-width: 768px) 360px, (max-width: 992px) 480px, 800px"
                 style={{
-                  objectFit: "cover",
+                  objectFit: "contain",
                 }}
               />
             </div>
@@ -91,16 +91,18 @@ const ImageCarousel = ({ images }: Props) => {
       </div>
 
       {showThumbnails ? (
-        <div className="absolute bottom-6 left-1/2 flex w-max -translate-x-1/2 transform gap-1 rounded-rounded bg-white p-2 shadow-elevation-card-rest md:hidden">
-          {emblaMainApi
-            ?.scrollSnapList()
-            .map((_, index) => (
-              <DotButton
-                key={index}
-                onClick={() => onClickDot(index)}
-                isSelected={selectedIndex === index}
-              />
-            ))}
+        <div className={"flex w-full justify-center"}>
+          <div className="flex w-max transform gap-1 md:hidden">
+            {emblaMainApi
+              ?.scrollSnapList()
+              .map((_, index) => (
+                <DotButton
+                  key={index}
+                  onClick={() => onClickDot(index)}
+                  isSelected={selectedIndex === index}
+                />
+              ))}
+          </div>
         </div>
       ) : null}
 

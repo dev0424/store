@@ -29,13 +29,11 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   return (
     <>
       <div
-        className="content-container grid grid-cols-1 gap-6 py-6 md:grid-cols-[3fr_2fr]"
+        className="lg:content-container grid grid-cols-1 gap-6 py-6 md:grid-cols-[3fr_2fr]"
         data-testid="product-container"
       >
-        <div className="relative block">
-          <ImageCarousel images={product?.images || []} />
-        </div>
-        <div className="flex flex-col gap-y-6">
+        <ImageCarousel images={product?.images || []} />
+        <div className="sm-only:content-container flex flex-col gap-y-6">
           <ProductInfo product={product} />
           <ProductTabs product={product} />
           <ProductOnboardingCta />
