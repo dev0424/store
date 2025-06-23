@@ -53,10 +53,7 @@ const CategoryMenuItem = ({ category }: Props) => {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <PopoverPanel
-                anchor={{ to: "bottom", gap: "16px" }}
-                className="z-40 rounded-md"
-              >
+              <PopoverPanel anchor={{ to: "bottom" }} className="z-40">
                 <CategoryMenuContent category={category} />
               </PopoverPanel>
             </Transition>

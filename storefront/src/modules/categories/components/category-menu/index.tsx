@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { StoreProductCategory } from "@medusajs/types";
 import { HiChevronDown as ChevronDown } from "react-icons/hi";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import { clx } from "@medusajs/ui";
 import { hasChildrenCategory } from "@lib/util/categories";
+import { Transition } from "@headlessui/react";
 
 type Props = {
   category: StoreProductCategory;
@@ -13,7 +14,7 @@ type Props = {
 const CategoryMenu = ({ category, isOpen }: Props) => {
   if (hasChildrenCategory(category)) {
     return (
-      <div className="flex items-center gap-1">
+      <div className="relative flex items-center gap-1">
         <LocalizedClientLink href={`/categories/${category.handle}`}>
           {category.name}
         </LocalizedClientLink>
@@ -25,6 +26,20 @@ const CategoryMenu = ({ category, isOpen }: Props) => {
             },
           )}
         />
+        <Transition
+          show={isOpen}
+          as={Fragment}
+          enter="transition ease-out duration-150"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="transition ease-in duration-150"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <div
+            className={"absolute -bottom-[9px] left-0 h-0.5 w-full bg-white"}
+          />
+        </Transition>
       </div>
     );
   }
