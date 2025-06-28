@@ -172,6 +172,21 @@ const medusaConfig = {
                                       displayedAttributes: ['*'],
                                   },
                                   primaryKey: 'id',
+                                  transform: product => {
+                                      return {
+                                          ...product,
+                                          variant_prices:
+                                              product.variants?.map(variant => ({
+                                                  id: variant.id,
+                                                  title: variant.title,
+                                                  prices:
+                                                      variant.prices?.map(price => ({
+                                                          currency_code: price.currency_code,
+                                                          amount: price.amount,
+                                                      })) || [],
+                                              })) || [],
+                                      };
+                                  },
                               },
                           },
                       },
