@@ -45,7 +45,8 @@ export default function SearchHeader() {
         <Hits
           hitComponent={Hit}
           classNames={{
-            root: "mt-2",
+            root: "mt-3 sm:mt-2 z-50 w-screen absolute left-0 sm:relative sm:w-full sm:rounded sm:overflow-hidden",
+            item: "!rounded-none",
           }}
         />
       </Transition>

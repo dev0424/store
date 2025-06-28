@@ -36,6 +36,7 @@ export default async function ProductPreview({
           images={product.images}
           size={size}
           isFeatured={isFeatured}
+          className={"h-40 sm:h-60"}
         />
         <div className="mt-4 flex flex-col items-start">
           <p className="text-md text-ui-fg-subtle" data-testid="product-title">
