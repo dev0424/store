@@ -1,113 +1,113 @@
 "use client";
 
-import {
-  Popover,
-  PopoverPanel,
-  Transition,
-  PopoverButton,
-} from "@headlessui/react";
-import { ArrowRightMini, XMark } from "@medusajs/icons";
-import { Text, clx, useToggleState } from "@medusajs/ui";
-import { Fragment } from "react";
+import { Popover, PopoverPanel, Transition } from "@headlessui/react";
+import { Fragment, useState } from "react";
 
-import LocalizedClientLink from "@modules/common/components/localized-client-link";
-import CountrySelect from "../country-select";
-import { HttpTypes } from "@medusajs/types";
-import { HiMenu } from "react-icons/hi";
+import { StoreProductCategory } from "@medusajs/types";
+import { filterMainCategories } from "@lib/util/categories";
+import SideMenuFooter from "@modules/layout/components/side-menu-footer";
+import MenuToggleButton from "@modules/layout/components/menu-toggle-button";
+import SideMenuContent from "@modules/layout/components/side-menu-content";
 
-const SideMenuItems = {
-  Home: "/",
-  Store: "/store",
-  Account: "/account",
-  Cart: "/cart",
+const HEADER_HEIGHT = 114;
+
+type Props = {
+  defaultCategories: StoreProductCategory[];
 };
 
-const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
-  const toggleState = useToggleState();
+export type View = {
+  categoryStack: StoreProductCategory[];
+  direction: "forward" | "backward";
+};
+
+const SideMenu = ({ defaultCategories }: Props) => {
+  const rootCategories = filterMainCategories(defaultCategories);
+
+  const [view, setView] = useState<View>({
+    categoryStack: [],
+    direction: "forward",
+  });
+
+  const currentCategory =
+    view.categoryStack.length > 0
+      ? view.categoryStack[view.categoryStack.length - 1]
+      : null;
+
+  const onNavigateForward = (category: StoreProductCategory) => {
+    setView((prevState) => ({
+      direction: "forward",
+      categoryStack: [...prevState.categoryStack, category],
+    }));
+  };
+
+  const onNavigateBackward = () => {
+    setView((prevState) => ({
+      direction: "backward",
+      categoryStack: prevState.categoryStack.slice(0, -1),
+    }));
+  };
+
+  const openProductsRoot = () => {
+    setView({
+      direction: "forward",
+      categoryStack: [
+        {
+          id: "products",
+          name: "Products",
+          category_children: rootCategories,
+        } as StoreProductCategory,
+      ],
+    });
+  };
+
+  const resetMenu = () => {
+    setView({
+      direction: "backward",
+      categoryStack: [],
+    });
+  };
 
   return (
-    <div className="h-full">
-      <div className="flex h-full items-center">
-        <Popover className="flex h-full">
-          {({ open, close }) => (
-            <>
-              <div className="relative flex h-full">
-                <PopoverButton
-                  data-testid="nav-menu-button"
-                  className="relative flex h-full items-center text-white transition-all duration-200 ease-out focus:outline-none"
-                >
-                  <HiMenu size={24} />
-                </PopoverButton>
-              </div>
-
-              <Transition
-                show={open}
-                as={Fragment}
-                enter="transition ease-out duration-150"
-                enterFrom="opacity-0"
-                enterTo="opacity-100 backdrop-blur-2xl"
-                leave="transition ease-in duration-150"
-                leaveFrom="opacity-100 backdrop-blur-2xl"
-                leaveTo="opacity-0"
+    <Popover className="flex h-full font-sans">
+      {({ open, close }) => (
+        <>
+          <MenuToggleButton isOpen={open} onClose={resetMenu} />
+          <Transition
+            show={open}
+            as={Fragment}
+            enter="transition ease-out duration-150"
+            enterFrom="opacity-0"
+            enterTo="opacity-100 backdrop-blur-2xl"
+            leave="transition ease-in duration-150"
+            leaveFrom="opacity-100 backdrop-blur-2xl"
+            leaveTo="opacity-0"
+          >
+            <PopoverPanel
+              className={`absolute left-0 top-[${HEADER_HEIGHT}px] z-50 flex h-[calc(100vh-${HEADER_HEIGHT}px)] w-full flex-col text-sm text-ui-fg-on-color`}
+            >
+              <div
+                data-testid="nav-menu-popup"
+                className="flex h-full flex-col justify-between bg-background-primary p-6"
               >
-                <PopoverPanel className="absolute inset-x-0 z-30 m-2 flex h-[calc(100vh-1rem)] w-full flex-col pr-4 text-sm text-ui-fg-on-color backdrop-blur-2xl sm:w-1/3 sm:min-w-min sm:pr-0 2xl:w-1/4">
-                  <div
-                    data-testid="nav-menu-popup"
-                    className="flex h-full flex-col justify-between rounded-rounded bg-[rgba(3,7,18,0.5)] p-6"
-                  >
-                    <div className="flex justify-end" id="xmark">
-                      <button data-testid="close-menu-button" onClick={close}>
-                        <XMark />
-                      </button>
-                    </div>
-                    <ul className="flex flex-col items-start justify-start gap-6">
-                      {Object.entries(SideMenuItems).map(([name, href]) => {
-                        return (
-                          <li key={name}>
-                            <LocalizedClientLink
-                              href={href}
-                              className="text-3xl leading-10 hover:text-ui-fg-disabled"
-                              onClick={close}
-                              data-testid={`${name.toLowerCase()}-link`}
-                            >
-                              {name}
-                            </LocalizedClientLink>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                    <div className="flex flex-col gap-y-6">
-                      <div
-                        className="flex justify-between"
-                        onMouseEnter={toggleState.open}
-                        onMouseLeave={toggleState.close}
-                      >
-                        {regions && (
-                          <CountrySelect
-                            toggleState={toggleState}
-                            regions={regions}
-                          />
-                        )}
-                        <ArrowRightMini
-                          className={clx(
-                            "transition-transform duration-150",
-                            toggleState.state ? "-rotate-90" : "",
-                          )}
-                        />
-                      </div>
-                      <Text className="txt-compact-small flex justify-between">
-                        © {new Date().getFullYear()} Store. All rights
-                        reserved.
-                      </Text>
-                    </div>
-                  </div>
-                </PopoverPanel>
-              </Transition>
-            </>
-          )}
-        </Popover>
-      </div>
-    </div>
+                <SideMenuContent
+                  rootCategories={rootCategories}
+                  onClickMenuItem={() => {
+                    close();
+                    resetMenu();
+                  }}
+                  onNavigateBackward={onNavigateBackward}
+                  onNavigateForward={onNavigateForward}
+                  view={view}
+                  currentCategory={currentCategory}
+                  openProductsRoot={openProductsRoot}
+                />
+                <SideMenuFooter />
+              </div>
+            </PopoverPanel>
+          </Transition>
+        </>
+      )}
+    </Popover>
   );
 };
 

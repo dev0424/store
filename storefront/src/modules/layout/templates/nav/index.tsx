@@ -1,6 +1,4 @@
 import { Suspense } from "react";
-import { listRegions } from "@lib/data/regions";
-import { StoreRegion } from "@medusajs/types";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import CartButton from "@modules/layout/components/cart-button";
 import SideMenu from "@modules/layout/components/side-menu";
@@ -11,16 +9,17 @@ import {
   HiOutlineShoppingCart as ShoppingCartIcon,
 } from "react-icons/hi";
 import Image from "next/image";
+import { listCategories } from "@lib/data/categories";
 
 export default async function Nav() {
-  const regions = await listRegions().then((regions: StoreRegion[]) => regions);
+  const categories = await listCategories();
 
   return (
     <div className="group sticky inset-x-0 top-0 z-50 border-b border-background-secondary bg-background-primary text-white">
       <header className="content-container relative mx-auto flex flex-col gap-4 pb-2 pt-4 duration-200">
         <nav className="text-small-regular txt-xsmall-plus flex h-full w-full flex-wrap items-center justify-between gap-4 sm:flex-nowrap">
           <div className="flex h-full flex-1 basis-0 items-center sm:hidden">
-            <SideMenu regions={regions} />
+            <SideMenu defaultCategories={categories} />
           </div>
 
           <LocalizedClientLink href="/" data-testid="nav-store-link">
