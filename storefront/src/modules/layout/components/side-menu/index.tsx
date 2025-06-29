@@ -9,8 +9,6 @@ import SideMenuFooter from "@modules/layout/components/side-menu-footer";
 import MenuToggleButton from "@modules/layout/components/menu-toggle-button";
 import SideMenuContent from "@modules/layout/components/side-menu-content";
 
-const HEADER_HEIGHT = 114;
-
 type Props = {
   defaultCategories: StoreProductCategory[];
 };
@@ -82,9 +80,7 @@ const SideMenu = ({ defaultCategories }: Props) => {
             leaveFrom="opacity-100 backdrop-blur-2xl"
             leaveTo="opacity-0"
           >
-            <PopoverPanel
-              className={`absolute left-0 top-[${HEADER_HEIGHT}px] z-50 flex h-[calc(100vh-${HEADER_HEIGHT}px)] w-full flex-col text-sm text-ui-fg-on-color`}
-            >
+            <PopoverPanel className="absolute left-0 top-[114px] z-50 flex h-[calc(100vh-114px)] w-full flex-col text-sm text-ui-fg-on-color">
               <div
                 data-testid="nav-menu-popup"
                 className="flex h-full flex-col justify-between bg-background-primary p-6"
