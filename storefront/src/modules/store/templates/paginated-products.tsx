@@ -18,14 +18,14 @@ export default async function PaginatedProducts({
   sortBy,
   page,
   collectionId,
-  categoryId,
+  categoryIds,
   productsIds,
   countryCode,
 }: {
   sortBy?: SortOptions;
   page: number;
   collectionId?: string;
-  categoryId?: string;
+  categoryIds?: string[];
   productsIds?: string[];
   countryCode: string;
 }) {
@@ -37,8 +37,8 @@ export default async function PaginatedProducts({
     queryParams["collection_id"] = [collectionId];
   }
 
-  if (categoryId) {
-    queryParams["category_id"] = [categoryId];
+  if (categoryIds) {
+    queryParams["category_id"] = categoryIds;
   }
 
   if (productsIds) {
