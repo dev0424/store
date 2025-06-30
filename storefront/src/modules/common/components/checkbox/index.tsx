@@ -31,7 +31,7 @@ const CheckboxWithLabel: React.FC<CheckboxProps> = ({
       />
       <Label
         htmlFor="checkbox"
-        className="!txt-medium !transform-none"
+        className="!txt-medium mt-[4px] !transform-none !font-sans"
         size="large"
       >
         {label}
