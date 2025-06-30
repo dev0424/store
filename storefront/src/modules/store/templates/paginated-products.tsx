@@ -67,7 +67,7 @@ export default async function PaginatedProducts({
   const totalPages = Math.ceil(count / PRODUCT_LIMIT);
 
   return (
-    <>
+    <section className="flex flex-col justify-between">
       <ul
         className="grid w-full grid-cols-2 gap-x-6 gap-y-8 small:grid-cols-3 medium:grid-cols-4"
         data-testid="products-list"
@@ -87,6 +87,6 @@ export default async function PaginatedProducts({
           totalPages={totalPages}
         />
       )}
-    </>
+    </section>
   );
 }
