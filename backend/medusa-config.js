@@ -178,7 +178,7 @@ const medusaConfig = {
                                       displayedAttributes: ['*'],
                                   },
                                   primaryKey: 'id',
-                                  populateRelations: ['variants', 'variants.prices', 'prices'],
+                                  // populateRelations: ['variants', 'variants.prices', 'prices'],
                                   transformer: product => {
                                       return {
                                           ...product,
