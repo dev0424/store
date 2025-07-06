@@ -159,7 +159,7 @@ const medusaConfig = {
         ...(MEILISEARCH_HOST && MEILISEARCH_ADMIN_KEY
             ? [
                   {
-                      resolve: '@rokmohar/medusa-plugin-meilisearch',
+                      resolve: 'medusa-plugin-meilisearch',
                       options: {
                           config: {
                               host: MEILISEARCH_HOST,
@@ -178,23 +178,6 @@ const medusaConfig = {
                                       displayedAttributes: ['*'],
                                   },
                                   primaryKey: 'id',
-                                  // populateRelations: ['variants', 'variants.prices', 'prices'],
-                                  transformer: product => {
-                                      return {
-                                          ...product,
-                                          test: 'asd',
-                                          variant_prices:
-                                              product.variants?.map(variant => ({
-                                                  id: variant.id,
-                                                  title: variant.title,
-                                                  prices:
-                                                      variant.prices?.map(price => ({
-                                                          currency_code: price.currency_code,
-                                                          amount: price.amount,
-                                                      })) || [],
-                                              })) || [],
-                                      };
-                                  },
                               },
                           },
                       },
