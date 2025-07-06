@@ -178,10 +178,11 @@ const medusaConfig = {
                                       displayedAttributes: ['*'],
                                   },
                                   primaryKey: 'id',
-                                  populateRelations: ['variants', 'variants.prices'],
-                                  transform: product => {
+                                  populateRelations: ['variants', 'variants.prices', 'prices'],
+                                  transformer: product => {
                                       return {
                                           ...product,
+                                          test: 'asd',
                                           variant_prices:
                                               product.variants?.map(variant => ({
                                                   id: variant.id,
