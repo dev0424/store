@@ -168,8 +168,15 @@ const medusaConfig = {
                           settings: {
                               products: {
                                   indexSettings: {
+                                      filterableAttributes: [
+                                          'categories.handle',
+                                          'variants.prices.amount',
+                                          'variants.prices.currency_code',
+                                      ],
+                                      sortableAttributes: ['title', 'variants.prices.amount'],
                                       searchableAttributes: ['title', 'description', 'variant_sku'],
                                       displayedAttributes: ['*'],
+                                      primaryKey: 'id',
                                   },
                                   primaryKey: 'id',
                                   populateRelations: ['variants', 'variants.prices'],
