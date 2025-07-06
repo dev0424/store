@@ -176,7 +176,6 @@ const medusaConfig = {
                                       sortableAttributes: ['title', 'variants.prices.amount'],
                                       searchableAttributes: ['title', 'description', 'variant_sku'],
                                       displayedAttributes: ['*'],
-                                      primaryKey: 'id',
                                   },
                                   primaryKey: 'id',
                                   populateRelations: ['variants', 'variants.prices'],
