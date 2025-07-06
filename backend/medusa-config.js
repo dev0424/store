@@ -179,6 +179,10 @@ const medusaConfig = {
                                       displayedAttributes: ['*'],
                                   },
                                   primaryKey: 'id',
+                                  transformer: async product => {
+                                      console.log('INDEX PRODUCT', product);
+                                      return product;
+                                  },
                               },
                           },
                       },
