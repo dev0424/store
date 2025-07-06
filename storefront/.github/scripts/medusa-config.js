@@ -44,13 +44,14 @@ export default defineConfig({
           products: {
             indexSettings: {
               searchableAttributes: ["title", "description", "variant_sku"],
-              filterableAttributes: [
-                "categories.handle",
-                "variants.prices.amount",
-                "variants.prices.currency_code",
+              displayedAttributes: [
+                "id",
+                "title",
+                "description",
+                "variant_sku",
+                "thumbnail",
+                "handle",
               ],
-              sortableAttributes: ["title", "variants.prices.amount"],
-              displayedAttributes: ["*"],
             },
             primaryKey: "id",
           },
