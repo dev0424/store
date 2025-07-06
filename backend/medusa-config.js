@@ -159,7 +159,7 @@ const medusaConfig = {
         ...(MEILISEARCH_HOST && MEILISEARCH_ADMIN_KEY
             ? [
                   {
-                      resolve: 'medusa-plugin-meilisearch',
+                      resolve: '@rokmohar/medusa-plugin-meilisearch',
                       options: {
                           config: {
                               host: MEILISEARCH_HOST,
@@ -167,6 +167,18 @@ const medusaConfig = {
                           },
                           settings: {
                               products: {
+                                  type: 'products',
+                                  fields: [
+                                      'id',
+                                      'title',
+                                      'description',
+                                      'handle',
+                                      'variant_sku',
+                                      'thumbnail',
+                                      'prices',
+                                      'variants',
+                                      'variants.prices',
+                                  ],
                                   indexSettings: {
                                       filterableAttributes: [
                                           'categories.handle',
@@ -175,7 +187,17 @@ const medusaConfig = {
                                       ],
                                       sortableAttributes: ['title', 'variants.prices.amount'],
                                       searchableAttributes: ['title', 'description', 'variant_sku'],
-                                      displayedAttributes: ['*'],
+                                      displayedAttributes: [
+                                          'id',
+                                          'handle',
+                                          'title',
+                                          'description',
+                                          'variant_sku',
+                                          'thumbnail',
+                                          'prices',
+                                          'variants',
+                                          'variants.prices',
+                                      ],
                                   },
                                   primaryKey: 'id',
                               },
