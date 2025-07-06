@@ -1,4 +1,4 @@
-import { loadEnv, Modules, defineConfig, ModuleRegistrationName } from '@medusajs/utils';
+import { loadEnv, Modules, defineConfig } from '@medusajs/utils';
 import {
     ADMIN_CORS,
     AUTH_CORS,
@@ -179,26 +179,6 @@ const medusaConfig = {
                                       displayedAttributes: ['*'],
                                   },
                                   primaryKey: 'id',
-                                  transformer: async (
-                                      product,
-                                      _defaultTransformer,
-                                      { container },
-                                  ) => {
-                                      console.log('INDEX PRODUCT');
-                                      console.log('CONTAINER', container);
-                                      const productService = container.resolve(
-                                          ModuleRegistrationName.PRODUCT,
-                                      );
-                                      // Fetch the full product with relations
-                                      const fullProduct = await productService.retrieve(
-                                          product.id,
-                                          {
-                                              relations: ['variants', 'variants.prices'],
-                                          },
-                                      );
-
-                                      return fullProduct;
-                                  },
                               },
                           },
                       },
