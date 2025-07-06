@@ -1,4 +1,4 @@
-import { loadEnv, Modules, defineConfig } from '@medusajs/utils';
+import { loadEnv, Modules, defineConfig, ModuleRegistrationName } from '@medusajs/utils';
 import {
     ADMIN_CORS,
     AUTH_CORS,
@@ -168,17 +168,6 @@ const medusaConfig = {
                           settings: {
                               products: {
                                   type: 'products',
-                                  fields: [
-                                      'id',
-                                      'title',
-                                      'description',
-                                      'handle',
-                                      'variant_sku',
-                                      'thumbnail',
-                                      'prices',
-                                      'variants',
-                                      'variants.prices',
-                                  ],
                                   indexSettings: {
                                       filterableAttributes: [
                                           'categories.handle',
@@ -187,19 +176,30 @@ const medusaConfig = {
                                       ],
                                       sortableAttributes: ['title', 'variants.prices.amount'],
                                       searchableAttributes: ['title', 'description', 'variant_sku'],
-                                      displayedAttributes: [
-                                          'id',
-                                          'handle',
-                                          'title',
-                                          'description',
-                                          'variant_sku',
-                                          'thumbnail',
-                                          'prices',
-                                          'variants',
-                                          'variants.prices',
-                                      ],
+                                      displayedAttributes: ['*'],
                                   },
                                   primaryKey: 'id',
+                                  transformer: async (
+                                      product,
+                                      _defaultTransformer,
+                                      { container },
+                                  ) => {
+                                      const productService = container.resolve(
+                                          ModuleRegistrationName.PRODUCT,
+                                      );
+                                      // Fetch the full product with relations
+                                      const fullProduct = await productService.retrieve(
+                                          product.id,
+                                          {
+                                              relations: ['variants', 'variants.prices'],
+                                          },
+                                      );
+
+                                      // Use the default transformer to keep existing behavior
+                                      const transformed = await _defaultTransformer(fullProduct);
+
+                                      return transformed;
+                                  },
                               },
                           },
                       },
