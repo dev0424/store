@@ -170,19 +170,21 @@ const medusaConfig = {
                                   type: 'products',
                                   indexSettings: {
                                       filterableAttributes: [
+                                          'handle',
                                           'categories.handle',
                                           'variants.prices.amount',
                                           'variants.prices.currency_code',
+                                          'weight',
                                       ],
-                                      sortableAttributes: ['title', 'variants.prices.amount'],
+                                      sortableAttributes: [
+                                          'title',
+                                          'variants.prices.amount',
+                                          'weight',
+                                      ],
                                       searchableAttributes: ['title', 'description', 'variant_sku'],
-                                      displayedAttributes: ['*'],
+                                      displayedAttributes: ['*', 'variants.prices'],
                                   },
                                   primaryKey: 'id',
-                                  transformer: async product => {
-                                      console.log('INDEX PRODUCT', product);
-                                      return product;
-                                  },
                               },
                           },
                       },
