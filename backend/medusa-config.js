@@ -184,6 +184,8 @@ const medusaConfig = {
                                       _defaultTransformer,
                                       { container },
                                   ) => {
+                                      console.log('INDEX PRODUCT');
+                                      console.log('CONTAINER', container);
                                       const productService = container.resolve(
                                           ModuleRegistrationName.PRODUCT,
                                       );
@@ -195,10 +197,7 @@ const medusaConfig = {
                                           },
                                       );
 
-                                      // Use the default transformer to keep existing behavior
-                                      const transformed = await _defaultTransformer(fullProduct);
-
-                                      return transformed;
+                                      return fullProduct;
                                   },
                               },
                           },
