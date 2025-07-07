@@ -12,6 +12,8 @@ type PaginatedProductsParams = {
   category_id?: string[];
   id?: string[];
   order?: string;
+  min_price?: string;
+  max_price?: string;
 };
 
 export default async function PaginatedProducts({
@@ -21,6 +23,8 @@ export default async function PaginatedProducts({
   categoryIds,
   productsIds,
   countryCode,
+  minPrice,
+  maxPrice,
 }: {
   sortBy?: SortOptions;
   page: number;
@@ -28,9 +32,11 @@ export default async function PaginatedProducts({
   categoryIds?: string[];
   productsIds?: string[];
   countryCode: string;
+  minPrice?: string;
+  maxPrice?: string;
 }) {
   const queryParams: PaginatedProductsParams = {
-    limit: 12,
+    limit: PRODUCT_LIMIT,
   };
 
   if (collectionId) {
@@ -49,6 +55,14 @@ export default async function PaginatedProducts({
     queryParams["order"] = "created_at";
   }
 
+  if (minPrice) {
+    queryParams["min_price"] = minPrice;
+  }
+
+  if (maxPrice) {
+    queryParams["max_price"] = maxPrice;
+  }
+
   const region = await getRegion(countryCode);
 
   if (!region) {
@@ -60,7 +74,6 @@ export default async function PaginatedProducts({
   } = await listProductsWithSort({
     page,
     queryParams,
-    sortBy,
     countryCode,
   });
 

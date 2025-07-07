@@ -1,46 +1,36 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback } from "react";
+import CategoryFilter from "@modules/store/components/refinement-list/category-filter";
+import { StoreProductCategory } from "@medusajs/types";
+import Divider from "@modules/common/components/divider";
+import SortProducts, {
+  SortOptions,
+} from "@modules/store/components/refinement-list/sort-products";
+import PriceRange from "@modules/store/components/refinement-list/price-range";
 
-import SortProducts, { SortOptions } from "./sort-products";
-
-type RefinementListProps = {
+type Props = {
   sortBy: SortOptions;
   search?: boolean;
   "data-testid"?: string;
+  category: StoreProductCategory;
+  minPrice?: string;
+  maxPrice?: string;
 };
 
 const RefinementList = ({
   sortBy,
+  category,
+  minPrice,
+  maxPrice,
   "data-testid": dataTestId,
-}: RefinementListProps) => {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams);
-      params.set(name, value);
-
-      return params.toString();
-    },
-    [searchParams],
-  );
-
-  const setQueryParams = (name: string, value: string) => {
-    const query = createQueryString(name, value);
-    router.push(`${pathname}?${query}`);
-  };
-
+}: Props) => {
   return (
-    <div className="mb-8 flex gap-12 py-4 pl-6 small:ml-[1.675rem] small:min-w-[250px] small:flex-col small:px-0">
-      <SortProducts
-        sortBy={sortBy}
-        setQueryParams={setQueryParams}
-        data-testid={dataTestId}
-      />
+    <div className="flex flex-col gap-8 border-r border-gray-200 pr-8">
+      <SortProducts sortBy={sortBy} data-testid={dataTestId} />
+      <Divider />
+      <CategoryFilter category={category} />
+      <Divider />
+      <PriceRange minPrice={minPrice} maxPrice={maxPrice} />
     </div>
   );
 };

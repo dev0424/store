@@ -5,11 +5,18 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import useDebounce from "@lib/hooks/use-debounce";
 
 // TODO fetch max price from products
+const MIN_PRICE = 1;
 const MAX_PRICE = 10000;
-const DEFAULT_PRICE_RANGE = [0, MAX_PRICE];
 
-const PriceRange = () => {
-  const [priceRange, setPriceRange] = useState<number[]>(DEFAULT_PRICE_RANGE);
+type Props = {
+  minPrice?: string;
+  maxPrice?: string;
+};
+const PriceRange = ({ minPrice, maxPrice }: Props) => {
+  const [priceRange, setPriceRange] = useState<number[]>([
+    minPrice ? parseInt(minPrice) : MIN_PRICE,
+    maxPrice ? parseInt(maxPrice) : MAX_PRICE,
+  ]);
   const debouncedPriceRange = useDebounce(priceRange);
 
   const router = useRouter();
@@ -19,8 +26,8 @@ const PriceRange = () => {
   const createQueryString = useCallback(
     (range: number[]) => {
       const params = new URLSearchParams(searchParams);
-      params.set("from", range[0].toString());
-      params.set("to", range[1].toString());
+      params.set("minPrice", range[0].toString());
+      params.set("maxPrice", range[1].toString());
 
       return params.toString();
     },
@@ -41,9 +48,6 @@ const PriceRange = () => {
   };
 
   useEffect(() => {
-    if (priceRange === DEFAULT_PRICE_RANGE) {
-      return;
-    }
     // Debounce state update to avoid too many rerenders
     setQueryParams(debouncedPriceRange);
   }, [debouncedPriceRange]);
@@ -71,6 +75,7 @@ const PriceRange = () => {
         </div>
         <Slider.Root
           className="relative flex h-5 w-full touch-none select-none items-center"
+          min={MIN_PRICE}
           max={MAX_PRICE}
           step={1}
           value={priceRange}

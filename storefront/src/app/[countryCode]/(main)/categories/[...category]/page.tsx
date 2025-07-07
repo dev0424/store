@@ -13,6 +13,8 @@ type Props = {
     sortBy?: SortOptions;
     page?: string;
     categoryId?: string | string[];
+    minPrice?: string;
+    maxPrice?: string;
   }>;
 };
 
@@ -67,7 +69,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 export default async function CategoryPage(props: Props) {
   const searchParams = await props.searchParams;
   const params = await props.params;
-  const { sortBy, page, categoryId } = searchParams;
+  const { sortBy, page, categoryId, minPrice, maxPrice } = searchParams;
 
   const category = await getCategoryByHandle(params.category);
 
@@ -82,6 +84,8 @@ export default async function CategoryPage(props: Props) {
       page={page}
       countryCode={params.countryCode}
       categoryId={categoryId}
+      minPrice={minPrice}
+      maxPrice={maxPrice}
     />
   );
 }
