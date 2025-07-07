@@ -156,6 +156,10 @@ const medusaConfig = {
             : []),
     ],
     plugins: [
+        {
+            resolve: `@tsc_tech/medusa-plugin-product-filter`,
+            options: {},
+        },
         ...(MEILISEARCH_HOST && MEILISEARCH_ADMIN_KEY
             ? [
                   {
