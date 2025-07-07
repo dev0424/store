@@ -13,7 +13,7 @@ export async function generateStaticParams() {
     const countryCodes = await listRegions().then((regions) =>
       regions?.map((r) => r.countries?.map((c) => c.iso_2)).flat(),
     );
-
+    console.log("country codes", countryCodes);
     if (!countryCodes) {
       return [];
     }
@@ -23,7 +23,7 @@ export async function generateStaticParams() {
         countryCode: country,
         queryParams: { limit: 100, fields: "handle" },
       });
-
+      console.log("response", response.products);
       return {
         country,
         products: response.products,
@@ -31,7 +31,7 @@ export async function generateStaticParams() {
     });
 
     const countryProducts = await Promise.all(promises);
-
+    console.log("country products", countryProducts);
     return countryProducts
       .flatMap((countryData) =>
         countryData.products.map((product) => ({
@@ -41,6 +41,7 @@ export async function generateStaticParams() {
       )
       .filter((param) => param.handle);
   } catch (error) {
+    console.log("error", error);
     console.error(
       `Failed to generate static paths for product pages: ${
         error instanceof Error ? error.message : "Unknown error"
@@ -54,7 +55,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
   const { handle } = params;
   const region = await getRegion(params.countryCode);
-
+  console.log("region", region);
   if (!region) {
     notFound();
   }
@@ -63,7 +64,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     countryCode: params.countryCode,
     queryParams: { handle },
   }).then(({ response }) => response.products[0]);
-
+  console.log("product", product);
   if (!product) {
     notFound();
   }
