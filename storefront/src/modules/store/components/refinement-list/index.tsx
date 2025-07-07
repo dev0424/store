@@ -25,7 +25,7 @@ const RefinementList = ({
   "data-testid": dataTestId,
 }: Props) => {
   return (
-    <div className="flex flex-col gap-8 border-r border-gray-200 pr-8">
+    <div className="flex flex-col gap-8 sm:border-r sm:border-gray-200 sm:pr-8">
       <SortProducts sortBy={sortBy} data-testid={dataTestId} />
       <Divider />
       <CategoryFilter category={category} />

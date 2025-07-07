@@ -2,17 +2,15 @@
 
 import React from "react";
 import { HiAdjustments } from "react-icons/hi";
-import { getShowFiltersCookie, setShowFiltersCookie } from "@lib/data/filters";
 
-const FiltersToolbar = () => {
-  const toggleFilters = async () => {
-    const showFilters = await getShowFiltersCookie();
-    await setShowFiltersCookie(!showFilters);
-  };
+type Props = {
+  onClick: VoidFunction;
+};
 
+const FiltersToolbar = ({ onClick }: Props) => {
   return (
     <div className="border-y border-y-gray-200 py-4">
-      <button onClick={toggleFilters}>
+      <button onClick={onClick}>
         <span className="flex gap-1 text-ui-fg-base">
           Filters <HiAdjustments size={24} />
         </span>
