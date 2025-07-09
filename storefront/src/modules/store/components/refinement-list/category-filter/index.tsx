@@ -14,10 +14,6 @@ const CategoryFilter = ({ category }: Props) => {
   const toggle = useToggleQueryParam();
   const searchParams = useSearchParams();
 
-  if (!category.category_children.length) {
-    return null;
-  }
-
   const onChange = (categoryId: string) => toggle("categoryId", categoryId);
 
   return (

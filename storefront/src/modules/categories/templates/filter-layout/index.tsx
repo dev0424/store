@@ -1,12 +1,12 @@
 "use client";
 
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode } from "react";
 import { clx } from "@medusajs/ui";
 import RefinementList from "@modules/store/components/refinement-list";
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products";
 import { HttpTypes } from "@medusajs/types";
 import FiltersToolbar from "@modules/categories/components/filters-toolbar";
-import RefinementListPopover from "@modules/store/components/refinement-list/filters-popover";
+import useToggleState from "@lib/hooks/use-toggle-state";
 
 type Props = {
   children: ReactNode;
@@ -24,16 +24,12 @@ const FilterLayout = ({
   minPrice,
   maxPrice,
 }: Props) => {
-  const [showFilters, setShowFilters] = useState(true);
-
-  const toggleFilters = () => setShowFilters((prevState) => !prevState);
+  const { state: showFilters, toggle: toggleFilters } = useToggleState(true);
 
   return (
     <div className="flex flex-col gap-6">
-      <FiltersToolbar onClick={toggleFilters} />
-      <RefinementListPopover
-        isOpen={showFilters}
-        onClose={toggleFilters}
+      <FiltersToolbar
+        onClick={toggleFilters}
         sortBy={sortBy}
         category={category}
         minPrice={minPrice}
