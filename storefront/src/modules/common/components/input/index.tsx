@@ -3,6 +3,7 @@ import React, { useEffect, useImperativeHandle, useState } from "react";
 
 import Eye from "@modules/common/icons/eye";
 import EyeOff from "@modules/common/icons/eye-off";
+import ErrorMessage from "@modules/checkout/components/error-message";
 
 type InputProps = Omit<
   Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">,
@@ -13,10 +14,24 @@ type InputProps = Omit<
   touched?: Record<string, unknown>;
   name: string;
   topLabel?: string;
+  disableNativeValidation?: boolean;
 };
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ type, name, label, touched, required, topLabel, ...props }, ref) => {
+  (
+    {
+      type,
+      name,
+      label,
+      touched,
+      required,
+      topLabel,
+      errors,
+      disableNativeValidation,
+      ...props
+    },
+    ref,
+  ) => {
     const inputRef = React.useRef<HTMLInputElement>(null);
     const [showPassword, setShowPassword] = useState(false);
     const [inputType, setInputType] = useState(type);
@@ -43,15 +58,15 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             type={inputType}
             name={name}
             placeholder=" "
-            required={required}
-            className="mt-0 block h-11 w-full appearance-none rounded-md border border-ui-border-base bg-ui-bg-field px-4 pb-1 pt-4 hover:bg-ui-bg-field-hover focus:shadow-borders-interactive-with-active focus:outline-none focus:ring-0"
+            required={!disableNativeValidation && required}
+            className="mt-0 block h-11 w-full appearance-none rounded-md border border-ui-border-base bg-ui-bg-field px-4 pb-1 pt-4 font-sans hover:bg-ui-bg-field-hover focus:shadow-borders-interactive-with-active focus:outline-none focus:ring-0"
             {...props}
             ref={inputRef}
           />
           <label
             htmlFor={name}
             onClick={() => inputRef.current?.focus()}
-            className="-z-1 origin-0 absolute top-3 mx-3 flex items-center justify-center px-1 text-ui-fg-subtle transition-all duration-300"
+            className="-z-1 origin-0 absolute top-3 mx-3 flex translate-y-[2px] items-center justify-center px-1 font-sans text-ui-fg-subtle transition-all duration-300"
           >
             {label}
             {required && <span className="text-rose-500">*</span>}
@@ -66,6 +81,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             </button>
           )}
         </div>
+        {errors ? <ErrorMessage error={errors.message as string} /> : null}
       </div>
     );
   },

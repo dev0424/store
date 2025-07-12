@@ -9,9 +9,8 @@ import FeaturedCollections from "@modules/home/components/featured-collections";
 import { listCollections } from "@lib/data/collections";
 
 export const metadata: Metadata = {
-  title: "Medusa Next.js Starter Template",
-  description:
-    "A performant frontend ecommerce starter template with Next.js 15 and Medusa.",
+  title: "RSPI Store",
+  description: "Welcome to RSPI Store.",
 };
 
 export default async function Home(props: {

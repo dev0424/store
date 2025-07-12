@@ -42,7 +42,10 @@ const Login = ({ setCurrentView }: Props) => {
           />
         </div>
         <ErrorMessage error={message} data-testid="login-error-message" />
-        <SubmitButton data-testid="sign-in-button" className="mt-6 w-full">
+        <SubmitButton
+          data-testid="sign-in-button"
+          className="mt-6 w-full font-sans font-bold tracking-wide"
+        >
           Sign in
         </SubmitButton>
       </form>

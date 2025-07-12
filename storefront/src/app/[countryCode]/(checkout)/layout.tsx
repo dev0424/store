@@ -29,7 +29,7 @@ export default function CheckoutLayout({
             className="txt-compact-xlarge-plus uppercase text-ui-fg-subtle hover:text-ui-fg-base"
             data-testid="store-link"
           >
-            Medusa Store
+            RSPI Store
           </LocalizedClientLink>
           <div className="flex-1 basis-0" />
         </nav>

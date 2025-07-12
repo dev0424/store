@@ -21,10 +21,10 @@ const Register = ({ setCurrentView }: Props) => {
       data-testid="register-page"
     >
       <h1 className="text-large-semi mb-6 uppercase">
-        Become a Medusa Store Member
+        Become an RSPI Store Member
       </h1>
       <p className="text-base-regular mb-4 text-center text-ui-fg-base">
-        Create your Medusa Store Member profile, and get access to an enhanced
+        Create your RSPI Store Member profile, and get access to an enhanced
         shopping experience.
       </p>
       <form className="flex w-full flex-col" action={formAction}>
@@ -69,7 +69,7 @@ const Register = ({ setCurrentView }: Props) => {
         </div>
         <ErrorMessage error={message} data-testid="register-error" />
         <span className="text-small-regular mt-6 text-center text-ui-fg-base">
-          By creating an account, you agree to Medusa Store&apos;s{" "}
+          By creating an account, you agree to RSPI Store&apos;s{" "}
           <LocalizedClientLink
             href="/content/privacy-policy"
             className="underline"
