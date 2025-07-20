@@ -11,6 +11,7 @@ import Package from "@modules/common/icons/package";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import { HttpTypes } from "@medusajs/types";
 import { signout } from "@lib/data/customer";
+import PendingRegistrationMessage from "@modules/account/components/pending-registration-message";
 
 const AccountNav = ({
   customer,
@@ -40,6 +41,9 @@ const AccountNav = ({
           </LocalizedClientLink>
         ) : (
           <>
+            {customer?.metadata?.status === "pending" ? (
+              <PendingRegistrationMessage />
+            ) : null}
             <div className="text-xl-semi mb-4 px-8">
               Hello {customer?.first_name}
             </div>

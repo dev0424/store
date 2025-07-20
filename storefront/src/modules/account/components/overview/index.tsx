@@ -4,6 +4,7 @@ import ChevronDown from "@modules/common/icons/chevron-down";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import { convertToLocale } from "@lib/util/money";
 import { HttpTypes } from "@medusajs/types";
+import PendingRegistrationMessage from "@modules/account/components/pending-registration-message";
 
 type OverviewProps = {
   customer: HttpTypes.StoreCustomer | null;
@@ -14,6 +15,9 @@ const Overview = ({ customer, orders }: OverviewProps) => {
   return (
     <div data-testid="overview-page-wrapper">
       <div className="hidden small:block">
+        {customer?.metadata?.status === "pending" ? (
+          <PendingRegistrationMessage />
+        ) : null}
         <div className="text-xl-semi mb-4 flex items-center justify-between">
           <span data-testid="welcome-message" data-value={customer?.first_name}>
             Hello {customer?.first_name}
