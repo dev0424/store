@@ -18,7 +18,9 @@ const CategoryPreview = ({ category }: Props) => {
         size={"square"}
         className={"h-40 !rounded-full sm:h-52"}
       />
-      <p className={"text-center text-lg font-black text-ui-fg-base"}>
+      <p
+        className={"text-center text-lg font-black text-ui-fg-base sm:max-w-52"}
+      >
         {category.name}
       </p>
     </LocalizedClientLink>
