@@ -1,6 +1,5 @@
 import React from "react";
 import { StoreProductCategory } from "@medusajs/types";
-import Thumbnail from "@modules/products/components/thumbnail";
 
 type Props = {
   category: StoreProductCategory;
@@ -25,10 +24,13 @@ const CategoryHeader = ({ category }: Props) => {
         ) : null}
       </div>
       {category.metadata?.thumbnail ? (
-        <Thumbnail
-          thumbnail={category.metadata?.thumbnail as string}
-          className="h-40 !w-full rounded-none sm:h-80"
-        />
+        <div className="flex w-full items-center justify-center">
+          <img
+            src={category.metadata?.thumbnail as string}
+            alt={category.name}
+            className="h-40 rounded-none contain-content sm:h-64"
+          />
+        </div>
       ) : null}
     </div>
   );

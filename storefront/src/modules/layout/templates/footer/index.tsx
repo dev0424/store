@@ -13,7 +13,7 @@ export default async function Footer() {
   return (
     <footer className="w-full bg-[#141414] text-white">
       <div className="content-container flex w-full flex-col">
-        <div className="flex flex-col items-start justify-between gap-y-6 py-16 sm:py-32 small:flex-row">
+        <div className="flex flex-col items-start justify-between gap-10 py-16 sm:py-32 small:flex-row">
           <div className="flex flex-col gap-6">
             <LocalizedClientLink href="/" data-testid="nav-store-link">
               <Image
@@ -69,11 +69,7 @@ export default async function Footer() {
                 <span className="text-sm font-black text-white">
                   Collections
                 </span>
-                <ul
-                  className={clx("grid grid-cols-1 gap-2 text-sm", {
-                    "grid-cols-2": (collections?.length || 0) > 3,
-                  })}
-                >
+                <ul className="grid grid-cols-1 gap-2 text-sm">
                   {collections?.slice(0, 6).map((c) => (
                     <li key={c.id}>
                       <LocalizedClientLink

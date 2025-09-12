@@ -2,7 +2,6 @@ import React from "react";
 import { ImageOrPlaceholder } from "@modules/products/components/thumbnail";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import { StoreCollection } from "@medusajs/types";
-import { SubmitButton } from "@modules/checkout/components/submit-button";
 
 type Props = {
   collection: StoreCollection;
@@ -34,9 +33,6 @@ const CollectionPreview = ({ collection, index }: Props) => {
               </p>
             ) : null}
           </div>
-          <SubmitButton className="text-md flex h-10 items-center bg-accent-primary py-1 font-sans font-bold shadow-none hover:bg-hover-accent-primary disabled:bg-disabled-accent-primary disabled:text-[#6d866f]">
-            Show now
-          </SubmitButton>
         </div>
       </div>
     </LocalizedClientLink>
