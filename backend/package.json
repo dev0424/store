@@ -46,6 +46,8 @@
     "medusajs-launch-utils": "^0.0.15",
     "minio": "^8.0.3",
     "pg": "^8.13.1",
+    "react-dropzone": "^14.3.8",
+    "react-hook-form": "^7.62.0",
     "resend": "4.0.1",
     "ulid": "^2.3.0"
   },
