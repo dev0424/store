@@ -99,8 +99,8 @@ importers:
         specifier: ^2.3.0
         version: 2.4.0
       zod:
-        specifier: ^4.1.8
-        version: 4.1.8
+        specifier: ^3.22.4
+        version: 3.22.4
     devDependencies:
       '@medusajs/test-utils':
         specifier: latest
@@ -7408,9 +7408,6 @@ packages:
 
   zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
-
-  zod@4.1.8:
-    resolution: {integrity: sha512-5R1P+WwQqmmMIEACyzSvo4JXHY5WiAFHRMg+zBZKgKS+Q1viRa0C1hmUKtHltoIFKtIdki3pRxkmpP74jnNYHQ==}
 
 snapshots:
 
@@ -16442,5 +16439,3 @@ snapshots:
   yoctocolors-cjs@2.1.2: {}
 
   zod@3.22.4: {}
-
-  zod@4.1.8: {}
