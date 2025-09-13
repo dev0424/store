@@ -36,7 +36,7 @@ export const deleteProductDocumentStep = createStep(
         await productDocumentModuleService.deleteProductDocuments(input.documentId);
 
         // Pass the product document data to the compensation function
-        return new StepResponse(undefined, productDocument);
+        return new StepResponse(productDocument, productDocument);
     },
 
     // Compensation function: restore the product document if needed
