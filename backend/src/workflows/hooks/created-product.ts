@@ -2,8 +2,8 @@ import { createProductsWorkflow } from '@medusajs/medusa/core-flows';
 import { StepResponse } from '@medusajs/framework/workflows-sdk';
 import { Modules } from '@medusajs/framework/utils';
 import { LinkDefinition } from '@medusajs/framework/types';
-import ProductDocumentModuleService from 'modules/product-document/services/service';
-import { PRODUCT_DOCUMENT_MODULE } from 'modules/product-document';
+import ProductDocumentModuleService from '../../modules/product-document/services/service';
+import { PRODUCT_DOCUMENT_MODULE } from '../../modules/product-document/index';
 
 createProductsWorkflow.hooks.productsCreated(
     async ({ products, additional_data }, { container }) => {

@@ -1,5 +1,5 @@
 import { MedusaRequest, MedusaResponse } from '@medusajs/framework/http';
-import { deleteProductDocumentWorkflow } from 'workflows/delete-product-document';
+import { deleteProductDocumentWorkflow } from '../../../../../../workflows/delete-product-document';
 
 export const DELETE = async (req: MedusaRequest, res: MedusaResponse) => {
     const { result } = await deleteProductDocumentWorkflow(req.scope).run({

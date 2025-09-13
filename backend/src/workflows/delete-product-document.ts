@@ -4,8 +4,8 @@ import {
     StepResponse,
     WorkflowResponse,
 } from '@medusajs/framework/workflows-sdk';
-import ProductDocumentModuleService from 'modules/product-document/services/service';
-import { PRODUCT_DOCUMENT_MODULE } from 'modules/product-document';
+import ProductDocumentModuleService from '../modules/product-document/services/service';
+import { PRODUCT_DOCUMENT_MODULE } from '../modules/product-document/index';
 import { Modules } from '@medusajs/framework/utils';
 
 export type DeleteProductDocumentStepInput = {
