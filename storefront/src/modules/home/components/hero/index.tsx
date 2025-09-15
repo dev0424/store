@@ -2,17 +2,7 @@ import React from "react";
 import { getImageProps } from "next/image";
 import BrowserWidget from "@modules/home/components/browser-widget";
 import { listCategories } from "@lib/data/categories";
-
-function getBackgroundImage(srcSet = "") {
-  const imageSet = srcSet
-    .split(", ")
-    .map((str) => {
-      const [url, dpi] = str.split(" ");
-      return `url("${url}") ${dpi}`;
-    })
-    .join(", ");
-  return `image-set(${imageSet})`;
-}
+import { getImageSet } from "@lib/util/image";
 
 const Hero = async () => {
   const categories = await listCategories();
@@ -25,7 +15,8 @@ const Hero = async () => {
     height: 1080,
     src: "/images/hero.webp",
   });
-  const backgroundImage = getBackgroundImage(srcSet);
+
+  const backgroundImage = getImageSet(srcSet);
 
   const style = {
     backgroundImage,
@@ -64,9 +55,7 @@ const Hero = async () => {
             Id maxime natus nisi quae quisquam sed.
           </h2>
         </span>
-        <div className={"sm:max-w-lg"}>
           <BrowserWidget categories={categories} />
-        </div>
       </div>
     </div>
   );

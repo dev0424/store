@@ -66,8 +66,8 @@ export default async function Nav() {
         <div className={"hidden justify-between gap-6 sm:flex sm:items-center"}>
           <CategoryNavigation />
           <div className={"flex gap-6"}>
-            <LocalizedClientLink className="text-white" href="#">
-              Help
+            <LocalizedClientLink className="text-white" href="/about">
+              About
             </LocalizedClientLink>
             <LocalizedClientLink className="text-white" href="#">
               Contact
