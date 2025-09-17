@@ -1,17 +1,19 @@
 "use client";
 
+import React from "react";
 import Back from "@modules/common/icons/back";
 import FastDelivery from "@modules/common/icons/fast-delivery";
 import Refresh from "@modules/common/icons/refresh";
-
 import Accordion from "./accordion";
-import { HttpTypes } from "@medusajs/types";
+import { ProductWithDocument } from "../../../../types/product";
+import ProductDocument from "@modules/products/components/product-document";
+import { toArray } from "../../../../../../backend/src/lib/utils";
 
-type ProductTabsProps = {
-  product: HttpTypes.StoreProduct;
+type Props = {
+  product: ProductWithDocument;
 };
 
-const ProductTabs = ({ product }: ProductTabsProps) => {
+const ProductTabs = ({ product }: Props) => {
   const tabs = [
     {
       label: "Product Information",
@@ -22,8 +24,8 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
       component: <ShippingInfoTab />,
     },
     {
-      label: "Certifications",
-      component: <CertificationsTab />,
+      label: "Documents",
+      component: <DocumentsTab product={product} />,
     },
   ];
 
@@ -45,7 +47,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
   );
 };
 
-const ProductInfoTab = ({ product }: ProductTabsProps) => {
+const ProductInfoTab = ({ product }: Props) => {
   return (
     <div className="text-small-regular py-8">
       <div className="grid grid-cols-2 gap-x-8">
@@ -122,8 +124,20 @@ const ShippingInfoTab = () => {
   );
 };
 
-const CertificationsTab = () => {
-  return <div className="text-small-regular py-8">TODO</div>;
+const DocumentsTab = ({ product }: Props) => {
+  return (
+    <div className="text-small-regular py-8">
+      {toArray(product.product_document)?.length ? (
+        <div className="flex flex-col gap-2">
+          {toArray(product.product_document)?.map((document) => (
+            <ProductDocument key={document.id} document={document} />
+          ))}
+        </div>
+      ) : (
+        <p>There are no documents for this product.</p>
+      )}
+    </div>
+  );
 };
 
 export default ProductTabs;

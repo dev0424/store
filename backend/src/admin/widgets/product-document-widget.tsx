@@ -1,22 +1,13 @@
+import React from 'react';
 import { defineWidgetConfig } from '@medusajs/admin-sdk';
 import { Container, Heading, Text } from '@medusajs/ui';
 import { AdminProduct, DetailWidgetProps } from '@medusajs/types';
 import { useQuery } from '@tanstack/react-query';
 import { sdk } from '../../lib/config';
-import React from 'react';
-import UploadProductDocument from './upload-product-document';
-import { findDocument, toArray } from './utils';
-import DeleteProductDocument from './delete-product-document';
-
-type ProductWithDocument = {
-    product: AdminProduct & {
-        product_document?: {
-            id: string;
-            url: string;
-            type: string;
-        }[];
-    };
-};
+import UploadProductDocument from './components/upload-product-document';
+import { findDocument, toArray } from '../../lib/utils';
+import DeleteProductDocument from './components/delete-product-document';
+import { AdminProductWithDocument } from '../../lib/types';
 
 const ProductDocumentWidget = ({ data: product }: DetailWidgetProps<AdminProduct>) => {
     const {
@@ -27,7 +18,7 @@ const ProductDocumentWidget = ({ data: product }: DetailWidgetProps<AdminProduct
         queryFn: () =>
             sdk.admin.product.retrieve(product.id, {
                 fields: '+product_document.*',
-            }) as Promise<ProductWithDocument>,
+            }) as Promise<AdminProductWithDocument>,
         queryKey: [['product', product.id, 'custom']],
     });
 

@@ -66,3 +66,10 @@ export const noDivisionCurrencies = [
   "xdr",
   "xau",
 ];
+
+export const productDocumentMetadata: Record<string, string> = {
+  instructions: "Notice",
+  certificate: "Certificat",
+  productSheetPrice: "Fiche produit (sans prix)",
+  productSheetNoPrice: "Fiche produit (avec prix)",
+};

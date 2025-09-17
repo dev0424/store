@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Button, Drawer, IconButton, Select, Text, toast, Toaster } from '@medusajs/ui';
 import { Plus } from '@medusajs/icons';
 import { Controller, useForm } from 'react-hook-form';
-import { documentFormRules } from './validation';
+import { documentFormRules } from '../validation';
 import { useDropzone } from 'react-dropzone';
-import { sdk } from '../../lib/config';
-import { documentTypes } from './constants';
+import { sdk } from '../../../lib/config';
+import { documentTypes } from '../constants';
 
 type ProductDocumentForm = {
     type: string;

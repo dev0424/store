@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 
 import ProductActions from "@modules/products/components/product-actions";
-import ProductOnboardingCta from "@modules/products/components/product-onboarding-cta";
 import ProductTabs from "@modules/products/components/product-tabs";
 import RelatedProducts from "@modules/products/components/related-products";
 import ProductInfo from "@modules/products/templates/product-info";
@@ -10,9 +9,10 @@ import { notFound } from "next/navigation";
 import ProductActionsWrapper from "./product-actions-wrapper";
 import { HttpTypes } from "@medusajs/types";
 import ImageCarousel from "@modules/products/components/image-carousel";
+import { ProductWithDocument } from "../../../types/product";
 
 type ProductTemplateProps = {
-  product: HttpTypes.StoreProduct;
+  product: ProductWithDocument;
   region: HttpTypes.StoreRegion;
   countryCode: string;
 };
@@ -36,7 +36,6 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
         <div className="sm-only:content-container flex flex-col gap-y-6">
           <ProductInfo product={product} />
           <ProductTabs product={product} />
-          <ProductOnboardingCta />
           <Suspense
             fallback={
               <ProductActions

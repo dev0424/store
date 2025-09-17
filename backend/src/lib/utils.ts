@@ -1,4 +1,4 @@
-import { documentTypes } from './constants';
+import { documentTypes } from '../admin/widgets/constants';
 
 export function toArray<T>(input: T | T[] | null | undefined): T[] {
     if (input == null) {
