@@ -7,7 +7,7 @@ import Refresh from "@modules/common/icons/refresh";
 import Accordion from "./accordion";
 import { ProductWithDocument } from "../../../../types/product";
 import ProductDocument from "@modules/products/components/product-document";
-import { toArray } from "../../../../../../backend/src/lib/utils";
+import { toArray } from "../../../../lib/util/toArray";
 
 type Props = {
   product: ProductWithDocument;
