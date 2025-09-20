@@ -1,8 +1,8 @@
 import React from "react";
-import Image, { getImageProps } from "next/image";
-import { getImageSet } from "@lib/util/image";
+import Image from "next/image";
 import { Metadata } from "next";
 import ContactBanner from "@modules/account/components/contact-banner";
+import PageHeaderBanner from "@modules/common/components/page-header-banner";
 
 export const metadata: Metadata = {
   title: "RSPI Store",
@@ -10,43 +10,9 @@ export const metadata: Metadata = {
 };
 
 const AboutPage = () => {
-  const {
-    props: { srcSet },
-  } = getImageProps({
-    alt: "",
-    width: 1440,
-    height: 1080,
-    src: "/images/hero.webp",
-  });
-
-  const backgroundImage = getImageSet(srcSet);
-
-  const style = {
-    backgroundImage,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  };
-
   return (
     <div>
-      <section className="relative h-[60vh] w-full">
-        <div className="absolute inset-0 z-0 block" style={style} />
-        {/* Dark overlay */}
-        <div className="absolute inset-0 z-10 bg-black/40" />
-        <div className="content-container relative z-10 flex h-full flex-col items-center justify-center gap-2 p-6 text-center">
-          <h1
-            className={
-              "text-3xl font-black text-white sm:text-5xl sm:leading-[60px]"
-            }
-          >
-            Lorem ipsum dolor sit amet.
-          </h1>
-          <h2 className="text-xl font-normal text-white sm:text-2xl">
-            Id maxime natus nisi quae quisquam sed.
-          </h2>
-        </div>
-      </section>
+      <PageHeaderBanner imageSrc={"/images/hero.webp"} />
       <section className="content-container py-8 sm:py-16">
         <div className="grid grid-cols-1 items-center gap-4 sm:grid-cols-2 sm:gap-16">
           <h1 className="text-left text-3xl font-black text-ui-fg-base">

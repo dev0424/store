@@ -24,11 +24,11 @@ export default async function Nav() {
 
           <LocalizedClientLink href="/" data-testid="nav-store-link">
             <Image
-              src={"/images/logo.png"}
+              src="/images/logo.png"
               width={200}
               height={50}
               alt="RSPI logo"
-              className={"max-w-32 object-cover"}
+              className="max-w-32 object-cover"
             />
           </LocalizedClientLink>
 
@@ -63,13 +63,13 @@ export default async function Nav() {
             </Suspense>
           </div>
         </nav>
-        <div className={"hidden justify-between gap-6 sm:flex sm:items-center"}>
+        <div className="hidden justify-between gap-6 sm:flex sm:items-center">
           <CategoryNavigation />
           <div className={"flex gap-6"}>
             <LocalizedClientLink className="text-white" href="/about">
               About
             </LocalizedClientLink>
-            <LocalizedClientLink className="text-white" href="#">
+            <LocalizedClientLink className="text-white" href="/contact">
               Contact
             </LocalizedClientLink>
           </div>
