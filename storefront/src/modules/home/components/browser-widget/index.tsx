@@ -6,6 +6,7 @@ import { SubmitButton } from "@modules/checkout/components/submit-button";
 import { StoreProductCategory } from "@medusajs/types";
 import { useRouter } from "next/navigation";
 import { filterMainCategories } from "@lib/util/categories";
+import { HiOutlineSearch } from "react-icons/hi";
 
 type Props = {
   categories: StoreProductCategory[];
@@ -70,7 +71,10 @@ const BrowserWidget = ({ categories }: Props) => {
         disabled={!selectedCategory}
         onClick={onClick}
       >
-        {getButtonText(selectedCategory)}
+        <div className="flex items-center gap-1">
+          <HiOutlineSearch size={18} />
+          {getButtonText(selectedCategory)}
+        </div>
       </SubmitButton>
     </div>
   );
