@@ -8,7 +8,7 @@ const CategoryNavigation = async () => {
   const categories = filterMainCategories(product_categories);
 
   return (
-    <div className="flex gap-6">
+    <div className="flex">
       {categories.map((category) => (
         <CategoryMenuItem category={category} key={category.id} />
       ))}

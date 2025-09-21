@@ -33,7 +33,7 @@ const CategoryMenuItem = ({ category }: Props) => {
   };
 
   return (
-    <Popover className="flex h-full">
+    <Popover className="mr-6 flex h-full">
       {({ open }) => (
         <div
           onMouseEnter={() => onMouseEnter(open)}

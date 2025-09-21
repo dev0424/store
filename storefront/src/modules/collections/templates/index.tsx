@@ -43,7 +43,6 @@ export default function CollectionTemplate({
         <CategoryHeader
           name={collection.title}
           description={collection.metadata?.description as string}
-          thumbnail={collection.metadata?.thumbnail as string}
         />
         <FilterLayout
           categories={categories}
