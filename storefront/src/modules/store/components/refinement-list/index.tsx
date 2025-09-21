@@ -12,25 +12,25 @@ type Props = {
   sortBy: SortOptions;
   search?: boolean;
   "data-testid"?: string;
-  category: StoreProductCategory;
+  categories: StoreProductCategory[];
   minPrice?: string;
   maxPrice?: string;
 };
 
 const RefinementList = ({
   sortBy,
-  category,
+  categories,
   minPrice,
   maxPrice,
   "data-testid": dataTestId,
 }: Props) => {
   return (
-    <div className="flex flex-col gap-6 sm:border-r sm:border-gray-200 sm:pr-8">
+    <div className="flex h-full flex-col gap-6 sm:border-r sm:border-gray-200 sm:pr-8">
       <SortProducts sortBy={sortBy} data-testid={dataTestId} />
       <Divider />
-      {category?.category_children?.length ? (
+      {categories.length ? (
         <>
-          <CategoryFilter category={category} />
+          <CategoryFilter categories={categories} />
           <Divider />
         </>
       ) : null}

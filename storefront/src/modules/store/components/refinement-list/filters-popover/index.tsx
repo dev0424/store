@@ -13,14 +13,14 @@ import FilterButton from "@modules/store/components/refinement-list/filter-butto
 
 type Props = {
   sortBy: SortOptions;
-  category: HttpTypes.StoreProductCategory;
+  categories: HttpTypes.StoreProductCategory[];
   minPrice?: string;
   maxPrice?: string;
 };
 
 const RefinementListPopover = ({
   sortBy,
-  category,
+  categories,
   minPrice,
   maxPrice,
 }: Props) => {
@@ -49,7 +49,7 @@ const RefinementListPopover = ({
             <RefinementList
               sortBy={sortBy}
               data-testid="sort-by-container"
-              category={category}
+              categories={categories}
               minPrice={minPrice}
               maxPrice={maxPrice}
             />

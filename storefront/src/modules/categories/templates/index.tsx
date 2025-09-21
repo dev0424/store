@@ -43,11 +43,14 @@ export default async function CategoryTemplate({
       data-testid="category-container"
     >
       <div className="flex w-full flex-col gap-6">
-        <CategoryHeader category={category} />
+        <CategoryHeader
+          name={category.name}
+          description={category.description}
+          thumbnail={category.metadata?.thumbnail as string}
+        />
         <FilterLayout
-          category={category}
+          categories={category.category_children}
           sortBy={sort}
-          categoryId={categoryId}
           minPrice={minPrice}
           maxPrice={maxPrice}
         >

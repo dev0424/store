@@ -3,6 +3,7 @@ import { getRegion } from "@lib/data/regions";
 import ProductPreview from "@modules/products/components/product-preview";
 import { Pagination } from "@modules/store/components/pagination";
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products";
+import NoResult from "../components/no-result";
 
 const PRODUCT_LIMIT = 12;
 
@@ -81,18 +82,22 @@ export default async function PaginatedProducts({
 
   return (
     <section className="flex flex-col justify-between">
-      <ul
-        className="grid w-full grid-cols-2 gap-x-6 gap-y-8 small:grid-cols-3 medium:grid-cols-4"
-        data-testid="products-list"
-      >
-        {products.map((p) => {
-          return (
-            <li key={p.id}>
-              <ProductPreview product={p} region={region} />
-            </li>
-          );
-        })}
-      </ul>
+      {products.length ? (
+        <ul
+          className="grid w-full grid-cols-2 gap-x-6 gap-y-8 small:grid-cols-3 medium:grid-cols-4"
+          data-testid="products-list"
+        >
+          {products.map((p) => {
+            return (
+              <li key={p.id}>
+                <ProductPreview product={p} region={region} />
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <NoResult />
+      )}
       {totalPages > 1 && (
         <Pagination
           data-testid="product-pagination"

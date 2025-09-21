@@ -8,6 +8,10 @@ import { PRODUCT_DOCUMENT_MODULE } from '../../modules/product-document/index';
 updateProductsWorkflow.hooks.productsUpdated(
     // Link product document ids to product
     async ({ products, additional_data }, { container }) => {
+        if (!additional_data?.product_document_id) {
+            return;
+        }
+
         const product_document_id = additional_data?.product_document_id as string;
 
         const productDocumentModuleService: ProductDocumentModuleService =

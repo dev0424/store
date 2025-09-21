@@ -7,10 +7,10 @@ import { useSearchParams } from "next/navigation";
 import { useToggleQueryParam } from "@lib/hooks/use-toggle-query-param";
 
 type Props = {
-  category: StoreProductCategory;
+  categories: StoreProductCategory[];
 };
 
-const CategoryFilter = ({ category }: Props) => {
+const CategoryFilter = ({ categories }: Props) => {
   const toggle = useToggleQueryParam();
   const searchParams = useSearchParams();
 
@@ -20,18 +20,18 @@ const CategoryFilter = ({ category }: Props) => {
     <div className="text-base-large flex flex-col gap-3">
       <p className="font-black">Categories</p>
       <ul className="grid grid-cols-1 gap-2">
-        {category.category_children?.map((childCategory) => {
+        {categories.map((category) => {
           const isChecked = searchParams
             .getAll("categoryId")
-            ?.includes(childCategory.id);
+            ?.includes(category.id);
 
           return (
             <Checkbox
-              key={childCategory.id}
-              label={childCategory.name}
-              name={childCategory.id}
+              key={category.id}
+              label={category.name}
+              name={category.id}
               checked={isChecked}
-              onChange={() => onChange(childCategory.id)}
+              onChange={() => onChange(category.id)}
             />
           );
         })}

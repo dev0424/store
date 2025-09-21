@@ -9,14 +9,14 @@ import FilterButton from "@modules/store/components/refinement-list/filter-butto
 type Props = {
   onClick: VoidFunction;
   sortBy: SortOptions;
-  category: HttpTypes.StoreProductCategory;
+  categories: HttpTypes.StoreProductCategory[];
   minPrice?: string;
   maxPrice?: string;
 };
 
 const FiltersToolbar = ({
   onClick,
-  category,
+  categories,
   sortBy,
   minPrice,
   maxPrice,
@@ -26,7 +26,7 @@ const FiltersToolbar = ({
       <FilterButton onClick={onClick} className="hidden sm:block" />
       <RefinementListPopover
         sortBy={sortBy}
-        category={category}
+        categories={categories}
         minPrice={minPrice}
         maxPrice={maxPrice}
       />
