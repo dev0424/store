@@ -35,7 +35,7 @@ const ImageCarouselThumbnail = ({
         fill
         sizes="(max-width: 576px) 280px, (max-width: 768px) 360px, (max-width: 992px) 480px, 800px"
         style={{
-          objectFit: "contain",
+          objectFit: "cover",
         }}
       />
     </div>

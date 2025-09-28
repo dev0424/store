@@ -112,8 +112,8 @@ const ImageCarousel = ({ images }: Props) => {
         </div>
 
         {showThumbnails ? (
-          <div className={"flex w-full justify-center"}>
-            <div className="flex w-max transform gap-1 md:hidden">
+          <div className={"mt-2 flex w-full justify-center"}>
+            <div className="flex w-max transform gap-2 md:hidden">
               {emblaMainApi
                 ?.scrollSnapList()
                 .map((_, index) => (

@@ -28,7 +28,7 @@ export const DotButton = ({ isSelected, onClick }: Props) => {
   return (
     <button
       type={"button"}
-      className={clx("h-2 w-2 rounded-full border border-black", {
+      className={clx("h-2.5 w-2.5 rounded-full bg-gray-300", {
         "bg-black": isSelected,
       })}
       onClick={onClick}
