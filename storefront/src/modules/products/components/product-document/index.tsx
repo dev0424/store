@@ -2,6 +2,7 @@ import React from "react";
 import { productDocumentMetadata } from "@lib/constants";
 import { ArrowUpRightMini } from "@medusajs/icons";
 import { ProductDocument } from "../../../../types/product";
+import { HiOutlineDocumentText } from "react-icons/hi";
 
 type Props = {
   document: ProductDocument;
@@ -10,7 +11,11 @@ type Props = {
 const Document = ({ document }: Props) => {
   return (
     <div className="flex items-center gap-x-1">
-      <a href={document.url} className="peer text-sm text-ui-fg-interactive">
+      <HiOutlineDocumentText size={20} className={"text-ui-fg-subtle"} />
+      <a
+        href={document.url}
+        className="peer mt-[2px] text-sm text-ui-fg-subtle"
+      >
         {productDocumentMetadata[document.type]}
       </a>
       <ArrowUpRightMini
