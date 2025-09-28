@@ -49,12 +49,13 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
 export const ImageOrPlaceholder = ({
   image,
   size,
-}: Pick<ThumbnailProps, "size"> & { image?: string }) => {
+  className,
+}: Pick<ThumbnailProps, "size"> & { image?: string; className?: string }) => {
   return image ? (
     <Image
       src={image}
       alt="Thumbnail"
-      className="absolute inset-0 object-cover object-center transition-all duration-300 ease-in-out hover:scale-105"
+      className={`absolute inset-0 object-cover object-center transition-all duration-300 ease-in-out hover:scale-105 ${className || ""}`}
       draggable={false}
       quality={50}
       sizes="(max-width: 576px) 280px, (max-width: 768px) 360px, (max-width: 992px) 480px, 800px"

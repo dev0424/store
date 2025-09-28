@@ -16,10 +16,10 @@ const CategoryPreview = ({ category }: Props) => {
       <Thumbnail
         thumbnail={category.metadata?.thumbnail as string}
         size={"square"}
-        className={"h-40 !rounded-full sm:h-52"}
+        className={"h-40 sm:h-60"}
       />
       <p
-        className={"text-center text-lg font-black text-ui-fg-base sm:max-w-52"}
+        className={"text-center text-lg font-black text-ui-fg-base sm:max-w-60"}
       >
         {category.name}
       </p>

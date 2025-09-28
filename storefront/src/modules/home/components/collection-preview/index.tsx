@@ -12,14 +12,17 @@ const CollectionPreview = ({ collection, index }: Props) => {
   return (
     <LocalizedClientLink
       href={`/collections/${collection.handle}`}
-      className={`relative overflow-hidden rounded-md ${index === 0 ? "row-span-2" : ""}`}
+      className={`group relative overflow-hidden rounded-md ${index === 0 ? "row-span-2" : ""}`}
     >
       <div className={"relative aspect-[4/3] h-full"}>
-        <ImageOrPlaceholder image={collection.metadata?.thumbnail as string} />
+        <ImageOrPlaceholder
+          image={collection.metadata?.thumbnail as string}
+          className="transition-transform duration-300 ease-in-out group-hover:scale-105"
+        />
       </div>
       <div
         className={
-          "absolute bottom-0 left-0 flex h-1/2 w-full flex-col justify-end bg-gradient-to-b from-transparent to-background-primary p-4"
+          "absolute bottom-0 left-0 flex h-3/4 w-full flex-col justify-end bg-gradient-to-b from-transparent to-background-primary p-4"
         }
       >
         <div className={"flex items-center justify-between"}>
@@ -28,7 +31,7 @@ const CollectionPreview = ({ collection, index }: Props) => {
               {collection.title}
             </p>
             {collection.metadata?.description ? (
-              <p className={"text-md font-light text-white"}>
+              <p className={"text-sm text-white"}>
                 {collection.metadata?.description as string}
               </p>
             ) : null}

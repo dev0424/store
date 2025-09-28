@@ -51,7 +51,7 @@ function CategorySelect({
           anchor="bottom"
           transition
           className={
-            "z-10 mt-2 flex w-[--button-width] flex-col rounded-md bg-white text-sm text-ui-fg-subtle outline-none py-2"
+            "z-10 mt-2 flex w-[--button-width] flex-col rounded-md bg-white py-2 text-sm text-ui-fg-subtle shadow-borders-base outline-none"
           }
         >
           {categories.length ? (
@@ -60,7 +60,7 @@ function CategorySelect({
                 key={category.id}
                 value={category}
                 className={
-                  "cursor-pointer p-2 px-4 hover:bg-grey-20 data-[selected]:bg-grey-20"
+                  "cursor-pointer p-2 px-4 hover:bg-[#F4F4F4] data-[selected]:bg-[#F4F4F4]"
                 }
               >
                 {category.name}
