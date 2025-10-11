@@ -30,14 +30,14 @@ const BrowserWidget = ({ categories }: Props) => {
 
   const getButtonText = (category: StoreProductCategory | null) => {
     if (!category || !category.products?.length) {
-      return "Search";
+      return "Rechercher";
     }
 
     if (category.products.length === 1) {
-      return "Show 1 product";
+      return "Afficher 1 produit";
     }
 
-    return `Show ${category.products.length} products`;
+    return `Afficher ${category.products.length} produits`;
   };
 
   const onClick = () => {
@@ -54,14 +54,16 @@ const BrowserWidget = ({ categories }: Props) => {
         "flex h-fit flex-col gap-4 rounded-md bg-background-primary p-6 text-white"
       }
     >
-      <h2 className={"text-center text-lg font-bold"}>Browse our products</h2>
+      <h2 className={"text-center text-lg font-bold"}>
+        Découvrez la gamme RSPI
+      </h2>
       <CategorySelect
-        placeholder={"Select category"}
+        placeholder={"Sélectionner une catégorie"}
         categories={mainCategories}
         onChange={onChangeCategory}
       />
       <CategorySelect
-        placeholder={"Select a sub-category"}
+        placeholder={"Sélectionnez une sous-catégorie"}
         categories={subCategories}
         onChange={onChangeCategory}
         disabled={!selectedCategory}

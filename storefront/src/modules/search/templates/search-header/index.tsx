@@ -23,7 +23,7 @@ export default function SearchHeader() {
       <SearchBox
         onFocus={onFocus}
         onBlur={onBlur}
-        placeholder={"Search for products or categories"}
+        placeholder="Rechercher des produits ou des catégories"
         classNames={{
           form: "bg-transparent text-white",
           input:

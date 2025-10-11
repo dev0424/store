@@ -31,7 +31,7 @@ const ShowAll = () => {
       <Text className="text-ui-fg-subtle">
         Showing the first {width > 640 ? 6 : 3} results.
       </Text>
-      <InteractiveLink href={`/results/${query}`}>View all</InteractiveLink>
+      <InteractiveLink href={`/results/${query}`}>Voir tout</InteractiveLink>
     </div>
   );
 };

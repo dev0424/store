@@ -46,16 +46,17 @@ const Hero = async () => {
         <span className={"flex flex-col gap-2"}>
           <h1
             className={
-              "text-3xl font-black text-white sm:max-w-sm sm:text-5xl sm:leading-[60px]"
+              "text-3xl font-black text-white sm:max-w-lg sm:text-5xl sm:leading-[60px]"
             }
           >
-            Lorem ipsum dolor sit amet.
+            L’équipement et l'outillage technique au service des pros
           </h1>
           <h2 className={"text-xl font-normal text-white sm:text-2xl"}>
-            Id maxime natus nisi quae quisquam sed.
+            Pour les professionnels de l’automobile, de l'industrie et du poids
+            lourd
           </h2>
         </span>
-          <BrowserWidget categories={categories} />
+        <BrowserWidget categories={categories} />
       </div>
     </div>
   );

@@ -43,7 +43,7 @@ export default async function ProductCarouselTemplate({
       <div className="flex flex-col items-center sm:flex-row sm:justify-between">
         <h1 className="text-xl-semi text-ui-fg-base">{collection.title}</h1>
         <InteractiveLink href={`/collections/${collection.handle}`}>
-          View all
+          Voir tout
         </InteractiveLink>
       </div>
       <Carousel>{productPreviews}</Carousel>

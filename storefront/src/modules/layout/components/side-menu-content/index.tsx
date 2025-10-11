@@ -59,7 +59,7 @@ const SideMenuContent = ({
               className="text-lg leading-10 hover:text-accent-primary"
               onClick={close}
             >
-              Open account
+              Créer un compte
             </LocalizedClientLink>
             <Divider className="my-1 border-background-secondary" />
             <LocalizedClientLink
@@ -67,7 +67,7 @@ const SideMenuContent = ({
               className="text-lg leading-10 hover:text-accent-primary"
               onClick={close}
             >
-              Catalog
+              Catalogue
             </LocalizedClientLink>
             <Divider className="my-1 border-background-secondary" />
             <LocalizedClientLink
@@ -75,7 +75,7 @@ const SideMenuContent = ({
               className="text-lg leading-10 hover:text-accent-primary"
               onClick={close}
             >
-              Find distributor
+              Trouver un distributeur
             </LocalizedClientLink>
             <Divider className="my-1 border-background-secondary" />
             <LocalizedClientLink
@@ -91,7 +91,7 @@ const SideMenuContent = ({
               className="text-lg leading-10 hover:text-accent-primary"
               onClick={close}
             >
-              About
+              À propos
             </LocalizedClientLink>
             <Divider className="my-1 border-background-secondary" />
             <LocalizedClientLink

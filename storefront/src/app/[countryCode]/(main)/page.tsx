@@ -9,8 +9,10 @@ import FeaturedCollections from "@modules/home/components/featured-collections";
 import { listCollections } from "@lib/data/collections";
 
 export const metadata: Metadata = {
-  title: "RSPI Store",
-  description: "Welcome to RSPI Store.",
+  title:
+    "RSPI | Équipements et outillage technique pour professionnels de l’automobile, de l'industrie et du poids lourd",
+  description:
+    "RSPI fournit des outils et équipements techniques performants pour les ateliers et garages pros. Large stock, livraison rapide, qualité garantie — l’innovation au service des experts de l’automobile.",
 };
 
 export default async function Home(props: {

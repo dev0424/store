@@ -7,19 +7,21 @@ const TopNavBar = () => {
       <div className="content-container">
         <ul className="flex items-center justify-end gap-8">
           <li>
-            <LocalizedClientLink href="#">Open account</LocalizedClientLink>
+            <LocalizedClientLink href="#">Créer un compte</LocalizedClientLink>
           </li>
           <li>
-            <LocalizedClientLink href="#">Catalog</LocalizedClientLink>
+            <LocalizedClientLink href="#">Catalogue</LocalizedClientLink>
           </li>
           <li>
-            <LocalizedClientLink href="#">Find distributor</LocalizedClientLink>
+            <LocalizedClientLink href="#">
+              Trouver un distributeur
+            </LocalizedClientLink>
           </li>
           <li>
             <LocalizedClientLink href="#">FAQ</LocalizedClientLink>
           </li>
           <li>
-            <LocalizedClientLink href="/about">About</LocalizedClientLink>
+            <LocalizedClientLink href="/about">À propos</LocalizedClientLink>
           </li>
           <li>
             <LocalizedClientLink href="/contact">Contact</LocalizedClientLink>

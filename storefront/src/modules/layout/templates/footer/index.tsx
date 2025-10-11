@@ -25,14 +25,15 @@ export default async function Footer() {
               />
             </LocalizedClientLink>
             <p className="max-w-lg text-sm">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              RSPI équipe les professionnels avec des solutions techniques
+              fiables et accessibles. Livraison partout en France
+              métropolitaine.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 md:gap-x-16">
             {productCategories && productCategories?.length > 0 && (
               <div className="flex flex-col gap-y-2">
-                <span className="text-sm font-black">Categories</span>
+                <span className="text-sm font-black">Catégories</span>
                 <ul
                   className="grid grid-cols-1 gap-2"
                   data-testid="footer-categories"
@@ -84,13 +85,17 @@ export default async function Footer() {
               </div>
             )}
             <div className="flex flex-col gap-y-2">
-              <span className="text-sm font-black">Links</span>
+              <span className="text-sm font-black">Liens</span>
               <ul className="grid grid-cols-1 gap-y-2 text-sm">
                 <li>
-                  <LocalizedClientLink href="#">Help</LocalizedClientLink>
+                  <LocalizedClientLink href="/about">
+                    À propos
+                  </LocalizedClientLink>
                 </li>
                 <li>
-                  <LocalizedClientLink href="#">Contact</LocalizedClientLink>
+                  <LocalizedClientLink href="/contact">
+                    Contact
+                  </LocalizedClientLink>
                 </li>
                 <li>
                   <LocalizedClientLink href="#">
@@ -107,7 +112,11 @@ export default async function Footer() {
           </div>
         </div>
         <div className="mb-16 flex w-full justify-between text-sm text-ui-fg-muted">
-          <p>© {new Date().getFullYear()} RSPI. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} RSPI | Équipements et outillage
+            technique pour professionnels de l’automobile, de l'industrie et du
+            poids lourd
+          </p>
         </div>
       </div>
     </footer>

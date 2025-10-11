@@ -31,7 +31,7 @@ export default async function ProductRail({
       <div className="mb-8 flex justify-between">
         <Text className="txt-xlarge">{collection.title}</Text>
         <InteractiveLink href={`/collections/${collection.handle}`}>
-          View all
+          Voir tout
         </InteractiveLink>
       </div>
       <ul className="grid grid-cols-2 gap-x-6 gap-y-24 small:grid-cols-3 small:gap-y-36">
