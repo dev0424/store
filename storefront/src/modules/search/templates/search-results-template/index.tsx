@@ -1,18 +1,18 @@
-import { Heading, Text } from "@medusajs/ui"
-import Link from "next/link"
+import { Heading, Text } from "@medusajs/ui";
+import Link from "next/link";
 
-import RefinementList from "@modules/store/components/refinement-list"
-import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
-import PaginatedProducts from "@modules/store/templates/paginated-products"
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import RefinementList from "@modules/store/components/refinement-list";
+import { SortOptions } from "@modules/store/components/refinement-list/sort-products";
+import PaginatedProducts from "@modules/store/templates/paginated-products";
+import LocalizedClientLink from "@modules/common/components/localized-client-link";
 
 type SearchResultsTemplateProps = {
-  query: string
-  ids: string[]
-  sortBy?: SortOptions
-  page?: string
-  countryCode: string
-}
+  query: string;
+  ids: string[];
+  sortBy?: SortOptions;
+  page?: string;
+  countryCode: string;
+};
 
 const SearchResultsTemplate = ({
   query,
@@ -21,11 +21,11 @@ const SearchResultsTemplate = ({
   page,
   countryCode,
 }: SearchResultsTemplateProps) => {
-  const pageNumber = page ? parseInt(page) : 1
+  const pageNumber = page ? parseInt(page) : 1;
 
   return (
     <>
-      <div className="flex justify-between border-b w-full py-6 px-8 small:px-14 items-center">
+      <div className="flex w-full items-center justify-between border-b px-8 py-6 small:px-14">
         <div className="flex flex-col items-start">
           <Text className="text-ui-fg-muted">Search Results for:</Text>
           <Heading>
@@ -39,7 +39,7 @@ const SearchResultsTemplate = ({
           Clear
         </LocalizedClientLink>
       </div>
-      <div className="flex flex-col small:flex-row small:items-start p-6">
+      <div className="flex flex-col p-6 small:flex-row small:items-start">
         {ids.length > 0 ? (
           <>
             <RefinementList sortBy={sortBy || "created_at"} search />
@@ -53,11 +53,11 @@ const SearchResultsTemplate = ({
             </div>
           </>
         ) : (
-          <Text className="ml-8 small:ml-14 mt-3">No results.</Text>
+          <Text className="ml-8 mt-3 small:ml-14">Aucun produit trouvé</Text>
         )}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default SearchResultsTemplate
+export default SearchResultsTemplate;

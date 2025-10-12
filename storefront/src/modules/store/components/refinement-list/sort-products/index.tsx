@@ -7,15 +7,15 @@ import { useCallback } from "react";
 const sortOptions = [
   {
     value: "created_at",
-    label: "Latest arrivals",
+    label: "Dernières arrivées",
   },
   {
     value: "price_asc",
-    label: "Price: Low -> High",
+    label: "Prix: croissant",
   },
   {
     value: "price_desc",
-    label: "Price: High -> Low",
+    label: "Prix: décroissant",
   },
 ];
 
@@ -52,7 +52,7 @@ const SortProducts = ({ "data-testid": dataTestId, sortBy }: Props) => {
 
   return (
     <FilterRadioGroup
-      title="Sort by"
+      title="Trier par"
       items={sortOptions}
       value={sortBy}
       handleChange={handleChange}

@@ -55,7 +55,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
   return (
     <>
       <div
-        className={clx("fixed inset-x-0 bottom-0 lg:hidden z-10", {
+        className={clx("fixed inset-x-0 bottom-0 z-10 lg:hidden", {
           "pointer-events-none": !show,
         })}
       >
@@ -128,10 +128,10 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                 data-testid="mobile-cart-button"
               >
                 {!variant
-                  ? "Select variant"
+                  ? "Sélectionnez la variante"
                   : !inStock
-                    ? "Out of stock"
-                    : "Add to cart"}
+                    ? "En rupture de stock"
+                    : "Ajouter au panier"}
               </Button>
             </div>
           </div>

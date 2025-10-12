@@ -18,7 +18,7 @@ const CategoryFilter = ({ categories }: Props) => {
 
   return (
     <div className="text-base-large flex flex-col gap-3">
-      <p className="font-black">Categories</p>
+      <p className="font-black">Catégories</p>
       <ul className="grid grid-cols-1 gap-2">
         {categories.map((category) => {
           const isChecked = searchParams

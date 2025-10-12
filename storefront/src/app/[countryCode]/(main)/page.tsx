@@ -4,7 +4,7 @@ import FeaturedProducts from "@modules/home/components/featured-products";
 import Hero from "@modules/home/components/hero";
 import { getRegion } from "@lib/data/regions";
 import FeaturedCategories from "@modules/home/components/featured-categories";
-import BenefitsBanner from "@modules/home/components/benefits-banner";
+import OurVision from "@modules/home/components/our-vision";
 import FeaturedCollections from "@modules/home/components/featured-collections";
 import { listCollections } from "@lib/data/collections";
 
@@ -41,7 +41,7 @@ export default async function Home(props: {
       <section className="sm:content-container">
         <FeaturedProducts region={region} collections={collections} />
       </section>
-      <BenefitsBanner />
+      <OurVision />
       <section className="content-container pb-16">
         <FeaturedCollections collections={collections} />
       </section>

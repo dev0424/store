@@ -3,61 +3,142 @@ import Image from "next/image";
 import { Metadata } from "next";
 import ContactBanner from "@modules/account/components/contact-banner";
 import PageHeaderBanner from "@modules/common/components/page-header-banner";
+import {
+  HiShieldCheck,
+  HiTrendingUp,
+  HiChat,
+  HiLightBulb,
+} from "react-icons/hi";
+import OurVision from "@modules/home/components/our-vision";
 
 export const metadata: Metadata = {
-  title: "RSPI Store",
-  description: "Welcome to RSPI Store.",
+  title:
+    "RSPI | Équipements et outillage technique pour professionnels de l’automobile, de l'industrie et du poids lourd",
+  description:
+    "RSPI fournit des outils et équipements techniques performants pour les ateliers et garages pros. Large stock, livraison rapide, qualité garantie — l’innovation au service des experts de l’automobile.",
 };
 
 const AboutPage = () => {
   return (
-    <div>
-      <PageHeaderBanner imageSrc={"/images/hero.webp"} />
-      <section className="content-container py-8 sm:py-16">
-        <div className="grid grid-cols-1 items-center gap-4 sm:grid-cols-2 sm:gap-16">
-          <h1 className="text-left text-3xl font-black text-ui-fg-base">
-            Lorem ipsum dolor sit amet,{" "}
-            <span className="text-accent-primary">
-              consectetur adipisicing elit.
-            </span>
-          </h1>
-          <p className="text-justify text-ui-fg-subtle">
-            A accusamus accusantium adipisci aliquid animi aperiam atque
-            corporis, cupiditate deserunt dignissimos dolor doloribus dolorum
-            error esse ex expedita facilis hic impedit inventore ipsam
-            laudantium maiores minus necessitatibus nihil numquam pariatur
-            perspiciatis porro provident quam quasi quia quisquam repellendus
-            similique ut, vel veritatis voluptates?
-          </p>
-        </div>
-      </section>
-      <section className="content-container relative">
+    <section>
+      <PageHeaderBanner imageSrc={"/images/hero.webp"}>
         <Image
-          src={"/images/about.webp"}
-          className="rounded-md"
-          alt={"RSPI Store"}
-          width={2400}
-          height={600}
+          src={"/images/logo.png"}
+          width={200}
+          height={200}
+          alt="RSPI logo"
+          className="max-w-64 object-cover"
         />
+        <h1 className="text-left text-3xl font-black text-ui-fg-base text-white">
+          Partenaire des{" "}
+          <span className="text-accent-primary">
+            distributeurs professionnels.
+          </span>
+        </h1>
+      </PageHeaderBanner>
+      <section className="content-container grid grid-cols-2 gap-16 py-8 sm:py-16">
+        <p className="text-justify text-ui-fg-subtle">
+          Créée par des experts du secteur de l’équipement d’atelier, RSPI est
+          née d’une idée simple : redonner du levier tarifaire et stratégique
+          aux distributeurs. Notre objectif est clair — fournir les meilleurs
+          produits au meilleur prix, sans compromis sur la qualité, la fiabilité
+          ou le service.
+        </p>
+        <p className="text-justify text-ui-fg-subtle">
+          RSPI s’adresse exclusivement aux distributeurs spécialisés, qu’elle
+          accompagne dans leur croissance grâce à une offre pensée pour leur
+          rentabilité, leur autonomie et la satisfaction de leurs clients
+          finaux.
+        </p>
       </section>
-      <section className="content-container grid grid-cols-3 gap-4 py-8 text-center sm:py-16">
-        <div>
-          <p className="text-ui-fg-subtle">Lorem ipsum dolor sit amet</p>
-          <p className="text-4xl font-black text-ui-fg-base">290+</p>
+      <OurVision />
+      <section className="content-container grid grid-cols-[1fr_1.5fr] gap-16 py-8 sm:py-16">
+        <div className="relative sm:h-auto">
+          <Image
+            src={"/images/about.webp"}
+            className="rounded-md object-cover"
+            alt={"RSPI Store"}
+            fill
+          />
         </div>
-        <div>
-          <p className="text-ui-fg-subtle">Consectetur adipisicing elit</p>
-          <p className="text-4xl font-black text-ui-fg-base">12+</p>
+        <div className="flex flex-col gap-16">
+          <div className="flex flex-col gap-2">
+            <p className="text-4xl font-black text-ui-fg-base">Notre vision</p>
+            <p className="text-ui-fg-subtle">
+              RSPI ambitionne de devenir le partenaire privilégié des
+              distributeurs français dans le domaine de l’outillage
+              professionnel. Nous croyons qu’un distributeur fort, soutenu et
+              compétitif crée un marché plus sain, plus équitable et plus
+              durable pour tous.
+            </p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <p className="text-4xl font-black text-ui-fg-base">
+              Notre engagement
+            </p>
+            <p className="text-ui-fg-subtle">RSPI s’engage à :</p>
+            <ul className="list-inside list-disc text-ui-fg-subtle">
+              <li>
+                Garantir un rapport qualité/prix optimal, sans intermédiaires
+                inutiles.
+              </li>
+              <li>
+                Préserver la marge et la compétitivité de ses distributeurs
+                partenaires.
+              </li>
+              <li>
+                Maintenir un haut niveau d’exigence technique sur chaque
+                produit.
+              </li>
+              <li>
+                Assurer une logistique rapide et des livraisons fiables partout
+                en France.
+              </li>
+            </ul>
+          </div>
         </div>
+      </section>
+      <section className="content-container flex flex-col gap-8 pb-8 sm:pb-16">
         <div>
-          <p className="text-ui-fg-subtle">
-            Consequuntur delectus laborum odio qui
+          <p className="text-center text-4xl font-black text-ui-fg-base">
+            Nos valeurs
           </p>
-          <p className="text-4xl font-black text-ui-fg-base">20K+</p>
+        </div>
+        <div className="grid grid-cols-4 gap-8 text-center">
+          <div className="flex flex-col items-center gap-4 rounded-md bg-[#F4F4F4] p-4">
+            <HiShieldCheck size={40} />
+            <p className="text-xl font-black">Confiance</p>
+            <p className="text-ui-fg-subtle">
+              Construire des relations transparentes et durables.
+            </p>
+          </div>
+          <div className="flex flex-col items-center gap-4 rounded-md bg-[#F4F4F4] p-4">
+            <HiTrendingUp size={40} />
+            <p className="text-xl font-black">Performance</p>
+            <p className="text-ui-fg-subtle">
+              Offrir la qualité que vos clients attendent, au prix que vous
+              méritez.
+            </p>
+          </div>
+          <div className="flex flex-col items-center gap-4 rounded-md bg-[#F4F4F4] p-4">
+            <HiChat size={40} />
+            <p className="text-xl font-black">Soutien</p>
+            <p className="text-ui-fg-subtle">
+              Être à vos côtés avant, pendant et après la vente.
+            </p>
+          </div>
+          <div className="flex flex-col items-center gap-4 rounded-md bg-[#F4F4F4] p-4">
+            <HiLightBulb size={40} />
+            <p className="text-xl font-black">Innovation</p>
+            <p className="text-ui-fg-subtle">
+              Anticiper les tendances, simplifier vos approvisionnements, et
+              améliorer en continu nos gammes.
+            </p>
+          </div>
         </div>
       </section>
       <ContactBanner />
-    </div>
+    </section>
   );
 };
 

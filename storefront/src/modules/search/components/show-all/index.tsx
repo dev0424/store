@@ -21,7 +21,7 @@ const ShowAll = () => {
         className="flex h-fit justify-center gap-2 py-2"
         data-testid="no-search-results-container"
       >
-        <Text className="text-ui-fg-subtle">No results found.</Text>
+        <Text className="text-ui-fg-subtle">Aucun produit trouvé</Text>
       </div>
     );
   }

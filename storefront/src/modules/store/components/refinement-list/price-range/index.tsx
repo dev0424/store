@@ -54,11 +54,11 @@ const PriceRange = ({ minPrice, maxPrice }: Props) => {
 
   return (
     <div className="flex flex-col gap-3">
-      <p className="font-black">Price</p>
+      <p className="font-black">Prix</p>
       <div className="flex flex-col gap-6">
         <div className="flex w-60 items-center gap-2">
           <Input
-            label="From"
+            label="Min (€)"
             name="from"
             type="number"
             value={priceRange[0]}
@@ -66,7 +66,7 @@ const PriceRange = ({ minPrice, maxPrice }: Props) => {
           />
           <span>-</span>
           <Input
-            label="To"
+            label="Max (€)"
             name="to"
             type="number"
             value={priceRange[1]}

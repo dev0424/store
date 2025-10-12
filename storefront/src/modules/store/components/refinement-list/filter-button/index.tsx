@@ -10,7 +10,7 @@ const FilterButton = ({ onClick, className }: Props) => {
   return (
     <button onClick={onClick} className={className}>
       <span className="flex gap-1 text-ui-fg-base">
-        Filters <HiAdjustments size={24} />
+        Filtres <HiAdjustments size={24} />
       </span>
     </button>
   );

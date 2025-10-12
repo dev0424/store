@@ -17,7 +17,18 @@ export const metadata: Metadata = {
 const ContactPage = () => {
   return (
     <div>
-      <PageHeaderBanner imageSrc={"/images/hero.webp"} />
+      <PageHeaderBanner imageSrc={"/images/hero.webp"}>
+        <h1
+          className={
+            "text-3xl font-black text-white sm:text-5xl sm:leading-[60px]"
+          }
+        >
+          Lorem ipsum dolor sit amet.
+        </h1>
+        <h2 className="text-xl font-normal text-white sm:text-2xl">
+          Id maxime natus nisi quae quisquam sed.
+        </h2>
+      </PageHeaderBanner>
       <section className="content-container grid grid-cols-1 justify-between gap-8 py-8 sm:grid-cols-3 sm:gap-4 sm:py-16">
         <div>
           <p className="text-2xl font-black text-ui-fg-base">Chat with us</p>

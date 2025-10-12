@@ -12,7 +12,7 @@ const ProductDocuments = ({ product }: Props) => {
   return (
     <div className="text-small-regular flex flex-col gap-4 rounded-md bg-[#F4F4F4] p-4">
       <div>
-        <h1 className="text-left text-2xl text-ui-fg-base">Downloads</h1>
+        <h1 className="text-left text-2xl text-ui-fg-base">Téléchargements</h1>
         <Divider />
       </div>
       {toArray(product.product_document)?.length ? (
@@ -23,7 +23,7 @@ const ProductDocuments = ({ product }: Props) => {
         </div>
       ) : (
         <p className={"text-sm text-ui-fg-subtle"}>
-          There are no documents for this product.
+          Il n'y a aucun document pour ce produit.
         </p>
       )}
     </div>
