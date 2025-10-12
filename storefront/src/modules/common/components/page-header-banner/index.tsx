@@ -5,10 +5,9 @@ import { getImageSet } from "@lib/util/image";
 type Props = {
   imageSrc: string;
   children?: ReactNode;
-  height?: string;
 };
 
-const PageHeaderBanner = ({ imageSrc, children, height }: Props) => {
+const PageHeaderBanner = ({ imageSrc, children }: Props) => {
   const {
     props: { srcSet },
   } = getImageProps({
