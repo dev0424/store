@@ -3,7 +3,7 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 
 const TopNavBar = () => {
   return (
-    <div className="w-full border-b border-background-secondary bg-[#141414] p-2 text-sm text-[#9FA2A5]">
+    <div className="w-full border-b border-background-secondary p-2 text-sm text-white">
       <div className="content-container">
         <ul className="flex items-center justify-end gap-8">
           <li>

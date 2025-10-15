@@ -15,14 +15,14 @@ const ContactForm = () => {
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-4 sm:flex-row">
           <Input
-            label="First name"
+            label="Prénom"
             name="first_name"
             required
             autoComplete="given-name"
             data-testid="first-name-input"
           />
           <Input
-            label="Last name"
+            label="Nom"
             name="last_name"
             required
             autoComplete="family-name"
@@ -38,7 +38,7 @@ const ContactForm = () => {
           data-testid="email-input"
         />
         <Input
-          label="Phone"
+          label="Téléphone"
           name="phone"
           type="tel"
           autoComplete="tel"
@@ -55,7 +55,7 @@ const ContactForm = () => {
           data-testid="contact-form-button"
           className="mt-6 w-full font-sans font-bold tracking-wide"
         >
-          Send message
+          Envoyer
         </SubmitButton>
       </div>
     </form>

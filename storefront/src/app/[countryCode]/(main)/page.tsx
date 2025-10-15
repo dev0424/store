@@ -4,13 +4,13 @@ import FeaturedProducts from "@modules/home/components/featured-products";
 import Hero from "@modules/home/components/hero";
 import { getRegion } from "@lib/data/regions";
 import FeaturedCategories from "@modules/home/components/featured-categories";
-import OurVision from "@modules/home/components/our-vision";
 import FeaturedCollections from "@modules/home/components/featured-collections";
 import { listCollections } from "@lib/data/collections";
+import WhyChooseUs from "@modules/home/components/why-choose-us";
 
 export const metadata: Metadata = {
   title:
-    "RSPI | Équipements et outillage technique pour professionnels de l’automobile, de l'industrie et du poids lourd",
+    "RSPI | Équipements et outillage technique pour professionnels de l’automobile",
   description:
     "RSPI fournit des outils et équipements techniques performants pour les ateliers et garages pros. Large stock, livraison rapide, qualité garantie — l’innovation au service des experts de l’automobile.",
 };
@@ -41,7 +41,7 @@ export default async function Home(props: {
       <section className="sm:content-container">
         <FeaturedProducts region={region} collections={collections} />
       </section>
-      <OurVision />
+      <WhyChooseUs />
       <section className="content-container pb-16">
         <FeaturedCollections collections={collections} />
       </section>

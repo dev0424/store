@@ -11,7 +11,7 @@ export default async function Footer() {
   const productCategories = await listCategories();
 
   return (
-    <footer className="w-full bg-[#141414] text-white">
+    <footer className="w-full border-t border-background-secondary bg-background-primary text-white">
       <div className="content-container flex w-full flex-col">
         <div className="flex flex-col items-start justify-between gap-10 py-16 sm:py-32 small:flex-row">
           <div className="flex flex-col gap-6">
@@ -26,7 +26,7 @@ export default async function Footer() {
             </LocalizedClientLink>
             <p className="max-w-lg text-sm">
               RSPI équipe les professionnels avec des solutions techniques
-              fiables et accessibles. Livraison partout en France
+              fiables, rapides et accessibles. Livraison partout en France
               métropolitaine.
             </p>
           </div>
@@ -113,9 +113,8 @@ export default async function Footer() {
         </div>
         <div className="mb-16 flex w-full justify-between text-sm text-ui-fg-muted">
           <p>
-            © {new Date().getFullYear()} RSPI | Équipements et outillage
-            technique pour professionnels de l’automobile, de l'industrie et du
-            poids lourd
+            © {new Date().getFullYear()} | RSPI — La performance entre vos
+            mains.
           </p>
         </div>
       </div>

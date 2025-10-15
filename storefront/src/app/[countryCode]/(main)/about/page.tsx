@@ -13,7 +13,7 @@ import OurVision from "@modules/home/components/our-vision";
 
 export const metadata: Metadata = {
   title:
-    "RSPI | Équipements et outillage technique pour professionnels de l’automobile, de l'industrie et du poids lourd",
+    "RSPI | Équipements et outillage technique pour professionnels de l’automobile",
   description:
     "RSPI fournit des outils et équipements techniques performants pour les ateliers et garages pros. Large stock, livraison rapide, qualité garantie — l’innovation au service des experts de l’automobile.",
 };
