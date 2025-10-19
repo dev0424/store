@@ -93,6 +93,11 @@ export default async function Footer() {
                   </LocalizedClientLink>
                 </li>
                 <li>
+                  <LocalizedClientLink href="/distributors">
+                    Trouver un distributeur
+                  </LocalizedClientLink>
+                </li>
+                <li>
                   <LocalizedClientLink href="/contact">
                     Contact
                   </LocalizedClientLink>

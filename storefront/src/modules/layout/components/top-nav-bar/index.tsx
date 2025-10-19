@@ -13,7 +13,7 @@ const TopNavBar = () => {
             <LocalizedClientLink href="#">Catalogue</LocalizedClientLink>
           </li>
           <li>
-            <LocalizedClientLink href="#">
+            <LocalizedClientLink href="/distributors">
               Trouver un distributeur
             </LocalizedClientLink>
           </li>
