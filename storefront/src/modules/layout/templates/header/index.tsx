@@ -12,7 +12,7 @@ import Image from "next/image";
 import { listCategories } from "@lib/data/categories";
 import TopNavBar from "@modules/layout/components/top-nav-bar";
 
-export default async function Nav() {
+export default async function Header() {
   const categories = await listCategories();
 
   return (

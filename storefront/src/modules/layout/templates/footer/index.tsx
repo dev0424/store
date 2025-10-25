@@ -1,8 +1,10 @@
+import React from "react";
 import { listCategories } from "@lib/data/categories";
 import { listCollections } from "@lib/data/collections";
 import { clx } from "@medusajs/ui";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import Image from "next/image";
+import NavLink from "@modules/layout/components/nav-link";
 
 export default async function Footer() {
   const { collections } = await listCollections({
@@ -52,13 +54,12 @@ export default async function Footer() {
 
                     return (
                       <li className="flex flex-col text-white" key={c.id}>
-                        <LocalizedClientLink
-                          className={clx(children && "text-sm")}
+                        <NavLink
                           href={`/categories/${c.handle}`}
+                          title={c.name}
+                          className={clx(children && "text-sm")}
                           data-testid="category-link"
-                        >
-                          {c.name}
-                        </LocalizedClientLink>
+                        />
                       </li>
                     );
                   })}
@@ -73,12 +74,11 @@ export default async function Footer() {
                 <ul className="grid grid-cols-1 gap-2 text-sm">
                   {collections?.slice(0, 6).map((c) => (
                     <li key={c.id}>
-                      <LocalizedClientLink
-                        className="text-sm"
+                      <NavLink
                         href={`/collections/${c.handle}`}
-                      >
-                        {c.title}
-                      </LocalizedClientLink>
+                        title={c.title}
+                        className="text-sm"
+                      />
                     </li>
                   ))}
                 </ul>
@@ -88,29 +88,31 @@ export default async function Footer() {
               <span className="text-sm font-black">Liens</span>
               <ul className="grid grid-cols-1 gap-y-2 text-sm">
                 <li>
-                  <LocalizedClientLink href="/about">
-                    À propos
-                  </LocalizedClientLink>
+                  <NavLink href="/about" title="À propos" className="text-sm" />
                 </li>
                 <li>
-                  <LocalizedClientLink href="/distributors">
-                    Trouver un distributeur
-                  </LocalizedClientLink>
+                  <NavLink
+                    href="/distributors"
+                    title="Trouver un distributeur"
+                    className="text-sm"
+                  />
                 </li>
                 <li>
-                  <LocalizedClientLink href="/contact">
-                    Contact
-                  </LocalizedClientLink>
+                  <NavLink
+                    href="/contact"
+                    title="Contact"
+                    className="text-sm"
+                  />
                 </li>
                 <li>
-                  <LocalizedClientLink href="#">
-                    Privacy policy
-                  </LocalizedClientLink>
+                  <NavLink
+                    href="#"
+                    title="Privacy policy"
+                    className="text-sm"
+                  />
                 </li>
                 <li>
-                  <LocalizedClientLink href="#">
-                    Cookie policy
-                  </LocalizedClientLink>
+                  <NavLink href="#" title="Cookie policy" className="text-sm" />
                 </li>
               </ul>
             </div>

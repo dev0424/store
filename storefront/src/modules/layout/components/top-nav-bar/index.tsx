@@ -1,5 +1,5 @@
 import React from "react";
-import LocalizedClientLink from "@modules/common/components/localized-client-link";
+import NavLink from "@modules/layout/components/nav-link";
 
 const TopNavBar = () => {
   return (
@@ -7,24 +7,22 @@ const TopNavBar = () => {
       <div className="content-container">
         <ul className="flex items-center justify-end gap-8">
           <li>
-            <LocalizedClientLink href="#">Créer un compte</LocalizedClientLink>
+            <NavLink href="#" title="Créer un compte" />
           </li>
           <li>
-            <LocalizedClientLink href="#">Catalogue</LocalizedClientLink>
+            <NavLink href="#" title="Catalogue" />
           </li>
           <li>
-            <LocalizedClientLink href="/distributors">
-              Trouver un distributeur
-            </LocalizedClientLink>
+            <NavLink href="/distributors" title="Trouver un distributeur" />
           </li>
           <li>
-            <LocalizedClientLink href="#">FAQ</LocalizedClientLink>
+            <NavLink href="#" title="FAQ" />
           </li>
           <li>
-            <LocalizedClientLink href="/about">À propos</LocalizedClientLink>
+            <NavLink href="/about" title="À propos" />
           </li>
           <li>
-            <LocalizedClientLink href="/contact">Contact</LocalizedClientLink>
+            <NavLink href="/contact" title="Contact" />
           </li>
         </ul>
       </div>

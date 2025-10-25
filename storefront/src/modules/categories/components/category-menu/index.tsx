@@ -9,13 +9,17 @@ import { Transition } from "@headlessui/react";
 type Props = {
   category: StoreProductCategory;
   isOpen: boolean;
+  onClick: VoidFunction;
 };
 
-const CategoryMenu = ({ category, isOpen }: Props) => {
+const CategoryMenu = ({ category, isOpen, onClick }: Props) => {
   if (hasChildrenCategory(category)) {
     return (
       <div className="relative flex items-center gap-1">
-        <LocalizedClientLink href={`/categories/${category.handle}`}>
+        <LocalizedClientLink
+          href={`/categories/${category.handle}`}
+          onClick={onClick}
+        >
           {category.name}
         </LocalizedClientLink>
         <ChevronDown
@@ -36,16 +40,17 @@ const CategoryMenu = ({ category, isOpen }: Props) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div
-            className={"absolute -bottom-[9px] left-0 h-0.5 w-full bg-white"}
-          />
+          <div className="absolute -bottom-[9px] left-0 h-0.5 w-full bg-white" />
         </Transition>
       </div>
     );
   }
 
   return (
-    <LocalizedClientLink href={`/categories/${category.handle}`}>
+    <LocalizedClientLink
+      href={`/categories/${category.handle}`}
+      onClick={onClick}
+    >
       {category.name}
     </LocalizedClientLink>
   );
