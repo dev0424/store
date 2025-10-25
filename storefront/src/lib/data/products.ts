@@ -107,7 +107,7 @@ export const listProductsWithSort = async ({
   const {
     response: { products, count },
   } = await listProducts({
-    pageParam: 0,
+    pageParam: page,
     queryParams: {
       ...queryParams,
       limit,

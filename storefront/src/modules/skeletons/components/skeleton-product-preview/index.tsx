@@ -3,10 +3,11 @@ import { Container } from "@medusajs/ui";
 const SkeletonProductPreview = () => {
   return (
     <div className="animate-pulse">
-      <Container className="aspect-[9/16] w-full bg-gray-100 bg-ui-bg-subtle" />
-      <div className="text-base-regular mt-2 flex justify-between">
-        <div className="h-6 w-2/5 bg-gray-100"></div>
-        <div className="h-6 w-1/5 bg-gray-100"></div>
+      <Container className="h-40 w-full bg-gray-100 bg-ui-bg-subtle sm:h-60" />
+      <div className="text-base-regular mt-4 flex flex-col gap-2">
+        <div className="h-6 w-full bg-gray-100"></div>
+        <div className="h-6 w-full bg-gray-100"></div>
+        <div className="h-6 w-1/2 bg-gray-100"></div>
       </div>
     </div>
   );
