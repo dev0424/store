@@ -3,9 +3,11 @@
 import { Fragment, useState } from "react";
 
 import { SEARCH_INDEX_NAME, searchClient } from "@lib/search-client";
-import { InstantSearch, SearchBox, Hits } from "react-instantsearch";
+import { InstantSearch, SearchBox, Hits, Configure } from "react-instantsearch";
 import Hit from "@modules/search/components/hit";
 import { Transition } from "@headlessui/react";
+
+const HITS_PER_PAGE = 5;
 
 export default function SearchHeader() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,6 +22,7 @@ export default function SearchHeader() {
 
   return (
     <InstantSearch indexName={SEARCH_INDEX_NAME} searchClient={searchClient}>
+      <Configure hitsPerPage={HITS_PER_PAGE} />
       <SearchBox
         onFocus={onFocus}
         onBlur={onBlur}
@@ -45,8 +48,8 @@ export default function SearchHeader() {
         <Hits
           hitComponent={Hit}
           classNames={{
-            root: "mt-3 sm:mt-2 z-50 w-screen absolute left-0 sm:relative sm:w-full sm:rounded sm:overflow-hidden shadow-borders-base",
-            item: "!rounded-none",
+            root: "mt-3 sm:mt-2 z-50 w-screen absolute left-0 sm:relative sm:w-full sm:rounded shadow-borders-base sm:max-h-96 overflow-y-scroll",
+            item: "!rounded-none !p-4",
           }}
         />
       </Transition>

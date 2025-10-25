@@ -1,7 +1,7 @@
-import { Text } from "@medusajs/ui";
 import Thumbnail from "@modules/products/components/thumbnail";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import { HttpTypes } from "@medusajs/types";
+import { convertToLocale } from "@lib/util/money";
 
 export type ProductHit = {
   id: string;
@@ -12,6 +12,7 @@ export type ProductHit = {
   variants: HttpTypes.StoreProductVariant[];
   collection_handle: string | null;
   collection_id: string | null;
+  min_price: number;
 };
 
 type HitProps = {
@@ -24,7 +25,7 @@ const Hit = ({ hit }: HitProps) => {
       key={hit.id}
       href={`/products/${hit.handle}`}
       data-testid="search-result"
-      className={"w-full"}
+      className="w-full"
     >
       <div className="flex items-center gap-6">
         <Thumbnail
@@ -34,12 +35,18 @@ const Hit = ({ hit }: HitProps) => {
         />
         <div className="group flex flex-col justify-between">
           <div className="flex flex-col">
-            <Text
-              className="text-ui-fg-subtle"
+            <p
+              className="font-sans text-ui-fg-subtle"
               data-testid="search-result-title"
             >
               {hit.title}
-            </Text>
+            </p>
+            <p className="font-sans text-lg font-bold text-black">
+              {convertToLocale({
+                amount: hit.min_price,
+                currency_code: "eur",
+              })}
+            </p>
           </div>
         </div>
       </div>

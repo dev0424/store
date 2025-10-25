@@ -23,6 +23,7 @@ import {
     MEILISEARCH_HOST,
     MEILISEARCH_ADMIN_KEY,
 } from 'lib/constants';
+import { getProductMinPrice } from 'utils/variant-price';
 
 loadEnv(process.env.NODE_ENV, process.cwd());
 
@@ -182,7 +183,7 @@ const medusaConfig = {
                                       'description',
                                       'handle',
                                       'thumbnail',
-                                      'variants.prices.*', // Include variant prices
+                                      'variants.prices.*',
                                   ],
                                   indexSettings: {
                                       searchableAttributes: ['title', 'description'],
@@ -209,53 +210,14 @@ const medusaConfig = {
                                   },
                                   primaryKey: 'id',
                                   // Custom transformer to extract pricing
-                                  transformer: async product => {
-                                      // Calculate min_price from variant.prices array
-                                      let min_price = null;
-                                      let cheapest_variant_id = null;
-
-                                      if (Array.isArray(product.variants)) {
-                                          for (const variant of product.variants) {
-                                              if (Array.isArray(variant.prices)) {
-                                                  const variantMin = variant.prices
-                                                      .filter(
-                                                          p =>
-                                                              p.currency_code === 'eur' &&
-                                                              !p.price_list_id,
-                                                      )
-                                                      .reduce(
-                                                          (min, p) =>
-                                                              min === null || p.amount < min
-                                                                  ? p.amount
-                                                                  : min,
-                                                          null,
-                                                      );
-
-                                                  if (
-                                                      variantMin !== null &&
-                                                      (min_price === null || variantMin < min_price)
-                                                  ) {
-                                                      min_price = variantMin;
-                                                      cheapest_variant_id = variant.id;
-                                                  }
-                                              }
-                                          }
-                                      }
-
-                                      return {
-                                          ...product,
-                                          min_price,
-                                          cheapest_variant_id,
-                                          // ... other fields
-                                      };
-                                  },
+                                  transformer: async product => getProductMinPrice(product),
                               },
                               categories: {
                                   type: 'categories',
                                   enabled: true,
                                   indexSettings: {
                                       searchableAttributes: ['name', 'description'],
-                                      displayedAttributes: ['*'],
+                                      displayedAttributes: ['id', 'name', 'handle'],
                                       filterableAttributes: [
                                           'id',
                                           'handle',
