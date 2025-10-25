@@ -175,21 +175,26 @@ const medusaConfig = {
                           settings: {
                               products: {
                                   type: 'products',
+                                  enabled: true,
                                   indexSettings: {
-                                      filterableAttributes: [
-                                          'handle',
-                                          'categories.handle',
-                                          'variants.prices.amount',
-                                          'variants.prices.currency_code',
-                                          'weight',
-                                      ],
-                                      sortableAttributes: [
-                                          'title',
-                                          'variants.prices.amount',
-                                          'weight',
-                                      ],
                                       searchableAttributes: ['title', 'description', 'variant_sku'],
                                       displayedAttributes: ['*', 'variants.prices'],
+                                      filterableAttributes: ['id', 'handle'],
+                                  },
+                                  primaryKey: 'id',
+                              },
+                              categories: {
+                                  type: 'categories',
+                                  enabled: true,
+                                  indexSettings: {
+                                      searchableAttributes: ['name', 'description'],
+                                      displayedAttributes: ['*'],
+                                      filterableAttributes: [
+                                          'id',
+                                          'handle',
+                                          'is_active',
+                                          'parent_id',
+                                      ],
                                   },
                                   primaryKey: 'id',
                               },
