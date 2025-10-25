@@ -3,7 +3,8 @@
 import { Fragment, useState } from "react";
 
 import { SEARCH_INDEX_NAME, searchClient } from "@lib/search-client";
-import { InstantSearch, SearchBox, Hits, Configure } from "react-instantsearch";
+import { SearchBox, Hits, Configure } from "react-instantsearch";
+import { InstantSearchNext } from "react-instantsearch-nextjs";
 import Hit from "@modules/search/components/hit";
 import { Transition } from "@headlessui/react";
 
@@ -21,7 +22,10 @@ export default function SearchHeader() {
   };
 
   return (
-    <InstantSearch indexName={SEARCH_INDEX_NAME} searchClient={searchClient}>
+    <InstantSearchNext
+      indexName={SEARCH_INDEX_NAME}
+      searchClient={searchClient}
+    >
       <Configure hitsPerPage={HITS_PER_PAGE} />
       <SearchBox
         onFocus={onFocus}
@@ -53,6 +57,6 @@ export default function SearchHeader() {
           }}
         />
       </Transition>
-    </InstantSearch>
+    </InstantSearchNext>
   );
 }
