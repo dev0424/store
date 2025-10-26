@@ -13,3 +13,8 @@ export type ProductDocument = {
 export type ProductWithDocument = HttpTypes.StoreProduct & {
   product_document?: ProductDocument[];
 };
+
+export type ProductPriceRange = {
+  min_price: number | null;
+  max_price: number | null;
+};

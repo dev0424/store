@@ -7,6 +7,7 @@ import SortProducts, {
   SortOptions,
 } from "@modules/store/components/refinement-list/sort-products";
 import PriceRange from "@modules/store/components/refinement-list/price-range";
+import { ProductPriceRange } from "@types/product";
 
 type Props = {
   sortBy: SortOptions;
@@ -15,6 +16,7 @@ type Props = {
   categories: StoreProductCategory[];
   minPrice?: string;
   maxPrice?: string;
+  priceRange: ProductPriceRange;
 };
 
 const RefinementList = ({
@@ -22,6 +24,7 @@ const RefinementList = ({
   categories,
   minPrice,
   maxPrice,
+  priceRange,
   "data-testid": dataTestId,
 }: Props) => {
   return (
@@ -34,7 +37,11 @@ const RefinementList = ({
           <Divider />
         </>
       ) : null}
-      <PriceRange minPrice={minPrice} maxPrice={maxPrice} />
+      <PriceRange
+        minPrice={minPrice}
+        maxPrice={maxPrice}
+        priceRange={priceRange}
+      />
     </div>
   );
 };

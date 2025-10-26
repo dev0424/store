@@ -4,6 +4,7 @@ import { sdk } from "@lib/config";
 import { HttpTypes } from "@medusajs/types";
 import { getAuthHeaders, getCacheOptions } from "./cookies";
 import { getRegion, retrieveRegion } from "./regions";
+import { ProductPriceRange } from "@types/product";
 
 const LIMIT = 12;
 
@@ -126,4 +127,14 @@ export const listProductsWithSort = async ({
     nextPage,
     queryParams,
   };
+};
+
+export const getProductsPriceRange = async (
+  categoryIds: string[],
+): Promise<ProductPriceRange> => {
+  return sdk.client.fetch(`/store/products/price-range`, {
+    query: {
+      category_ids: categoryIds,
+    },
+  });
 };

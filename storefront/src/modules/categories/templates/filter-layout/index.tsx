@@ -7,6 +7,7 @@ import { SortOptions } from "@modules/store/components/refinement-list/sort-prod
 import { HttpTypes } from "@medusajs/types";
 import FiltersToolbar from "@modules/categories/components/filters-toolbar";
 import useToggleState from "@lib/hooks/use-toggle-state";
+import { ProductPriceRange } from "@types/product";
 
 type Props = {
   children: ReactNode;
@@ -14,6 +15,7 @@ type Props = {
   categories: HttpTypes.StoreProductCategory[];
   minPrice?: string;
   maxPrice?: string;
+  priceRange: ProductPriceRange;
 };
 
 const FilterLayout = ({
@@ -22,6 +24,7 @@ const FilterLayout = ({
   categories,
   minPrice,
   maxPrice,
+  priceRange,
 }: Props) => {
   const { state: showFilters, toggle: toggleFilters } = useToggleState(true);
 
@@ -33,6 +36,7 @@ const FilterLayout = ({
         categories={categories}
         minPrice={minPrice}
         maxPrice={maxPrice}
+        priceRange={priceRange}
       />
       <div
         className={clx("grid grid-cols-1", {
@@ -47,6 +51,7 @@ const FilterLayout = ({
               categories={categories}
               minPrice={minPrice}
               maxPrice={maxPrice}
+              priceRange={priceRange}
             />
           ) : null}
         </div>

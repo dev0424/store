@@ -10,12 +10,14 @@ import { HttpTypes } from "@medusajs/types";
 import useToggleState from "@lib/hooks/use-toggle-state";
 import { Button } from "@medusajs/ui";
 import FilterButton from "@modules/store/components/refinement-list/filter-button";
+import { ProductPriceRange } from "@types/product";
 
 type Props = {
   sortBy: SortOptions;
   categories: HttpTypes.StoreProductCategory[];
   minPrice?: string;
   maxPrice?: string;
+  priceRange: ProductPriceRange;
 };
 
 const RefinementListPopover = ({
@@ -23,6 +25,7 @@ const RefinementListPopover = ({
   categories,
   minPrice,
   maxPrice,
+  priceRange,
 }: Props) => {
   const { state: showFilters, toggle: toggleFilters } = useToggleState(false);
 
@@ -52,6 +55,7 @@ const RefinementListPopover = ({
               categories={categories}
               minPrice={minPrice}
               maxPrice={maxPrice}
+              priceRange={priceRange}
             />
             <Button
               className="h-10 w-full font-sans font-bold tracking-wide"

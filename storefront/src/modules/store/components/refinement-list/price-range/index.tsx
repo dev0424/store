@@ -3,21 +3,28 @@ import { Slider } from "radix-ui";
 import Input from "@modules/common/components/input";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import useDebounce from "@lib/hooks/use-debounce";
+import { ProductPriceRange } from "@types/product";
 
-// TODO fetch max price from products
-const MIN_PRICE = 1;
-const MAX_PRICE = 10000;
+const DEFAULT_MIN_PRICE = 1;
+const DEFAULT_MAX_PRICE = 10000;
 
 type Props = {
   minPrice?: string;
   maxPrice?: string;
+  priceRange: ProductPriceRange;
 };
-const PriceRange = ({ minPrice, maxPrice }: Props) => {
-  const [priceRange, setPriceRange] = useState<number[]>([
-    minPrice ? parseInt(minPrice) : MIN_PRICE,
-    maxPrice ? parseInt(maxPrice) : MAX_PRICE,
-  ]);
-  const debouncedPriceRange = useDebounce(priceRange);
+
+const PriceRange = ({ minPrice, maxPrice, priceRange }: Props) => {
+  const min = minPrice ? parseInt(minPrice) : DEFAULT_MIN_PRICE;
+
+  const max = maxPrice
+    ? parseInt(maxPrice)
+    : (priceRange?.max_price ?? DEFAULT_MAX_PRICE);
+
+  const [range, setRange] = useState<number[]>([min, max]);
+  const [isDirty, setIsDirty] = useState(false);
+
+  const debouncedPriceRange = useDebounce(range);
 
   const router = useRouter();
   const pathname = usePathname();
@@ -28,7 +35,6 @@ const PriceRange = ({ minPrice, maxPrice }: Props) => {
       const params = new URLSearchParams(searchParams);
       params.set("minPrice", range[0].toString());
       params.set("maxPrice", range[1].toString());
-
       return params.toString();
     },
     [searchParams],
@@ -40,17 +46,24 @@ const PriceRange = ({ minPrice, maxPrice }: Props) => {
   };
 
   const onInputChange = (index: 0 | 1, value: number) => {
-    setPriceRange((prev) => {
+    setRange((prev) => {
       const updated = [...prev];
       updated[index] = value;
       return updated;
     });
+    setIsDirty(true);
+  };
+
+  const onSliderChange = (range: number[]) => {
+    setRange(range);
+    setIsDirty(true);
   };
 
   useEffect(() => {
-    // Debounce state update to avoid too many rerenders
-    setQueryParams(debouncedPriceRange);
-  }, [debouncedPriceRange]);
+    if (isDirty) {
+      setQueryParams(debouncedPriceRange);
+    }
+  }, [debouncedPriceRange, isDirty]);
 
   return (
     <div className="flex flex-col gap-3">
@@ -61,7 +74,7 @@ const PriceRange = ({ minPrice, maxPrice }: Props) => {
             label="Min (€)"
             name="from"
             type="number"
-            value={priceRange[0]}
+            value={range[0]}
             onChange={(e) => onInputChange(0, Number(e.target.value))}
           />
           <span>-</span>
@@ -69,17 +82,17 @@ const PriceRange = ({ minPrice, maxPrice }: Props) => {
             label="Max (€)"
             name="to"
             type="number"
-            value={priceRange[1]}
+            value={range[1]}
             onChange={(e) => onInputChange(1, Number(e.target.value))}
           />
         </div>
         <Slider.Root
           className="relative flex h-5 w-full touch-none select-none items-center"
-          min={MIN_PRICE}
-          max={MAX_PRICE}
+          min={DEFAULT_MIN_PRICE}
+          max={priceRange?.max_price ?? DEFAULT_MAX_PRICE}
           step={1}
-          value={priceRange}
-          onValueChange={(range) => setPriceRange(range)}
+          value={range}
+          onValueChange={onSliderChange}
         >
           <Slider.Track className="relative h-[3px] grow rounded-full bg-gray-200">
             <Slider.Range className="absolute h-full rounded-full bg-accent-primary" />

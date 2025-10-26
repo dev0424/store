@@ -6,6 +6,7 @@ import PaginatedProducts from "@modules/store/templates/paginated-products";
 import { HttpTypes } from "@medusajs/types";
 import CategoryHeader from "@modules/categories/components/category-header";
 import FilterLayout from "@modules/categories/templates/filter-layout";
+import { getProductsPriceRange } from "@lib/data/products";
 
 export default async function CategoryTemplate({
   category,
@@ -33,6 +34,8 @@ export default async function CategoryTemplate({
       : [categoryId]
     : [category.id, ...category.category_children.map((c) => c.id)];
 
+  const priceRange = await getProductsPriceRange(categoryIds);
+
   if (!countryCode) {
     notFound();
   }
@@ -53,6 +56,7 @@ export default async function CategoryTemplate({
           sortBy={sort}
           minPrice={minPrice}
           maxPrice={maxPrice}
+          priceRange={priceRange}
         >
           <Suspense
             fallback={
