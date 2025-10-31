@@ -17,9 +17,11 @@ const Login = ({ setCurrentView }: Props) => {
       className="flex w-full max-w-sm flex-col items-center"
       data-testid="login-page"
     >
-      <h1 className="text-large-semi mb-6 uppercase">Welcome back</h1>
-      <p className="text-base-regular mb-8 text-center text-ui-fg-base">
-        Sign in to access an enhanced shopping experience.
+      <h1 className="text-xl-semi text-center text-ui-fg-base sm:text-left">
+        Accès client
+      </h1>
+      <p className="mb-8 text-ui-fg-subtle">
+        Connectez-vous à votre compte RSPI Store.
       </p>
       <form className="w-full" action={formAction}>
         <div className="flex w-full flex-col gap-y-2">
@@ -27,13 +29,13 @@ const Login = ({ setCurrentView }: Props) => {
             label="Email"
             name="email"
             type="email"
-            title="Enter a valid email address."
+            title="Veuillez saisir une adresse e-mail valide."
             autoComplete="email"
             required
             data-testid="email-input"
           />
           <Input
-            label="Password"
+            label="Mot de passe"
             name="password"
             type="password"
             autoComplete="current-password"
@@ -46,17 +48,17 @@ const Login = ({ setCurrentView }: Props) => {
           data-testid="sign-in-button"
           className="mt-6 w-full font-sans font-bold tracking-wide"
         >
-          Sign in
+          Se connecter
         </SubmitButton>
       </form>
       <span className="text-small-regular mt-6 text-center text-ui-fg-base">
-        Not a member?{" "}
+        Je ne suis pas encore un client RSPI{" "}
         <button
           onClick={() => setCurrentView(LOGIN_VIEW.REGISTER)}
           className="underline"
           data-testid="register-button"
         >
-          Join us
+          Demande de création de compte
         </button>
         .
       </span>

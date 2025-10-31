@@ -9,22 +9,24 @@ type Props = {
 const RegisterTemplate = ({ setCurrentView }: Props) => {
   return (
     <div
-      className="flex max-w-sm flex-col items-center gap-4"
+      className="flex max-w-sm flex-col items-center"
       data-testid="register-page"
     >
-      <h1 className="text-large-semi uppercase">Become a store member</h1>
-      <p className="text-base-regular text-center text-ui-fg-base">
-        Create your store member profile, and get access to an enhanced shopping
-        experience.
+      <h1 className="text-xl-semi text-center text-ui-fg-base sm:text-left">
+        Demande de création de compte
+      </h1>
+      <p className="mb-8 text-center text-ui-fg-subtle">
+        Créez votre profil de membre et accédez à une expérience d'achat
+        améliorée.
       </p>
       <CompanyRegistrationForm />
       <span className="text-small-regular mt-6 text-center text-ui-fg-base">
-        Already a member?{" "}
+        Vous avez déjà un compte?{" "}
         <button
           onClick={() => setCurrentView(LOGIN_VIEW.SIGN_IN)}
           className="underline"
         >
-          Sign in
+          Se connecter
         </button>
       </span>
     </div>

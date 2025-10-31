@@ -136,13 +136,13 @@ const CompanyRegistrationForm = () => {
         <ErrorMessage error={error} data-testid="register-error" />
       ) : null}
       <span className="text-small-regular mt-6 text-center text-ui-fg-base">
-        By creating an account, you agree to the store&apos;s{" "}
+        En créant un compte, vous acceptez{" "}
         <LocalizedClientLink href="#" className="underline">
-          Privacy Policy
+          la Politique de confidentialité
         </LocalizedClientLink>{" "}
-        and{" "}
+        et{" "}
         <LocalizedClientLink href="#" className="underline">
-          Terms of Use
+          les conditions d'utilisation du magasin
         </LocalizedClientLink>
         .
       </span>
@@ -150,7 +150,7 @@ const CompanyRegistrationForm = () => {
         className="mt-6 w-full font-sans font-bold tracking-wide"
         data-testid="register-button"
       >
-        Join
+        Envoyer
       </SubmitButton>
     </form>
   );
