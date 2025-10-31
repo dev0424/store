@@ -17,26 +17,20 @@ const ProductSpecs = ({ product }: Props) => {
   return (
     <div className="flex flex-col gap-2">
       <h1 className="text-left text-2xl text-ui-fg-base">Caractéristiques</h1>
-
       <div className={"flex flex-col gap-2 divide-y text-sm"}>
-        <ProductSpec name={"Matériel"} value={product.material} />
-        <ProductSpec
-          name={"Poids"}
-          value={product.weight ? `${product.weight} g` : "-"}
-        />
-        <ProductSpec name={"Hauteur"} value={product.height} />
-        <ProductSpec name={"Largeur"} value={product.width} />
-        <ProductSpec name={"Longueur"} value={product.length} />
-
-        {product.metadata
-          ? Object.entries(product.metadata).map(([key, value]) => (
-              <ProductSpec
-                key={key}
-                name={formatSpecKey(key)}
-                value={value as string}
-              />
-            ))
-          : null}
+        {product.metadata ? (
+          Object.entries(product.metadata).map(([key, value]) => (
+            <ProductSpec
+              key={key}
+              name={formatSpecKey(key)}
+              value={value as string}
+            />
+          ))
+        ) : (
+          <p className={"text-sm text-ui-fg-subtle"}>
+            Il n'existe pas de spécifications pour ce produit.
+          </p>
+        )}
       </div>
     </div>
   );
