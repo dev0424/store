@@ -14,34 +14,36 @@ import {
   removeCartId,
   setAuthToken,
 } from "./cookies";
+import { Customer } from "@types/customer";
 
-export const retrieveCustomer =
-  async (): Promise<HttpTypes.StoreCustomer | null> => {
-    const authHeaders = await getAuthHeaders();
+export const retrieveCustomer = async (): Promise<Customer | null> => {
+  const authHeaders = await getAuthHeaders();
 
-    if (!authHeaders) return null;
+  if (!authHeaders) {
+    return null;
+  }
 
-    const headers = {
-      ...authHeaders,
-    };
-
-    const next = {
-      ...(await getCacheOptions("customers")),
-    };
-
-    return await sdk.client
-      .fetch<{ customer: HttpTypes.StoreCustomer }>(`/store/customers/me`, {
-        method: "GET",
-        query: {
-          fields: "*orders",
-        },
-        headers,
-        next,
-        cache: "force-cache",
-      })
-      .then(({ customer }) => customer)
-      .catch(() => null);
+  const headers = {
+    ...authHeaders,
   };
+
+  const next = {
+    ...(await getCacheOptions("customers")),
+  };
+
+  return await sdk.client
+    .fetch<{ customer: Customer }>(`/store/customers/me`, {
+      method: "GET",
+      query: {
+        fields: "*orders,+bank_account.*",
+      },
+      headers,
+      next,
+      cache: "force-cache",
+    })
+    .then(({ customer }) => customer)
+    .catch(() => null);
+};
 
 export const updateCustomer = async (body: HttpTypes.StoreUpdateCustomer) => {
   const headers = {
@@ -58,51 +60,6 @@ export const updateCustomer = async (body: HttpTypes.StoreUpdateCustomer) => {
 
   return updateRes;
 };
-
-export async function signup(_currentState: unknown, formData: FormData) {
-  const password = formData.get("password") as string;
-  const customerForm = {
-    email: formData.get("email") as string,
-    first_name: formData.get("first_name") as string,
-    last_name: formData.get("last_name") as string,
-    phone: formData.get("phone") as string,
-  };
-
-  try {
-    const token = await sdk.auth.register("customer", "emailpass", {
-      email: customerForm.email,
-      password: password,
-    });
-
-    await setAuthToken(token as string);
-
-    const headers = {
-      ...(await getAuthHeaders()),
-    };
-
-    const { customer: createdCustomer } = await sdk.store.customer.create(
-      customerForm,
-      {},
-      headers,
-    );
-
-    const loginToken = await sdk.auth.login("customer", "emailpass", {
-      email: customerForm.email,
-      password,
-    });
-
-    await setAuthToken(loginToken as string);
-
-    const customerCacheTag = await getCacheTag("customers");
-    revalidateTag(customerCacheTag);
-
-    await transferCart();
-
-    return createdCustomer;
-  } catch (error: any) {
-    return error.toString();
-  }
-}
 
 export async function login(_currentState: unknown, formData: FormData) {
   const email = formData.get("email") as string;
