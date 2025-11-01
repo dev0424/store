@@ -4,7 +4,7 @@ import { sdk } from "@lib/config";
 import { getCacheTag, setAuthToken } from "@lib/data/cookies";
 import { revalidateTag } from "next/cache";
 import { transferCart } from "@lib/data/customer";
-import { SignupFormData } from "@modules/account/components/company-registration-form";
+import { SignupFormData } from "@modules/account/components/registration-form";
 
 export async function signup(customerForm: SignupFormData) {
   try {

@@ -1,4 +1,4 @@
-import { AdminProduct } from '@medusajs/types';
+import { AdminProduct, CreateCustomerDTO, CustomerDTO } from '@medusajs/types';
 
 export type ProductDocument = {
     id: string;
@@ -13,4 +13,17 @@ export type AdminProductWithDocument = {
     product: AdminProduct & {
         product_document?: ProductDocument[];
     };
+};
+
+export type BankAccount = {
+    bank_name: string;
+    bank_code: string;
+    branch_code: string;
+    city: string;
+    address: string;
+    account_number: string;
+    account_holder: string;
+    iban: string;
+    bic: string;
+    rib_key: string;
 };

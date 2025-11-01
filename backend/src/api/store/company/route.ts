@@ -1,13 +1,23 @@
 import type { MedusaResponse, AuthenticatedMedusaRequest } from '@medusajs/framework';
 import { createCustomerAccountWorkflow } from '@medusajs/medusa/core-flows';
+import { createBankAccountWorkflow } from 'workflows/create-bank-account';
+import { BankAccount } from 'lib/types';
 import { CreateCustomerDTO } from '@medusajs/types';
 
-export async function POST(request: AuthenticatedMedusaRequest, response: MedusaResponse) {
+type CreateCustomerRequest = CreateCustomerDTO & {
+    bank_account: BankAccount;
+};
+
+export async function POST(
+    request: AuthenticatedMedusaRequest<CreateCustomerRequest>,
+    response: MedusaResponse,
+) {
     // TODO validate request body
-    const customerData: CreateCustomerDTO = request.body;
+    const customerData = request.body;
     const authIdentityId = request.auth_context.auth_identity_id;
 
-    const { result } = await createCustomerAccountWorkflow(request.scope).run({
+    // Create customer account
+    const { result: createdCustomer } = await createCustomerAccountWorkflow(request.scope).run({
         input: {
             authIdentityId,
             customerData: {
@@ -20,5 +30,10 @@ export async function POST(request: AuthenticatedMedusaRequest, response: Medusa
         },
     });
 
-    response.send(result);
+    // Create bank account and attach to customer account
+    const bankAccount = await createBankAccountWorkflow(request.scope).run({
+        input: { customer: createdCustomer, bank_account: customerData.bank_account },
+    });
+
+    response.send({ ...createdCustomer, ...bankAccount });
 }
