@@ -9,7 +9,7 @@ type Props = {
 const RegisterTemplate = ({ setCurrentView }: Props) => {
   return (
     <div
-      className="flex max-w-sm flex-col items-center"
+      className="flex max-w-xl flex-col items-center"
       data-testid="register-page"
     >
       <h1 className="text-xl-semi text-center text-ui-fg-base sm:text-left">
