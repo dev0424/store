@@ -31,7 +31,7 @@ export default defineMiddlewares({
             matcher: '/store/customers/me',
             middlewares: [
                 (request: MedusaRequest, response: MedusaResponse, next: MedusaNextFunction) => {
-                    (request.allowed ??= []).push('bank_account');
+                    (request.allowed ??= []).push('bank_account', 'billing_address');
                     next();
                 },
             ],

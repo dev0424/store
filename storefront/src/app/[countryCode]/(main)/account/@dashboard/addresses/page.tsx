@@ -33,6 +33,15 @@ export default async function Addresses(props: {
         </p>
       </div>
       <AddressBook customer={customer} region={region} />
+      <div>
+        <p>Billing address</p>
+        <p>Address 1: {customer.billing_address.address_1}</p>
+        <p>Address 2: {customer.billing_address.address_2}</p>
+        <p>Postal code: {customer.billing_address.postal_code}</p>
+        <p>City: {customer.billing_address.city}</p>
+        <p>Country: {customer.billing_address.country_code}</p>
+        <p>Province: {customer.billing_address.province}</p>
+      </div>
     </div>
   );
 }

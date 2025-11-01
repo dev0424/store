@@ -1,11 +1,13 @@
 import type { MedusaResponse, AuthenticatedMedusaRequest } from '@medusajs/framework';
 import { createCustomerAccountWorkflow } from '@medusajs/medusa/core-flows';
 import { createBankAccountWorkflow } from 'workflows/create-bank-account';
-import { BankAccount } from 'lib/types';
+import { BankAccount, BillingAddress } from 'lib/types';
 import { CreateCustomerDTO } from '@medusajs/types';
+import { createBillingAddressWorkflow } from 'workflows/create-billing-address';
 
 type CreateCustomerRequest = CreateCustomerDTO & {
     bank_account: BankAccount;
+    billing_address: BillingAddress;
 };
 
 export async function POST(
@@ -35,5 +37,10 @@ export async function POST(
         input: { customer: createdCustomer, bank_account: customerData.bank_account },
     });
 
-    response.send({ ...createdCustomer, ...bankAccount });
+    // Create billing address and attach to customer account
+    const billingAddress = await createBillingAddressWorkflow(request.scope).run({
+        input: { customer: createdCustomer, billing_address: customerData.billing_address },
+    });
+
+    response.send({ ...createdCustomer, ...bankAccount, ...billingAddress });
 }

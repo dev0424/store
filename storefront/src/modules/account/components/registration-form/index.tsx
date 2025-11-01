@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { signupSchema } from "@modules/account/components/registration-form/schema";
 import { BankAccount } from "@types/bank-account";
+import { BillingAddress } from "@types/billing-address";
 
 export type SignupFormData = {
   email: string;
@@ -22,6 +23,7 @@ export type SignupFormData = {
     tax_number: string;
   };
   bank_account: BankAccount;
+  billing_address: BillingAddress;
 };
 
 const RegistrationForm = () => {
@@ -242,6 +244,77 @@ const RegistrationForm = () => {
               name="bank_account.rib_key"
               errors={errors?.bank_account?.rib_key}
               required={true}
+              disableNativeValidation={true}
+            />
+          </div>
+        </div>
+        <div className="flex w-full flex-col gap-2">
+          <p>Billing address</p>
+          <div className="grid grid-cols-2 gap-2">
+            <Input
+              {...register(
+                "billing_address.address_1",
+                signupSchema.billing_address.address_1,
+              )}
+              label="Address 1"
+              name="billing_address.address_1"
+              errors={errors?.billing_address?.address_1}
+              required={true}
+              disableNativeValidation={true}
+            />
+            <Input
+              {...register(
+                "billing_address.address_2",
+                signupSchema.billing_address.address_2,
+              )}
+              label="Address 2"
+              name="billing_address.address_2"
+              errors={errors?.billing_address?.address_2}
+              required={false}
+              disableNativeValidation={true}
+            />
+            <Input
+              {...register(
+                "billing_address.postal_code",
+                signupSchema.billing_address.postal_code,
+              )}
+              label="Postal code"
+              name="billing_address.postal_code"
+              errors={errors?.billing_address?.postal_code}
+              required={true}
+              disableNativeValidation={true}
+            />
+            <Input
+              {...register(
+                "billing_address.city",
+                signupSchema.billing_address.city,
+              )}
+              label="City"
+              name="billing_address.city"
+              errors={errors?.billing_address?.city}
+              required={true}
+              disableNativeValidation={true}
+            />
+            <Input
+              {...register(
+                "billing_address.country_code",
+                signupSchema.billing_address.country_code,
+              )}
+              label="Country"
+              name="billing_address.country_code"
+              errors={errors?.billing_address?.country_code}
+              required={true}
+              disableNativeValidation={true}
+            />
+            <Input
+              {...register(
+                "billing_address.province",
+                signupSchema.billing_address.province,
+              )}
+              label="Province"
+              name="billing_address.province"
+              errors={errors?.billing_address?.province}
+              required={false}
               disableNativeValidation={true}
             />
           </div>
