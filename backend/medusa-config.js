@@ -50,6 +50,9 @@ const medusaConfig = {
             resolve: './src/modules/product-document',
         },
         {
+            resolve: './src/modules/bank-account',
+        },
+        {
             key: Modules.FILE,
             resolve: '@medusajs/file',
             options: {
