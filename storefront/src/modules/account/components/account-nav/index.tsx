@@ -147,6 +147,15 @@ const AccountNav = ({
               </li>
               <li>
                 <AccountNavLink
+                  href="/account/bank-account"
+                  route={route!}
+                  data-testid="bank-account-link"
+                >
+                  Bank account
+                </AccountNavLink>
+              </li>
+              <li>
+                <AccountNavLink
                   href="/account/orders"
                   route={route!}
                   data-testid="orders-link"

@@ -4,10 +4,10 @@ import Input from "@modules/common/components/input";
 import ErrorMessage from "@modules/checkout/components/error-message";
 import { SubmitButton } from "@modules/checkout/components/submit-button";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
-import { signup } from "@lib/data/company";
+import { signup } from "@lib/data/signup";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { signupSchema } from "@modules/account/components/company-registration-form/schema";
+import { signupSchema } from "@modules/account/components/registration-form/schema";
 
 export type SignupFormData = {
   email: string;
@@ -22,7 +22,7 @@ export type SignupFormData = {
   };
 };
 
-const CompanyRegistrationForm = () => {
+const RegistrationForm = () => {
   const [error, setError] = useState<string | undefined>(undefined);
 
   const {
@@ -156,4 +156,4 @@ const CompanyRegistrationForm = () => {
   );
 };
 
-export default CompanyRegistrationForm;
+export default RegistrationForm;

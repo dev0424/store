@@ -1,6 +1,6 @@
 import React from "react";
 import { LOGIN_VIEW } from "@modules/account/templates/login-template";
-import CompanyRegistrationForm from "@modules/account/components/company-registration-form";
+import RegistrationForm from "@modules/account/components/registration-form";
 
 type Props = {
   setCurrentView: (view: LOGIN_VIEW) => void;
@@ -19,7 +19,7 @@ const RegisterTemplate = ({ setCurrentView }: Props) => {
         Créez votre profil de membre et accédez à une expérience d'achat
         améliorée.
       </p>
-      <CompanyRegistrationForm />
+      <RegistrationForm />
       <span className="text-small-regular mt-6 text-center text-ui-fg-base">
         Vous avez déjà un compte?{" "}
         <button
