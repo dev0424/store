@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Input from "@modules/common/components/input";
 import ErrorMessage from "@modules/checkout/components/error-message";
 import { SubmitButton } from "@modules/checkout/components/submit-button";
@@ -10,6 +11,8 @@ import { useForm } from "react-hook-form";
 import { signupSchema } from "@modules/account/components/registration-form/schema";
 import { BankAccount } from "@types/bank-account";
 import { BillingAddress } from "@types/billing-address";
+import { CustomerProfile } from "@types/customer-profile";
+import NativeSelect from "@modules/common/components/native-select";
 
 export type SignupFormData = {
   email: string;
@@ -24,6 +27,7 @@ export type SignupFormData = {
   };
   bank_account: BankAccount;
   billing_address: BillingAddress;
+  customer_profile: CustomerProfile;
 };
 
 const RegistrationForm = () => {
@@ -48,103 +52,106 @@ const RegistrationForm = () => {
 
   return (
     <form className="flex w-full flex-col" onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex w-full flex-col gap-8">
+      <div className="flex w-full flex-col gap-6">
         <div className="flex w-full flex-col gap-2">
           <p>User information</p>
-          <Input
-            {...register("first_name", signupSchema.first_name)}
-            label="First name"
-            name="first_name"
-            autoComplete="given-name"
-            data-testid="first-name-input"
-            errors={errors?.first_name}
-            required={true}
-            disableNativeValidation={true}
-          />
-          <Input
-            {...register("last_name", signupSchema.last_name)}
-            label="Last name"
-            name="last_name"
-            autoComplete="family-name"
-            data-testid="last-name-input"
-            errors={errors?.last_name}
-            required={true}
-            disableNativeValidation={true}
-          />
-          <Input
-            {...register("email", signupSchema.email)}
-            label="Email"
-            name="email"
-            autoComplete="email"
-            data-testid="email-input"
-            errors={errors?.email}
-            required={true}
-            disableNativeValidation={true}
-          />
-          <Input
-            {...register("phone", signupSchema.phone)}
-            label="Phone"
-            name="phone"
-            type="tel"
-            autoComplete="tel"
-            data-testid="phone-input"
-            errors={errors?.phone}
-            required={true}
-            disableNativeValidation={true}
-          />
-          <Input
-            {...register(
-              "metadata.tax_number",
-              signupSchema.metadata.tax_number,
-            )}
-            label="Tax number"
-            name="metadata.tax_number"
-            data-testid="tax-number-input"
-            type="text"
-            errors={errors?.metadata?.tax_number}
-            required={true}
-            disableNativeValidation={true}
-          />
-          <Input
-            {...register("company_name", signupSchema.company_name)}
-            label="Company name"
-            name="company_name"
-            data-testid="company-name-input"
-            type="text"
-            errors={errors?.company_name}
-            required={true}
-            disableNativeValidation={true}
-          />
-          <Input
-            {...register("password", signupSchema.password)}
-            label="Password"
-            name="password"
-            type="password"
-            autoComplete="new-password"
-            data-testid="password-input"
-            errors={errors?.password}
-            required={true}
-            disableNativeValidation={true}
-          />
-          <Input
-            {...register("confirm_password", {
-              required: "This field is required",
-              validate: (value) =>
-                value === password || "Passwords do not match",
-            })}
-            label="Confirm password"
-            name="confirm_password"
-            type="password"
-            autoComplete="new-password"
-            data-testid="confirm-password-input"
-            errors={errors?.confirm_password}
-            required={true}
-            disableNativeValidation={true}
-          />
+          <div className="grid grid-cols-2 gap-4">
+            <Input
+              {...register("first_name", signupSchema.first_name)}
+              label="First name"
+              name="first_name"
+              autoComplete="given-name"
+              data-testid="first-name-input"
+              errors={errors?.first_name}
+              required={true}
+              disableNativeValidation={true}
+            />
+            <Input
+              {...register("last_name", signupSchema.last_name)}
+              label="Last name"
+              name="last_name"
+              autoComplete="family-name"
+              data-testid="last-name-input"
+              errors={errors?.last_name}
+              required={true}
+              disableNativeValidation={true}
+            />
+            <Input
+              {...register("email", signupSchema.email)}
+              label="Email"
+              name="email"
+              autoComplete="email"
+              data-testid="email-input"
+              errors={errors?.email}
+              required={true}
+              disableNativeValidation={true}
+            />
+            <Input
+              {...register("phone", signupSchema.phone)}
+              label="Phone"
+              name="phone"
+              type="tel"
+              autoComplete="tel"
+              data-testid="phone-input"
+              errors={errors?.phone}
+              required={true}
+              disableNativeValidation={true}
+            />
+            <Input
+              {...register(
+                "metadata.tax_number",
+                signupSchema.metadata.tax_number,
+              )}
+              label="Tax number"
+              name="metadata.tax_number"
+              data-testid="tax-number-input"
+              type="text"
+              errors={errors?.metadata?.tax_number}
+              required={true}
+              disableNativeValidation={true}
+            />
+            <Input
+              {...register("company_name", signupSchema.company_name)}
+              label="Company name"
+              name="company_name"
+              data-testid="company-name-input"
+              type="text"
+              errors={errors?.company_name}
+              required={true}
+              disableNativeValidation={true}
+            />
+            <Input
+              {...register("password", signupSchema.password)}
+              label="Password"
+              name="password"
+              type="password"
+              autoComplete="new-password"
+              data-testid="password-input"
+              errors={errors?.password}
+              required={true}
+              disableNativeValidation={true}
+            />
+            <Input
+              {...register("confirm_password", {
+                required: "This field is required",
+                validate: (value) =>
+                  value === password || "Passwords do not match",
+              })}
+              label="Confirm password"
+              name="confirm_password"
+              type="password"
+              autoComplete="new-password"
+              data-testid="confirm-password-input"
+              errors={errors?.confirm_password}
+              required={true}
+              disableNativeValidation={true}
+            />
+          </div>
         </div>
+
         <div className="flex w-full flex-col gap-2">
           <p>Bank account</p>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-4">
             <Input
               {...register(
                 "bank_account.bank_name",
@@ -248,9 +255,10 @@ const RegistrationForm = () => {
             />
           </div>
         </div>
+
         <div className="flex w-full flex-col gap-2">
           <p>Billing address</p>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-4">
             <Input
               {...register(
                 "billing_address.address_1",
@@ -319,11 +327,95 @@ const RegistrationForm = () => {
             />
           </div>
         </div>
+
+        <div className="flex w-full flex-col gap-2">
+          <p>Customer profile</p>
+          <div className="grid grid-cols-2 gap-4">
+            <Input
+              {...register(
+                "customer_profile.vat_number",
+                signupSchema.customer_profile.vat_number,
+              )}
+              label="VAT number"
+              name="customer_profile.vat_number"
+              errors={errors?.customer_profile?.vat_number}
+              required={true}
+              disableNativeValidation={true}
+            />
+            <Input
+              {...register(
+                "customer_profile.siret_number",
+                signupSchema.customer_profile.siret_number,
+              )}
+              label="SIRET number"
+              name="customer_profile.siret_number"
+              errors={errors?.customer_profile?.siret_number}
+              required={true}
+              disableNativeValidation={true}
+            />
+            <Input
+              {...register(
+                "customer_profile.ape_code",
+                signupSchema.customer_profile.ape_code,
+              )}
+              label="APE code"
+              name="customer_profile.ape_code"
+              errors={errors?.customer_profile?.ape_code}
+              required={true}
+              disableNativeValidation={true}
+            />
+            <NativeSelect
+              {...register(
+                "customer_profile.activity",
+                signupSchema.customer_profile.activity,
+              )}
+              name="customer_profile.activity"
+              errors={errors?.customer_profile?.activity}
+            >
+              <option value={"activity-1"}>Activity 1</option>
+              <option value={"activity-1"}>Activity 2</option>
+            </NativeSelect>
+            <NativeSelect
+              {...register(
+                "customer_profile.billing_cycle",
+                signupSchema.customer_profile.billing_cycle,
+              )}
+              name="customer_profile.billing_cycle"
+              errors={errors?.customer_profile?.billing_cycle}
+            >
+              <option value={"billing-cycle-1"}>Billing cycle 1</option>
+              <option value={"billing-cycle-2"}>Billing cycle 2</option>
+            </NativeSelect>
+            <NativeSelect
+              {...register(
+                "customer_profile.payment_method",
+                signupSchema.customer_profile.payment_method,
+              )}
+              name="customer_profile.payment_method"
+              errors={errors?.customer_profile?.payment_method}
+              required
+            >
+              <option value={"payment-method-1"}>Payment method 1</option>
+              <option value={"payment-method-2"}>Payment method 2</option>
+            </NativeSelect>
+            <Input
+              {...register(
+                "customer_profile.invoice_email",
+                signupSchema.customer_profile.invoice_email,
+              )}
+              label="Invoice email"
+              name="customer_profile.invoice_email"
+              errors={errors?.customer_profile?.invoice_email}
+              required={true}
+              disableNativeValidation={true}
+            />
+          </div>
+        </div>
       </div>
       {error ? (
         <ErrorMessage error={error} data-testid="register-error" />
       ) : null}
-      <span className="text-small-regular mt-6 text-center text-ui-fg-base">
+      <span className="text-small-regular mt-6 text-ui-fg-base">
         En créant un compte, vous acceptez{" "}
         <LocalizedClientLink href="#" className="underline">
           la Politique de confidentialité

@@ -56,6 +56,9 @@ const medusaConfig = {
             resolve: './src/modules/billing-address',
         },
         {
+            resolve: './src/modules/customer-profile',
+        },
+        {
             key: Modules.FILE,
             resolve: '@medusajs/file',
             options: {
