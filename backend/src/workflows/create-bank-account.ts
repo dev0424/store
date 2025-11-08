@@ -10,7 +10,7 @@ import { BANK_ACCOUNT_MODULE } from '../modules/bank-account/index';
 import { createRemoteLinkStep } from '@medusajs/core-flows';
 import { Modules } from '@medusajs/utils';
 import { CustomerDTO } from '@medusajs/types';
-import { BankAccount } from 'lib/types';
+import { BankAccount } from '../lib/types';
 
 type CreateBankAccountWorkflowInput = {
     customer: CustomerDTO;

@@ -1,9 +1,9 @@
 import type { MedusaResponse, AuthenticatedMedusaRequest } from '@medusajs/framework';
 import { createCustomerAccountWorkflow } from '@medusajs/medusa/core-flows';
-import { createBankAccountWorkflow } from 'workflows/create-bank-account';
-import { BankAccount, BillingAddress } from 'lib/types';
+import { createBankAccountWorkflow } from '../../../workflows/create-bank-account';
+import { BankAccount, BillingAddress } from '../../../lib/types';
 import { CreateCustomerDTO } from '@medusajs/types';
-import { createBillingAddressWorkflow } from 'workflows/create-billing-address';
+import { createBillingAddressWorkflow } from '../../../workflows/create-billing-address';
 
 type CreateCustomerRequest = CreateCustomerDTO & {
     bank_account: BankAccount;

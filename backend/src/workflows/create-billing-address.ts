@@ -9,7 +9,7 @@ import { BILLING_ADDRESS_MODULE } from '../modules/billing-address/index';
 import { createRemoteLinkStep } from '@medusajs/core-flows';
 import { Modules } from '@medusajs/utils';
 import { CustomerDTO } from '@medusajs/types';
-import { BillingAddress } from 'lib/types';
+import { BillingAddress } from '../lib/types';
 import BillingAddressModuleService from '../modules/billing-address/services/service';
 
 type CreateBillingAddressWorkflowInput = {
