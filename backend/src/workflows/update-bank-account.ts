@@ -37,10 +37,11 @@ export const updateBankAccountStep = createStep(
     },
 );
 
-export const updateBankAccountWorkflow = createWorkflow(
-    'update-bank-account-workflow',
-    (input: BankAccount) => {
-        const bankAccount = updateBankAccountStep(input);
-        return new WorkflowResponse({ bankAccount });
-    },
-);
+export const updateBankAccountWorkflow = createWorkflow<
+    BankAccount,
+    { bankAccount: BankAccount },
+    any
+>('update-bank-account-workflow', (input: BankAccount) => {
+    const bankAccount = updateBankAccountStep(input);
+    return new WorkflowResponse({ bankAccount });
+});
