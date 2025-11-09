@@ -3,11 +3,11 @@ import { defineWidgetConfig } from '@medusajs/admin-sdk';
 import { Container, Heading, Text } from '@medusajs/ui';
 import { AdminProduct, DetailWidgetProps } from '@medusajs/types';
 import { useQuery } from '@tanstack/react-query';
-import { sdk } from '../../../lib/config';
+import { sdk } from '../../lib/config';
 import UploadProductDocument from './components/upload-product-document';
-import { findDocument, toArray } from '../../../lib/utils';
+import { findDocument, toArray } from '../../lib/utils';
 import DeleteProductDocument from './components/delete-product-document';
-import { AdminProductWithDocument } from '../../../lib/types';
+import { AdminProductWithDocument } from '../../lib/types';
 
 const ProductDocumentWidget = ({ data: product }: DetailWidgetProps<AdminProduct>) => {
     const {

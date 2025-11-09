@@ -1,12 +1,12 @@
 import React from 'react';
 import { defineWidgetConfig } from '@medusajs/admin-sdk';
 import { Container, Heading, Text } from '@medusajs/ui';
-import { SectionRow } from '../../components/SectionRow';
+import { SectionRow } from '../components/SectionRow';
 import { AdminCustomer, DetailWidgetProps } from '@medusajs/types';
 import { useQuery } from '@tanstack/react-query';
-import { sdk } from '../../../../lib/config';
-import { AdminCustomerExtended } from '../../../../lib/types';
-import UpdateBankAccount from './update-bank-account';
+import { sdk } from '../../lib/config';
+import { AdminCustomerExtended } from '../../lib/types';
+import UpdateBankAccount from './components/update-bank-account';
 
 const BankAccountWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) => {
     const {
