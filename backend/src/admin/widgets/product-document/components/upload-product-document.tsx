@@ -4,7 +4,7 @@ import { Plus } from '@medusajs/icons';
 import { Controller, useForm } from 'react-hook-form';
 import { documentFormRules } from '../validation';
 import { useDropzone } from 'react-dropzone';
-import { sdk } from '../../../lib/config';
+import { sdk } from '../../../../lib/config';
 import { documentTypes } from '../constants';
 
 type ProductDocumentForm = {
@@ -99,9 +99,11 @@ const UploadProductDocument = ({ productId, onSuccess }: Props) => {
                 </IconButton>
             </Drawer.Trigger>
             <Drawer.Content>
-                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col p-4 gap-4">
+                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-1 flex-col gap-4">
                     <Drawer.Header>
-                        <Drawer.Title>Upload document</Drawer.Title>
+                        <Drawer.Title className="font-sans font-medium h1-core">
+                            Upload document
+                        </Drawer.Title>
                     </Drawer.Header>
                     <Drawer.Body>
                         <div className="flex flex-col gap-4">

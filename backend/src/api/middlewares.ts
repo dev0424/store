@@ -5,6 +5,7 @@ import {
     MedusaNextFunction,
 } from '@medusajs/framework/http';
 import { PostAdminCreateProductDocument } from 'api/admin/product-document/validators';
+import { UpdateBankAccount } from 'api/admin/bank-account/validators';
 import { z } from 'zod';
 import { MedusaRequest, MedusaResponse } from '@medusajs/framework';
 
@@ -20,6 +21,11 @@ export default defineMiddlewares({
             middlewares: [validateAndTransformBody(PostAdminCreateProductDocument)],
         },
         {
+            matcher: '/admin/bank-account/:id',
+            method: 'PUT',
+            middlewares: [validateAndTransformBody(UpdateBankAccount)],
+        },
+        {
             matcher: '/admin/products',
             method: ['POST'],
             additionalDataValidator: {
@@ -31,7 +37,24 @@ export default defineMiddlewares({
             matcher: '/store/customers/me',
             middlewares: [
                 (request: MedusaRequest, response: MedusaResponse, next: MedusaNextFunction) => {
-                    (request.allowed ??= []).push('bank_account', 'billing_address');
+                    (request.allowed ??= []).push(
+                        'bank_account',
+                        'billing_address',
+                        'customer_profile',
+                    );
+                    next();
+                },
+            ],
+        },
+        {
+            matcher: '/admin/customers/:id',
+            middlewares: [
+                (request: MedusaRequest, response: MedusaResponse, next: MedusaNextFunction) => {
+                    (request.allowed ??= []).push(
+                        'bank_account',
+                        'billing_address',
+                        'customer_profile',
+                    );
                     next();
                 },
             ],

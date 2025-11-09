@@ -1,4 +1,4 @@
-import { AdminProduct } from '@medusajs/types';
+import { AdminCustomer, AdminProduct } from '@medusajs/types';
 
 export type ProductDocument = {
     id: string;
@@ -16,6 +16,7 @@ export type AdminProductWithDocument = {
 };
 
 export type BankAccount = {
+    id: string;
     bank_name: string;
     bank_code: string;
     branch_code: string;
@@ -45,4 +46,12 @@ export type CustomerProfile = {
     billing_cycle: string;
     payment_method: string;
     invoice_email: string;
+};
+
+export type AdminCustomerExtended = {
+    customer: AdminCustomer & {
+        bank_account: BankAccount;
+        billing_address: BillingAddress;
+        customer_profile: CustomerProfile;
+    };
 };
