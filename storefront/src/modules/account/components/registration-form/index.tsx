@@ -14,7 +14,7 @@ import { BillingAddress } from "@types/billing-address";
 import { CustomerProfile } from "@types/customer-profile";
 import NativeSelect from "@modules/common/components/native-select";
 
-export type SignupFormData = {
+export type RegistrationFormValues = {
   email: string;
   first_name: string;
   last_name: string;
@@ -22,9 +22,6 @@ export type SignupFormData = {
   company_name: string;
   password: string;
   confirm_password: string;
-  metadata: {
-    tax_number: string;
-  };
   bank_account: BankAccount;
   billing_address: BillingAddress;
   customer_profile: CustomerProfile;
@@ -38,11 +35,11 @@ const RegistrationForm = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<SignupFormData>();
+  } = useForm<RegistrationFormValues>();
 
   const password = watch("password");
 
-  const onSubmit = async (data: SignupFormData) => {
+  const onSubmit = async (data: RegistrationFormValues) => {
     const message = await signup(data);
 
     if (message) {
@@ -94,19 +91,6 @@ const RegistrationForm = () => {
               autoComplete="tel"
               data-testid="phone-input"
               errors={errors?.phone}
-              required={true}
-              disableNativeValidation={true}
-            />
-            <Input
-              {...register(
-                "metadata.tax_number",
-                signupSchema.metadata.tax_number,
-              )}
-              label="Tax number"
-              name="metadata.tax_number"
-              data-testid="tax-number-input"
-              type="text"
-              errors={errors?.metadata?.tax_number}
               required={true}
               disableNativeValidation={true}
             />

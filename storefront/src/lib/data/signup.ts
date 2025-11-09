@@ -4,9 +4,9 @@ import { sdk } from "@lib/config";
 import { getCacheTag, setAuthToken } from "@lib/data/cookies";
 import { revalidateTag } from "next/cache";
 import { transferCart } from "@lib/data/customer";
-import { SignupFormData } from "@modules/account/components/registration-form";
+import { RegistrationFormValues } from "@modules/account/components/registration-form";
 
-export async function signup(customerForm: SignupFormData) {
+export async function signup(customerForm: RegistrationFormValues) {
   try {
     const token = await sdk.auth.register("customer", "emailpass", {
       email: customerForm.email,

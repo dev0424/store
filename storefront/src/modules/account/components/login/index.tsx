@@ -1,15 +1,11 @@
 import { login } from "@lib/data/customer";
-import { LOGIN_VIEW } from "@modules/account/templates/login-template";
 import ErrorMessage from "@modules/checkout/components/error-message";
 import { SubmitButton } from "@modules/checkout/components/submit-button";
 import Input from "@modules/common/components/input";
 import { useActionState } from "react";
+import LocalizedClientLink from "@modules/common/components/localized-client-link";
 
-type Props = {
-  setCurrentView: (view: LOGIN_VIEW) => void;
-};
-
-const Login = ({ setCurrentView }: Props) => {
+const Login = () => {
   const [message, formAction] = useActionState(login, null);
 
   return (
@@ -53,13 +49,11 @@ const Login = ({ setCurrentView }: Props) => {
       </form>
       <span className="text-small-regular mt-6 text-center text-ui-fg-base">
         Je ne suis pas encore un client RSPI{" "}
-        <button
-          onClick={() => setCurrentView(LOGIN_VIEW.REGISTER)}
-          className="underline"
-          data-testid="register-button"
-        >
-          Demande de création de compte
-        </button>
+        <LocalizedClientLink href="/register">
+          <button className="underline" data-testid="register-button">
+            Demande de création de compte
+          </button>
+        </LocalizedClientLink>
         .
       </span>
     </div>

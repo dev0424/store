@@ -1,15 +1,11 @@
 import React from "react";
-import { LOGIN_VIEW } from "@modules/account/templates/login-template";
 import RegistrationForm from "@modules/account/components/registration-form";
+import LocalizedClientLink from "@modules/common/components/localized-client-link";
 
-type Props = {
-  setCurrentView: (view: LOGIN_VIEW) => void;
-};
-
-const RegisterTemplate = ({ setCurrentView }: Props) => {
+const RegisterTemplate = () => {
   return (
     <div
-      className="flex max-w-xl flex-col items-center"
+      className="flex w-full max-w-xl flex-col items-center justify-center"
       data-testid="register-page"
     >
       <h1 className="text-xl-semi text-center text-ui-fg-base sm:text-left">
@@ -22,12 +18,9 @@ const RegisterTemplate = ({ setCurrentView }: Props) => {
       <RegistrationForm />
       <span className="text-small-regular mt-6 text-center text-ui-fg-base">
         Vous avez déjà un compte?{" "}
-        <button
-          onClick={() => setCurrentView(LOGIN_VIEW.SIGN_IN)}
-          className="underline"
-        >
-          Se connecter
-        </button>
+        <LocalizedClientLink href="/account">
+          <button className="underline">Se connecter</button>
+        </LocalizedClientLink>
       </span>
     </div>
   );

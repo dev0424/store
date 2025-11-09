@@ -55,7 +55,7 @@ const SideMenuContent = ({
             <ForwardButton title="Products" onClick={openProductsRoot} />
             <Divider className="my-1 border-background-secondary" />
             <LocalizedClientLink
-              href="#"
+              href="/register"
               className="text-lg leading-10 hover:text-accent-primary"
               onClick={close}
             >

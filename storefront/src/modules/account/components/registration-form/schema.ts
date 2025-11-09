@@ -1,7 +1,7 @@
-import { SignupFormData } from "@modules/account/components/registration-form/index";
+import { RegistrationFormValues } from "@modules/account/components/registration-form/index";
 
 export const signupSchema: Record<
-  Exclude<keyof SignupFormData, "confirm_password">,
+  Exclude<keyof RegistrationFormValues, "confirm_password">,
   any
 > = {
   first_name: {

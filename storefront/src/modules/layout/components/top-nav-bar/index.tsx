@@ -1,14 +1,19 @@
 import React from "react";
 import NavLink from "@modules/layout/components/nav-link";
+import { retrieveCustomer } from "@lib/data/customer";
 
-const TopNavBar = () => {
+const TopNavBar = async () => {
+  const customer = await retrieveCustomer();
+
   return (
     <div className="w-full border-b border-background-secondary p-2 text-sm text-white">
       <div className="content-container">
         <ul className="flex items-center justify-end gap-8">
-          <li>
-            <NavLink href="#" title="Créer un compte" />
-          </li>
+          {customer ? null : (
+            <li>
+              <NavLink href="/register" title="Créer un compte" />
+            </li>
+          )}
           <li>
             <NavLink href="#" title="Catalogue" />
           </li>
