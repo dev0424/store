@@ -13,7 +13,7 @@ import { UpdateAccountStatusRequest } from 'api/admin/account-status/validators'
 export default defineMiddlewares({
     routes: [
         {
-            matcher: '/store/company*',
+            matcher: '/store/register*',
             middlewares: [authenticate('customer', ['bearer'], { allowUnregistered: true })],
         },
         {

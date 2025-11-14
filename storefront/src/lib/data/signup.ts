@@ -15,7 +15,7 @@ export async function signup(customerForm: RegistrationFormValues) {
 
     await setAuthToken(token as string);
 
-    const createdCustomer = await sdk.client.fetch("/store/company", {
+    const createdCustomer = await sdk.client.fetch("/store/register", {
       method: "POST",
       body: customerForm,
       headers: { authorization: `Bearer ${token}` },
