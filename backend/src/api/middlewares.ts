@@ -8,7 +8,7 @@ import { PostAdminCreateProductDocument } from 'api/admin/product-document/valid
 import { UpdateBankAccount } from 'api/admin/bank-account/validators';
 import { z } from 'zod';
 import { MedusaRequest, MedusaResponse } from '@medusajs/framework';
-import { UpdateAccountStatusRequest } from 'api/admin/customer/[id]/account-status/validators';
+import { UpdateAccountStatusRequest } from 'api/admin/account-status/validators';
 
 export default defineMiddlewares({
     routes: [
@@ -34,7 +34,7 @@ export default defineMiddlewares({
             },
         },
         {
-            matcher: '/admin/customer/:id/account-status',
+            matcher: '/admin/account-status/:id',
             method: 'PUT',
             middlewares: [validateAndTransformBody(UpdateAccountStatusRequest)],
         },

@@ -1,6 +1,6 @@
 import type { MedusaResponse, AuthenticatedMedusaRequest } from '@medusajs/framework';
-import { updateAccountStatusWorkflow } from '../../../../../workflows/update-account-status';
-import { AccountStatus } from '../../../../../lib/types';
+import { updateAccountStatusWorkflow } from '../../../../workflows/update-account-status';
+import { AccountStatus } from '../../../../lib/types';
 
 export async function PUT(
     request: AuthenticatedMedusaRequest<AccountStatus>,
