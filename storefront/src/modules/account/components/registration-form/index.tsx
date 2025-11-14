@@ -13,6 +13,7 @@ import { BankAccount } from "@types/bank-account";
 import { BillingAddress } from "@types/billing-address";
 import { CustomerProfile } from "@types/customer-profile";
 import NativeSelect from "@modules/common/components/native-select";
+import { useRouter } from "next/navigation";
 
 export type RegistrationFormValues = {
   email: string;
@@ -29,6 +30,7 @@ export type RegistrationFormValues = {
 
 const RegistrationForm = () => {
   const [error, setError] = useState<string | undefined>(undefined);
+  const router = useRouter();
 
   const {
     register,
@@ -44,6 +46,8 @@ const RegistrationForm = () => {
 
     if (message) {
       setError(message);
+    } else {
+      router.push("/account");
     }
   };
 

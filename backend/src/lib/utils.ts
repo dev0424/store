@@ -1,4 +1,4 @@
-import { documentTypes } from '../admin/widgets/constants';
+import { DOCUMENT_TYPE_METADATA } from '../admin/widgets/constants';
 
 export function toArray<T>(input: T | T[] | null | undefined): T[] {
     if (input == null) {
@@ -8,4 +8,4 @@ export function toArray<T>(input: T | T[] | null | undefined): T[] {
 }
 
 export const findDocument = (type: string) =>
-    documentTypes.find(document => document.type === type);
+    DOCUMENT_TYPE_METADATA.find(document => document.type === type);

@@ -8,6 +8,7 @@ import { PostAdminCreateProductDocument } from 'api/admin/product-document/valid
 import { UpdateBankAccount } from 'api/admin/bank-account/validators';
 import { z } from 'zod';
 import { MedusaRequest, MedusaResponse } from '@medusajs/framework';
+import { UpdateAccountStatusRequest } from 'api/admin/customer/[id]/account-status/validators';
 
 export default defineMiddlewares({
     routes: [
@@ -33,6 +34,11 @@ export default defineMiddlewares({
             },
         },
         {
+            matcher: '/admin/customer/:id/account-status',
+            method: 'PUT',
+            middlewares: [validateAndTransformBody(UpdateAccountStatusRequest)],
+        },
+        {
             // Medusa restricts API routes to be retrieved for some endpoints https://docs.medusajs.com/learn/fundamentals/api-routes/retrieve-custom-links#api-routes-that-restrict-retrievable-fields
             matcher: '/store/customers/me',
             middlewares: [
@@ -41,6 +47,7 @@ export default defineMiddlewares({
                         'bank_account',
                         'billing_address',
                         'customer_profile',
+                        'account_status',
                     );
                     next();
                 },
@@ -54,6 +61,7 @@ export default defineMiddlewares({
                         'bank_account',
                         'billing_address',
                         'customer_profile',
+                        'account_status',
                     );
                     next();
                 },

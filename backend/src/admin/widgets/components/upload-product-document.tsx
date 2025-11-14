@@ -5,7 +5,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { documentFormRules } from '../validation/product-document';
 import { useDropzone } from 'react-dropzone';
 import { sdk } from '../../../lib/config';
-import { documentTypes } from '../constants';
+import { DOCUMENT_TYPE_METADATA } from '../constants';
 
 type ProductDocumentForm = {
     type: string;
@@ -116,7 +116,7 @@ const UploadProductDocument = ({ productId, onSuccess }: Props) => {
                                                 <Select.Value placeholder="Select type" />
                                             </Select.Trigger>
                                             <Select.Content>
-                                                {documentTypes.map(document => (
+                                                {DOCUMENT_TYPE_METADATA.map(document => (
                                                     <Select.Item
                                                         key={document.type}
                                                         value={document.type}

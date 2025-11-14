@@ -1,15 +1,26 @@
 import type { MedusaResponse, AuthenticatedMedusaRequest } from '@medusajs/framework';
 import { createCustomerAccountWorkflow } from '@medusajs/medusa/core-flows';
 import { createBankAccountWorkflow } from '../../../workflows/create-bank-account';
-import { BankAccount, BillingAddress, CustomerProfile } from '../../../lib/types';
+import {
+    BankAccount,
+    BillingAddress,
+    CustomerProfile,
+    ApplicationStatus,
+} from '../../../lib/types';
 import { CreateCustomerDTO } from '@medusajs/types';
 import { createBillingAddressWorkflow } from '../../../workflows/create-billing-address';
 import { createCustomerProfileWorkflow } from '../../../workflows/create-customer-profile';
+import { createAccountStatusWorkflow } from '../../../workflows/create-account-status';
 
 type CreateCustomerRequest = CreateCustomerDTO & {
     bank_account: BankAccount;
     billing_address: BillingAddress;
     customer_profile: CustomerProfile;
+};
+
+const DEFAULT_ACCOUNT_STATUS = {
+    application_status: 'PENDING' as ApplicationStatus,
+    is_searchable: false,
 };
 
 export async function POST(
@@ -28,7 +39,6 @@ export async function POST(
                 ...customerData,
                 metadata: {
                     ...customerData.metadata,
-                    status: 'pending',
                 },
             },
         },
@@ -49,5 +59,19 @@ export async function POST(
         input: { customer: createdCustomer, customer_profile: customerData.customer_profile },
     });
 
-    response.send({ ...createdCustomer, ...bankAccount, ...billingAddress, ...customerProfile });
+    // Create account status and attach to customer account
+    const accountStatus = await createAccountStatusWorkflow(request.scope).run({
+        input: {
+            customer: createdCustomer,
+            account_status: DEFAULT_ACCOUNT_STATUS,
+        },
+    });
+
+    response.send({
+        ...createdCustomer,
+        ...bankAccount,
+        ...billingAddress,
+        ...customerProfile,
+        ...accountStatus,
+    });
 }

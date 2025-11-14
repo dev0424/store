@@ -1,4 +1,6 @@
-export const documentTypes = [
+import { ApplicationStatus } from 'lib/types';
+
+export const DOCUMENT_TYPE_METADATA = [
     {
         type: 'instructions',
         label: 'Instructions',
@@ -16,3 +18,21 @@ export const documentTypes = [
         label: 'Product sheet without price',
     },
 ];
+
+export const APPLICATION_STATUS_METADATA: Record<
+    ApplicationStatus,
+    { label: string; color: 'green' | 'red' | 'blue' }
+> = {
+    PENDING: {
+        label: 'Pending',
+        color: 'blue',
+    },
+    APPROVED: {
+        label: 'Approved',
+        color: 'green',
+    },
+    DECLINED: {
+        label: 'Declined',
+        color: 'red',
+    },
+};

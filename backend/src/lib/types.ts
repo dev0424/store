@@ -48,10 +48,19 @@ export type CustomerProfile = {
     invoice_email: string;
 };
 
+export type AccountStatus = {
+    id?: string;
+    application_status: ApplicationStatus;
+    is_searchable: boolean;
+};
+
 export type AdminCustomerExtended = {
     customer: AdminCustomer & {
         bank_account: BankAccount;
         billing_address: BillingAddress;
         customer_profile: CustomerProfile;
+        account_status: AccountStatus;
     };
 };
+
+export type ApplicationStatus = 'PENDING' | 'APPROVED' | 'DECLINED';
