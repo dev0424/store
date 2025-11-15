@@ -1,11 +1,11 @@
 import React from "react";
 
 import AccountNav from "../components/account-nav";
-import { HttpTypes } from "@medusajs/types";
 import ContactBanner from "@modules/account/components/contact-banner";
+import { ExtendedCustomer } from "@types/customer";
 
 interface AccountLayoutProps {
-  customer: HttpTypes.StoreCustomer | null;
+  customer: ExtendedCustomer | null;
   children: React.ReactNode;
 }
 

@@ -5,9 +5,10 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import { convertToLocale } from "@lib/util/money";
 import { HttpTypes } from "@medusajs/types";
 import PendingRegistrationMessage from "@modules/account/components/pending-registration-message";
+import { ExtendedCustomer } from "@types/customer";
 
 type OverviewProps = {
-  customer: HttpTypes.StoreCustomer | null;
+  customer: ExtendedCustomer | null;
   orders: HttpTypes.StoreOrder[] | null;
 };
 
@@ -15,7 +16,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
   return (
     <div data-testid="overview-page-wrapper">
       <div className="hidden small:block">
-        {customer?.metadata?.status === "pending" ? (
+        {customer?.account_status.application_status === "PENDING" ? (
           <PendingRegistrationMessage />
         ) : null}
         <div className="text-xl-semi mb-4 flex items-center justify-between">

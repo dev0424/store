@@ -14,9 +14,9 @@ import {
   removeCartId,
   setAuthToken,
 } from "./cookies";
-import { Customer } from "@types/customer";
+import { ExtendedCustomer } from "@types/customer";
 
-export const retrieveCustomer = async (): Promise<Customer | null> => {
+export const retrieveCustomer = async (): Promise<ExtendedCustomer | null> => {
   const authHeaders = await getAuthHeaders();
 
   if (!authHeaders) {
@@ -32,10 +32,11 @@ export const retrieveCustomer = async (): Promise<Customer | null> => {
   };
 
   return await sdk.client
-    .fetch<{ customer: Customer }>(`/store/customers/me`, {
+    .fetch<{ customer: ExtendedCustomer }>(`/store/customers/me`, {
       method: "GET",
       query: {
-        fields: "*orders,+bank_account.*,+billing_address.*",
+        fields:
+          "*orders,+bank_account.*,+billing_address.*,+customer_profile.*,+account_status.*",
       },
       headers,
       next,
