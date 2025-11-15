@@ -17,7 +17,7 @@ const FormInput = ({ label, name, rules, defaultValue }: Props) => {
 
     return (
         <div className="flex flex-col gap-1">
-            <Label htmlFor="bank_name" className="font-sans txt-compact-small font-medium">
+            <Label htmlFor={name} className="font-sans txt-compact-small font-medium">
                 {label}
             </Label>
             <Input

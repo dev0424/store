@@ -6,6 +6,7 @@ import { AdminCustomer, DetailWidgetProps } from '@medusajs/types';
 import { useQuery } from '@tanstack/react-query';
 import { sdk } from '../../lib/config';
 import { AdminCustomerExtended } from '../../lib/types';
+import UpdateCustomerProfile from '../widgets/components/update-customer-profile';
 
 const CustomerProfileWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) => {
     const {
@@ -37,6 +38,10 @@ const CustomerProfileWidget = ({ data: customer }: DetailWidgetProps<AdminCustom
         <Container className="divide-y p-0">
             <div className="flex justify-between items-center px-6 py-4">
                 <Heading level="h2">Customer profile</Heading>
+                <UpdateCustomerProfile
+                    customerProfile={customerData.customer.customer_profile}
+                    onSuccess={refreshCustomer}
+                />
             </div>
             <SectionRow
                 title="VAT number"

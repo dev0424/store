@@ -10,6 +10,7 @@ import { z } from 'zod';
 import { MedusaRequest, MedusaResponse } from '@medusajs/framework';
 import { UpdateAccountStatusRequest } from 'api/admin/account-status/validators';
 import { UpdateBillingAddressRequest } from 'api/admin/billing-address/validators';
+import { UpdateCustomerProfileRequest } from 'api/admin/customer-profile/validators';
 
 export default defineMiddlewares({
     routes: [
@@ -43,6 +44,11 @@ export default defineMiddlewares({
             matcher: '/admin/billing-address/:id',
             method: 'PUT',
             middlewares: [validateAndTransformBody(UpdateBillingAddressRequest)],
+        },
+        {
+            matcher: '/admin/customer-profile/:id',
+            method: 'PUT',
+            middlewares: [validateAndTransformBody(UpdateCustomerProfileRequest)],
         },
         {
             // Medusa restricts API routes to be retrieved for some endpoints https://docs.medusajs.com/learn/fundamentals/api-routes/retrieve-custom-links#api-routes-that-restrict-retrievable-fields

@@ -20,7 +20,6 @@ const UpdateBillingAddress = ({ onSuccess, billingAddress }: Props) => {
     });
 
     const onSubmit = async (values: BillingAddress) => {
-        console.log(values);
         try {
             // Update customer billing address
             await sdk.client.fetch(`/admin/billing-address/${billingAddress.id}`, {

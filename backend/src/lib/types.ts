@@ -40,6 +40,7 @@ export type BillingAddress = {
 };
 
 export type CustomerProfile = {
+    id: string;
     vat_number: string;
     siret_number: string;
     ape_code: string;
