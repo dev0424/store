@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Drawer, IconButton, Select, Text, toast, Toaster } from '@medusajs/ui';
 import { Plus } from '@medusajs/icons';
 import { Controller, useForm } from 'react-hook-form';
-import { documentFormRules } from '../validation/product-document';
+import { PRODUCT_DOCUMENT_RULES } from '../validation/product-document';
 import { useDropzone } from 'react-dropzone';
 import { sdk } from '../../../lib/config';
 import { DOCUMENT_TYPE_METADATA } from '../constants';
@@ -109,7 +109,7 @@ const UploadProductDocument = ({ productId, onSuccess }: Props) => {
                         <div className="flex flex-col gap-4">
                             <div className="flex flex-col gap-2">
                                 <Controller
-                                    rules={documentFormRules.type}
+                                    rules={PRODUCT_DOCUMENT_RULES.type}
                                     render={({ field }) => (
                                         <Select value={field.value} onValueChange={field.onChange}>
                                             <Select.Trigger>
@@ -140,7 +140,7 @@ const UploadProductDocument = ({ productId, onSuccess }: Props) => {
                             <Controller
                                 control={control}
                                 name="file"
-                                rules={documentFormRules.file}
+                                rules={PRODUCT_DOCUMENT_RULES.file}
                                 render={({ field }) => {
                                     const { getRootProps, getInputProps } = useDropzone({
                                         multiple: false,

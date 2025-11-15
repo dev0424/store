@@ -30,6 +30,7 @@ export type BankAccount = {
 };
 
 export type BillingAddress = {
+    id: string;
     address_1: string;
     address_2?: string;
     postal_code: string;

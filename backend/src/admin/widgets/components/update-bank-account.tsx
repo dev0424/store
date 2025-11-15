@@ -3,7 +3,7 @@ import { Button, Drawer, IconButton, toast, Toaster } from '@medusajs/ui';
 import { EllipsisHorizontal } from '@medusajs/icons';
 import { FormProvider, useForm } from 'react-hook-form';
 import { BankAccount } from '../../../lib/types';
-import { bankAccountFormRules } from '../validation/bank-account';
+import { BANK_ACCOUNT_RULES } from '../validation/bank-account';
 import FormInput from '../../components/FormInput';
 import { sdk } from '../../../lib/config';
 
@@ -69,61 +69,61 @@ const UpdateBankAccount = ({ onSuccess, bankAccount }: Props) => {
                                     label="Bank name"
                                     name="bank_name"
                                     defaultValue={bankAccount.bank_name}
-                                    rules={bankAccountFormRules.bank_name}
+                                    rules={BANK_ACCOUNT_RULES.bank_name}
                                 />
                                 <FormInput
                                     label="Bank code"
                                     name="bank_code"
                                     defaultValue={bankAccount.bank_code}
-                                    rules={bankAccountFormRules.bank_code}
+                                    rules={BANK_ACCOUNT_RULES.bank_code}
                                 />
                                 <FormInput
                                     label="Branch code"
                                     name="branch_code"
                                     defaultValue={bankAccount.branch_code}
-                                    rules={bankAccountFormRules.branch_code}
+                                    rules={BANK_ACCOUNT_RULES.branch_code}
                                 />
                                 <FormInput
                                     label="City"
                                     name="city"
                                     defaultValue={bankAccount.city}
-                                    rules={bankAccountFormRules.city}
+                                    rules={BANK_ACCOUNT_RULES.city}
                                 />
                                 <FormInput
                                     label="Address"
                                     name="address"
                                     defaultValue={bankAccount.address}
-                                    rules={bankAccountFormRules.address}
+                                    rules={BANK_ACCOUNT_RULES.address}
                                 />
                                 <FormInput
                                     label="Account number"
                                     name="account_number"
                                     defaultValue={bankAccount.account_number}
-                                    rules={bankAccountFormRules.account_number}
+                                    rules={BANK_ACCOUNT_RULES.account_number}
                                 />
                                 <FormInput
                                     label="Account holder"
                                     name="account_holder"
                                     defaultValue={bankAccount.account_holder}
-                                    rules={bankAccountFormRules.account_holder}
+                                    rules={BANK_ACCOUNT_RULES.account_holder}
                                 />
                                 <FormInput
                                     label="IBAN"
                                     name="iban"
                                     defaultValue={bankAccount.iban}
-                                    rules={bankAccountFormRules.iban}
+                                    rules={BANK_ACCOUNT_RULES.iban}
                                 />
                                 <FormInput
                                     label="BIC"
                                     name="bic"
                                     defaultValue={bankAccount.bic}
-                                    rules={bankAccountFormRules.bic}
+                                    rules={BANK_ACCOUNT_RULES.bic}
                                 />
                                 <FormInput
                                     label="RIB key"
                                     name="rib_key"
                                     defaultValue={bankAccount.rib_key}
-                                    rules={bankAccountFormRules.rib_key}
+                                    rules={BANK_ACCOUNT_RULES.rib_key}
                                 />
                             </div>
                         </Drawer.Body>

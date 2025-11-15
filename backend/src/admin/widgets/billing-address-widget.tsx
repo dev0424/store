@@ -6,6 +6,7 @@ import { AdminCustomer, DetailWidgetProps } from '@medusajs/types';
 import { useQuery } from '@tanstack/react-query';
 import { sdk } from '../../lib/config';
 import { AdminCustomerExtended } from '../../lib/types';
+import UpdateBillingAddress from '../widgets/components/update-billing-address';
 
 const BillingAddressWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) => {
     const {
@@ -37,6 +38,10 @@ const BillingAddressWidget = ({ data: customer }: DetailWidgetProps<AdminCustome
         <Container className="divide-y p-0">
             <div className="flex justify-between items-center px-6 py-4">
                 <Heading level="h2">Billing address</Heading>
+                <UpdateBillingAddress
+                    onSuccess={refreshCustomer}
+                    billingAddress={customerData.customer.billing_address}
+                />
             </div>
             <SectionRow title="Address 1" value={customerData.customer.billing_address.address_1} />
             <SectionRow

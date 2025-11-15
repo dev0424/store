@@ -1,4 +1,4 @@
-export const bankAccountFormRules = {
+export const BANK_ACCOUNT_RULES = {
     bank_name: {
         required: 'This field is required',
     },
