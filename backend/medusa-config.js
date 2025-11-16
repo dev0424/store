@@ -53,9 +53,6 @@ const medusaConfig = {
             resolve: './src/modules/bank-account',
         },
         {
-            resolve: './src/modules/billing-address',
-        },
-        {
             resolve: './src/modules/customer-profile',
         },
         {
