@@ -73,6 +73,12 @@ const EditAddress: React.FC<EditAddressProps> = ({
         data-testid="address-container"
       >
         <div className="flex flex-col">
+          <Heading className="text-base-semi text-left">
+            {address.is_default_billing ? "Billing address" : null}
+          </Heading>
+          <Heading className="text-base-semi text-left">
+            {address.is_default_shipping ? "Shipping address" : null}
+          </Heading>
           <Heading
             className="text-base-semi text-left"
             data-testid="address-name"
