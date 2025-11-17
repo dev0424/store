@@ -5,6 +5,7 @@ import { BankAccount, CustomerProfile, ApplicationStatus } from '../../../lib/ty
 import { CreateCustomerDTO } from '@medusajs/types';
 import { createCustomerProfileWorkflow } from '../../../workflows/create-customer-profile';
 import { createAccountStatusWorkflow } from '../../../workflows/create-account-status';
+import { createLocationWorkflow } from '../../../workflows/create-location';
 
 type CreateCustomerRequest = CreateCustomerDTO & {
     bank_account: BankAccount;
@@ -14,6 +15,11 @@ type CreateCustomerRequest = CreateCustomerDTO & {
 const DEFAULT_ACCOUNT_STATUS = {
     application_status: 'PENDING' as ApplicationStatus,
     is_searchable: false,
+};
+
+const DEFAULT_LOCATION = {
+    latitude: null,
+    longitude: null,
 };
 
 export async function POST(
@@ -55,10 +61,19 @@ export async function POST(
         },
     });
 
+    // Create location and attach to customer account
+    const location = await createLocationWorkflow(request.scope).run({
+        input: {
+            customer: createdCustomer,
+            location: DEFAULT_LOCATION,
+        },
+    });
+
     response.send({
         ...createdCustomer,
         ...bankAccount,
         ...customerProfile,
         ...accountStatus,
+        ...location,
     });
 }

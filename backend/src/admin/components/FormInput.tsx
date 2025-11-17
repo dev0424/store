@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { HTMLInputTypeAttribute } from 'react';
 import { Input, Label, Text } from '@medusajs/ui';
 import { useFormContext } from 'react-hook-form';
 
@@ -6,10 +6,11 @@ type Props = {
     label: string;
     name: string;
     rules?: any;
-    defaultValue?: string;
+    defaultValue?: string | number;
+    type?: HTMLInputTypeAttribute;
 };
 
-const FormInput = ({ label, name, rules, defaultValue }: Props) => {
+const FormInput = ({ label, name, rules, defaultValue, type = 'text' }: Props) => {
     const {
         register,
         formState: { errors },
@@ -24,7 +25,7 @@ const FormInput = ({ label, name, rules, defaultValue }: Props) => {
                 {...register(name, rules)}
                 id={name}
                 name={name}
-                type="text"
+                type={type}
                 defaultValue={defaultValue}
                 aria-invalid={!!errors?.[name]}
             />

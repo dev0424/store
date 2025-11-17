@@ -8,7 +8,7 @@ export type Props = {
 };
 
 export const SectionRow = ({ title, value, actions }: Props) => {
-    const isValueString = typeof value === 'string' || !value;
+    const displayAsValue = typeof value === 'string' || typeof value === 'number' || !value;
 
     return (
         <div
@@ -20,7 +20,7 @@ export const SectionRow = ({ title, value, actions }: Props) => {
                 {title}
             </Text>
 
-            {isValueString ? (
+            {displayAsValue ? (
                 <Text size="small" leading="compact" className="whitespace-pre-line text-pretty">
                     {value ?? '-'}
                 </Text>

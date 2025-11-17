@@ -1,14 +1,14 @@
 import React from 'react';
 import { defineWidgetConfig } from '@medusajs/admin-sdk';
+import { AdminCustomer, DetailWidgetProps } from '@medusajs/types';
 import { Container, Heading, Text } from '@medusajs/ui';
 import { SectionRow } from '../components/SectionRow';
-import { AdminCustomer, DetailWidgetProps } from '@medusajs/types';
+import UpdateLocation from './components/update-location';
 import { useQuery } from '@tanstack/react-query';
 import { sdk } from '../../lib/config';
-import { AdminCustomerExtended } from '../../lib/types';
-import UpdateCustomerProfile from '../widgets/components/update-customer-profile';
+import { AdminCustomerExtended } from 'lib/types';
 
-const CustomerProfileWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) => {
+const LocationWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) => {
     const {
         data: customerData,
         isLoading,
@@ -26,7 +26,7 @@ const CustomerProfileWidget = ({ data: customer }: DetailWidgetProps<AdminCustom
             <Container className="p-0">
                 <div className="flex flex-col divide-y">
                     <Heading level="h2" className="px-6 py-4">
-                        Customer profile
+                        Location
                     </Heading>
                     <Text className="px-6 py-4">Loading...</Text>
                 </div>
@@ -37,33 +37,19 @@ const CustomerProfileWidget = ({ data: customer }: DetailWidgetProps<AdminCustom
     return (
         <Container className="divide-y p-0">
             <div className="flex justify-between items-center px-6 py-4">
-                <Heading level="h2">Customer profile</Heading>
-                <UpdateCustomerProfile
-                    customerProfile={customerData.customer.customer_profile}
+                <Heading level="h2">Location</Heading>
+                <UpdateLocation
+                    location={customerData.customer.location}
                     onSuccess={refreshCustomer}
                 />
             </div>
             <SectionRow
-                title="VAT number"
-                value={customerData.customer.customer_profile.vat_number}
+                title="Latitude"
+                value={customerData.customer.location.latitude || 'Not set'}
             />
             <SectionRow
-                title="SIRET number"
-                value={customerData.customer.customer_profile.siret_number}
-            />
-            <SectionRow title="APE code" value={customerData.customer.customer_profile.ape_code} />
-            <SectionRow title="Activity" value={customerData.customer.customer_profile.activity} />
-            <SectionRow
-                title="Billing cycle"
-                value={customerData.customer.customer_profile.billing_cycle}
-            />
-            <SectionRow
-                title="Payment method"
-                value={customerData.customer.customer_profile.payment_method}
-            />
-            <SectionRow
-                title="Invoice email"
-                value={customerData.customer.customer_profile.invoice_email}
+                title="Longitude"
+                value={customerData.customer.location.longitude || 'Not set'}
             />
         </Container>
     );
@@ -73,4 +59,4 @@ export const config = defineWidgetConfig({
     zone: 'customer.details.after',
 });
 
-export default CustomerProfileWidget;
+export default LocationWidget;

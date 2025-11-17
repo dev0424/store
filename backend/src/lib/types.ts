@@ -50,6 +50,12 @@ export type CustomerProfile = {
     invoice_email: string;
 };
 
+export type Location = {
+    id?: string;
+    latitude: number | null;
+    longitude: number | null;
+};
+
 export type AccountStatus = {
     id?: string;
     application_status: ApplicationStatus;
@@ -62,6 +68,7 @@ export type AdminCustomerExtended = {
         billing_address: BillingAddress;
         customer_profile: CustomerProfile;
         account_status: AccountStatus;
+        location: Location;
     };
 };
 

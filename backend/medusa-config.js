@@ -59,6 +59,9 @@ const medusaConfig = {
             resolve: './src/modules/account-status',
         },
         {
+            resolve: './src/modules/location',
+        },
+        {
             key: Modules.FILE,
             resolve: '@medusajs/file',
             options: {
