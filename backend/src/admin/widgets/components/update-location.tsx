@@ -26,8 +26,8 @@ const UpdateLocation = ({ location, onSuccess }: Props) => {
                 credentials: 'include',
                 body: {
                     ...values,
-                    latitude: +values.latitude,
-                    longitude: +values.longitude,
+                    latitude: Number(values.latitude),
+                    longitude: Number(values.longitude),
                 },
             });
             onSuccess();

@@ -36,8 +36,8 @@ const DistributorMapComponent = ({
           key={distributor.id}
           icon={markerIcon}
           position={[
-            distributor.coordinates.latitude,
-            distributor.coordinates.longitude,
+            distributor.location.latitude,
+            distributor.location.longitude,
           ]}
         >
           <Popup>

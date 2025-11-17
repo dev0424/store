@@ -12,20 +12,20 @@ const DistributorInfo = ({ distributor }: Props) => {
   return (
     <>
       <div className="flex justify-between">
-        <p className="font-black">{distributor.name}</p>
+        <p className="font-black">{distributor.company_name}</p>
         {distributor.distance ? (
           <p className="font-black">{formatDistance(distributor.distance)}</p>
         ) : null}
       </div>
       <Divider />
       <div className="flex flex-col gap-2">
-        <div className="flex items-center gap-2">
-          <HiLocationMarker />
-          <p className="text-ui-fg-subtle">
-            {distributor.address.address}, {distributor.address.postal_code}{" "}
-            {distributor.address.city}
-          </p>
-        </div>
+        {/*<div className="flex items-center gap-2">*/}
+        {/*  <HiLocationMarker />*/}
+        {/*  <p className="text-ui-fg-subtle">*/}
+        {/*    {distributor.address.address}, {distributor.address.postal_code}{" "}*/}
+        {/*    {distributor.address.city}*/}
+        {/*  </p>*/}
+        {/*</div>*/}
         <div className="flex items-center gap-2">
           <HiPhone />
           <p className="text-ui-fg-subtle">{distributor.phone}</p>

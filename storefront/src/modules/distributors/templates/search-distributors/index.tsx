@@ -14,130 +14,11 @@ const DistributorMap = dynamic(
   { ssr: false },
 );
 
-const distributors: Distributor[] = [
-  {
-    id: 1,
-    name: "Lorem Ipsum",
-    address: {
-      city: "Paris",
-      address: "2 Rue de Rivoli",
-      postal_code: "75001",
-    },
-    email: "mail@mail.test",
-    phone: "123456789",
-    coordinates: { latitude: 48.85888, longitude: 2.34694 },
-  },
-  {
-    id: 2,
-    name: "Lorem Ipsum",
-    address: {
-      city: "Brussels",
-      address: "Avenue Louise 100",
-      postal_code: "1050",
-    },
-    email: "mail@mail.test",
-    phone: "123456789",
-    coordinates: { latitude: 50.85516, longitude: 4.37542 },
-  },
-  {
-    id: 3,
-    name: "Lorem Ipsum",
-    address: {
-      city: "Thionville",
-      address: "7 Rue du Luxembourg",
-      postal_code: "57100",
-    },
-    email: "mail@mail.test",
-    phone: "123456789",
-    coordinates: { latitude: 49.37184, longitude: 6.14437 },
-  },
-  {
-    id: 4,
-    name: "Lorem Ipsum",
-    address: {
-      city: "Metz",
-      address: "12 Place d'Armes",
-      postal_code: "57000",
-    },
-    email: "mail@mail.test",
-    phone: "123456789",
-    coordinates: { latitude: 49.10483, longitude: 6.19623 },
-  },
-  {
-    id: 5,
-    name: "Lorem Ipsum",
-    address: {
-      city: "Saarbrücken",
-      address: "Hauptstraße 50",
-      postal_code: "66111",
-    },
-    email: "mail@mail.test",
-    phone: "123456789",
-    coordinates: { latitude: 49.2472, longitude: 6.9828 },
-  },
-  {
-    id: 6,
-    name: "Lorem Ipsum",
-    address: {
-      city: "Esch-sur-Alzette",
-      address: "12 Rue de Luxembourg",
-      postal_code: "4201",
-    },
-    email: "mail@mail.test",
-    phone: "123456789",
-    coordinates: { latitude: 49.48977, longitude: 5.97418 },
-  },
-  {
-    id: 7,
-    name: "Lorem Ipsum",
-    address: {
-      city: "Frankfurt",
-      address: "Zeil 15",
-      postal_code: "60313",
-    },
-    email: "mail@mail.test",
-    phone: "123456789",
-    coordinates: { latitude: 50.1214, longitude: 8.6366 },
-  },
-  {
-    id: 8,
-    name: "Lorem Ipsum",
-    address: {
-      city: "Hesperange",
-      address: "11 Route de Thionville",
-      postal_code: "5813",
-    },
-    email: "mail@mail.test",
-    phone: "123456789",
-    coordinates: { latitude: 49.57819, longitude: 6.1618 },
-  },
-  {
-    id: 9,
-    name: "Lorem Ipsum",
-    address: {
-      city: "Bretagne",
-      address: "5 Rue de la Liberté",
-      postal_code: "29200",
-    },
-    email: "mail@mail.test",
-    phone: "123456789",
-    coordinates: { latitude: 48.204, longitude: -3.08 },
-  },
-  {
-    id: 10,
-    name: "Lorem Ipsum",
-    address: {
-      city: "London",
-      address: "10 Downing Street",
-      postal_code: "SW1A 2AA",
-    },
-    email: "mail@mail.test",
-    phone: "123456789",
-    coordinates: { latitude: 51.4898, longitude: -0.0882 },
-  },
-];
+type Props = {
+  distributors: Distributor[];
+};
 
-const SearchDistributors = () => {
+const SearchDistributors = ({ distributors }: Props) => {
   const [searchValue, setSearchValue] = useState("");
   const [filteredDistributors, setFilteredDistributors] =
     useState<Distributor[]>(distributors);
@@ -163,7 +44,10 @@ const SearchDistributors = () => {
         setFilteredDistributors(
           distributors
             .map((d) => {
-              const distance = getDistance(userPos, d.coordinates);
+              const distance = getDistance(userPos, {
+                latitude: d.location.latitude,
+                longitude: d.location.longitude,
+              });
               return { ...d, distance };
             })
             .sort((a, b) => (a.distance ?? 0) - (b.distance ?? 0)),
@@ -187,17 +71,15 @@ const SearchDistributors = () => {
 
     setFilteredDistributors(
       distributors.filter((d) => {
-        const name = d.name.toLowerCase();
-        const city = d.address.city.toLowerCase();
-        const address = d.address.address.toLowerCase();
-        const postal = d.address.postal_code.toString().toLowerCase();
+        const name = d.company_name.toLowerCase();
+        // const city = d.address.city.toLowerCase();
+        // const address = d.address.address.toLowerCase();
+        // const postal = d.address.postal_code.toString().toLowerCase();
 
-        return (
-          name.includes(query) ||
-          city.includes(query) ||
-          address.includes(query) ||
-          postal.includes(query)
-        );
+        return name.includes(query);
+        // city.includes(query) ||
+        // address.includes(query) ||
+        // postal.includes(query)
       }),
     );
   };

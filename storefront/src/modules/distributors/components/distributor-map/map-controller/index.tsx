@@ -22,8 +22,8 @@ const MapController = ({ distributors, selectedDistributor }: Props) => {
       // center & zoom on selected distributor
       map.flyTo(
         [
-          selectedDistributor.coordinates.latitude,
-          selectedDistributor.coordinates.longitude,
+          selectedDistributor.location.latitude,
+          selectedDistributor.location.longitude,
         ],
         ZOOM_LEVEL,
         { duration: ANIMATION_DURATION },
@@ -31,8 +31,8 @@ const MapController = ({ distributors, selectedDistributor }: Props) => {
     } else {
       // show all distributors
       const coordinates = distributors.map((d) => [
-        d.coordinates.latitude,
-        d.coordinates.longitude,
+        d.location.latitude,
+        d.location.longitude,
       ]) as [number, number][];
       map.fitBounds(coordinates, { padding: [50, 50] });
     }

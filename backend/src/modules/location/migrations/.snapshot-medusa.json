@@ -17,21 +17,21 @@
         },
         "latitude": {
           "name": "latitude",
-          "type": "integer",
+          "type": "real",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": true,
-          "mappedType": "integer"
+          "mappedType": "float"
         },
         "longitude": {
           "name": "longitude",
-          "type": "integer",
+          "type": "real",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": true,
-          "mappedType": "integer"
+          "mappedType": "float"
         },
         "created_at": {
           "name": "created_at",

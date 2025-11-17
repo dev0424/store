@@ -28,6 +28,7 @@ const FormInput = ({ label, name, rules, defaultValue, type = 'text' }: Props) =
                 type={type}
                 defaultValue={defaultValue}
                 aria-invalid={!!errors?.[name]}
+                step="any"
             />
             {errors?.[name] && (
                 <Text className="text-red-500 text-xs">{errors[name]?.message as string}</Text>
