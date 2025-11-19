@@ -115,6 +115,10 @@ export default function ProductActions({
     setIsAdding(false);
   };
 
+  console.log("product: ", product);
+  console.log("selected variant: ", selectedVariant);
+  console.log("is valid variant: ", isValidVariant);
+  console.log("is in stock: ", inStock);
   return (
     <>
       <div className="flex flex-col gap-y-2" ref={actionsRef}>

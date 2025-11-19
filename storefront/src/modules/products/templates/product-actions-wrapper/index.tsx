@@ -16,7 +16,7 @@ export default async function ProductActionsWrapper({
     queryParams: { id: [id] },
     regionId: region.id,
   }).then(({ response }) => response.products[0]);
-  console.log(product);
+
   if (!product) {
     return null;
   }

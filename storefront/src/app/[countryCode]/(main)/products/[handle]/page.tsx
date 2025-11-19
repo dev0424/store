@@ -92,8 +92,6 @@ export default async function ProductPage(props: Props) {
     queryParams: { handle: params.handle },
   }).then(({ response }) => response.products[0]);
 
-  console.log(pricedProduct);
-
   if (!pricedProduct) {
     notFound();
   }
