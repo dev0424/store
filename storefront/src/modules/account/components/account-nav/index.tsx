@@ -10,7 +10,6 @@ import MapPin from "@modules/common/icons/map-pin";
 import Package from "@modules/common/icons/package";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import { signout } from "@lib/data/customer";
-import PendingRegistrationMessage from "@modules/account/components/pending-registration-message";
 import { ExtendedCustomer } from "@types/customer";
 
 const AccountNav = ({ customer }: { customer: ExtendedCustomer | null }) => {
@@ -37,9 +36,6 @@ const AccountNav = ({ customer }: { customer: ExtendedCustomer | null }) => {
           </LocalizedClientLink>
         ) : (
           <>
-            {customer?.account_status.application_status === "PENDING" ? (
-              <PendingRegistrationMessage />
-            ) : null}
             <div className="text-xl-semi mb-4 px-8">
               Hello {customer?.first_name}
             </div>

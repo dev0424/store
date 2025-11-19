@@ -8,14 +8,17 @@ import Divider from "@modules/common/components/divider";
 import OptionSelect from "@modules/products/components/product-actions/option-select";
 import { isEqual } from "lodash";
 import { useParams } from "next/navigation";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import ProductPrice from "../product-price";
 import MobileActions from "./mobile-actions";
 
-type ProductActionsProps = {
+type Props = {
   product: HttpTypes.StoreProduct;
   region: HttpTypes.StoreRegion;
   disabled?: boolean;
+  isLoggedIn?: boolean;
+  isApproved?: boolean;
+  isLoading?: boolean;
 };
 
 const optionsAsKeymap = (
@@ -30,20 +33,22 @@ const optionsAsKeymap = (
 export default function ProductActions({
   product,
   disabled,
-}: ProductActionsProps) {
+  isLoggedIn,
+  isApproved,
+  isLoading,
+}: Props) {
   const [options, setOptions] = useState<Record<string, string | undefined>>(
-    {},
+    () => {
+      // If there is only 1 variant, preselect the options
+      if (product.variants?.length === 1) {
+        return optionsAsKeymap(product.variants[0].options) ?? {};
+      }
+      return {};
+    },
   );
+
   const [isAdding, setIsAdding] = useState(false);
   const countryCode = useParams().countryCode as string;
-
-  // If there is only 1 variant, preselect the options
-  useEffect(() => {
-    if (product.variants?.length === 1) {
-      const variantOptions = optionsAsKeymap(product.variants[0].options);
-      setOptions(variantOptions ?? {});
-    }
-  }, [product.variants]);
 
   const selectedVariant = useMemo(() => {
     if (!product.variants || product.variants.length === 0) {
@@ -114,6 +119,50 @@ export default function ProductActions({
 
     setIsAdding(false);
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex flex-col gap-y-4">
+        <div className="h-[36px] w-48 animate-pulse rounded-md bg-gray-100" />
+        <Button
+          disabled={true}
+          isLoading={true}
+          variant="primary"
+          className="text-md h-10 w-full bg-accent-primary py-1 font-sans font-bold text-white shadow-none hover:bg-hover-accent-primary disabled:bg-disabled-accent-primary disabled:text-[#6d866f] disabled:shadow-none"
+        />
+      </div>
+    );
+  }
+
+  if (!isLoggedIn) {
+    return (
+      <div className="flex flex-col gap-y-2">
+        <ProductPrice product={product} variant={selectedVariant} />
+        <Button
+          disabled={true}
+          variant="primary"
+          className="text-md h-10 w-full bg-accent-primary py-1 font-sans font-bold text-white shadow-none hover:bg-hover-accent-primary disabled:bg-disabled-accent-primary disabled:text-[#6d866f] disabled:shadow-none"
+        >
+          Se connecter pour acheter
+        </Button>
+      </div>
+    );
+  }
+
+  if (!isApproved) {
+    return (
+      <div className="flex flex-col gap-y-2">
+        <ProductPrice product={product} variant={selectedVariant} />
+        <Button
+          disabled={true}
+          variant="primary"
+          className="text-md h-10 w-full bg-accent-primary py-1 font-sans font-bold text-white shadow-none hover:bg-hover-accent-primary disabled:bg-disabled-accent-primary disabled:text-[#6d866f] disabled:shadow-none"
+        >
+          Approbation en attente
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <>

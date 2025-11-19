@@ -4,7 +4,6 @@ import ChevronDown from "@modules/common/icons/chevron-down";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import { convertToLocale } from "@lib/util/money";
 import { HttpTypes } from "@medusajs/types";
-import PendingRegistrationMessage from "@modules/account/components/pending-registration-message";
 import { ExtendedCustomer } from "@types/customer";
 
 type OverviewProps = {
@@ -16,9 +15,6 @@ const Overview = ({ customer, orders }: OverviewProps) => {
   return (
     <div data-testid="overview-page-wrapper">
       <div className="hidden small:block">
-        {customer?.account_status.application_status === "PENDING" ? (
-          <PendingRegistrationMessage />
-        ) : null}
         <div className="text-xl-semi mb-4 flex items-center justify-between">
           <span data-testid="welcome-message" data-value={customer?.first_name}>
             Hello {customer?.first_name}
