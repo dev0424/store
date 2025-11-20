@@ -73,3 +73,10 @@ export type AdminCustomerExtended = {
 };
 
 export type ApplicationStatus = 'PENDING' | 'APPROVED' | 'DECLINED';
+
+export type SystemFlag = {
+    id: string;
+    key: string;
+    value: string;
+    name: string;
+};
