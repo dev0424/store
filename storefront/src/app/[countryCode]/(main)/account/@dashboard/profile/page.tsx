@@ -11,8 +11,8 @@ import { listRegions } from "@lib/data/regions";
 import { retrieveCustomer } from "@lib/data/customer";
 
 export const metadata: Metadata = {
-  title: "Profile",
-  description: "View and edit your RSPI Store profile.",
+  title: "Profil",
+  description: "Consultez et modifiez votre profil RSPI.",
 };
 
 export default async function Profile() {
@@ -26,11 +26,12 @@ export default async function Profile() {
   return (
     <div className="w-full" data-testid="profile-page-wrapper">
       <div className="mb-8 flex flex-col gap-y-4">
-        <h1 className="text-2xl-semi">Profile</h1>
+        <h1 className="text-2xl-semi">Profil</h1>
         <p className="text-base-regular">
-          View and update your profile information, including your name, email,
-          and phone number. You can also update your billing address, or change
-          your password.
+          Consultez et mettez à jour les informations de votre profil, notamment
+          votre nom, votre adresse e-mail et votre numéro de téléphone. Vous
+          pouvez également modifier votre adresse de facturation ou vos
+          coordonnées bancaires.
         </p>
       </div>
       <div className="flex w-full flex-col gap-y-8">

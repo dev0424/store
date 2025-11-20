@@ -17,10 +17,10 @@ const Overview = ({ customer, orders }: OverviewProps) => {
       <div className="hidden small:block">
         <div className="text-xl-semi mb-4 flex items-center justify-between">
           <span data-testid="welcome-message" data-value={customer?.first_name}>
-            Hello {customer?.first_name}
+            Bonjour {customer?.first_name}
           </span>
           <span className="text-small-regular text-ui-fg-base">
-            Signed in as:{" "}
+            Connecté en tant que:{" "}
             <span
               className="font-semibold"
               data-testid="customer-email"
@@ -34,7 +34,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
           <div className="col-span-1 row-span-2 flex h-full flex-1 flex-col gap-y-4">
             <div className="mb-6 flex items-start gap-x-16">
               <div className="flex flex-col gap-y-4">
-                <h3 className="text-large-semi">Profile</h3>
+                <h3 className="text-large-semi">Profil</h3>
                 <div className="flex items-end gap-x-2">
                   <span
                     className="text-3xl-semi leading-none"
@@ -44,13 +44,13 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                     {getProfileCompletion(customer)}%
                   </span>
                   <span className="text-base-regular uppercase text-ui-fg-subtle">
-                    Completed
+                    Complété
                   </span>
                 </div>
               </div>
 
               <div className="flex flex-col gap-y-4">
-                <h3 className="text-large-semi">Addresses</h3>
+                <h3 className="text-large-semi">Adresses</h3>
                 <div className="flex items-end gap-x-2">
                   <span
                     className="text-3xl-semi leading-none"
@@ -60,7 +60,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                     {customer?.addresses?.length || 0}
                   </span>
                   <span className="text-base-regular uppercase text-ui-fg-subtle">
-                    Saved
+                    Enregistrée
                   </span>
                 </div>
               </div>
@@ -68,7 +68,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
 
             <div className="flex flex-col gap-y-4">
               <div className="flex items-center gap-x-2">
-                <h3 className="text-large-semi">Recent orders</h3>
+                <h3 className="text-large-semi">Commandes récentes</h3>
               </div>
               <ul
                 className="flex flex-col gap-y-4"
@@ -87,12 +87,14 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                         >
                           <Container className="flex items-center justify-between bg-gray-50 p-4">
                             <div className="text-small-regular grid flex-1 grid-cols-3 grid-rows-2 gap-x-4">
-                              <span className="font-semibold">Date placed</span>
                               <span className="font-semibold">
-                                Order number
+                                Date de la commande
                               </span>
                               <span className="font-semibold">
-                                Total amount
+                                Numéro de commande
+                              </span>
+                              <span className="font-semibold">
+                                Montant total
                               </span>
                               <span data-testid="order-created-date">
                                 {new Date(order.created_at).toDateString()}
@@ -115,7 +117,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                               data-testid="open-order-button"
                             >
                               <span className="sr-only">
-                                Go to order #{order.display_id}
+                                Voir la commande #{order.display_id}
                               </span>
                               <ChevronDown className="-rotate-90" />
                             </button>
@@ -125,7 +127,9 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                     );
                   })
                 ) : (
-                  <span data-testid="no-orders-message">No recent orders</span>
+                  <span data-testid="no-orders-message">
+                    Aucune commande récente
+                  </span>
                 )}
               </ul>
             </div>

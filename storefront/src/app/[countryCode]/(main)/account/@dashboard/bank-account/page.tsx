@@ -5,8 +5,8 @@ import { getRegion } from "@lib/data/regions";
 import { retrieveCustomer } from "@lib/data/customer";
 
 export const metadata: Metadata = {
-  title: "Bank Account",
-  description: "View your bank account",
+  title: "Compte bancaire",
+  description: "Consultez votre compte bancaire.",
 };
 
 export default async function BankAccount(props: {
@@ -24,21 +24,21 @@ export default async function BankAccount(props: {
   return (
     <div className="w-full" data-testid="addresses-page-wrapper">
       <div className="mb-8 flex flex-col gap-y-4">
-        <h1 className="text-2xl-semi">Bank Account</h1>
+        <h1 className="text-2xl-semi">Compte bancaire</h1>
         <p className="text-base-regular">
-          View and update your bank account information.
+          Consultez et mettez à jour les informations de votre compte bancaire.
         </p>
       </div>
-      <p>Bank name: {customer.bank_account.bank_name}</p>
-      <p>Bank code: {customer.bank_account.bank_code}</p>
-      <p>Branch code: {customer.bank_account.branch_code}</p>
-      <p>City: {customer.bank_account.city}</p>
-      <p>Address: {customer.bank_account.address}</p>
-      <p>Account number: {customer.bank_account.account_number}</p>
-      <p>Account holder: {customer.bank_account.account_holder}</p>
-      <p>Iban: {customer.bank_account.iban}</p>
+      <p>Nom de la banque: {customer.bank_account.bank_name}</p>
+      <p>Code banque: {customer.bank_account.bank_code}</p>
+      <p>Code guichet: {customer.bank_account.branch_code}</p>
+      <p>Ville de la banque: {customer.bank_account.city}</p>
+      <p>Domiciliation: {customer.bank_account.address}</p>
+      <p>N° du compte: {customer.bank_account.account_number}</p>
+      <p>Titulaire du compte: {customer.bank_account.account_holder}</p>
+      <p>IBAN: {customer.bank_account.iban}</p>
       <p>BIC: {customer.bank_account.bic}</p>
-      <p>RIB key: {customer.bank_account.rib_key}</p>
+      <p>Clé RIB: {customer.bank_account.rib_key}</p>
     </div>
   );
 }
