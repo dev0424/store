@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import { HttpTypes } from "@medusajs/types";
 import Checkbox from "@modules/common/components/checkbox";
 import { getSignupSchema } from "@modules/account/components/registration-form/schema";
+import { Label } from "@medusajs/ui";
 
 export type RegistrationFormValues = {
   email: string;
@@ -95,97 +96,101 @@ const RegistrationForm = () => {
     <form className="flex w-full flex-col" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex w-full flex-col gap-6">
         <div className="flex w-full flex-col gap-2">
-          <p>User information</p>
-          <div className="grid grid-cols-2 gap-4">
-            <Input
-              {...register("first_name", SIGN_UP_SCHEMA.first_name)}
-              label="First name"
-              name="first_name"
-              autoComplete="given-name"
-              data-testid="first-name-input"
-              errors={errors?.first_name}
-              required={true}
-              disableNativeValidation={true}
-            />
-            <Input
-              {...register("last_name", SIGN_UP_SCHEMA.last_name)}
-              label="Last name"
-              name="last_name"
-              autoComplete="family-name"
-              data-testid="last-name-input"
-              errors={errors?.last_name}
-              required={true}
-              disableNativeValidation={true}
-            />
-            <Input
-              {...register("email", SIGN_UP_SCHEMA.email)}
-              label="Email"
-              name="email"
-              autoComplete="email"
-              data-testid="email-input"
-              errors={errors?.email}
-              required={true}
-              disableNativeValidation={true}
-            />
-            <Input
-              {...register("phone", SIGN_UP_SCHEMA.phone)}
-              label="Phone"
-              name="phone"
-              type="tel"
-              autoComplete="tel"
-              data-testid="phone-input"
-              errors={errors?.phone}
-              required={true}
-              disableNativeValidation={true}
-            />
-            <Input
-              {...register("company_name", SIGN_UP_SCHEMA.company_name)}
-              label="Company name"
-              name="company_name"
-              data-testid="company-name-input"
-              type="text"
-              errors={errors?.company_name}
-              required={true}
-              disableNativeValidation={true}
-            />
-            <Input
-              {...register("password", SIGN_UP_SCHEMA.password)}
-              label="Password"
-              name="password"
-              type="password"
-              autoComplete="new-password"
-              data-testid="password-input"
-              errors={errors?.password}
-              required={true}
-              disableNativeValidation={true}
-            />
-            <Input
-              {...register("confirm_password", {
-                required: "This field is required",
-                validate: (value) =>
-                  value === password || "Passwords do not match",
-              })}
-              label="Confirm password"
-              name="confirm_password"
-              type="password"
-              autoComplete="new-password"
-              data-testid="confirm-password-input"
-              errors={errors?.confirm_password}
-              required={true}
-              disableNativeValidation={true}
-            />
+          <p>Informations client</p>
+          <div className="flex flex-col gap-4">
+            <div className="grid grid-cols-2 gap-4">
+              <Input
+                {...register("first_name", SIGN_UP_SCHEMA.first_name)}
+                label="Prénom"
+                name="first_name"
+                autoComplete="given-name"
+                data-testid="first-name-input"
+                errors={errors?.first_name}
+                required={true}
+                disableNativeValidation={true}
+              />
+              <Input
+                {...register("last_name", SIGN_UP_SCHEMA.last_name)}
+                label="Nom"
+                name="last_name"
+                autoComplete="family-name"
+                data-testid="last-name-input"
+                errors={errors?.last_name}
+                required={true}
+                disableNativeValidation={true}
+              />
+              <Input
+                {...register("email", SIGN_UP_SCHEMA.email)}
+                label="Email"
+                name="email"
+                autoComplete="email"
+                data-testid="email-input"
+                errors={errors?.email}
+                required={true}
+                disableNativeValidation={true}
+              />
+              <Input
+                {...register("phone", SIGN_UP_SCHEMA.phone)}
+                label="Téléphone"
+                name="phone"
+                type="tel"
+                autoComplete="tel"
+                data-testid="phone-input"
+                errors={errors?.phone}
+                required={true}
+                disableNativeValidation={true}
+              />
+              <Input
+                {...register("company_name", SIGN_UP_SCHEMA.company_name)}
+                label="Raison sociale"
+                name="company_name"
+                data-testid="company-name-input"
+                type="text"
+                errors={errors?.company_name}
+                required={true}
+                disableNativeValidation={true}
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <Input
+                {...register("password", SIGN_UP_SCHEMA.password)}
+                label="Mot de passe"
+                name="password"
+                type="password"
+                autoComplete="new-password"
+                data-testid="password-input"
+                errors={errors?.password}
+                required={true}
+                disableNativeValidation={true}
+              />
+              <Input
+                {...register("confirm_password", {
+                  required: "This field is required",
+                  validate: (value) =>
+                    value === password || "Passwords do not match",
+                })}
+                label="Confirmez le mot de passe"
+                name="confirm_password"
+                type="password"
+                autoComplete="new-password"
+                data-testid="confirm-password-input"
+                errors={errors?.confirm_password}
+                required={true}
+                disableNativeValidation={true}
+              />
+            </div>
           </div>
         </div>
 
         <div className="flex w-full flex-col gap-2">
-          <p>Bank account</p>
+          <p>Informations bancaires</p>
           <div className="grid grid-cols-2 gap-4">
             <Input
               {...register(
                 "bank_account.bank_name",
                 SIGN_UP_SCHEMA.bank_account.bank_name,
               )}
-              label="Bank name"
+              label="Nom de la banque"
               name="bank_account.bank_name"
               errors={errors?.bank_account?.bank_name}
               required={true}
@@ -196,7 +201,7 @@ const RegistrationForm = () => {
                 "bank_account.bank_code",
                 SIGN_UP_SCHEMA.bank_account.bank_code,
               )}
-              label="Bank code"
+              label="Code banque"
               name="bank_account.bank_code"
               errors={errors?.bank_account?.bank_code}
               required={true}
@@ -207,7 +212,7 @@ const RegistrationForm = () => {
                 "bank_account.branch_code",
                 SIGN_UP_SCHEMA.bank_account.branch_code,
               )}
-              label="Branch code"
+              label="Code guichet"
               name="bank_account.branch_code"
               errors={errors?.bank_account?.branch_code}
               required={true}
@@ -218,7 +223,7 @@ const RegistrationForm = () => {
                 "bank_account.city",
                 SIGN_UP_SCHEMA.bank_account.city,
               )}
-              label="City"
+              label="Ville de la banque"
               name="bank_account.city"
               errors={errors?.bank_account?.city}
               required={true}
@@ -229,7 +234,7 @@ const RegistrationForm = () => {
                 "bank_account.address",
                 SIGN_UP_SCHEMA.bank_account.address,
               )}
-              label="Address"
+              label="Domiciliation"
               name="bank_account.address"
               errors={errors?.bank_account?.address}
               required={true}
@@ -240,7 +245,7 @@ const RegistrationForm = () => {
                 "bank_account.account_number",
                 SIGN_UP_SCHEMA.bank_account.account_holder,
               )}
-              label="Account number"
+              label="N° du compte"
               name="bank_account.account_number"
               errors={errors?.bank_account?.account_number}
               required={true}
@@ -251,7 +256,7 @@ const RegistrationForm = () => {
                 "bank_account.account_holder",
                 SIGN_UP_SCHEMA.bank_account.account_holder,
               )}
-              label="Account holder"
+              label="Titulaire du compte"
               name="bank_account.account_holder"
               errors={errors?.bank_account?.account_holder}
               required={true}
@@ -281,7 +286,7 @@ const RegistrationForm = () => {
                 "bank_account.rib_key",
                 SIGN_UP_SCHEMA.bank_account.rib_key,
               )}
-              label="RIB key"
+              label="Clé RIB"
               name="bank_account.rib_key"
               errors={errors?.bank_account?.rib_key}
               required={true}
@@ -291,14 +296,14 @@ const RegistrationForm = () => {
         </div>
 
         <div className="flex w-full flex-col gap-2">
-          <p>Shipping address</p>
+          <p>Adresse de livraison</p>
           <div className="grid grid-cols-2 gap-4">
             <Input
               {...register(
                 "addresses.0.address_1",
                 SIGN_UP_SCHEMA.addresses[0].address_1,
               )}
-              label="Address 1"
+              label="N° et Nom de rue"
               name="addresses.0.address_1"
               errors={errors?.addresses?.[0]?.address_1}
               required={true}
@@ -309,7 +314,7 @@ const RegistrationForm = () => {
                 "addresses.0.address_2",
                 SIGN_UP_SCHEMA.addresses[0].address_2,
               )}
-              label="Address 2"
+              label="Adresse 2"
               name="addresses.0.address_2"
               errors={errors?.addresses?.[0]?.address_2}
               required={false}
@@ -320,7 +325,7 @@ const RegistrationForm = () => {
                 "addresses.0.postal_code",
                 SIGN_UP_SCHEMA.addresses[0].postal_code,
               )}
-              label="Postal code"
+              label="Code postal"
               name="addresses.0.postal_code"
               errors={errors?.addresses?.[0]?.postal_code}
               required={true}
@@ -331,7 +336,7 @@ const RegistrationForm = () => {
                 "addresses.0.city",
                 SIGN_UP_SCHEMA.addresses[0].city,
               )}
-              label="City"
+              label="Ville"
               name="addresses.0.city"
               errors={errors?.addresses?.[0]?.city}
               required={true}
@@ -342,7 +347,7 @@ const RegistrationForm = () => {
                 "addresses.0.country_code",
                 SIGN_UP_SCHEMA.addresses[0].country_code,
               )}
-              label="Country"
+              label="Pays"
               name="addresses.0.country_code"
               errors={errors?.addresses?.[0]?.country_code}
               required={true}
@@ -363,9 +368,9 @@ const RegistrationForm = () => {
         </div>
 
         <div className="flex w-full flex-col gap-2">
-          <p>Billing address</p>
+          <p>Adresse de facturation</p>
           <Checkbox
-            label="Billing address same as shipping address"
+            label="Adresse de facturation identique à l'adresse de livraison"
             name="same_as_billing"
             checked={billingSameAsShipping}
             onChange={() => setBillingSameAsShipping((prevState) => !prevState)}
@@ -377,7 +382,7 @@ const RegistrationForm = () => {
                   "addresses.1.address_1",
                   SIGN_UP_SCHEMA.addresses[1].address_1,
                 )}
-                label="Address 1"
+                label="N° et Nom de rue"
                 name="addresses.1.address_1"
                 errors={errors?.addresses?.[1]?.address_1}
                 required={true}
@@ -388,7 +393,7 @@ const RegistrationForm = () => {
                   "addresses.1.address_2",
                   SIGN_UP_SCHEMA.addresses[1].address_2,
                 )}
-                label="Address 2"
+                label="Adresse 2"
                 name="addresses.1.address_2"
                 errors={errors?.addresses?.[1]?.address_2}
                 required={false}
@@ -399,7 +404,7 @@ const RegistrationForm = () => {
                   "addresses.1.postal_code",
                   SIGN_UP_SCHEMA.addresses[1].postal_code,
                 )}
-                label="Postal code"
+                label="Code postal"
                 name="addresses.1.postal_code"
                 errors={errors?.addresses?.[1]?.postal_code}
                 required={true}
@@ -410,7 +415,7 @@ const RegistrationForm = () => {
                   "addresses.1.city",
                   SIGN_UP_SCHEMA.addresses[1].city,
                 )}
-                label="City"
+                label="Ville"
                 name="addresses.1.city"
                 errors={errors?.addresses?.[1]?.city}
                 required={true}
@@ -421,7 +426,7 @@ const RegistrationForm = () => {
                   "addresses.1.country_code",
                   SIGN_UP_SCHEMA.addresses[1].country_code,
                 )}
-                label="Country"
+                label="Pays"
                 name="addresses.1.country_code"
                 errors={errors?.addresses?.[1]?.country_code}
                 required={true}
@@ -443,14 +448,14 @@ const RegistrationForm = () => {
         </div>
 
         <div className="flex w-full flex-col gap-2">
-          <p>Customer profile</p>
+          <p>Administratif</p>
           <div className="grid grid-cols-2 gap-4">
             <Input
               {...register(
                 "customer_profile.vat_number",
                 SIGN_UP_SCHEMA.customer_profile.vat_number,
               )}
-              label="VAT number"
+              label="N° TVA Intracommunautaire"
               name="customer_profile.vat_number"
               errors={errors?.customer_profile?.vat_number}
               required={true}
@@ -461,7 +466,7 @@ const RegistrationForm = () => {
                 "customer_profile.siret_number",
                 SIGN_UP_SCHEMA.customer_profile.siret_number,
               )}
-              label="SIRET number"
+              label="SIRET"
               name="customer_profile.siret_number"
               errors={errors?.customer_profile?.siret_number}
               required={true}
@@ -472,57 +477,72 @@ const RegistrationForm = () => {
                 "customer_profile.ape_code",
                 SIGN_UP_SCHEMA.customer_profile.ape_code,
               )}
-              label="APE code"
+              label="Code APE"
               name="customer_profile.ape_code"
               errors={errors?.customer_profile?.ape_code}
               required={true}
               disableNativeValidation={true}
             />
-            <NativeSelect
-              {...register(
-                "customer_profile.activity",
-                SIGN_UP_SCHEMA.customer_profile.activity,
-              )}
-              name="customer_profile.activity"
-              errors={errors?.customer_profile?.activity}
-            >
-              <option value={"activity-1"}>Activity 1</option>
-              <option value={"activity-1"}>Activity 2</option>
-            </NativeSelect>
-            <NativeSelect
-              {...register(
-                "customer_profile.billing_cycle",
-                SIGN_UP_SCHEMA.customer_profile.billing_cycle,
-              )}
-              name="customer_profile.billing_cycle"
-              errors={errors?.customer_profile?.billing_cycle}
-            >
-              <option value={"billing-cycle-1"}>Billing cycle 1</option>
-              <option value={"billing-cycle-2"}>Billing cycle 2</option>
-            </NativeSelect>
-            <NativeSelect
-              {...register(
-                "customer_profile.payment_method",
-                SIGN_UP_SCHEMA.customer_profile.payment_method,
-              )}
-              name="customer_profile.payment_method"
-              errors={errors?.customer_profile?.payment_method}
-              required
-            >
-              <option value={"payment-method-1"}>Payment method 1</option>
-              <option value={"payment-method-2"}>Payment method 2</option>
-            </NativeSelect>
             <Input
               {...register(
                 "customer_profile.invoice_email",
                 SIGN_UP_SCHEMA.customer_profile.invoice_email,
               )}
-              label="Invoice email"
+              label="Adresse e-mail de facturation"
               name="customer_profile.invoice_email"
               errors={errors?.customer_profile?.invoice_email}
               required={true}
               disableNativeValidation={true}
             />
+            <div>
+              <Label className="txt-compact-small font-sans font-medium">
+                Activité
+              </Label>
+              <NativeSelect
+                {...register(
+                  "customer_profile.activity",
+                  SIGN_UP_SCHEMA.customer_profile.activity,
+                )}
+                name="customer_profile.activity"
+                errors={errors?.customer_profile?.activity}
+              >
+                <option value={"activity-1"}>Activity 1</option>
+                <option value={"activity-1"}>Activity 2</option>
+              </NativeSelect>
+            </div>
+            <div>
+              <Label className="txt-compact-small font-sans font-medium">
+                Facturation
+              </Label>
+              <NativeSelect
+                {...register(
+                  "customer_profile.billing_cycle",
+                  SIGN_UP_SCHEMA.customer_profile.billing_cycle,
+                )}
+                name="customer_profile.billing_cycle"
+                errors={errors?.customer_profile?.billing_cycle}
+              >
+                <option value={"billing-cycle-1"}>Billing cycle 1</option>
+                <option value={"billing-cycle-2"}>Billing cycle 2</option>
+              </NativeSelect>
+            </div>
+            <div>
+              <Label className="txt-compact-small font-sans font-medium">
+                Mode de Règlement
+              </Label>
+              <NativeSelect
+                {...register(
+                  "customer_profile.payment_method",
+                  SIGN_UP_SCHEMA.customer_profile.payment_method,
+                )}
+                name="customer_profile.payment_method"
+                errors={errors?.customer_profile?.payment_method}
+                required
+              >
+                <option value={"payment-method-1"}>Payment method 1</option>
+                <option value={"payment-method-2"}>Payment method 2</option>
+              </NativeSelect>
+            </div>
           </div>
         </div>
       </div>

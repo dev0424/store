@@ -1,84 +1,84 @@
 export const getSignupSchema = (billingSameAsShipping: boolean) => {
   return {
     first_name: {
-      required: "This field is required",
+      required: "Ce champ est obligatoire",
     },
     last_name: {
-      required: "This field is required",
+      required: "Ce champ est obligatoire",
     },
     email: {
-      required: "This field is required",
+      required: "Ce champ est obligatoire",
       pattern: {
         value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-        message: "Please enter a valid email address",
+        message: "S'il vous plaît, mettez une adresse email valide",
       },
     },
     phone: {
-      required: "This field is required",
+      required: "Ce champ est obligatoire",
       pattern: {
         value: /^[+]?[\d\s\-()]{7,20}$/,
-        message: "Please enter a valid phone number",
+        message: "Veuillez saisir un numéro de téléphone valide",
       },
     },
     company_name: {
-      required: "This field is required",
+      required: "Ce champ est obligatoire",
     },
     password: {
-      required: "This field is required",
+      required: "Ce champ est obligatoire",
       pattern: {
         value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/,
         message:
-          "Password must be at least 8 characters and include uppercase, lowercase, number, and special character",
+          "Le mot de passe doit comporter au moins 8 caractères et inclure des majuscules, des minuscules, des chiffres et des caractères spéciaux.",
       },
     },
     bank_account: {
       bank_name: {
-        required: "This field is required",
+        required: "Ce champ est obligatoire",
       },
       bank_code: {
-        required: "This field is required",
+        required: "Ce champ est obligatoire",
       },
       branch_code: {
-        required: "This field is required",
+        required: "Ce champ est obligatoire",
       },
       city: {
-        required: "This field is required",
+        required: "Ce champ est obligatoire",
       },
       address: {
-        required: "This field is required",
+        required: "Ce champ est obligatoire",
       },
       account_number: {
-        required: "This field is required",
+        required: "Ce champ est obligatoire",
       },
       account_holder: {
-        required: "This field is required",
+        required: "Ce champ est obligatoire",
       },
       iban: {
-        required: "This field is required",
+        required: "Ce champ est obligatoire",
       },
       bic: {
-        required: "This field is required",
+        required: "Ce champ est obligatoire",
       },
       rib_key: {
-        required: "This field is required",
+        required: "Ce champ est obligatoire",
       },
     },
     addresses: [
       {
         address_1: {
-          required: "This field is required",
+          required: "Ce champ est obligatoire",
         },
         address_2: {
           required: false,
         },
         postal_code: {
-          required: "This field is required",
+          required: "Ce champ est obligatoire",
         },
         city: {
-          required: "This field is required",
+          required: "Ce champ est obligatoire",
         },
         country_code: {
-          required: "This field is required",
+          required: "Ce champ est obligatoire",
         },
         province: {
           required: false,
@@ -89,19 +89,19 @@ export const getSignupSchema = (billingSameAsShipping: boolean) => {
         ? {}
         : {
             address_1: {
-              required: "This field is required",
+              required: "Ce champ est obligatoire",
             },
             address_2: {
               required: false,
             },
             postal_code: {
-              required: "This field is required",
+              required: "Ce champ est obligatoire",
             },
             city: {
-              required: "This field is required",
+              required: "Ce champ est obligatoire",
             },
             country_code: {
-              required: "This field is required",
+              required: "Ce champ est obligatoire",
             },
             province: {
               required: false,
@@ -110,28 +110,28 @@ export const getSignupSchema = (billingSameAsShipping: boolean) => {
     ],
     customer_profile: {
       vat_number: {
-        required: "This field is required",
+        required: "Ce champ est obligatoire",
       },
       siret_number: {
-        required: "This field is required",
+        required: "Ce champ est obligatoire",
       },
       ape_code: {
-        required: "This field is required",
+        required: "Ce champ est obligatoire",
       },
       activity: {
-        required: "This field is required",
+        required: "Ce champ est obligatoire",
       },
       billing_cycle: {
-        required: "This field is required",
+        required: "Ce champ est obligatoire",
       },
       payment_method: {
-        required: "This field is required",
+        required: "Ce champ est obligatoire",
       },
       invoice_email: {
-        required: "This field is required",
+        required: "Ce champ est obligatoire",
         pattern: {
           value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-          message: "Please enter a valid email address",
+          message: "S'il vous plaît, mettez une adresse email valide",
         },
       },
     },
