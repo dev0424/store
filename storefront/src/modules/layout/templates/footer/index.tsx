@@ -31,6 +31,12 @@ export default async function Footer() {
               fiables, rapides et accessibles. Livraison partout en France
               métropolitaine.
             </p>
+            <div className="text-sm">
+              <p>SAS RSPI ROCK SOLUTIONS PRO INDUSTRIE</p>
+              <p>185 Rue du Canton du Caillouti, 59279 Loon-Plage, France</p>
+              <p>SIRET: 95187083100017</p>
+              <p>TVA: FR17951870831</p>
+            </div>
           </div>
           <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 md:gap-x-16">
             {productCategories && productCategories?.length > 0 && (
