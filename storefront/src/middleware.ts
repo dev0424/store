@@ -1,5 +1,4 @@
 import { HttpTypes } from "@medusajs/types";
-import { notFound } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL;
@@ -103,10 +102,32 @@ async function getCountryCode(
   }
 }
 
+const getCachedMaintenanceStatus = async () => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/cache/system-flag`,
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch maintenance status");
+  }
+
+  return response.json();
+};
+
 /**
  * Middleware to handle region selection and onboarding status.
  */
 export async function middleware(request: NextRequest) {
+  const { isMaintenance } = await getCachedMaintenanceStatus();
+
+  if (isMaintenance && !request.nextUrl.pathname.startsWith("/maintenance")) {
+    return NextResponse.redirect(new URL(`/maintenance`, request.url));
+  }
+
+  if (request.nextUrl.pathname.startsWith("/maintenance")) {
+    return NextResponse.next();
+  }
+
   let redirectUrl = request.nextUrl.href;
 
   let response = NextResponse.redirect(redirectUrl, 307);
