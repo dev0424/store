@@ -1,12 +1,13 @@
 import React from 'react';
 import { defineRouteConfig } from '@medusajs/admin-sdk';
-import { Container, Heading, Text } from '@medusajs/ui';
+import { Container, Heading, Text, Tooltip } from '@medusajs/ui';
 import { SectionRow } from '../../../components/SectionRow';
 import { useQuery } from '@tanstack/react-query';
 import { sdk } from '../../../../lib/config';
 import { SystemFlag } from 'lib/types';
 import UpdateSystemFlag from './components/update-system-flag';
 import CreateSystemFlag from './components/create-system-flag';
+import { InformationCircle } from '@medusajs/icons';
 
 const SystemFlagsPage = () => {
     const {
@@ -23,8 +24,11 @@ const SystemFlagsPage = () => {
         return (
             <Container className="p-0">
                 <div className="flex flex-col divide-y">
-                    <Heading level="h2" className="px-6 py-4">
+                    <Heading level="h1" className="flex items-center gap-2">
                         System flags
+                        <Tooltip content="System changes may take a minute to apply">
+                            <InformationCircle className="cursor-pointer" />
+                        </Tooltip>
                     </Heading>
                     <Text className="px-6 py-4">Loading...</Text>
                 </div>
@@ -35,7 +39,12 @@ const SystemFlagsPage = () => {
     return (
         <Container className="divide-y p-0">
             <div className="flex items-center justify-between px-6 py-4">
-                <Heading level="h1">System flags</Heading>
+                <Heading level="h1" className="flex items-center gap-2">
+                    System flags
+                    <Tooltip content="System changes may take a minute to apply">
+                        <InformationCircle className="cursor-pointer" />
+                    </Tooltip>
+                </Heading>
                 <CreateSystemFlag onSuccess={refreshSystemFlags} />
             </div>
             {systemFlags.system_flags.length ? (
