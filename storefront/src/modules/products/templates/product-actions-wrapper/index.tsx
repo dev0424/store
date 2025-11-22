@@ -2,6 +2,7 @@ import { listProducts } from "@lib/data/products";
 import { HttpTypes } from "@medusajs/types";
 import ProductActions from "@modules/products/components/product-actions";
 import { retrieveCustomer } from "@lib/data/customer";
+import { isCustomerApproved } from "@lib/util/customer";
 
 /**
  * Fetches real time pricing for a product and renders the product actions component.
@@ -24,7 +25,7 @@ export default async function ProductActionsWrapper({
       product={product}
       region={region}
       isLoggedIn={!!customer}
-      isApproved={customer?.account_status.application_status === "APPROVED"}
+      isApproved={isCustomerApproved(customer)}
       isLoading={!product}
     />
   );

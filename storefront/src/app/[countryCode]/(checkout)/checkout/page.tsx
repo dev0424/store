@@ -5,6 +5,7 @@ import CheckoutForm from "@modules/checkout/templates/checkout-form";
 import CheckoutSummary from "@modules/checkout/templates/checkout-summary";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { isCustomerApproved } from "@lib/util/customer";
 
 export const metadata: Metadata = {
   title: "Checkout",
@@ -12,12 +13,13 @@ export const metadata: Metadata = {
 
 export default async function Checkout() {
   const cart = await retrieveCart();
+  const customer = await retrieveCustomer();
 
-  if (!cart) {
+  const showCheckout = cart && isCustomerApproved(customer);
+
+  if (!showCheckout) {
     return notFound();
   }
-
-  const customer = await retrieveCustomer();
 
   return (
     <div className="content-container grid grid-cols-1 gap-x-40 py-12 small:grid-cols-[1fr_416px]">

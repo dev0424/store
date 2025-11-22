@@ -3,6 +3,7 @@ import { retrieveCustomer } from "@lib/data/customer";
 import CartTemplate from "@modules/cart/templates";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { isCustomerApproved } from "@lib/util/customer";
 
 export const metadata: Metadata = {
   title: "Cart",
@@ -16,6 +17,10 @@ export default async function Cart() {
   });
 
   const customer = await retrieveCustomer();
+
+  if (!isCustomerApproved(customer)) {
+    return notFound();
+  }
 
   return <CartTemplate cart={cart} customer={customer} />;
 }

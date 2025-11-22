@@ -11,8 +11,14 @@ import {
 import Image from "next/image";
 import { listCategories } from "@lib/data/categories";
 import TopNavBar from "@modules/layout/components/top-nav-bar";
+import { ExtendedCustomer } from "@types/customer";
+import { isCustomerApproved } from "@lib/util/customer";
 
-export default async function Header() {
+type Props = {
+  customer: ExtendedCustomer | null;
+};
+
+export default async function Header({ customer }: Props) {
   const categories = await listCategories();
 
   return (
@@ -53,19 +59,21 @@ export default async function Header() {
                   <UserIcon size={24} />
                 </LocalizedClientLink>
               </div>
-              <Suspense
-                fallback={
-                  <LocalizedClientLink
-                    className="flex whitespace-nowrap text-white"
-                    href="/cart"
-                    data-testid="nav-cart-link"
-                  >
-                    <ShoppingCartIcon size={24} />
-                  </LocalizedClientLink>
-                }
-              >
-                <CartButton />
-              </Suspense>
+              {isCustomerApproved(customer) ? (
+                <Suspense
+                  fallback={
+                    <LocalizedClientLink
+                      className="flex whitespace-nowrap text-white"
+                      href="/cart"
+                      data-testid="nav-cart-link"
+                    >
+                      <ShoppingCartIcon size={24} />
+                    </LocalizedClientLink>
+                  }
+                >
+                  <CartButton />
+                </Suspense>
+              ) : null}
             </div>
           </nav>
           <div className="hidden justify-between gap-6 sm:flex sm:items-center">
