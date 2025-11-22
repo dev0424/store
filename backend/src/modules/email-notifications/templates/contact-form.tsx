@@ -1,4 +1,4 @@
-import { Text } from '@react-email/components';
+import { Text, Section, Hr } from '@react-email/components';
 import { Base } from './base';
 import { ContactForm } from '../../../lib/types';
 
@@ -18,13 +18,36 @@ export const isContactFormTemplateData = (data: any): data is ContactForm =>
     typeof data.email === 'string' &&
     typeof data.message === 'string';
 
-export const ContactFormEmail = ({ first_name, last_name, email, message }: Props) => {
+export const ContactFormEmail = ({ first_name, last_name, email, phone, message }: Props) => {
     return (
-        <Base preview={'preview'}>
-            <Text className="text-black text-[14px] leading-[24px]">
-                You received a new message from ${first_name} ${last_name}, ${email}
-            </Text>
-            <Text className="text-black text-[14px] leading-[24px]">Message: ${message}</Text>
+        <Base preview={`New contact form message from ${first_name} ${last_name}`}>
+            <Section>
+                <Text className="text-black text-[16px] leading-[24px] font-bold">
+                    New contact form submission
+                </Text>
+                <Hr />
+                <Text className="text-black text-[14px] leading-[24px]">
+                    You received a new message from:
+                </Text>
+                <Text className="text-black text-[14px] leading-[24px]">
+                    <strong>Name:</strong> {first_name} {last_name}
+                    <br />
+                    <strong>Email:</strong> {email}
+                    <br />
+                    {phone && (
+                        <>
+                            <strong>Phone:</strong> {phone}
+                            <br />
+                        </>
+                    )}
+                </Text>
+                <Hr />
+                <Text className="text-black text-[14px] leading-[24px]">
+                    <strong>Message:</strong>
+                    <br />
+                    {message}
+                </Text>
+            </Section>
         </Base>
     );
 };
