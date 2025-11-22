@@ -187,7 +187,7 @@ const Payment = ({
 
           <Button
             size="large"
-            className="mt-6"
+            className="mt-6 h-10 shadow-none"
             onClick={handleSubmit}
             isLoading={isLoading}
             disabled={

@@ -32,7 +32,7 @@ export default async function Footer() {
               métropolitaine.
             </p>
             <div className="text-sm">
-              <p>SAS RSPI ROCK SOLUTIONS PRO INDUSTRIE</p>
+              <p className="mb-2">SAS RSPI ROCK SOLUTIONS PRO INDUSTRIE</p>
               <p>185 Rue du Canton du Caillouti, 59279 Loon-Plage, France</p>
               <p>SIRET: 95187083100017</p>
               <p>TVA: FR17951870831</p>

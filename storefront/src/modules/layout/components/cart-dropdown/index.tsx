@@ -17,6 +17,7 @@ import Thumbnail from "@modules/products/components/thumbnail";
 import { usePathname } from "next/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { HiOutlineShoppingCart as ShoppingCartIcon } from "react-icons/hi";
+import NavLink from "@modules/layout/components/nav-link";
 
 const CartDropdown = ({
   cart: cartState,
@@ -82,20 +83,19 @@ const CartDropdown = ({
     >
       <Popover className="align-center relative flex h-full">
         <PopoverButton className="h-full">
-          <LocalizedClientLink
-            className="text-white"
+          <NavLink
             href="/cart"
-            data-testid="nav-cart-link"
-          >
-            <div className="flex">
-              <ShoppingCartIcon size={24} />
-              {totalItems > 0 ? (
-                <div className="text-small-regular flex h-6 w-6 items-center justify-center rounded-full bg-accent-primary text-white">
-                  <span>{totalItems}</span>
-                </div>
-              ) : null}
-            </div>
-          </LocalizedClientLink>
+            title={
+              <div className="flex">
+                <ShoppingCartIcon size={24} />
+                {totalItems > 0 ? (
+                  <div className="text-small-regular flex h-6 w-6 items-center justify-center rounded-full bg-accent-primary text-white">
+                    <span>{totalItems}</span>
+                  </div>
+                ) : null}
+              </div>
+            }
+          />
         </PopoverButton>
         <Transition
           show={cartDropdownOpen}
@@ -109,7 +109,7 @@ const CartDropdown = ({
         >
           <PopoverPanel
             static
-            className="absolute right-0 top-[calc(100%+1px)] hidden w-[420px] border-x border-b border-gray-200 bg-white text-ui-fg-base small:block"
+            className="absolute right-0 top-[calc(100%+4px)] hidden w-[420px] rounded-md border-x border-b border-gray-200 bg-white text-ui-fg-base small:block"
             data-testid="nav-cart-dropdown"
           >
             <div className="flex items-center justify-center p-4">
@@ -203,7 +203,7 @@ const CartDropdown = ({
                   </div>
                   <LocalizedClientLink href="/cart" passHref>
                     <Button
-                      className="w-full"
+                      className="h-10 w-full shadow-none"
                       size="large"
                       data-testid="go-to-cart-button"
                     >
@@ -214,7 +214,7 @@ const CartDropdown = ({
               </>
             ) : (
               <div>
-                <div className="flex flex-col items-center justify-center gap-y-4 py-16">
+                <div className="flex flex-col items-center justify-center gap-y-4 py-4">
                   <div className="text-small-regular flex h-6 w-6 items-center justify-center rounded-full bg-gray-900 text-white">
                     <span>0</span>
                   </div>

@@ -128,7 +128,7 @@ export default function ProductActions({
           disabled={true}
           isLoading={true}
           variant="primary"
-          className="text-md h-10 w-full bg-accent-primary py-1 font-sans font-bold text-white shadow-none hover:bg-hover-accent-primary disabled:bg-disabled-accent-primary disabled:text-[#6d866f] disabled:shadow-none"
+          className="text-md h-10 w-full py-1 font-sans font-bold text-white shadow-none disabled:shadow-none"
         />
       </div>
     );
@@ -141,7 +141,7 @@ export default function ProductActions({
         <Button
           disabled={true}
           variant="primary"
-          className="text-md h-10 w-full bg-accent-primary py-1 font-sans font-bold text-white shadow-none hover:bg-hover-accent-primary disabled:bg-disabled-accent-primary disabled:text-[#6d866f] disabled:shadow-none"
+          className="text-md h-10 w-full py-1 font-sans font-bold text-white shadow-none disabled:shadow-none"
         >
           Se connecter pour acheter
         </Button>
@@ -156,7 +156,7 @@ export default function ProductActions({
         <Button
           disabled={true}
           variant="primary"
-          className="text-md h-10 w-full bg-accent-primary py-1 font-sans font-bold text-white shadow-none hover:bg-hover-accent-primary disabled:bg-disabled-accent-primary disabled:text-[#6d866f] disabled:shadow-none"
+          className="text-md h-10 w-full py-1 font-sans font-bold text-white shadow-none disabled:shadow-none"
         >
           Approbation en attente
         </Button>
@@ -201,7 +201,7 @@ export default function ProductActions({
             !isValidVariant
           }
           variant="primary"
-          className="text-md h-10 w-full bg-accent-primary py-1 font-sans font-bold text-white shadow-none hover:bg-hover-accent-primary disabled:bg-disabled-accent-primary disabled:text-[#6d866f] disabled:shadow-none"
+          className="text-md h-10 w-full py-1 font-sans font-bold text-white shadow-none disabled:shadow-none"
           isLoading={isAdding}
           data-testid="add-product-button"
         >

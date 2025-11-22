@@ -10,7 +10,7 @@ type Props = {
 
 const ProductDocuments = ({ product }: Props) => {
   return (
-    <div className="text-small-regular flex flex-col gap-4 rounded-md bg-[#F4F4F4] p-4">
+    <div className="text-small-regular flex flex-col gap-4 rounded-md bg-[#F4F4F5] p-4">
       <div>
         <h1 className="text-left text-2xl text-ui-fg-base">Téléchargements</h1>
         <Divider />

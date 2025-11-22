@@ -1,12 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { ReactNode } from "react";
 import { clx } from "@medusajs/ui";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import { usePathname } from "next/navigation";
 
 type Props = {
-  title: string;
+  title: string | ReactNode;
   href: string;
   className?: string;
   [x: string]: any;

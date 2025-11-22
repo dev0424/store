@@ -13,7 +13,7 @@ const SignInPrompt = () => {
         <LocalizedClientLink href="/account">
           <Button
             variant="secondary"
-            className="h-10"
+            className="h-10 shadow-none"
             data-testid="sign-in-button"
           >
             Se connecter

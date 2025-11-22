@@ -561,7 +561,7 @@ const RegistrationForm = () => {
         .
       </span>
       <SubmitButton
-        className="mt-6 w-full font-sans font-bold tracking-wide"
+        className="mt-6 h-10 w-full font-sans font-bold tracking-wide shadow-none"
         data-testid="register-button"
       >
         Envoyer

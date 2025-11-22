@@ -49,21 +49,15 @@ const BrowserWidget = ({ categories }: Props) => {
   };
 
   return (
-    <div
-      className={
-        "flex h-fit flex-col gap-4 rounded-md bg-background-primary p-6 text-white"
-      }
-    >
-      <h2 className={"text-center text-lg font-bold"}>
-        Découvrez la gamme RSPI
-      </h2>
+    <div className="flex h-fit flex-col gap-4 rounded-md bg-background-primary p-6 text-white">
+      <h2 className="text-center text-lg font-bold">Découvrez la gamme RSPI</h2>
       <CategorySelect
-        placeholder={"Sélectionner une catégorie"}
+        placeholder="Sélectionner une catégorie"
         categories={mainCategories}
         onChange={onChangeCategory}
       />
       <CategorySelect
-        placeholder={"Sélectionnez une sous-catégorie"}
+        placeholder="Sélectionnez une sous-catégorie"
         categories={subCategories}
         onChange={onChangeCategory}
         disabled={!selectedCategory}

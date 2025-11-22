@@ -13,6 +13,7 @@ import { listCategories } from "@lib/data/categories";
 import TopNavBar from "@modules/layout/components/top-nav-bar";
 import { ExtendedCustomer } from "@types/customer";
 import { isCustomerApproved } from "@lib/util/customer";
+import NavLink from "@modules/layout/components/nav-link";
 
 type Props = {
   customer: ExtendedCustomer | null;
@@ -51,24 +52,15 @@ export default async function Header({ customer }: Props) {
 
             <div className="flex h-full flex-1 basis-0 items-center justify-end gap-x-6">
               <div className="flex h-full items-center gap-x-6">
-                <LocalizedClientLink
-                  className="text-white"
-                  href="/account"
-                  data-testid="nav-account-link"
-                >
-                  <UserIcon size={24} />
-                </LocalizedClientLink>
+                <NavLink title={<UserIcon size={24} />} href="/account" />
               </div>
               {isCustomerApproved(customer) ? (
                 <Suspense
                   fallback={
-                    <LocalizedClientLink
-                      className="flex whitespace-nowrap text-white"
+                    <NavLink
+                      title={<ShoppingCartIcon size={24} />}
                       href="/cart"
-                      data-testid="nav-cart-link"
-                    >
-                      <ShoppingCartIcon size={24} />
-                    </LocalizedClientLink>
+                    />
                   }
                 >
                   <CartButton />

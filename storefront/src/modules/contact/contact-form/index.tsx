@@ -53,7 +53,7 @@ const ContactForm = () => {
         />
         <SubmitButton
           data-testid="contact-form-button"
-          className="mt-6 w-full font-sans font-bold tracking-wide"
+          className="mt-6 h-10 w-full font-sans font-bold tracking-wide shadow-none"
         >
           Envoyer
         </SubmitButton>

@@ -42,7 +42,7 @@ const Login = () => {
         <ErrorMessage error={message} data-testid="login-error-message" />
         <SubmitButton
           data-testid="sign-in-button"
-          className="mt-6 w-full font-sans font-bold tracking-wide"
+          className="mt-6 h-10 w-full font-sans font-bold tracking-wide shadow-none"
         >
           Se connecter
         </SubmitButton>
