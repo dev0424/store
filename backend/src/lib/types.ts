@@ -80,3 +80,11 @@ export type SystemFlag = {
     value: string;
     name: string;
 };
+
+export type ContactForm = {
+    first_name: string;
+    last_name: string;
+    phone?: string;
+    email: string;
+    message: string;
+};

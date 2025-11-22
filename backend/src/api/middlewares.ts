@@ -12,6 +12,7 @@ import { UpdateAccountStatusRequest } from 'api/admin/account-status/validators'
 import { UpdateCustomerProfileRequest } from 'api/admin/customer-profile/validators';
 import { UpdateLocationRequest } from 'api/admin/location/validators';
 import { CreateSystemFlagRequest, UpdateSystemFlagRequest } from 'api/admin/system-flag/validators';
+import { ContactFormRequest } from 'api/store/contact/validators';
 
 export default defineMiddlewares({
     routes: [
@@ -60,6 +61,11 @@ export default defineMiddlewares({
             matcher: '/admin/system-flag/:id',
             method: 'PUT',
             middlewares: [validateAndTransformBody(UpdateSystemFlagRequest)],
+        },
+        {
+            matcher: '/store/contact',
+            method: 'POST',
+            middlewares: [validateAndTransformBody(ContactFormRequest)],
         },
         {
             // Medusa restricts API routes to be retrieved for some endpoints https://docs.medusajs.com/learn/fundamentals/api-routes/retrieve-custom-links#api-routes-that-restrict-retrievable-fields

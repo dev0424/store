@@ -1,17 +1,35 @@
 "use client";
 
-import React, { useActionState } from "react";
+import React, { useActionState, useEffect } from "react";
 import Input from "@modules/common/components/input";
 import TextArea from "@modules/common/components/textarea";
 import { SubmitButton } from "@modules/checkout/components/submit-button";
 import { submitContactForm } from "@lib/data/contact";
+import { toast, Toaster } from "@medusajs/ui";
 
 const ContactForm = () => {
-  // TODO submit contact form
-  const [formState, formAction] = useActionState(submitContactForm, null);
+  const [formState, formAction] = useActionState(submitContactForm, {
+    success: false,
+    error: null,
+  });
+
+  useEffect(() => {
+    if (formState?.success) {
+      toast.success("Success", {
+        description: "Votre formulaire a été envoyé avec succès",
+      });
+    }
+
+    if (formState?.error) {
+      toast.error("Error", {
+        description: "Une erreur est survenue lors de l’envoi du formulaire",
+      });
+    }
+  }, [formState]);
 
   return (
     <form action={formAction}>
+      <Toaster />
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-4 sm:flex-row">
           <Input
