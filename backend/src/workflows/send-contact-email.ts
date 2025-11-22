@@ -27,6 +27,10 @@ const sendContactNotificationStep = createStep(
                 channel: 'email',
                 template: 'contact-form',
                 data: {
+                    emailOptions: {
+                        replyTo: input.email,
+                        subject: `New message from ${input.first_name} ${input.last_name} via the contact form`,
+                    },
                     first_name: input.first_name,
                     last_name: input.last_name,
                     email: input.email,
