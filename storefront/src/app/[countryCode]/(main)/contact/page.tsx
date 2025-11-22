@@ -78,7 +78,7 @@ const ContactPage = () => {
         <div className="relative order-1 h-64 w-full sm:order-2 sm:h-auto">
           <Image
             src="/images/contact.webp"
-            alt="RSPI Store"
+            alt="RSPI"
             fill
             className="rounded-md object-cover"
           />

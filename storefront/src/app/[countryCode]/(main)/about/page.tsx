@@ -57,7 +57,7 @@ const AboutPage = () => {
           <Image
             src={"/images/about.webp"}
             className="rounded-md object-cover"
-            alt={"RSPI Store"}
+            alt="RSPI"
             fill
           />
         </div>

@@ -17,7 +17,7 @@ const Login = () => {
         Accès client
       </h1>
       <p className="mb-8 text-ui-fg-subtle">
-        Connectez-vous à votre compte RSPI Store.
+        Connectez-vous à votre compte RSPI.
       </p>
       <form className="w-full" action={formAction}>
         <div className="flex w-full flex-col gap-y-2">

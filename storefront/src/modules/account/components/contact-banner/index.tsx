@@ -35,7 +35,7 @@ const ContactBanner = () => {
         <Image
           src={"/images/contact.webp"}
           className="rounded-md object-cover"
-          alt={"RSPI Store"}
+          alt="RSPI"
           width={2400}
           height={500}
         />
