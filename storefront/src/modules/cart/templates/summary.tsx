@@ -30,7 +30,7 @@ const Summary = ({ cart }: SummaryProps) => {
   return (
     <div className="flex flex-col gap-y-4">
       <Heading level="h2" className="text-[2rem] leading-[2.75rem]">
-        Summary
+        Résumé du panier
       </Heading>
       <DiscountCode cart={cart} />
       <Divider />
@@ -39,7 +39,7 @@ const Summary = ({ cart }: SummaryProps) => {
         href={"/checkout?step=" + step}
         data-testid="checkout-button"
       >
-        <Button className="h-10 w-full">Go to checkout</Button>
+        <Button className="h-10 w-full">Procéder au paiement</Button>
       </LocalizedClientLink>
     </div>
   );

@@ -12,7 +12,7 @@ const ShippingDetails = ({ order }: ShippingDetailsProps) => {
   return (
     <div>
       <Heading level="h2" className="text-3xl-regular my-6 flex flex-row">
-        Delivery
+        Livraison
       </Heading>
       <div className="flex items-start gap-x-8">
         <div
@@ -20,7 +20,7 @@ const ShippingDetails = ({ order }: ShippingDetailsProps) => {
           data-testid="shipping-address-summary"
         >
           <Text className="txt-medium-plus mb-1 text-ui-fg-base">
-            Shipping Address
+            Adresse de livraison
           </Text>
           <Text className="txt-medium text-ui-fg-subtle">
             {order.shipping_address?.first_name}{" "}
@@ -54,7 +54,7 @@ const ShippingDetails = ({ order }: ShippingDetailsProps) => {
           className="flex w-1/3 flex-col"
           data-testid="shipping-method-summary"
         >
-          <Text className="txt-medium-plus mb-1 text-ui-fg-base">Method</Text>
+          <Text className="txt-medium-plus mb-1 text-ui-fg-base">Méthode</Text>
           <Text className="txt-medium text-ui-fg-subtle">
             {(order as any).shipping_methods[0]?.name} (
             {convertToLocale({

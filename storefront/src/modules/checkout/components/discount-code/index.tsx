@@ -1,11 +1,10 @@
 "use client";
 
-import { Badge, Heading, Input, Label, Text, Tooltip } from "@medusajs/ui";
+import { Badge, Heading, Input, Label, Text } from "@medusajs/ui";
 import React, { useActionState } from "react";
 
 import { applyPromotions, submitPromotionForm } from "@lib/data/cart";
 import { convertToLocale } from "@lib/util/money";
-import { InformationCircleSolid } from "@medusajs/icons";
 import { HttpTypes } from "@medusajs/types";
 import Trash from "@modules/common/icons/trash";
 import ErrorMessage from "../error-message";
@@ -64,7 +63,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
               className="txt-medium text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
               data-testid="add-discount-button"
             >
-              Add Promotion Code(s)
+              Ajouter des codes promotionnels
             </button>
 
             {/* <Tooltip content="You can add multiple promotion codes">
@@ -87,7 +86,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                   variant="secondary"
                   data-testid="discount-apply-button"
                 >
-                  Apply
+                  Appliquer
                 </SubmitButton>
               </div>
 
@@ -103,7 +102,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
           <div className="flex w-full items-center">
             <div className="flex w-full flex-col">
               <Heading className="txt-medium mb-2">
-                Promotion(s) applied:
+                Promotion appliquée:
               </Heading>
 
               {promotions.map((promotion) => {
@@ -159,7 +158,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                       >
                         <Trash size={14} />
                         <span className="sr-only">
-                          Remove discount code from order
+                          Supprimer le code de réduction
                         </span>
                       </button>
                     )}

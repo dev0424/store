@@ -6,8 +6,8 @@ import { notFound } from "next/navigation";
 import { isCustomerApproved } from "@lib/util/customer";
 
 export const metadata: Metadata = {
-  title: "Cart",
-  description: "View your cart",
+  title: "Panier",
+  description: "Voir votre panier.",
 };
 
 export default async function Cart() {

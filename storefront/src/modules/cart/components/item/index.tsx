@@ -77,6 +77,7 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
           <div className="flex w-28 items-center gap-2">
             <DeleteButton id={item.id} data-testid="product-delete-button" />
             <CartItemSelect
+              placeholder="Sélectionner"
               value={item.quantity}
               onChange={(value) => changeQuantity(parseInt(value.target.value))}
               className="h-10 w-14 p-4"
@@ -121,8 +122,10 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
           })}
         >
           {type === "preview" && (
-            <span className="flex gap-x-1">
-              <Text className="text-ui-fg-muted">{item.quantity}x </Text>
+            <span className="flex items-center gap-x-1">
+              <div className="flex h-full flex-col justify-center text-ui-fg-muted">
+                <span className="text-base-regular">{item.quantity}x </span>
+              </div>
               <LineItemUnitPrice
                 item={item}
                 style="tight"

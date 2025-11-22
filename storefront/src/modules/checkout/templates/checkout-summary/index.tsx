@@ -14,7 +14,7 @@ const CheckoutSummary = ({ cart }: { cart: any }) => {
           level="h2"
           className="text-3xl-regular flex flex-row items-baseline"
         >
-          In your Cart
+          Votre panier
         </Heading>
         <Divider className="my-6" />
         <CartTotals totals={cart} />
