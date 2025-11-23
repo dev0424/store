@@ -10,7 +10,9 @@ export default async function resetPasswordTokenHandler({
 }: SubscriberArgs<{ entity_id: string; token: string; actor_type: string }>) {
     const notificationModuleService = container.resolve(Modules.NOTIFICATION);
     const config = container.resolve('configModule');
-
+    console.log('ACTOR_TYPE', actor_type);
+    console.log('CONFIG', config);
+    console.log('CONFIG ADMIN', config.admin);
     let urlPrefix = '';
 
     if (actor_type === 'customer') {
@@ -21,7 +23,7 @@ export default async function resetPasswordTokenHandler({
         const adminPath = config.admin.path;
         urlPrefix = `${backendUrl}${adminPath}`;
     }
-
+    console.log('URL_PREFIX', urlPrefix);
     try {
         await notificationModuleService.createNotifications({
             to: email,
