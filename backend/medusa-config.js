@@ -22,6 +22,7 @@ import {
     MINIO_BUCKET,
     MEILISEARCH_HOST,
     MEILISEARCH_ADMIN_KEY,
+    STOREFRONT_URL,
 } from 'lib/constants';
 import { getProductMinPrice } from 'utils/variant-price';
 
@@ -42,6 +43,7 @@ const medusaConfig = {
         },
     },
     admin: {
+        storefrontUrl: STOREFRONT_URL,
         backendUrl: BACKEND_URL,
         disable: SHOULD_DISABLE_ADMIN,
     },
