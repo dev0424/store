@@ -1,3 +1,12 @@
+export const PASSWORD_SCHEMA = {
+  required: "Ce champ est obligatoire",
+  pattern: {
+    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/,
+    message:
+      "Le mot de passe doit comporter au moins 8 caractères et inclure des majuscules, des minuscules, des chiffres et des caractères spéciaux.",
+  },
+};
+
 export const getSignupSchema = (billingSameAsShipping: boolean) => {
   return {
     first_name: {
@@ -23,14 +32,7 @@ export const getSignupSchema = (billingSameAsShipping: boolean) => {
     company_name: {
       required: "Ce champ est obligatoire",
     },
-    password: {
-      required: "Ce champ est obligatoire",
-      pattern: {
-        value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/,
-        message:
-          "Le mot de passe doit comporter au moins 8 caractères et inclure des majuscules, des minuscules, des chiffres et des caractères spéciaux.",
-      },
-    },
+    password: PASSWORD_SCHEMA,
     bank_account: {
       bank_name: {
         required: "Ce champ est obligatoire",

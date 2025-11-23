@@ -1,25 +1,34 @@
 "use client";
 
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React from "react";
 import { sdk } from "../../../lib/config";
 import { SubmitButton } from "@modules/checkout/components/submit-button";
 import Input from "@modules/common/components/input";
 import { toast, Toaster } from "@medusajs/ui";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { PASSWORD_SCHEMA } from "@modules/account/components/registration-form/schema";
+
+type ResetPasswordFormValues = {
+  confirm_password: string;
+  password: string;
+};
 
 function ResetPasswordForm() {
-  const [password, setPassword] = useState("");
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<ResetPasswordFormValues>();
+  const router = useRouter();
   const searchParams = useSearchParams();
 
   const token = searchParams.get("token");
   const email = searchParams.get("email");
+  const password = watch("password");
 
-  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) =>
-    setPassword(event.target.value);
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  const onSubmit = async (data: ResetPasswordFormValues) => {
     if (!token) {
       return;
     }
@@ -30,11 +39,11 @@ function ResetPasswordForm() {
         "emailpass",
         {
           email,
-          password,
+          password: data.password,
         },
         token,
       );
-      setPassword("");
+      router.replace("/account");
       toast.success("Success", {
         description: "Mot de passe réinitialisé avec succès",
       });
@@ -48,21 +57,41 @@ function ResetPasswordForm() {
 
   return (
     <div className="flex w-full max-w-sm flex-col items-center">
+      <Toaster />
       <h1 className="text-xl-semi text-center text-ui-fg-base sm:text-left">
         Créer un nouveau mot de passe
       </h1>
       <p className="mb-8 text-center text-ui-fg-subtle">
         Veuillez saisir un nouveau mot de passe pour votre compte.
       </p>
-      <form onSubmit={handleSubmit} className="w-full">
-        <Toaster />
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex w-full flex-col gap-4"
+      >
         <Input
+          {...register("password", PASSWORD_SCHEMA)}
           label="Mot de passe"
           name="password"
           type="password"
+          autoComplete="new-password"
+          data-testid="password-input"
+          errors={errors?.password}
           required={true}
-          value={password}
-          onChange={onChangePassword}
+          disableNativeValidation={true}
+        />
+        <Input
+          {...register("confirm_password", {
+            required: "This field is required",
+            validate: (value) => value === password || "Passwords do not match",
+          })}
+          label="Confirmez le mot de passe"
+          name="confirm_password"
+          type="password"
+          autoComplete="new-password"
+          data-testid="confirm-password-input"
+          errors={errors?.confirm_password}
+          required={true}
+          disableNativeValidation={true}
         />
         <SubmitButton className="mt-6 h-10 w-full font-sans font-bold tracking-wide shadow-none">
           Réinitialiser le mot de passe
