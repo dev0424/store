@@ -56,7 +56,7 @@ export const listProducts = async ({
 
   return sdk.client
     .fetch<{ products: HttpTypes.StoreProduct[]; count: number }>(
-      `/store/filter/products`,
+      `/store/products`,
       {
         method: "GET",
         query: {
