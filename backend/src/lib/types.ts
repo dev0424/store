@@ -88,3 +88,8 @@ export type ContactForm = {
     email: string;
     message: string;
 };
+
+export type PasswordResetRequest = {
+    reset_url: string;
+    email: string;
+};
