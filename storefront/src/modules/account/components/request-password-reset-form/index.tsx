@@ -24,6 +24,7 @@ function RequestPasswordResetForm() {
         description:
           "Si un compte existe avec l’adresse e-mail indiquée, il recevra les instructions pour réinitialiser le mot de passe",
       });
+      setEmail("");
     } catch (error) {
       console.error(error);
       toast.error("Error", {
