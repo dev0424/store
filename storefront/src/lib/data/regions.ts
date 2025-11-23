@@ -13,8 +13,8 @@ export const listRegions = async () => {
   return sdk.client
     .fetch<{ regions: HttpTypes.StoreRegion[] }>(`/store/regions`, {
       method: "GET",
-      next,
-      cache: "force-cache",
+      // next,
+      // cache: "force-cache",
     })
     .then(({ regions }) => regions)
     .catch(medusaError);

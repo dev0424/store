@@ -1,8 +1,13 @@
 import React from "react";
 import RegistrationForm from "@modules/account/components/registration-form";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
+import { StoreRegion } from "@medusajs/types";
 
-const RegisterTemplate = () => {
+type Props = {
+  region: StoreRegion | null | undefined;
+};
+
+const RegisterTemplate = ({ region }: Props) => {
   return (
     <div
       className="flex w-full max-w-xl flex-col items-center justify-center"
@@ -15,7 +20,7 @@ const RegisterTemplate = () => {
         Créez votre profil de membre et accédez à une expérience d'achat
         améliorée.
       </p>
-      <RegistrationForm />
+      <RegistrationForm region={region} />
       <span className="text-small-regular mt-6 text-center text-ui-fg-base">
         Vous avez déjà un compte?{" "}
         <LocalizedClientLink href="/account">

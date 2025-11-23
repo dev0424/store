@@ -12,10 +12,13 @@ import { BankAccount } from "@types/bank-account";
 import { CustomerProfile } from "@types/customer-profile";
 import NativeSelect from "@modules/common/components/native-select";
 import { useRouter } from "next/navigation";
-import { HttpTypes } from "@medusajs/types";
+import { HttpTypes, StoreRegion } from "@medusajs/types";
 import Checkbox from "@modules/common/components/checkbox";
 import { getSignupSchema } from "@modules/account/components/registration-form/schema";
 import { Label } from "@medusajs/ui";
+import CountrySelect from "@modules/checkout/components/country-select";
+
+const DEFAULT_COUNTRY_CODE = "fra";
 
 export type RegistrationFormValues = {
   email: string;
@@ -30,7 +33,11 @@ export type RegistrationFormValues = {
   addresses: HttpTypes.StoreCustomerAddress[];
 };
 
-const RegistrationForm = () => {
+type Props = {
+  region: StoreRegion | null | undefined;
+};
+
+const RegistrationForm = ({ region }: Props) => {
   const [error, setError] = useState<string | undefined>(undefined);
   const [billingSameAsShipping, setBillingSameAsShipping] =
     useState<boolean>(true);
@@ -343,16 +350,17 @@ const RegistrationForm = () => {
               required={true}
               disableNativeValidation={true}
             />
-            <Input
+            <CountrySelect
               {...register(
                 "addresses.0.country_code",
                 SIGN_UP_SCHEMA.addresses[0].country_code,
               )}
-              label="Pays"
               name="addresses.0.country_code"
-              errors={errors?.addresses?.[0]?.country_code}
-              required={true}
-              disableNativeValidation={true}
+              region={region}
+              required
+              autoComplete="country"
+              defaultValue={DEFAULT_COUNTRY_CODE}
+              data-testid="country-select"
             />
             <Input
               {...register(
