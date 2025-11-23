@@ -56,6 +56,15 @@ const Login = () => {
         </LocalizedClientLink>
         .
       </span>
+      <div className="text-small-regular mt-6 text-center text-ui-fg-base">
+        <p>Mot de passe oublié?</p>
+        <LocalizedClientLink href="/request-password-reset">
+          <button className="underline" data-testid="register-button">
+            Cliquez ici pour le réinitialiser
+          </button>
+        </LocalizedClientLink>
+        .
+      </div>
     </div>
   );
 };
