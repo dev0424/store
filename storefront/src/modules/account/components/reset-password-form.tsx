@@ -81,8 +81,9 @@ function ResetPasswordForm() {
         />
         <Input
           {...register("confirm_password", {
-            required: "This field is required",
-            validate: (value) => value === password || "Passwords do not match",
+            required: "Ce champ est obligatoire",
+            validate: (value) =>
+              value === password || "Les mots de passe ne correspondent pas",
           })}
           label="Confirmez le mot de passe"
           name="confirm_password"
