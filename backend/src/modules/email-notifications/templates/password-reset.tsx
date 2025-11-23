@@ -6,13 +6,12 @@ export const PASSWORD_RESET = 'password-reset';
 
 type Props = {
     reset_url: string;
-    email?: string;
 };
 
 export const isPasswordResetTemplateData = (data: any): data is PasswordResetRequest =>
-    typeof data.reset_url === 'string' && typeof data.email === 'string';
+    typeof data.reset_url === 'string';
 
-const PasswordResetEmail = ({ reset_url, email }: Props) => {
+const PasswordResetEmail = ({ reset_url }: Props) => {
     return (
         <Base preview="Reset your password">
             <Section>
@@ -29,9 +28,7 @@ const PasswordResetEmail = ({ reset_url, email }: Props) => {
             </Section>
 
             <Section>
-                <Text className="text-black text-[14px] leading-[24px]">
-                    Hello{email ? ` ${email}` : ''},
-                </Text>
+                <Text className="text-black text-[14px] leading-[24px]">Hello,</Text>
                 <Text className="text-black text-[14px] leading-[24px]">
                     We received a request to reset your password. Click the button below to create a
                     new password for your account.
