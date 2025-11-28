@@ -1,3 +1,4 @@
+import React from "react";
 import { ChevronUpDown } from "@medusajs/icons";
 import { clx } from "@medusajs/ui";
 import {
@@ -8,6 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
+import ErrorMessage from "@modules/checkout/components/error-message";
 
 export type NativeSelectProps = {
   placeholder?: string;
@@ -17,7 +19,14 @@ export type NativeSelectProps = {
 
 const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
   (
-    { placeholder = "Select...", defaultValue, className, children, ...props },
+    {
+      placeholder = "Select...",
+      defaultValue,
+      className,
+      children,
+      errors,
+      ...props
+    },
     ref,
   ) => {
     const innerRef = useRef<HTMLSelectElement>(null);
@@ -64,6 +73,7 @@ const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
             <ChevronUpDown />
           </span>
         </div>
+        {errors ? <ErrorMessage error={errors.message as string} /> : null}
       </div>
     );
   },

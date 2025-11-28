@@ -13,6 +13,7 @@ import { UpdateCustomerProfileRequest } from 'api/admin/customer-profile/validat
 import { UpdateLocationRequest } from 'api/admin/location/validators';
 import { CreateSystemFlagRequest, UpdateSystemFlagRequest } from 'api/admin/system-flag/validators';
 import { ContactFormRequest } from 'api/store/contact/validators';
+import { CreateActivityRequest } from 'api/admin/activity/validators';
 
 export default defineMiddlewares({
     routes: [
@@ -61,6 +62,11 @@ export default defineMiddlewares({
             matcher: '/admin/system-flag/:id',
             method: 'PUT',
             middlewares: [validateAndTransformBody(UpdateSystemFlagRequest)],
+        },
+        {
+            matcher: '/admin/activity',
+            method: 'POST',
+            middlewares: [validateAndTransformBody(CreateActivityRequest)],
         },
         {
             matcher: '/store/contact',

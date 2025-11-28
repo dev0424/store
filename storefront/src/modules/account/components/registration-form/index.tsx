@@ -15,10 +15,19 @@ import { useRouter } from "next/navigation";
 import { HttpTypes, StoreRegion } from "@medusajs/types";
 import Checkbox from "@modules/common/components/checkbox";
 import { getSignupSchema } from "@modules/account/components/registration-form/schema";
-import { Label } from "@medusajs/ui";
 import CountrySelect from "@modules/checkout/components/country-select";
+import { Activity } from "@types/activity";
 
-const DEFAULT_COUNTRY_CODE = "fra";
+const DEFAULT_BILLING_CYCLE_OPTIONS = [
+  { id: "immédiate", name: "Immédiate" },
+  { id: "fin-de-mois", name: "Fin de mois" },
+];
+
+const DEFAULT_PAYMENT_METHOD_OPTIONS = [
+  { id: "lcr-direct-30j", name: "LCR Direct 30J" },
+  { id: "virement-30j", name: "Virement 30J" },
+  { id: "reglement-par-avance", name: "Reglement par avance" },
+];
 
 export type RegistrationFormValues = {
   email: string;
@@ -35,9 +44,10 @@ export type RegistrationFormValues = {
 
 type Props = {
   region: StoreRegion | null | undefined;
+  activities: Activity[] | undefined;
 };
 
-const RegistrationForm = ({ region }: Props) => {
+const RegistrationForm = ({ region, activities }: Props) => {
   const [error, setError] = useState<string | undefined>(undefined);
   const [billingSameAsShipping, setBillingSameAsShipping] =
     useState<boolean>(true);
@@ -357,9 +367,9 @@ const RegistrationForm = ({ region }: Props) => {
               )}
               name="addresses.0.country_code"
               region={region}
-              required
+              errors={errors?.addresses?.[0]?.country_code}
               autoComplete="country"
-              defaultValue={DEFAULT_COUNTRY_CODE}
+              defaultValue={""}
               data-testid="country-select"
             />
             <Input
@@ -503,55 +513,54 @@ const RegistrationForm = ({ region }: Props) => {
               required={true}
               disableNativeValidation={true}
             />
-            <div>
-              <Label className="txt-compact-small font-sans font-medium">
-                Activité
-              </Label>
-              <NativeSelect
-                {...register(
-                  "customer_profile.activity",
-                  SIGN_UP_SCHEMA.customer_profile.activity,
-                )}
-                name="customer_profile.activity"
-                errors={errors?.customer_profile?.activity}
-              >
-                <option value={"activity-1"}>Activity 1</option>
-                <option value={"activity-1"}>Activity 2</option>
-              </NativeSelect>
-            </div>
-            <div>
-              <Label className="txt-compact-small font-sans font-medium">
-                Facturation
-              </Label>
-              <NativeSelect
-                {...register(
-                  "customer_profile.billing_cycle",
-                  SIGN_UP_SCHEMA.customer_profile.billing_cycle,
-                )}
-                name="customer_profile.billing_cycle"
-                errors={errors?.customer_profile?.billing_cycle}
-              >
-                <option value={"billing-cycle-1"}>Billing cycle 1</option>
-                <option value={"billing-cycle-2"}>Billing cycle 2</option>
-              </NativeSelect>
-            </div>
-            <div>
-              <Label className="txt-compact-small font-sans font-medium">
-                Mode de Règlement
-              </Label>
-              <NativeSelect
-                {...register(
-                  "customer_profile.payment_method",
-                  SIGN_UP_SCHEMA.customer_profile.payment_method,
-                )}
-                name="customer_profile.payment_method"
-                errors={errors?.customer_profile?.payment_method}
-                required
-              >
-                <option value={"payment-method-1"}>Payment method 1</option>
-                <option value={"payment-method-2"}>Payment method 2</option>
-              </NativeSelect>
-            </div>
+            <NativeSelect
+              {...register(
+                "customer_profile.activity",
+                SIGN_UP_SCHEMA.customer_profile.activity,
+              )}
+              name="customer_profile.activity"
+              errors={errors?.customer_profile?.activity}
+              placeholder="Activité"
+              defaultValue={""}
+            >
+              {activities?.map((activity) => (
+                <option key={activity.id} value={activity.name}>
+                  {activity.name}
+                </option>
+              ))}
+            </NativeSelect>
+            <NativeSelect
+              {...register(
+                "customer_profile.billing_cycle",
+                SIGN_UP_SCHEMA.customer_profile.billing_cycle,
+              )}
+              name="customer_profile.billing_cycle"
+              errors={errors?.customer_profile?.billing_cycle}
+              placeholder="Facturation"
+              defaultValue={""}
+            >
+              {DEFAULT_BILLING_CYCLE_OPTIONS.map((billingCycle) => (
+                <option key={billingCycle.id} value={billingCycle.id}>
+                  {billingCycle.name}
+                </option>
+              ))}
+            </NativeSelect>
+            <NativeSelect
+              {...register(
+                "customer_profile.payment_method",
+                SIGN_UP_SCHEMA.customer_profile.payment_method,
+              )}
+              name="customer_profile.payment_method"
+              errors={errors?.customer_profile?.payment_method}
+              placeholder="Mode de Règlement"
+              defaultValue={""}
+            >
+              {DEFAULT_PAYMENT_METHOD_OPTIONS.map((paymentMethod) => (
+                <option key={paymentMethod.id} value={paymentMethod.id}>
+                  {paymentMethod.name}
+                </option>
+              ))}
+            </NativeSelect>
           </div>
         </div>
       </div>

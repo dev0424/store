@@ -93,3 +93,8 @@ export type PasswordResetRequest = {
     reset_url: string;
     email: string;
 };
+
+export type Activity = {
+    id: string;
+    name: string;
+};

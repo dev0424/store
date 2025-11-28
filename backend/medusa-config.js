@@ -67,6 +67,9 @@ const medusaConfig = {
             resolve: './src/modules/system-flag',
         },
         {
+            resolve: './src/modules/activity',
+        },
+        {
             key: Modules.FILE,
             resolve: '@medusajs/file',
             options: {
