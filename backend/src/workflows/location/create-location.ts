@@ -5,12 +5,12 @@ import {
     WorkflowResponse,
     when,
 } from '@medusajs/framework/workflows-sdk';
-import { LOCATION_MODULE } from '../modules/location/index';
+import { LOCATION_MODULE } from '../../modules/location';
 import { createRemoteLinkStep } from '@medusajs/core-flows';
 import { Modules } from '@medusajs/utils';
 import { CustomerDTO } from '@medusajs/types';
-import { Location } from '../lib/types';
-import LocationModuleService from '../modules/location/services/service';
+import { Location } from '../../lib/types';
+import LocationModuleService from '../../modules/location/services/service';
 
 type CreateLocationWorkflowInput = {
     customer: CustomerDTO;

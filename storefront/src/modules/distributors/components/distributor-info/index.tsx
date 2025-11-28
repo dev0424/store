@@ -19,20 +19,21 @@ const DistributorInfo = ({ distributor }: Props) => {
       </div>
       <Divider />
       <div className="flex flex-col gap-2">
-        {/*<div className="flex items-center gap-2">*/}
-        {/*  <HiLocationMarker />*/}
-        {/*  <p className="text-ui-fg-subtle">*/}
-        {/*    {distributor.address.address}, {distributor.address.postal_code}{" "}*/}
-        {/*    {distributor.address.city}*/}
-        {/*  </p>*/}
-        {/*</div>*/}
+        <div className="flex items-center gap-2">
+          <HiLocationMarker />
+          <p className="text-ui-fg-subtle">
+            {distributor.location.address_1}, {distributor.location.postal_code}{" "}
+            {distributor.location.address_2}
+            {distributor.location.city}
+          </p>
+        </div>
         <div className="flex items-center gap-2">
           <HiPhone />
-          <p className="text-ui-fg-subtle">{distributor.phone}</p>
+          <p className="text-ui-fg-subtle">{distributor.location.phone}</p>
         </div>
         <div className="flex items-center gap-2">
           <HiOutlineMail />
-          <p className="text-ui-fg-subtle">{distributor.email}</p>
+          <p className="text-ui-fg-subtle">{distributor.location.email}</p>
         </div>
       </div>
     </>

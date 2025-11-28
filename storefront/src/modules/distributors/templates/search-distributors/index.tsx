@@ -72,14 +72,16 @@ const SearchDistributors = ({ distributors }: Props) => {
     setFilteredDistributors(
       distributors.filter((d) => {
         const name = d.company_name.toLowerCase();
-        // const city = d.address.city.toLowerCase();
-        // const address = d.address.address.toLowerCase();
-        // const postal = d.address.postal_code.toString().toLowerCase();
+        const city = d.location.city?.toLowerCase();
+        const address = d.location.address_1?.toLowerCase();
+        const postal = d.location.postal_code?.toString().toLowerCase();
 
-        return name.includes(query);
-        // city.includes(query) ||
-        // address.includes(query) ||
-        // postal.includes(query)
+        return (
+          name.includes(query) ||
+          city?.includes(query) ||
+          address?.includes(query) ||
+          postal?.includes(query)
+        );
       }),
     );
   };

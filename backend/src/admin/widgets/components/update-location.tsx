@@ -80,6 +80,54 @@ const UpdateLocation = ({ location, onSuccess }: Props) => {
                                     type="number"
                                     defaultValue={location?.longitude}
                                 />
+                                <FormInput
+                                    label="Address 1"
+                                    name="address_1"
+                                    type="text"
+                                    defaultValue={location?.address_1}
+                                />
+                                <FormInput
+                                    label="Address 2"
+                                    name="address_2"
+                                    type="text"
+                                    defaultValue={location?.address_2}
+                                />
+                                <FormInput
+                                    label="City"
+                                    name="city"
+                                    type="text"
+                                    defaultValue={location?.city}
+                                />
+                                <FormInput
+                                    label="Country code"
+                                    name="country_code"
+                                    type="text"
+                                    defaultValue={location?.country_code}
+                                />
+                                <FormInput
+                                    label="Province"
+                                    name="province"
+                                    type="text"
+                                    defaultValue={location?.province}
+                                />
+                                <FormInput
+                                    label="Postal code"
+                                    name="postal_code"
+                                    type="text"
+                                    defaultValue={location?.postal_code}
+                                />
+                                <FormInput
+                                    label="Phone"
+                                    name="phone"
+                                    type="text"
+                                    defaultValue={location?.phone}
+                                />
+                                <FormInput
+                                    label="Email"
+                                    name="email"
+                                    type="text"
+                                    defaultValue={location?.email}
+                                />
                             </div>
                         </Drawer.Body>
                         <Drawer.Footer>

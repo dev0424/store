@@ -1,12 +1,12 @@
-import { Location } from '../lib/types';
+import { Location } from '../../lib/types';
 import {
     createStep,
     createWorkflow,
     StepResponse,
     WorkflowResponse,
 } from '@medusajs/framework/workflows-sdk';
-import LocationModuleService from '../modules/location/services/service';
-import { LOCATION_MODULE } from '../modules/location';
+import LocationModuleService from '../../modules/location/services/service';
+import { LOCATION_MODULE } from '../../modules/location';
 
 export const updateLocationStep = createStep(
     'update-location-step',

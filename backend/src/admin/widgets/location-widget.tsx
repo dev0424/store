@@ -26,7 +26,7 @@ const LocationWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) =>
             <Container className="p-0">
                 <div className="flex flex-col divide-y">
                     <Heading level="h2" className="px-6 py-4">
-                        Location
+                        Store location
                     </Heading>
                     <Text className="px-6 py-4">Loading...</Text>
                 </div>
@@ -37,7 +37,7 @@ const LocationWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) =>
     return (
         <Container className="divide-y p-0">
             <div className="flex justify-between items-center px-6 py-4">
-                <Heading level="h2">Location</Heading>
+                <Heading level="h2">Store location</Heading>
                 <UpdateLocation
                     location={customerData.customer.location}
                     onSuccess={refreshCustomer}
@@ -51,6 +51,29 @@ const LocationWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) =>
                 title="Longitude"
                 value={customerData.customer.location.longitude || 'Not set'}
             />
+            <SectionRow
+                title="Address 1"
+                value={customerData.customer.location.address_1 || 'Not set'}
+            />
+            <SectionRow
+                title="Address 2"
+                value={customerData.customer.location.address_2 || 'Not set'}
+            />
+            <SectionRow title="City" value={customerData.customer.location.city || 'Not set'} />
+            <SectionRow
+                title="Country code"
+                value={customerData.customer.location.country_code || 'Not set'}
+            />
+            <SectionRow
+                title="Province"
+                value={customerData.customer.location.province || 'Not set'}
+            />
+            <SectionRow
+                title="Postal code"
+                value={customerData.customer.location.postal_code || 'Not set'}
+            />
+            <SectionRow title="Phone" value={customerData.customer.location.phone || 'Not set'} />
+            <SectionRow title="Email" value={customerData.customer.location.email || 'Not set'} />
         </Container>
     );
 };

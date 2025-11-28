@@ -12,9 +12,9 @@ import { BankAccount } from "@types/bank-account";
 import { CustomerProfile } from "@types/customer-profile";
 import NativeSelect from "@modules/common/components/native-select";
 import { useRouter } from "next/navigation";
-import { HttpTypes, StoreRegion } from "@medusajs/types";
+import { StoreCustomerAddress, StoreRegion } from "@medusajs/types";
 import Checkbox from "@modules/common/components/checkbox";
-import { getSignupSchema } from "@modules/account/components/registration-form/schema";
+import { SIGN_UP_SCHEMA } from "@modules/account/components/registration-form/schema";
 import CountrySelect from "@modules/checkout/components/country-select";
 import { Activity } from "@types/activity";
 import { CustomPaymentMethod } from "@types/custom-payment-method";
@@ -30,7 +30,7 @@ export type RegistrationFormValues = {
   confirm_password: string;
   bank_account: BankAccount;
   customer_profile: CustomerProfile;
-  addresses: HttpTypes.StoreCustomerAddress[];
+  address: StoreCustomerAddress;
 };
 
 type Props = {
@@ -47,12 +47,7 @@ const RegistrationForm = ({
   billingCycles,
 }: Props) => {
   const [error, setError] = useState<string | undefined>(undefined);
-  const [billingSameAsShipping, setBillingSameAsShipping] =
-    useState<boolean>(true);
   const [accepted, setAccepted] = useState<boolean>(false);
-
-  const SIGN_UP_SCHEMA = getSignupSchema(billingSameAsShipping);
-
   const router = useRouter();
 
   const {
@@ -60,45 +55,22 @@ const RegistrationForm = ({
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<RegistrationFormValues>({
-    defaultValues: {
-      addresses: [
-        { address_name: "Shipping address" },
-        { address_name: "Billing address" },
-      ],
-    },
-  });
+  } = useForm<RegistrationFormValues>();
 
   const password = watch("password");
 
   const toggleAccepted = () => setAccepted((prevState) => !prevState);
 
   const onSubmit = async (data: RegistrationFormValues) => {
-    let addresses = [];
-
-    if (billingSameAsShipping) {
-      addresses.push({
-        ...data.addresses[0],
-        is_default_shipping: true,
-        is_default_billing: true,
-      });
-    } else {
-      addresses.push({
-        ...data.addresses[0],
-        is_default_shipping: true,
-        is_default_billing: false,
-      });
-
-      addresses.push({
-        ...data.addresses[1],
-        is_default_shipping: false,
-        is_default_billing: true,
-      });
-    }
-
     const formData = {
       ...data,
-      addresses,
+      addresses: [
+        {
+          ...data.address,
+          is_default_shipping: true,
+          is_default_billing: true,
+        },
+      ],
     };
 
     const message = await signup(formData);
@@ -318,157 +290,70 @@ const RegistrationForm = ({
         </div>
 
         <div className="flex w-full flex-col gap-2">
-          <p>Adresse de livraison</p>
+          <p>Adresse</p>
           <div className="grid grid-cols-2 gap-4">
             <Input
               {...register(
-                "addresses.0.address_1",
-                SIGN_UP_SCHEMA.addresses[0].address_1,
+                "address.address_1",
+                SIGN_UP_SCHEMA.address.address_1,
               )}
               label="N° et Nom de rue"
-              name="addresses.0.address_1"
-              errors={errors?.addresses?.[0]?.address_1}
+              name="address.address_1"
+              errors={errors?.address?.address_1}
               required={true}
               disableNativeValidation={true}
             />
             <Input
               {...register(
-                "addresses.0.address_2",
-                SIGN_UP_SCHEMA.addresses[0].address_2,
+                "address.address_2",
+                SIGN_UP_SCHEMA.address.address_2,
               )}
               label="Adresse 2"
-              name="addresses.0.address_2"
-              errors={errors?.addresses?.[0]?.address_2}
+              name="address.address_2"
+              errors={errors?.address?.address_2}
               required={false}
               disableNativeValidation={true}
             />
             <Input
               {...register(
-                "addresses.0.postal_code",
-                SIGN_UP_SCHEMA.addresses[0].postal_code,
+                "address.postal_code",
+                SIGN_UP_SCHEMA.address.postal_code,
               )}
               label="Code postal"
-              name="addresses.0.postal_code"
-              errors={errors?.addresses?.[0]?.postal_code}
+              name="address.postal_code"
+              errors={errors?.address?.postal_code}
               required={true}
               disableNativeValidation={true}
             />
             <Input
-              {...register(
-                "addresses.0.city",
-                SIGN_UP_SCHEMA.addresses[0].city,
-              )}
+              {...register("address.city", SIGN_UP_SCHEMA.address.city)}
               label="Ville"
-              name="addresses.0.city"
-              errors={errors?.addresses?.[0]?.city}
+              name="address.city"
+              errors={errors?.address?.city}
               required={true}
               disableNativeValidation={true}
             />
             <CountrySelect
               {...register(
-                "addresses.0.country_code",
-                SIGN_UP_SCHEMA.addresses[0].country_code,
+                "address.country_code",
+                SIGN_UP_SCHEMA.address.country_code,
               )}
-              name="addresses.0.country_code"
+              name="address.country_code"
               region={region}
-              errors={errors?.addresses?.[0]?.country_code}
+              errors={errors?.address?.country_code}
               autoComplete="country"
               defaultValue={""}
               data-testid="country-select"
             />
             <Input
-              {...register(
-                "addresses.0.province",
-                SIGN_UP_SCHEMA.addresses[0].province,
-              )}
+              {...register("address.province", SIGN_UP_SCHEMA.address.province)}
               label="Province"
-              name="addresses.0.province"
-              errors={errors?.addresses?.[0]?.province}
+              name="address.province"
+              errors={errors?.address?.province}
               required={false}
               disableNativeValidation={true}
             />
           </div>
-        </div>
-
-        <div className="flex w-full flex-col gap-2">
-          <p>Adresse de facturation</p>
-          <Checkbox
-            label="Adresse de facturation identique à l'adresse de livraison"
-            id="same_as_billing"
-            name="same_as_billing"
-            checked={billingSameAsShipping}
-            onChange={() => setBillingSameAsShipping((prevState) => !prevState)}
-          />
-          {billingSameAsShipping ? null : (
-            <div className="grid grid-cols-2 gap-4">
-              <Input
-                {...register(
-                  "addresses.1.address_1",
-                  SIGN_UP_SCHEMA.addresses[1].address_1,
-                )}
-                label="N° et Nom de rue"
-                name="addresses.1.address_1"
-                errors={errors?.addresses?.[1]?.address_1}
-                required={true}
-                disableNativeValidation={true}
-              />
-              <Input
-                {...register(
-                  "addresses.1.address_2",
-                  SIGN_UP_SCHEMA.addresses[1].address_2,
-                )}
-                label="Adresse 2"
-                name="addresses.1.address_2"
-                errors={errors?.addresses?.[1]?.address_2}
-                required={false}
-                disableNativeValidation={true}
-              />
-              <Input
-                {...register(
-                  "addresses.1.postal_code",
-                  SIGN_UP_SCHEMA.addresses[1].postal_code,
-                )}
-                label="Code postal"
-                name="addresses.1.postal_code"
-                errors={errors?.addresses?.[1]?.postal_code}
-                required={true}
-                disableNativeValidation={true}
-              />
-              <Input
-                {...register(
-                  "addresses.1.city",
-                  SIGN_UP_SCHEMA.addresses[1].city,
-                )}
-                label="Ville"
-                name="addresses.1.city"
-                errors={errors?.addresses?.[1]?.city}
-                required={true}
-                disableNativeValidation={true}
-              />
-              <Input
-                {...register(
-                  "addresses.1.country_code",
-                  SIGN_UP_SCHEMA.addresses[1].country_code,
-                )}
-                label="Pays"
-                name="addresses.1.country_code"
-                errors={errors?.addresses?.[1]?.country_code}
-                required={true}
-                disableNativeValidation={true}
-              />
-              <Input
-                {...register(
-                  "addresses.1.province",
-                  SIGN_UP_SCHEMA.addresses[1].province,
-                )}
-                label="Province"
-                name="addresses.1.province"
-                errors={errors?.addresses?.[1]?.province}
-                required={false}
-                disableNativeValidation={true}
-              />
-            </div>
-          )}
         </div>
 
         <div className="flex w-full flex-col gap-2">

@@ -5,7 +5,7 @@ import { BankAccount, CustomerProfile, ApplicationStatus } from '../../../lib/ty
 import { CreateCustomerDTO } from '@medusajs/types';
 import { createCustomerProfileWorkflow } from '../../../workflows/create-customer-profile';
 import { createAccountStatusWorkflow } from '../../../workflows/create-account-status';
-import { createLocationWorkflow } from '../../../workflows/create-location';
+import { createLocationWorkflow } from '../../../workflows/location/create-location';
 
 type CreateCustomerRequest = CreateCustomerDTO & {
     bank_account: BankAccount;
@@ -20,6 +20,14 @@ const DEFAULT_ACCOUNT_STATUS = {
 const DEFAULT_LOCATION = {
     latitude: null,
     longitude: null,
+    address_1: null,
+    address_2: null,
+    city: null,
+    country_code: null,
+    province: null,
+    postal_code: null,
+    phone: null,
+    email: null,
 };
 
 export async function POST(
