@@ -112,13 +112,24 @@ export default async function Footer() {
                 </li>
                 <li>
                   <NavLink
-                    href="#"
-                    title="Privacy policy"
+                    href="/policies/cgu"
+                    title="CGU"
                     className="text-sm"
                   />
                 </li>
                 <li>
-                  <NavLink href="#" title="Cookie policy" className="text-sm" />
+                  <NavLink
+                    href="/policies/cgv"
+                    title="CGV"
+                    className="text-sm"
+                  />
+                </li>
+                <li>
+                  <NavLink
+                    href="/policies/legal"
+                    title="Mentions légales"
+                    className="text-sm"
+                  />
                 </li>
               </ul>
             </div>

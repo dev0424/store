@@ -566,13 +566,13 @@ const RegistrationForm = ({
         <ErrorMessage error={error} data-testid="register-error" />
       ) : null}
       <span className="text-small-regular mt-6 text-ui-fg-base">
-        En créant un compte, vous acceptez{" "}
-        <LocalizedClientLink href="#" className="underline">
-          la Politique de confidentialité
+        En créant un compte, vous acceptez les{" "}
+        <LocalizedClientLink href="/policies/cgv" className="underline">
+          Conditions Générales de Vente (CGV)
         </LocalizedClientLink>{" "}
-        et{" "}
-        <LocalizedClientLink href="#" className="underline">
-          les conditions d'utilisation du magasin
+        et les{" "}
+        <LocalizedClientLink href="/policies/cgu" className="underline">
+          Conditions Générales d’Utilisation (CGU)
         </LocalizedClientLink>
         .
       </span>
