@@ -49,6 +49,7 @@ const RegistrationForm = ({
   const [error, setError] = useState<string | undefined>(undefined);
   const [billingSameAsShipping, setBillingSameAsShipping] =
     useState<boolean>(true);
+  const [accepted, setAccepted] = useState<boolean>(false);
 
   const SIGN_UP_SCHEMA = getSignupSchema(billingSameAsShipping);
 
@@ -69,6 +70,8 @@ const RegistrationForm = ({
   });
 
   const password = watch("password");
+
+  const toggleAccepted = () => setAccepted((prevState) => !prevState);
 
   const onSubmit = async (data: RegistrationFormValues) => {
     let addresses = [];
@@ -108,7 +111,10 @@ const RegistrationForm = ({
   };
 
   return (
-    <form className="flex w-full flex-col" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="flex w-full flex-col gap-4"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className="flex w-full flex-col gap-6">
         <div className="flex w-full flex-col gap-2">
           <p>Informations client</p>
@@ -388,6 +394,7 @@ const RegistrationForm = ({
           <p>Adresse de facturation</p>
           <Checkbox
             label="Adresse de facturation identique à l'adresse de livraison"
+            id="same_as_billing"
             name="same_as_billing"
             checked={billingSameAsShipping}
             onChange={() => setBillingSameAsShipping((prevState) => !prevState)}
@@ -565,18 +572,29 @@ const RegistrationForm = ({
       {error ? (
         <ErrorMessage error={error} data-testid="register-error" />
       ) : null}
-      <span className="text-small-regular mt-6 text-ui-fg-base">
-        En créant un compte, vous acceptez les{" "}
-        <LocalizedClientLink href="/policies/cgv" className="underline">
-          Conditions Générales de Vente (CGV)
-        </LocalizedClientLink>{" "}
-        et les{" "}
-        <LocalizedClientLink href="/policies/cgu" className="underline">
-          Conditions Générales d’Utilisation (CGU)
-        </LocalizedClientLink>
-        .
-      </span>
+      <Checkbox
+        label={
+          <span>
+            J’accepte les{" "}
+            <LocalizedClientLink href="/policies/cgv" className="underline">
+              Conditions Générales de Vente (CGV)
+            </LocalizedClientLink>{" "}
+            et les{" "}
+            <LocalizedClientLink href="/policies/cgu" className="underline">
+              Conditions Générales d’Utilisation (CGU)
+            </LocalizedClientLink>
+            {", "}
+            et consens au traitement de mes données personnelles conformément au
+            RGPD.
+          </span>
+        }
+        id="gdpr_consent"
+        name="gdpr_consent"
+        checked={accepted}
+        onChange={toggleAccepted}
+      />
       <SubmitButton
+        disabled={!accepted}
         className="mt-6 h-10 w-full font-sans font-bold tracking-wide shadow-none"
         data-testid="register-button"
       >
