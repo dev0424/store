@@ -6,7 +6,7 @@ import {
 } from '@medusajs/framework/workflows-sdk';
 import BillingCycleModuleService from '../../modules/billing-cycle/services/service';
 import { BILLING_CYCLE_MODULE } from '../../modules/billing-cycle';
-import { BillingCycle } from '../lib/types';
+import { BillingCycle } from '../../lib/types';
 
 const getBillingCyclesStep = createStep('get-billing-cycles', async (_input, { container }) => {
     const billingCycleModuleService: BillingCycleModuleService =

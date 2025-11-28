@@ -6,7 +6,7 @@ import {
 } from '@medusajs/framework/workflows-sdk';
 import CustomPaymentMethodModuleService from '../../modules/custom-payment-method/services/service';
 import { CUSTOM_PAYMENT_METHOD_MODULE } from '../../modules/custom-payment-method';
-import { CustomPaymentMethod } from '../lib/types';
+import { CustomPaymentMethod } from '../../lib/types';
 
 const getCustomPaymentMethodsStep = createStep(
     'get-custom-payment-methods',
