@@ -79,14 +79,6 @@ const SideMenuContent = ({
             </LocalizedClientLink>
             <Divider className="my-1 border-background-secondary" />
             <LocalizedClientLink
-              href="#"
-              className="text-lg leading-10 hover:text-accent-primary"
-              onClick={close}
-            >
-              FAQ
-            </LocalizedClientLink>
-            <Divider className="my-1 border-background-secondary" />
-            <LocalizedClientLink
               href="/about"
               className="text-lg leading-10 hover:text-accent-primary"
               onClick={close}

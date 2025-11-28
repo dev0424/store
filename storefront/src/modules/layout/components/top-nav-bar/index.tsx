@@ -21,9 +21,6 @@ const TopNavBar = async () => {
             <NavLink href="/distributors" title="Trouver un distributeur" />
           </li>
           <li>
-            <NavLink href="#" title="FAQ" />
-          </li>
-          <li>
             <NavLink href="/about" title="À propos" />
           </li>
           <li>
