@@ -15,6 +15,7 @@ import { CreateSystemFlagRequest, UpdateSystemFlagRequest } from 'api/admin/syst
 import { ContactFormRequest } from 'api/store/contact/validators';
 import { CreateActivityRequest } from 'api/admin/activity/validators';
 import { CreateCustomPaymentMethodRequest } from 'api/admin/custom-payment-method/validators';
+import { CreateBillingCycleRequest } from 'api/admin/billing-cycle/validators';
 
 export default defineMiddlewares({
     routes: [
@@ -73,6 +74,11 @@ export default defineMiddlewares({
             matcher: '/admin/custom-payment-method',
             method: 'POST',
             middlewares: [validateAndTransformBody(CreateCustomPaymentMethodRequest)],
+        },
+        {
+            matcher: '/admin/billing-cycle',
+            method: 'POST',
+            middlewares: [validateAndTransformBody(CreateBillingCycleRequest)],
         },
         {
             matcher: '/store/contact',

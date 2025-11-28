@@ -18,11 +18,7 @@ import { getSignupSchema } from "@modules/account/components/registration-form/s
 import CountrySelect from "@modules/checkout/components/country-select";
 import { Activity } from "@types/activity";
 import { CustomPaymentMethod } from "@types/custom-payment-method";
-
-const DEFAULT_BILLING_CYCLE_OPTIONS = [
-  { id: "immédiate", name: "Immédiate" },
-  { id: "fin-de-mois", name: "Fin de mois" },
-];
+import { BillingCycle } from "@types/billing-cycle";
 
 export type RegistrationFormValues = {
   email: string;
@@ -41,9 +37,15 @@ type Props = {
   region: StoreRegion | null | undefined;
   activities: Activity[] | undefined;
   paymentMethods: CustomPaymentMethod[] | undefined;
+  billingCycles: BillingCycle[] | undefined;
 };
 
-const RegistrationForm = ({ region, activities, paymentMethods }: Props) => {
+const RegistrationForm = ({
+  region,
+  activities,
+  paymentMethods,
+  billingCycles,
+}: Props) => {
   const [error, setError] = useState<string | undefined>(undefined);
   const [billingSameAsShipping, setBillingSameAsShipping] =
     useState<boolean>(true);
@@ -535,8 +537,8 @@ const RegistrationForm = ({ region, activities, paymentMethods }: Props) => {
               placeholder="Facturation"
               defaultValue={""}
             >
-              {DEFAULT_BILLING_CYCLE_OPTIONS.map((billingCycle) => (
-                <option key={billingCycle.id} value={billingCycle.id}>
+              {billingCycles?.map((billingCycle) => (
+                <option key={billingCycle.id} value={billingCycle.name}>
                   {billingCycle.name}
                 </option>
               ))}

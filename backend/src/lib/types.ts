@@ -103,3 +103,8 @@ export type CustomPaymentMethod = {
     id: string;
     name: string;
 };
+
+export type BillingCycle = {
+    id: string;
+    name: string;
+};

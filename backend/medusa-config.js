@@ -73,6 +73,9 @@ const medusaConfig = {
             resolve: './src/modules/custom-payment-method',
         },
         {
+            resolve: './src/modules/billing-cycle',
+        },
+        {
             key: Modules.FILE,
             resolve: '@medusajs/file',
             options: {

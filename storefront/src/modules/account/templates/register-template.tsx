@@ -4,14 +4,21 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import { StoreRegion } from "@medusajs/types";
 import { Activity } from "@types/activity";
 import { CustomPaymentMethod } from "@types/custom-payment-method";
+import { BillingCycle } from "@types/billing-cycle";
 
 type Props = {
   region: StoreRegion | null | undefined;
   activities: Activity[] | undefined;
   paymentMethods: CustomPaymentMethod[] | undefined;
+  billingCycles: BillingCycle[] | undefined;
 };
 
-const RegisterTemplate = ({ region, activities, paymentMethods }: Props) => {
+const RegisterTemplate = ({
+  region,
+  activities,
+  paymentMethods,
+  billingCycles,
+}: Props) => {
   return (
     <div
       className="flex w-full max-w-xl flex-col items-center justify-center"
@@ -28,6 +35,7 @@ const RegisterTemplate = ({ region, activities, paymentMethods }: Props) => {
         region={region}
         activities={activities}
         paymentMethods={paymentMethods}
+        billingCycles={billingCycles}
       />
       <span className="text-small-regular mt-6 text-center text-ui-fg-base">
         Vous avez déjà un compte?{" "}
