@@ -98,3 +98,8 @@ export type Activity = {
     id: string;
     name: string;
 };
+
+export type CustomPaymentMethod = {
+    id: string;
+    name: string;
+};

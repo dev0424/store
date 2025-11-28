@@ -3,13 +3,15 @@ import RegistrationForm from "@modules/account/components/registration-form";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import { StoreRegion } from "@medusajs/types";
 import { Activity } from "@types/activity";
+import { CustomPaymentMethod } from "@types/custom-payment-method";
 
 type Props = {
   region: StoreRegion | null | undefined;
   activities: Activity[] | undefined;
+  paymentMethods: CustomPaymentMethod[] | undefined;
 };
 
-const RegisterTemplate = ({ region, activities }: Props) => {
+const RegisterTemplate = ({ region, activities, paymentMethods }: Props) => {
   return (
     <div
       className="flex w-full max-w-xl flex-col items-center justify-center"
@@ -22,7 +24,11 @@ const RegisterTemplate = ({ region, activities }: Props) => {
         Créez votre profil de membre et accédez à une expérience d'achat
         améliorée.
       </p>
-      <RegistrationForm region={region} activities={activities} />
+      <RegistrationForm
+        region={region}
+        activities={activities}
+        paymentMethods={paymentMethods}
+      />
       <span className="text-small-regular mt-6 text-center text-ui-fg-base">
         Vous avez déjà un compte?{" "}
         <LocalizedClientLink href="/account">

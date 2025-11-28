@@ -17,16 +17,11 @@ import Checkbox from "@modules/common/components/checkbox";
 import { getSignupSchema } from "@modules/account/components/registration-form/schema";
 import CountrySelect from "@modules/checkout/components/country-select";
 import { Activity } from "@types/activity";
+import { CustomPaymentMethod } from "@types/custom-payment-method";
 
 const DEFAULT_BILLING_CYCLE_OPTIONS = [
   { id: "immédiate", name: "Immédiate" },
   { id: "fin-de-mois", name: "Fin de mois" },
-];
-
-const DEFAULT_PAYMENT_METHOD_OPTIONS = [
-  { id: "lcr-direct-30j", name: "LCR Direct 30J" },
-  { id: "virement-30j", name: "Virement 30J" },
-  { id: "reglement-par-avance", name: "Reglement par avance" },
 ];
 
 export type RegistrationFormValues = {
@@ -45,9 +40,10 @@ export type RegistrationFormValues = {
 type Props = {
   region: StoreRegion | null | undefined;
   activities: Activity[] | undefined;
+  paymentMethods: CustomPaymentMethod[] | undefined;
 };
 
-const RegistrationForm = ({ region, activities }: Props) => {
+const RegistrationForm = ({ region, activities, paymentMethods }: Props) => {
   const [error, setError] = useState<string | undefined>(undefined);
   const [billingSameAsShipping, setBillingSameAsShipping] =
     useState<boolean>(true);
@@ -555,8 +551,8 @@ const RegistrationForm = ({ region, activities }: Props) => {
               placeholder="Mode de Règlement"
               defaultValue={""}
             >
-              {DEFAULT_PAYMENT_METHOD_OPTIONS.map((paymentMethod) => (
-                <option key={paymentMethod.id} value={paymentMethod.id}>
+              {paymentMethods?.map((paymentMethod) => (
+                <option key={paymentMethod.id} value={paymentMethod.name}>
                   {paymentMethod.name}
                 </option>
               ))}

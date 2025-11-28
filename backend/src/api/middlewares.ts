@@ -14,6 +14,7 @@ import { UpdateLocationRequest } from 'api/admin/location/validators';
 import { CreateSystemFlagRequest, UpdateSystemFlagRequest } from 'api/admin/system-flag/validators';
 import { ContactFormRequest } from 'api/store/contact/validators';
 import { CreateActivityRequest } from 'api/admin/activity/validators';
+import { CreateCustomPaymentMethodRequest } from 'api/admin/custom-payment-method/validators';
 
 export default defineMiddlewares({
     routes: [
@@ -67,6 +68,11 @@ export default defineMiddlewares({
             matcher: '/admin/activity',
             method: 'POST',
             middlewares: [validateAndTransformBody(CreateActivityRequest)],
+        },
+        {
+            matcher: '/admin/custom-payment-method',
+            method: 'POST',
+            middlewares: [validateAndTransformBody(CreateCustomPaymentMethodRequest)],
         },
         {
             matcher: '/store/contact',

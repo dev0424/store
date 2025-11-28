@@ -70,6 +70,9 @@ const medusaConfig = {
             resolve: './src/modules/activity',
         },
         {
+            resolve: './src/modules/custom-payment-method',
+        },
+        {
             key: Modules.FILE,
             resolve: '@medusajs/file',
             options: {
