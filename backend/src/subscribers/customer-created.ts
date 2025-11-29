@@ -6,6 +6,7 @@ export default async function customerCreatedHandler({
     event: { data },
     container,
 }: SubscriberArgs<{ id: string }[]>) {
+    console.log('CUSTOMER CREATED HANDLER', data);
     const customerModuleService = container.resolve(Modules.CUSTOMER);
     const notificationModuleService = container.resolve(Modules.NOTIFICATION);
     const replyTo = process.env.CONTACT_FORM_EMAIL || undefined;
