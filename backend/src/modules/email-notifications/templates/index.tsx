@@ -4,7 +4,7 @@ import { InviteUserEmail, INVITE_USER, isInviteUserData } from './invite-user';
 import { OrderPlacedTemplate, ORDER_PLACED, isOrderPlacedTemplateData } from './order-placed';
 import { CONTACT_FORM, ContactFormEmail, isContactFormTemplateData } from './contact-form';
 import PasswordResetEmail, { isPasswordResetTemplateData, PASSWORD_RESET } from './password-reset';
-import { CUSTOMER_CREATED, CustomerCreatedEmail, isCustomerCreatedData } from './customer-created';
+import { CUSTOMER_CREATED, CustomerCreatedEmail } from './customer-created';
 
 export const EmailTemplates = {
     INVITE_USER,
@@ -14,11 +14,9 @@ export const EmailTemplates = {
     CUSTOMER_CREATED,
 } as const;
 
-export type EmailTemplateType = keyof typeof EmailTemplates;
-
 export function generateEmailTemplate(
     templateKey: string,
-    data: unknown,
+    data: any,
     publicUrl: string,
 ): ReactNode {
     switch (templateKey) {
@@ -59,17 +57,9 @@ export function generateEmailTemplate(
             return <PasswordResetEmail {...data} />;
 
         case EmailTemplates.CUSTOMER_CREATED:
-            // if (!isCustomerCreatedData(data)) {
-            //     throw new MedusaError(
-            //         MedusaError.Types.INVALID_DATA,
-            //         `Invalid data for template "${EmailTemplates.CUSTOMER_CREATED}"`,
-            //     );
-            // }
             return (
                 <CustomerCreatedEmail
-                    // @ts-ignore
                     firstName={data.firstName}
-                    // @ts-ignore
                     lastName={data.lastName}
                     publicUrl={publicUrl}
                 />

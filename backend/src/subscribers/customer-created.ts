@@ -11,7 +11,7 @@ export default async function customerCreatedHandler({
     const replyTo = process.env.CONTACT_FORM_EMAIL || undefined;
 
     const customer = await customerModuleService.retrieveCustomer(data.id);
-    console.log(customer);
+
     try {
         await notificationModuleService.createNotifications({
             to: customer.email,

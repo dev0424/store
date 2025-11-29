@@ -4,22 +4,19 @@ import * as React from 'react';
 
 export const CUSTOMER_CREATED = 'customer-created';
 
-export interface CustomerCreatedEmailProps {
+export interface Props {
     preview?: string;
     publicUrl?: string;
     firstName: string;
     lastName: string;
 }
 
-export const isCustomerCreatedData = (data: any): data is CustomerCreatedEmailProps =>
-    typeof data.firstName === 'string' && data.lastName === 'string';
-
 export const CustomerCreatedEmail = ({
     publicUrl,
     firstName,
     lastName,
     preview = 'Confirmation de création de votre compte entreprise',
-}: CustomerCreatedEmailProps) => {
+}: Props) => {
     return (
         <Base preview={preview}>
             <Section className="mt-[32px]">
