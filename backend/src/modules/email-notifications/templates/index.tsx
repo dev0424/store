@@ -65,7 +65,15 @@ export function generateEmailTemplate(
             //         `Invalid data for template "${EmailTemplates.CUSTOMER_CREATED}"`,
             //     );
             // }
-            return <CustomerCreatedEmail {...data} publicUrl={publicUrl} />;
+            return (
+                <CustomerCreatedEmail
+                    // @ts-ignore
+                    firstName={data.firstName}
+                    // @ts-ignore
+                    lastName={data.lastName}
+                    publicUrl={publicUrl}
+                />
+            );
 
         default:
             throw new MedusaError(
