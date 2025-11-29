@@ -7,9 +7,10 @@ import SkeletonLineItem from "@modules/skeletons/components/skeleton-line-item";
 
 type ItemsTemplateProps = {
   cart?: HttpTypes.StoreCart;
+  inventory: Record<string, number>;
 };
 
-const ItemsTemplate = ({ cart }: ItemsTemplateProps) => {
+const ItemsTemplate = ({ cart, inventory }: ItemsTemplateProps) => {
   const items = cart?.items;
   return (
     <div>
@@ -42,6 +43,7 @@ const ItemsTemplate = ({ cart }: ItemsTemplateProps) => {
                       key={item.id}
                       item={item}
                       currencyCode={cart?.currency_code}
+                      inventory={inventory[item.variant?.id ?? ""]}
                     />
                   );
                 })
