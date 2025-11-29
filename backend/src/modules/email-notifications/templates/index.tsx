@@ -59,12 +59,12 @@ export function generateEmailTemplate(
             return <PasswordResetEmail {...data} />;
 
         case EmailTemplates.CUSTOMER_CREATED:
-            if (!isCustomerCreatedData(data)) {
-                throw new MedusaError(
-                    MedusaError.Types.INVALID_DATA,
-                    `Invalid data for template "${EmailTemplates.CUSTOMER_CREATED}"`,
-                );
-            }
+            // if (!isCustomerCreatedData(data)) {
+            //     throw new MedusaError(
+            //         MedusaError.Types.INVALID_DATA,
+            //         `Invalid data for template "${EmailTemplates.CUSTOMER_CREATED}"`,
+            //     );
+            // }
             return <CustomerCreatedEmail {...data} publicUrl={publicUrl} />;
 
         default:
