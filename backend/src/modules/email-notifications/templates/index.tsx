@@ -14,7 +14,11 @@ export const EmailTemplates = {
 
 export type EmailTemplateType = keyof typeof EmailTemplates;
 
-export function generateEmailTemplate(templateKey: string, data: unknown): ReactNode {
+export function generateEmailTemplate(
+    templateKey: string,
+    data: unknown,
+    publicUrl: string,
+): ReactNode {
     switch (templateKey) {
         case EmailTemplates.INVITE_USER:
             if (!isInviteUserData(data)) {
@@ -23,7 +27,7 @@ export function generateEmailTemplate(templateKey: string, data: unknown): React
                     `Invalid data for template "${EmailTemplates.INVITE_USER}"`,
                 );
             }
-            return <InviteUserEmail {...data} />;
+            return <InviteUserEmail {...data} publicUrl={publicUrl} />;
 
         case EmailTemplates.ORDER_PLACED:
             if (!isOrderPlacedTemplateData(data)) {
@@ -32,7 +36,7 @@ export function generateEmailTemplate(templateKey: string, data: unknown): React
                     `Invalid data for template "${EmailTemplates.ORDER_PLACED}"`,
                 );
             }
-            return <OrderPlacedTemplate {...data} />;
+            return <OrderPlacedTemplate {...data} publicUrl={publicUrl} />;
 
         case EmailTemplates.CONTACT_FORM:
             if (!isContactFormTemplateData(data)) {
