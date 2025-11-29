@@ -5,13 +5,12 @@ import { EmailTemplates } from 'modules/email-notifications/templates';
 export default async function customerCreatedHandler({
     event: { data },
     container,
-}: SubscriberArgs<{ id: string }[]>) {
-    console.log('CUSTOMER CREATED HANDLER', data);
+}: SubscriberArgs<{ id: string }>) {
     const customerModuleService = container.resolve(Modules.CUSTOMER);
     const notificationModuleService = container.resolve(Modules.NOTIFICATION);
     const replyTo = process.env.CONTACT_FORM_EMAIL || undefined;
 
-    const customer = await customerModuleService.retrieveCustomer(data[0].id);
+    const customer = await customerModuleService.retrieveCustomer(data.id);
 
     try {
         await notificationModuleService.createNotifications({
