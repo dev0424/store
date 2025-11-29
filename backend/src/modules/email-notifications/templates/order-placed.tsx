@@ -29,7 +29,7 @@ export const isOrderPlacedTemplateData = (data: any): data is OrderPlacedTemplat
 
 export const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> & {
     PreviewProps: OrderPlacedPreviewProps;
-} = ({ order, shippingAddress, publicUrl, preview = 'Commande réussie' }) => {
+} = ({ order, shippingAddress, publicUrl, preview = 'Confirmation de votre commande' }) => {
     return (
         <Base preview={preview}>
             <Section className="mt-[32px]">
@@ -59,7 +59,7 @@ export const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> & {
                 </Text>
                 <Text>Nous vous remercions pour votre collaboration.</Text>
                 <Text className="m-0">Cordialement,</Text>
-                <Text className="m-0">L’équipe RSPI,</Text>
+                <Text className="m-0">L’équipe RSPI</Text>
             </Section>
             <Hr style={{ margin: '20px 0' }} />
             <Section className="mt-4">
