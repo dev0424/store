@@ -7,6 +7,7 @@ import PasswordResetEmail, { isPasswordResetTemplateData, PASSWORD_RESET } from 
 import { CUSTOMER_CREATED, CustomerCreatedEmail } from './customer-created';
 import CustomerApprovedEmail, { CUSTOMER_APPROVED } from './customer-approved';
 import CustomerDeclinedEmail, { CUSTOMER_DECLINED } from './customer-declined';
+import PaymentCapturedEmail, { PAYMENT_CAPTURED } from './payment-captured';
 
 export const EmailTemplates = {
     INVITE_USER,
@@ -16,6 +17,7 @@ export const EmailTemplates = {
     CUSTOMER_CREATED,
     CUSTOMER_APPROVED,
     CUSTOMER_DECLINED,
+    PAYMENT_CAPTURED,
 } as const;
 
 export function generateEmailTemplate(
@@ -84,6 +86,18 @@ export function generateEmailTemplate(
                     firstName={data.firstName}
                     lastName={data.lastName}
                     publicUrl={publicUrl}
+                />
+            );
+
+        case EmailTemplates.PAYMENT_CAPTURED:
+            return (
+                <PaymentCapturedEmail
+                    firstName={data.firstName}
+                    lastName={data.lastName}
+                    publicUrl={publicUrl}
+                    orderId={data.orderId}
+                    currency={data.currency}
+                    amount={data.amount}
                 />
             );
 
