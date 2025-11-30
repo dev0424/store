@@ -48,9 +48,9 @@ const ShipmentCreatedEmail = ({
                 </Text>
                 <Text>Vous pouvez suivre l’état de la livraison via le lien suivant :</Text>
                 {labels.map(label => (
-                    <Link key={label.id} href={label.tracking_url}>
-                        {label.tracking_number}
-                    </Link>
+                    <Text key={label.id}>
+                        <Link href={label.tracking_url}>{label.tracking_number}</Link>
+                    </Text>
                 ))}
                 <Text>Pour toute question, n’hésitez pas à nous solliciter.</Text>
                 <Text className="m-0">Cordialement,</Text>
@@ -64,7 +64,10 @@ ShipmentCreatedEmail.PreviewProps = {
     publicUrl: 'https://bucket-production-654a.up.railway.app/public',
     firstName: 'Test',
     lastName: 'User',
-    labels: [{ tracking_number: 1234, tracking_url: 'http://tracking-url-link/' }],
+    labels: [
+        { tracking_number: 1234, tracking_url: 'http://tracking-url-link/' },
+        { tracking_number: 1234, tracking_url: 'http://tracking-url-link/' },
+    ],
     orderId: 1,
 };
 
