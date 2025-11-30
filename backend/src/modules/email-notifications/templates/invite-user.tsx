@@ -36,7 +36,7 @@ export const isInviteUserData = (data: any): data is InviteUserEmailProps =>
 /**
  * The InviteUserEmail template component built with react-email
  */
-export const InviteUserEmail = ({
+const InviteUserEmail = ({
     publicUrl,
     inviteLink,
     preview = `You've been invited to RSPI!`,

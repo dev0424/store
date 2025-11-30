@@ -27,7 +27,7 @@ export interface OrderPlacedTemplateProps {
 export const isOrderPlacedTemplateData = (data: any): data is OrderPlacedTemplateProps =>
     typeof data.order === 'object' && typeof data.shippingAddress === 'object';
 
-export const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> & {
+const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> & {
     PreviewProps: OrderPlacedPreviewProps;
 } = ({ order, shippingAddress, publicUrl, preview = 'Confirmation de votre commande' }) => {
     return (
@@ -50,7 +50,7 @@ export const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> & {
                     Bonjour {shippingAddress.first_name} {shippingAddress.last_name},
                 </Text>
                 <Text>
-                    Votre commande <span className="font-bold">{order.display_id}</span> a été
+                    Votre commande n° <span className="font-bold">{order.display_id}</span> a été
                     enregistrée avec succès.
                 </Text>
                 <Text>

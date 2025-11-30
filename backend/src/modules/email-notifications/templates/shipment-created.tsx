@@ -1,21 +1,26 @@
+import React from 'react';
 import { Base } from 'modules/email-notifications/templates/base';
-import { Img, Section, Text } from '@react-email/components';
-import * as React from 'react';
+import { Img, Section, Text, Link } from '@react-email/components';
+import { AdminFulfillmentLabel } from '@medusajs/types';
 
-export const CUSTOMER_CREATED = 'customer-created';
+export const SHIPMENT_CREATED = 'shipment-created';
 
 export interface Props {
     preview?: string;
     publicUrl?: string;
     firstName: string;
     lastName: string;
+    labels: AdminFulfillmentLabel[];
+    orderId: string | number;
 }
 
-const CustomerCreatedEmail = ({
+const ShipmentCreatedEmail = ({
     publicUrl,
     firstName,
     lastName,
-    preview = 'Confirmation de création de votre compte entreprise',
+    labels,
+    orderId,
+    preview = 'Votre commande a été expédiée',
 }: Props) => {
     return (
         <Base preview={preview}>
@@ -31,17 +36,23 @@ const CustomerCreatedEmail = ({
                         margin: '32px 0 32px',
                     }}
                 >
-                    Email d’inscription utilisateur
+                    Commande expédiée
                 </Text>
                 <Text>
                     Bonjour {firstName} {lastName},
                 </Text>
                 <Text>
-                    Nous vous confirmons la création du compte associé à votre entreprise sur notre
-                    plateforme. Vous pouvez désormais accéder à votre espace professionnel et
-                    utiliser l’ensemble des services mis à votre disposition.
+                    Nous vous informons que la commande n°{' '}
+                    <span className="font-bold">{orderId}</span> de votre entreprise a été préparée
+                    et expédiée.
                 </Text>
-                <Text>Pour toute question, notre équipe reste à votre écoute.</Text>
+                <Text>Vous pouvez suivre l’état de la livraison via le lien suivant :</Text>
+                {labels.map(label => (
+                    <Link key={label.id} href={label.tracking_url}>
+                        {label.tracking_number}
+                    </Link>
+                ))}
+                <Text>Pour toute question, n’hésitez pas à nous solliciter.</Text>
                 <Text className="m-0">Cordialement,</Text>
                 <Text className="m-0">L’équipe RSPI</Text>
             </Section>
@@ -49,10 +60,12 @@ const CustomerCreatedEmail = ({
     );
 };
 
-CustomerCreatedEmail.PreviewProps = {
+ShipmentCreatedEmail.PreviewProps = {
     publicUrl: 'https://bucket-production-654a.up.railway.app/public',
     firstName: 'Test',
     lastName: 'User',
+    labels: [{ tracking_number: 1234, tracking_url: 'http://tracking-url-link/' }],
+    orderId: 1,
 };
 
-export default CustomerCreatedEmail;
+export default ShipmentCreatedEmail;

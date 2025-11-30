@@ -1,13 +1,14 @@
 import { ReactNode } from 'react';
 import { MedusaError } from '@medusajs/framework/utils';
-import { InviteUserEmail, INVITE_USER, isInviteUserData } from './invite-user';
-import { OrderPlacedTemplate, ORDER_PLACED, isOrderPlacedTemplateData } from './order-placed';
+import InviteUserEmail, { INVITE_USER, isInviteUserData } from './invite-user';
+import OrderPlacedTemplate, { ORDER_PLACED, isOrderPlacedTemplateData } from './order-placed';
 import { CONTACT_FORM, ContactFormEmail, isContactFormTemplateData } from './contact-form';
 import PasswordResetEmail, { isPasswordResetTemplateData, PASSWORD_RESET } from './password-reset';
-import { CUSTOMER_CREATED, CustomerCreatedEmail } from './customer-created';
+import CustomerCreatedEmail, { CUSTOMER_CREATED } from './customer-created';
 import CustomerApprovedEmail, { CUSTOMER_APPROVED } from './customer-approved';
 import CustomerDeclinedEmail, { CUSTOMER_DECLINED } from './customer-declined';
 import PaymentCapturedEmail, { PAYMENT_CAPTURED } from './payment-captured';
+import ShipmentCreatedEmail, { SHIPMENT_CREATED } from './shipment-created';
 
 export const EmailTemplates = {
     INVITE_USER,
@@ -18,6 +19,7 @@ export const EmailTemplates = {
     CUSTOMER_APPROVED,
     CUSTOMER_DECLINED,
     PAYMENT_CAPTURED,
+    SHIPMENT_CREATED,
 } as const;
 
 export function generateEmailTemplate(
@@ -98,6 +100,17 @@ export function generateEmailTemplate(
                     orderId={data.orderId}
                     currency={data.currency}
                     amount={data.amount}
+                />
+            );
+
+        case EmailTemplates.SHIPMENT_CREATED:
+            return (
+                <ShipmentCreatedEmail
+                    firstName={data.firstName}
+                    lastName={data.lastName}
+                    publicUrl={publicUrl}
+                    orderId={data.orderId}
+                    labels={data.labels}
                 />
             );
 
