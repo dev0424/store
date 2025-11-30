@@ -5,9 +5,8 @@ import { OrderPlacedTemplate, ORDER_PLACED, isOrderPlacedTemplateData } from './
 import { CONTACT_FORM, ContactFormEmail, isContactFormTemplateData } from './contact-form';
 import PasswordResetEmail, { isPasswordResetTemplateData, PASSWORD_RESET } from './password-reset';
 import { CUSTOMER_CREATED, CustomerCreatedEmail } from './customer-created';
-import CustomerApprovedEmail, {
-    CUSTOMER_APPROVED,
-} from 'modules/email-notifications/templates/customer-approved';
+import CustomerApprovedEmail, { CUSTOMER_APPROVED } from './customer-approved';
+import CustomerDeclinedEmail, { CUSTOMER_DECLINED } from './customer-declined';
 
 export const EmailTemplates = {
     INVITE_USER,
@@ -16,6 +15,7 @@ export const EmailTemplates = {
     PASSWORD_RESET,
     CUSTOMER_CREATED,
     CUSTOMER_APPROVED,
+    CUSTOMER_DECLINED,
 } as const;
 
 export function generateEmailTemplate(
@@ -72,6 +72,15 @@ export function generateEmailTemplate(
         case EmailTemplates.CUSTOMER_APPROVED:
             return (
                 <CustomerApprovedEmail
+                    firstName={data.firstName}
+                    lastName={data.lastName}
+                    publicUrl={publicUrl}
+                />
+            );
+
+        case EmailTemplates.CUSTOMER_DECLINED:
+            return (
+                <CustomerDeclinedEmail
                     firstName={data.firstName}
                     lastName={data.lastName}
                     publicUrl={publicUrl}
