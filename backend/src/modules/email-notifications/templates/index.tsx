@@ -9,6 +9,7 @@ import CustomerApprovedEmail, { CUSTOMER_APPROVED } from './customer-approved';
 import CustomerDeclinedEmail, { CUSTOMER_DECLINED } from './customer-declined';
 import PaymentCapturedEmail, { PAYMENT_CAPTURED } from './payment-captured';
 import ShipmentCreatedEmail, { SHIPMENT_CREATED } from './shipment-created';
+import OrderCanceledEmail, { ORDER_CANCELED } from './order-canceled';
 
 export const EmailTemplates = {
     INVITE_USER,
@@ -20,6 +21,7 @@ export const EmailTemplates = {
     CUSTOMER_DECLINED,
     PAYMENT_CAPTURED,
     SHIPMENT_CREATED,
+    ORDER_CANCELED,
 } as const;
 
 export function generateEmailTemplate(
@@ -111,6 +113,16 @@ export function generateEmailTemplate(
                     publicUrl={publicUrl}
                     orderId={data.orderId}
                     labels={data.labels}
+                />
+            );
+
+        case EmailTemplates.ORDER_CANCELED:
+            return (
+                <OrderCanceledEmail
+                    firstName={data.firstName}
+                    lastName={data.lastName}
+                    orderId={data.orderId}
+                    publicUrl={publicUrl}
                 />
             );
 
