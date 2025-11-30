@@ -1,8 +1,7 @@
 import { SubscriberArgs, type SubscriberConfig } from '@medusajs/framework';
 import { ContainerRegistrationKeys, Modules } from '@medusajs/framework/utils';
 import { EmailTemplates } from 'modules/email-notifications/templates';
-import { StoreOrder } from '@medusajs/types';
-import { Fulfillment, FulfillmentLabel } from '../../.medusa/types/query-entry-points';
+import { AdminFulfillment, AdminFulfillmentLabel, StoreOrder } from '@medusajs/types';
 
 export default async function shipmentCreatedHandler({
     event: { data },
@@ -27,8 +26,8 @@ export default async function shipmentCreatedHandler({
         return;
     }
 
-    const fulfillment: Fulfillment = fulfillments[0];
-    const labels: FulfillmentLabel[] = fulfillment.labels || [];
+    const fulfillment: AdminFulfillment = fulfillments[0];
+    const labels: AdminFulfillmentLabel[] = fulfillment.labels || [];
     const order: StoreOrder = fulfillments[0].order;
 
     const customer = await customerModuleService.retrieveCustomer(order.customer_id);
