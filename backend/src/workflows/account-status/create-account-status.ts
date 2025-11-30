@@ -5,12 +5,12 @@ import {
     WorkflowResponse,
     when,
 } from '@medusajs/framework/workflows-sdk';
-import { ACCOUNT_STATUS_MODULE } from '../modules/account-status/index';
+import { ACCOUNT_STATUS_MODULE } from '../../modules/account-status';
 import { createRemoteLinkStep } from '@medusajs/core-flows';
 import { Modules } from '@medusajs/utils';
 import { CustomerDTO } from '@medusajs/types';
-import { AccountStatus } from '../lib/types';
-import AccountStatusModuleService from '../modules/account-status/services/service';
+import { AccountStatus } from '../../lib/types';
+import AccountStatusModuleService from '../../modules/account-status/services/service';
 
 type CreateAccountStatusWorkflowInput = {
     customer: CustomerDTO;

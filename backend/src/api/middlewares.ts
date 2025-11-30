@@ -8,7 +8,6 @@ import { PostAdminCreateProductDocument } from 'api/admin/product-document/valid
 import { UpdateBankAccount } from 'api/admin/bank-account/validators';
 import { z } from 'zod';
 import { MedusaRequest, MedusaResponse } from '@medusajs/framework';
-import { UpdateAccountStatusRequest } from 'api/admin/account-status/validators';
 import { UpdateCustomerProfileRequest } from 'api/admin/customer-profile/validators';
 import { UpdateLocationRequest } from 'api/admin/location/validators';
 import { CreateSystemFlagRequest, UpdateSystemFlagRequest } from 'api/admin/system-flag/validators';
@@ -16,9 +15,11 @@ import { ContactFormRequest } from 'api/store/contact/validators';
 import { CreateActivityRequest } from 'api/admin/activity/validators';
 import { CreateCustomPaymentMethodRequest } from 'api/admin/custom-payment-method/validators';
 import { CreateBillingCycleRequest } from 'api/admin/billing-cycle/validators';
+import { adminMiddlewares } from './admin/middlewares';
 
 export default defineMiddlewares({
     routes: [
+        ...adminMiddlewares,
         {
             matcher: '/store/register*',
             middlewares: [authenticate('customer', ['bearer'], { allowUnregistered: true })],
@@ -39,11 +40,6 @@ export default defineMiddlewares({
             additionalDataValidator: {
                 product_document_id: z.string().optional(),
             },
-        },
-        {
-            matcher: '/admin/account-status/:id',
-            method: 'PUT',
-            middlewares: [validateAndTransformBody(UpdateAccountStatusRequest)],
         },
         {
             matcher: '/admin/customer-profile/:id',

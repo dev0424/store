@@ -54,6 +54,7 @@ const AccountStatusWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer
                         }
                     </StatusBadge>
                     <UpdateAccountStatus
+                        customerId={customerData.customer.id}
                         accountStatus={customerData.customer.account_status}
                         onSuccess={refreshCustomer}
                     />

@@ -4,7 +4,7 @@ import { createBankAccountWorkflow } from '../../../workflows/create-bank-accoun
 import { BankAccount, CustomerProfile, ApplicationStatus } from '../../../lib/types';
 import { CreateCustomerDTO } from '@medusajs/types';
 import { createCustomerProfileWorkflow } from '../../../workflows/create-customer-profile';
-import { createAccountStatusWorkflow } from '../../../workflows/create-account-status';
+import { createAccountStatusWorkflow } from '../../../workflows/account-status/create-account-status';
 import { createLocationWorkflow } from '../../../workflows/location/create-location';
 
 type CreateCustomerRequest = CreateCustomerDTO & {

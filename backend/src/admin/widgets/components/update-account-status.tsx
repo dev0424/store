@@ -9,9 +9,10 @@ import { APPLICATION_STATUS_METADATA } from '../../widgets/constants';
 type Props = {
     onSuccess: VoidFunction;
     accountStatus: AccountStatus;
+    customerId: string;
 };
 
-const UpdateAccountStatus = ({ onSuccess, accountStatus }: Props) => {
+const UpdateAccountStatus = ({ onSuccess, accountStatus, customerId }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const methods = useForm<AccountStatus>({
@@ -20,7 +21,7 @@ const UpdateAccountStatus = ({ onSuccess, accountStatus }: Props) => {
 
     const onSubmit = async (data: AccountStatus) => {
         try {
-            await sdk.client.fetch(`/admin/account-status/${accountStatus.id}`, {
+            await sdk.client.fetch(`/admin/customer/${customerId}/account-status`, {
                 method: 'PUT',
                 credentials: 'include',
                 body: data,
