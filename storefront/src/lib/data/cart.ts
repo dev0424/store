@@ -2,7 +2,14 @@
 
 import { sdk } from "@lib/config";
 import medusaError from "@lib/util/medusa-error";
-import { HttpTypes } from "@medusajs/types";
+import {
+  StoreOrderResponse,
+  StoreCartResponse,
+  StoreUpdateCart,
+  StoreCart,
+  StoreInitializePaymentSession,
+  StoreCartShippingOption,
+} from "@medusajs/types";
 import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import {
@@ -36,11 +43,11 @@ export async function retrieveCart(cartId?: string) {
   };
 
   return await sdk.client
-    .fetch<HttpTypes.StoreCartResponse>(`/store/carts/${id}`, {
+    .fetch<StoreCartResponse>(`/store/carts/${id}`, {
       method: "GET",
       query: {
         fields:
-          "*items, *region, *items.product, *items.variant, *items.thumbnail, *items.metadata, +items.total, *promotions, +shipping_methods.name",
+          "*items, *region, *items.product, *items.product.shipping_profile.*, *items.variant, *items.thumbnail, *items.metadata, +items.total, *promotions, +shipping_methods.*",
       },
       headers,
       next,
@@ -86,7 +93,7 @@ export async function getOrSetCart(countryCode: string) {
   return cart;
 }
 
-export async function updateCart(data: HttpTypes.StoreUpdateCart) {
+export async function updateCart(data: StoreUpdateCart) {
   const cartId = await getCartId();
 
   if (!cartId) {
@@ -200,12 +207,8 @@ export async function deleteLineItem(lineId: string) {
     throw new Error("Missing cart ID when deleting line item");
   }
 
-  const headers = {
-    ...(await getAuthHeaders()),
-  };
-
   await sdk.store.cart
-    .deleteLineItem(cartId, lineId, headers)
+    .updateLineItem(cartId, lineId, { quantity: 0 })
     .then(async () => {
       const cartCacheTag = await getCacheTag("carts");
       revalidateTag(cartCacheTag);
@@ -237,8 +240,8 @@ export async function setShippingMethod({
 }
 
 export async function initiatePaymentSession(
-  cart: HttpTypes.StoreCart,
-  data: HttpTypes.StoreInitializePaymentSession,
+  cart: StoreCart,
+  data: StoreInitializePaymentSession,
 ) {
   const headers = {
     ...(await getAuthHeaders()),
@@ -385,6 +388,42 @@ export async function setAddresses(currentState: unknown, formData: FormData) {
   );
 }
 
+export async function checkout(cartId?: string) {
+  const id = cartId || (await getCartId());
+
+  if (!id) {
+    throw new Error("No existing cart found when placing an order");
+  }
+
+  const headers = {
+    ...(await getAuthHeaders()),
+  };
+
+  const cartRes = await sdk.client
+    .fetch<StoreOrderResponse>("/store/orders", {
+      method: "POST",
+      body: { cart_id: id },
+      headers,
+      cache: "force-cache",
+    })
+    .then(async (cartResponse) => {
+      const cartCacheTag = await getCacheTag("carts");
+      revalidateTag(cartCacheTag);
+      return cartResponse;
+    })
+    .catch(medusaError);
+
+  const orderCacheTag = await getCacheTag("orders");
+  revalidateTag(orderCacheTag);
+
+  removeCartId();
+
+  const countryCode =
+    cartRes.order.shipping_address?.country_code?.toLowerCase();
+
+  redirect(`/${countryCode}/order/${cartRes?.order.id}/confirmed`);
+}
+
 /**
  * Places an order for a cart. If no cart ID is provided, it will use the cart ID from the cookies.
  * @param cartId - optional - The ID of the cart to place an order for.
@@ -462,7 +501,7 @@ export async function listCartOptions() {
   };
 
   return await sdk.client.fetch<{
-    shipping_options: HttpTypes.StoreCartShippingOption[];
+    shipping_options: StoreCartShippingOption[];
   }>("/store/shipping-options", {
     query: { cart_id: cartId },
     next,
