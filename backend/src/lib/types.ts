@@ -116,3 +116,8 @@ export type BillingCycle = {
     id: string;
     name: string;
 };
+
+export enum CheckoutMode {
+    QUOTE = 'quote',
+    ORDER = 'order',
+}

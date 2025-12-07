@@ -108,3 +108,13 @@ export const WORKER_MODE =
  * Disable Admin
  */
 export const SHOULD_DISABLE_ADMIN = process.env.MEDUSA_DISABLE_ADMIN === 'true';
+
+/**
+ * Product to define the checkout workflow
+ */
+export const STANDARD_PRODUCT_TYPE = 'Standard';
+
+/**
+ * Shipping amount value to define the checkout workflow
+ */
+export const FREE_SHIPPING_MIN_TOTAL = 250;
