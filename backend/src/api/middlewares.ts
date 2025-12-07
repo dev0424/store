@@ -16,10 +16,12 @@ import { CreateActivityRequest } from 'api/admin/activity/validators';
 import { CreateCustomPaymentMethodRequest } from 'api/admin/custom-payment-method/validators';
 import { CreateBillingCycleRequest } from 'api/admin/billing-cycle/validators';
 import { adminMiddlewares } from './admin/middlewares';
+import { storeMiddlewares } from './store/middlewares';
 
 export default defineMiddlewares({
     routes: [
         ...adminMiddlewares,
+        ...storeMiddlewares,
         {
             matcher: '/store/register*',
             middlewares: [authenticate('customer', ['bearer'], { allowUnregistered: true })],
