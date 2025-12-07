@@ -6,15 +6,16 @@ import CartTotals from "@modules/common/components/cart-totals";
 import Divider from "@modules/common/components/divider";
 import DiscountCode from "@modules/checkout/components/discount-code";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
-import { HttpTypes } from "@medusajs/types";
+import { StoreCart, StorePromotion } from "@medusajs/types";
+import { getCheckoutButtonText } from "@lib/util/cart";
 
-type SummaryProps = {
-  cart: HttpTypes.StoreCart & {
-    promotions: HttpTypes.StorePromotion[];
+type Props = {
+  cart: StoreCart & {
+    promotions: StorePromotion[];
   };
 };
 
-function getCheckoutStep(cart: HttpTypes.StoreCart) {
+function getCheckoutStep(cart: StoreCart) {
   if (!cart?.shipping_address?.address_1 || !cart.email) {
     return "address";
   } else if (cart?.shipping_methods?.length === 0) {
@@ -24,7 +25,7 @@ function getCheckoutStep(cart: HttpTypes.StoreCart) {
   }
 }
 
-const Summary = ({ cart }: SummaryProps) => {
+const Summary = ({ cart }: Props) => {
   const step = getCheckoutStep(cart);
 
   return (
@@ -34,13 +35,13 @@ const Summary = ({ cart }: SummaryProps) => {
       </Heading>
       <DiscountCode cart={cart} />
       <Divider />
-      <CartTotals totals={cart} />
+      <CartTotals cart={cart} />
       <LocalizedClientLink
         href={"/checkout?step=" + step}
         data-testid="checkout-button"
       >
         <Button className="h-10 w-full shadow-none">
-          Procéder au paiement
+          {getCheckoutButtonText(cart)}
         </Button>
       </LocalizedClientLink>
     </div>

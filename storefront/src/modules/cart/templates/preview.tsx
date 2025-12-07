@@ -1,17 +1,17 @@
 "use client";
 
 import repeat from "@lib/util/repeat";
-import { HttpTypes } from "@medusajs/types";
+import { StoreCart } from "@medusajs/types";
 import { Table, clx } from "@medusajs/ui";
 
 import Item from "@modules/cart/components/item";
 import SkeletonLineItem from "@modules/skeletons/components/skeleton-line-item";
 
-type ItemsTemplateProps = {
-  cart: HttpTypes.StoreCart;
+type Props = {
+  cart: StoreCart;
 };
 
-const ItemsPreviewTemplate = ({ cart }: ItemsTemplateProps) => {
+const ItemsPreviewTemplate = ({ cart }: Props) => {
   const items = cart.items;
   const hasOverflow = items && items.length > 4;
 

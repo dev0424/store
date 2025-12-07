@@ -1,22 +1,20 @@
 "use client";
 
 import { isManual, isStripe } from "@lib/constants";
-import { placeOrder } from "@lib/data/cart";
-import { HttpTypes } from "@medusajs/types";
+import { checkout, placeOrder } from "@lib/data/cart";
+import { StoreCart } from "@medusajs/types";
 import { Button } from "@medusajs/ui";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useState } from "react";
 import ErrorMessage from "../error-message";
+import { getPaymentButtonText } from "@lib/util/cart";
 
-type PaymentButtonProps = {
-  cart: HttpTypes.StoreCart;
+type Props = {
+  cart: StoreCart;
   "data-testid": string;
 };
 
-const PaymentButton: React.FC<PaymentButtonProps> = ({
-  cart,
-  "data-testid": dataTestId,
-}) => {
+const PaymentButton = ({ cart, "data-testid": dataTestId }: Props) => {
   const notReady =
     !cart ||
     !cart.shipping_address ||
@@ -37,7 +35,11 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
       );
     case isManual(paymentSession?.provider_id):
       return (
-        <ManualTestPaymentButton notReady={notReady} data-testid={dataTestId} />
+        <ManualTestPaymentButton
+          notReady={notReady}
+          data-testid={dataTestId}
+          cart={cart}
+        />
       );
     default:
       return <Button disabled>Sélectionnez une méthode de paiement</Button>;
@@ -49,7 +51,7 @@ const StripePaymentButton = ({
   notReady,
   "data-testid": dataTestId,
 }: {
-  cart: HttpTypes.StoreCart;
+  cart: StoreCart;
   notReady: boolean;
   "data-testid"?: string;
 }) => {
@@ -152,12 +154,18 @@ const StripePaymentButton = ({
   );
 };
 
-const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
+const ManualTestPaymentButton = ({
+  notReady,
+  cart,
+}: {
+  notReady: boolean;
+  cart: StoreCart;
+}) => {
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const onPaymentCompleted = async () => {
-    await placeOrder()
+    await checkout()
       .catch((err) => {
         setErrorMessage(err.message);
       })
@@ -182,7 +190,7 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
         data-testid="submit-order-button"
         className="h-10 shadow-none"
       >
-        Passer la commande
+        {getPaymentButtonText(cart)}
       </Button>
       <ErrorMessage
         error={errorMessage}

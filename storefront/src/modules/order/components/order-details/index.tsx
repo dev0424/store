@@ -1,12 +1,12 @@
-import { HttpTypes } from "@medusajs/types";
+import { StoreOrder } from "@medusajs/types";
 import { Text } from "@medusajs/ui";
 
-type OrderDetailsProps = {
-  order: HttpTypes.StoreOrder;
+type Props = {
+  order: StoreOrder;
   showStatus?: boolean;
 };
 
-const OrderDetails = ({ order, showStatus }: OrderDetailsProps) => {
+const OrderDetails = ({ order, showStatus }: Props) => {
   const formatStatus = (str: string) => {
     const formatted = str.split("_").join(" ");
 

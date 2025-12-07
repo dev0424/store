@@ -1,5 +1,6 @@
 import { StoreCart } from "@medusajs/types";
 import { sdk } from "@lib/config";
+import { CheckoutMode } from "@types/checkout";
 
 /**
  * Retrieves the inventory quantity for each product variant in the cart.
@@ -40,4 +41,30 @@ export const getCartInventory = async (cart: StoreCart | null) => {
     // If the API call fails, return an empty object (no inventory info).
     return {};
   }
+};
+
+export const getCheckoutMode = (cart: StoreCart): CheckoutMode =>
+  cart.metadata?.checkout_mode as CheckoutMode;
+
+export const getShippingOptionText = (cart: StoreCart) => {
+  const checkoutMode = getCheckoutMode(cart);
+  const isOrder = checkoutMode === CheckoutMode.ORDER;
+  const isFreeShipping = cart.shipping_total === 0;
+
+  return isOrder && isFreeShipping ? "Gratuit" : "Livraison confirmée au devis";
+};
+
+export const getCheckoutButtonText = (cart: StoreCart) => {
+  const checkoutMode = getCheckoutMode(cart);
+  const isOrder = checkoutMode === CheckoutMode.ORDER;
+  const isFreeShipping = cart.shipping_total === 0;
+
+  return isOrder && isFreeShipping ? "Passer à la commande" : "Passer au devis";
+};
+
+export const getPaymentButtonText = (cart: StoreCart) => {
+  const checkoutMode = getCheckoutMode(cart);
+  const isOrder = checkoutMode === CheckoutMode.ORDER;
+
+  return isOrder ? "Passer la commande" : "Demander un devis";
 };

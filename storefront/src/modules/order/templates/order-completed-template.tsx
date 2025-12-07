@@ -1,29 +1,19 @@
 import { Heading } from "@medusajs/ui";
-import { cookies as nextCookies } from "next/headers";
-
 import CartTotals from "@modules/common/components/cart-totals";
 import Items from "@modules/order/components/items";
-import OnboardingCta from "@modules/order/components/onboarding-cta";
 import OrderDetails from "@modules/order/components/order-details";
 import ShippingDetails from "@modules/order/components/shipping-details";
 import PaymentDetails from "@modules/order/components/payment-details";
-import { HttpTypes } from "@medusajs/types";
+import { StoreOrder } from "@medusajs/types";
 
-type OrderCompletedTemplateProps = {
-  order: HttpTypes.StoreOrder;
+type Props = {
+  order: StoreOrder;
 };
 
-export default async function OrderCompletedTemplate({
-  order,
-}: OrderCompletedTemplateProps) {
-  const cookies = await nextCookies();
-
-  const isOnboarding = cookies.get("_medusa_onboarding")?.value === "true";
-
+export default async function OrderCompletedTemplate({ order }: Props) {
   return (
     <div className="h-full py-6">
       <div className="content-container flex h-full w-full max-w-4xl flex-col items-center justify-center gap-y-10">
-        {isOnboarding && <OnboardingCta orderId={order.id} />}
         <div
           className="flex h-full w-full max-w-4xl flex-col gap-4 bg-white py-10"
           data-testid="order-complete-container"
@@ -39,7 +29,7 @@ export default async function OrderCompletedTemplate({
             Résumé
           </Heading>
           <Items order={order} />
-          <CartTotals totals={order} />
+          <CartTotals cart={order} />
           <ShippingDetails order={order} />
           <PaymentDetails order={order} />
         </div>

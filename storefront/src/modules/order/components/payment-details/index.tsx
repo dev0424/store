@@ -1,16 +1,15 @@
 import { Container, Heading, Text } from "@medusajs/ui";
 
 import { isStripe, paymentInfoMap } from "@lib/constants";
-import Divider from "@modules/common/components/divider";
 import { convertToLocale } from "@lib/util/money";
-import { HttpTypes } from "@medusajs/types";
+import { StoreOrder } from "@medusajs/types";
 
-type PaymentDetailsProps = {
-  order: HttpTypes.StoreOrder;
+type Props = {
+  order: StoreOrder;
 };
 
-const PaymentDetails = ({ order }: PaymentDetailsProps) => {
-  const payment = order.payment_collections?.[0].payments?.[0];
+const PaymentDetails = ({ order }: Props) => {
+  const payment = order.payment_collections?.[0]?.payments?.[0];
 
   return (
     <div>

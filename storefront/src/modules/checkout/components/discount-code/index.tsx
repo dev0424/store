@@ -5,18 +5,18 @@ import React, { useActionState } from "react";
 
 import { applyPromotions, submitPromotionForm } from "@lib/data/cart";
 import { convertToLocale } from "@lib/util/money";
-import { HttpTypes } from "@medusajs/types";
+import { StoreCart, StorePromotion } from "@medusajs/types";
 import Trash from "@modules/common/icons/trash";
 import ErrorMessage from "../error-message";
 import { SubmitButton } from "../submit-button";
 
-type DiscountCodeProps = {
-  cart: HttpTypes.StoreCart & {
-    promotions: HttpTypes.StorePromotion[];
+type Props = {
+  cart: StoreCart & {
+    promotions: StorePromotion[];
   };
 };
 
-const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
+const DiscountCode = ({ cart }: Props) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const { items = [], promotions = [] } = cart;

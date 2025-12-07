@@ -1,13 +1,13 @@
 import { convertToLocale } from "@lib/util/money";
-import { HttpTypes } from "@medusajs/types";
+import { StoreOrder } from "@medusajs/types";
 
-type OrderSummaryProps = {
-  order: HttpTypes.StoreOrder;
+type Props = {
+  order: StoreOrder;
 };
 
-const OrderSummary = ({ order }: OrderSummaryProps) => {
+const OrderSummary = ({ order }: Props) => {
   const getAmount = (amount?: number | null) => {
-    if (!amount) {
+    if (amount === null || typeof amount === "undefined") {
       return;
     }
 

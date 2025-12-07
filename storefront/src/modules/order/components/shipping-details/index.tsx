@@ -1,14 +1,14 @@
 import { convertToLocale } from "@lib/util/money";
-import { HttpTypes } from "@medusajs/types";
+import { StoreOrder } from "@medusajs/types";
 import { Heading, Text } from "@medusajs/ui";
 
 import Divider from "@modules/common/components/divider";
 
-type ShippingDetailsProps = {
-  order: HttpTypes.StoreOrder;
+type Props = {
+  order: StoreOrder;
 };
 
-const ShippingDetails = ({ order }: ShippingDetailsProps) => {
+const ShippingDetails = ({ order }: Props) => {
   return (
     <div>
       <Heading level="h2" className="text-3xl-regular my-6 flex flex-row">

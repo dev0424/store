@@ -2,7 +2,7 @@
 
 import { Table, Text, clx } from "@medusajs/ui";
 import { updateLineItem } from "@lib/data/cart";
-import { HttpTypes } from "@medusajs/types";
+import { StoreCartLineItem } from "@medusajs/types";
 import CartItemSelect from "@modules/cart/components/cart-item-select";
 import ErrorMessage from "@modules/checkout/components/error-message";
 import DeleteButton from "@modules/common/components/delete-button";
@@ -16,14 +16,14 @@ import { useState } from "react";
 
 const UNMANAGED_INVENTORY_MAX_QUANTITY = 10;
 
-type ItemProps = {
-  item: HttpTypes.StoreCartLineItem;
+type Props = {
+  item: StoreCartLineItem;
   type?: "full" | "preview";
   currencyCode: string;
   inventory: number;
 };
 
-const Item = ({ item, type = "full", currencyCode, inventory }: ItemProps) => {
+const Item = ({ item, type = "full", currencyCode, inventory }: Props) => {
   const [updating, setUpdating] = useState(false);
   const [error, setError] = useState<string | null>(null);
 

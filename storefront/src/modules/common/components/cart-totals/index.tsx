@@ -2,21 +2,14 @@
 
 import { convertToLocale } from "@lib/util/money";
 import React from "react";
+import { getShippingOptionText } from "@lib/util/cart";
+import { StoreCart } from "@medusajs/types";
 
-type CartTotalsProps = {
-  totals: {
-    total?: number | null;
-    subtotal?: number | null;
-    tax_total?: number | null;
-    shipping_total?: number | null;
-    discount_total?: number | null;
-    gift_card_total?: number | null;
-    currency_code: string;
-    shipping_subtotal?: number | null;
-  };
+type Props = {
+  cart: StoreCart;
 };
 
-const CartTotals: React.FC<CartTotalsProps> = ({ totals }) => {
+const CartTotals = ({ cart }: Props) => {
   const {
     currency_code,
     total,
@@ -25,7 +18,7 @@ const CartTotals: React.FC<CartTotalsProps> = ({ totals }) => {
     discount_total,
     gift_card_total,
     shipping_subtotal,
-  } = totals;
+  } = cart;
 
   return (
     <div>
@@ -53,9 +46,10 @@ const CartTotals: React.FC<CartTotalsProps> = ({ totals }) => {
         )}
         <div className="flex items-center justify-between">
           <span>Livraison</span>
-          <span data-testid="cart-shipping" data-value={shipping_subtotal || 0}>
-            {convertToLocale({ amount: shipping_subtotal ?? 0, currency_code })}
-          </span>
+          {/*<span data-testid="cart-shipping" data-value={shipping_subtotal || 0}>*/}
+          {/*  {convertToLocale({ amount: shipping_subtotal ?? 0, currency_code })}*/}
+          {/*</span>*/}
+          <span>{getShippingOptionText(cart)}</span>
         </div>
         <div className="flex justify-between">
           <span className="flex items-center gap-x-1">Taxes</span>
