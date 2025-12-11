@@ -55,16 +55,22 @@ const ShippingDetails = ({ order }: Props) => {
           data-testid="shipping-method-summary"
         >
           <Text className="txt-medium-plus mb-1 text-ui-fg-base">Méthode</Text>
-          <Text className="txt-medium text-ui-fg-subtle">
-            {(order as any).shipping_methods[0]?.name} (
-            {convertToLocale({
-              amount: order.shipping_methods?.[0].total ?? 0,
-              currency_code: order.currency_code,
-            })
-              .replace(/,/g, "")
-              .replace(/\./g, ",")}
-            )
-          </Text>
+          {order.shipping_methods?.length ? (
+            <Text className="txt-medium text-ui-fg-subtle">
+              {(order as any).shipping_methods[0]?.name} (
+              {convertToLocale({
+                amount: order.shipping_methods?.[0].total ?? 0,
+                currency_code: order.currency_code,
+              })
+                .replace(/,/g, "")
+                .replace(/\./g, ",")}
+              )
+            </Text>
+          ) : (
+            <Text className="txt-medium text-ui-fg-subtle">
+              RSPI calcule actuellement le prix de livraison.
+            </Text>
+          )}
         </div>
       </div>
       <Divider className="mt-8" />

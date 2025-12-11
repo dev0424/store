@@ -7,35 +7,35 @@ import { convertToLocale } from "@lib/util/money";
 import { StoreOrder } from "@medusajs/types";
 
 type Props = {
-  order: StoreOrder;
+  quote: StoreOrder;
 };
 
-const OrderCard = ({ order }: Props) => {
+const QuoteCard = ({ quote }: Props) => {
   const numberOfLines = useMemo(() => {
     return (
-      order.items?.reduce((acc, item) => {
+      quote.items?.reduce((acc, item) => {
         return acc + item.quantity;
       }, 0) ?? 0
     );
-  }, [order]);
+  }, [quote]);
 
   const numberOfProducts = useMemo(() => {
-    return order.items?.length ?? 0;
-  }, [order]);
+    return quote.items?.length ?? 0;
+  }, [quote]);
 
   return (
     <div className="flex flex-col bg-white" data-testid="order-card">
       <div className="text-large-semi mb-1 uppercase">
-        #<span data-testid="order-display-id">{order.display_id}</span>
+        #<span data-testid="order-display-id">{quote.display_id}</span>
       </div>
       <div className="text-small-regular flex items-center divide-x divide-gray-200 text-ui-fg-base">
         <span className="pr-2" data-testid="order-created-at">
-          {new Date(order.created_at).toDateString()}
+          {new Date(quote.created_at).toDateString()}
         </span>
         <span className="px-2" data-testid="order-amount">
           {convertToLocale({
-            amount: order.total,
-            currency_code: order.currency_code,
+            amount: quote.total,
+            currency_code: quote.currency_code,
           })}
         </span>
         <span className="pl-2">{`${numberOfLines} ${
@@ -43,7 +43,7 @@ const OrderCard = ({ order }: Props) => {
         }`}</span>
       </div>
       <div className="my-4 grid grid-cols-2 gap-4 small:grid-cols-4">
-        {order.items?.slice(0, 3).map((i) => {
+        {quote.items?.slice(0, 3).map((i) => {
           return (
             <div
               key={i.id}
@@ -76,7 +76,7 @@ const OrderCard = ({ order }: Props) => {
         )}
       </div>
       <div className="flex justify-end">
-        <LocalizedClientLink href={`/account/orders/details/${order.id}`}>
+        <LocalizedClientLink href={`/account/quotes/details/${quote.id}`}>
           <Button data-testid="order-details-link" variant="secondary">
             Voir les détails
           </Button>
@@ -86,4 +86,4 @@ const OrderCard = ({ order }: Props) => {
   );
 };
 
-export default OrderCard;
+export default QuoteCard;

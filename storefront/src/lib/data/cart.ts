@@ -21,6 +21,7 @@ import {
   setCartId,
 } from "./cookies";
 import { getRegion } from "./regions";
+import { getCheckoutRedirectUrl } from "@lib/util/cart";
 
 /**
  * Retrieves a cart by its ID. If no ID is provided, it will use the cart ID from the cookies.
@@ -388,8 +389,8 @@ export async function setAddresses(currentState: unknown, formData: FormData) {
   );
 }
 
-export async function checkout(cartId?: string) {
-  const id = cartId || (await getCartId());
+export async function checkout(cart: StoreCart) {
+  const id = cart.id || (await getCartId());
 
   if (!id) {
     throw new Error("No existing cart found when placing an order");
@@ -400,7 +401,7 @@ export async function checkout(cartId?: string) {
   };
 
   const cartRes = await sdk.client
-    .fetch<StoreOrderResponse>("/store/orders", {
+    .fetch<{ order_id: string }>("/store/order", {
       method: "POST",
       body: { cart_id: id },
       headers,
@@ -418,10 +419,9 @@ export async function checkout(cartId?: string) {
 
   removeCartId();
 
-  const countryCode =
-    cartRes.order.shipping_address?.country_code?.toLowerCase();
+  const redirectUrl = getCheckoutRedirectUrl(cart, cartRes.order_id);
 
-  redirect(`/${countryCode}/order/${cartRes?.order.id}/confirmed`);
+  redirect(redirectUrl);
 }
 
 /**

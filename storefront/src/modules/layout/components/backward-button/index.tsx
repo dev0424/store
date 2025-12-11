@@ -3,7 +3,7 @@ import { HiChevronLeft as ChevronLeft } from "react-icons/hi";
 
 type Props = {
   title: string;
-  onClick: VoidFunction;
+  onClick?: VoidFunction;
 };
 
 const BackwardButton = ({ title, onClick }: Props) => {

@@ -2,8 +2,14 @@
 
 import { sdk } from "@lib/config";
 import medusaError from "@lib/util/medusa-error";
-import { getAuthHeaders, getCacheOptions } from "./cookies";
-import { HttpTypes } from "@medusajs/types";
+import { getAuthHeaders, getCacheOptions, getCacheTag } from "./cookies";
+import {
+  StoreOrderResponse,
+  StoreOrderListResponse,
+  StoreOrder,
+} from "@medusajs/types";
+import { revalidateTag } from "next/cache";
+import { redirect } from "next/navigation";
 
 export const retrieveOrder = async (id: string) => {
   const headers = {
@@ -15,7 +21,7 @@ export const retrieveOrder = async (id: string) => {
   };
 
   return sdk.client
-    .fetch<HttpTypes.StoreOrderResponse>(`/store/orders/${id}`, {
+    .fetch<StoreOrderResponse>(`/store/order/${id}`, {
       method: "GET",
       query: {
         fields:
@@ -23,17 +29,13 @@ export const retrieveOrder = async (id: string) => {
       },
       headers,
       next,
-      cache: "force-cache",
+      // cache: "force-cache",
     })
     .then(({ order }) => order)
     .catch((err) => medusaError(err));
 };
 
-export const listOrders = async (
-  limit: number = 10,
-  offset: number = 0,
-  filters?: Record<string, any>,
-) => {
+export const listOrders = async (filters?: Record<string, any>) => {
   const headers = {
     ...(await getAuthHeaders()),
   };
@@ -43,18 +45,16 @@ export const listOrders = async (
   };
 
   return sdk.client
-    .fetch<HttpTypes.StoreOrderListResponse>(`/store/orders`, {
+    .fetch<StoreOrderListResponse>(`/store/order`, {
       method: "GET",
       query: {
-        limit,
-        offset,
         order: "-created_at",
         fields: "*items,+items.metadata,*items.variant,*items.product",
         ...filters,
       },
       headers,
-      next,
-      cache: "force-cache",
+      // next,
+      // cache: "force-cache",
     })
     .then(({ orders }) => orders)
     .catch((err) => medusaError(err));
@@ -64,13 +64,13 @@ export const createTransferRequest = async (
   state: {
     success: boolean;
     error: string | null;
-    order: HttpTypes.StoreOrder | null;
+    order: StoreOrder | null;
   },
   formData: FormData,
 ): Promise<{
   success: boolean;
   error: string | null;
-  order: HttpTypes.StoreOrder | null;
+  order: StoreOrder | null;
 }> => {
   const id = formData.get("order_id") as string;
 
@@ -109,4 +109,41 @@ export const declineTransferRequest = async (id: string, token: string) => {
     .declineTransfer(id, { token }, {}, headers)
     .then(({ order }) => ({ success: true, error: null, order }))
     .catch((err) => ({ success: false, error: err.message, order: null }));
+};
+
+export const acceptQuote = async (id: string, countryCode: string) => {
+  const headers = {
+    ...(await getAuthHeaders()),
+  };
+
+  await sdk.client
+    .fetch<StoreOrderListResponse>(`/store/order/${id}/accept`, {
+      method: "GET",
+      headers,
+    })
+    .then(async ({ orders }) => orders)
+    .catch((err) => medusaError(err));
+
+  const orderCacheTag = await getCacheTag("orders");
+  revalidateTag(orderCacheTag);
+
+  redirect(`/${countryCode}/order/${id}/confirmed`);
+};
+
+export const declineQuote = async (id: string, countryCode: string) => {
+  const headers = {
+    ...(await getAuthHeaders()),
+  };
+
+  await sdk.client
+    .fetch<{ success: boolean }>(`/store/order/${id}/decline`, {
+      method: "DELETE",
+      headers,
+    })
+    .catch((err) => medusaError(err));
+
+  const orderCacheTag = await getCacheTag("orders");
+  revalidateTag(orderCacheTag);
+
+  redirect(`/${countryCode}/account/quotes`);
 };

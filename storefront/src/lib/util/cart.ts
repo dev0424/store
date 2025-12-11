@@ -68,3 +68,13 @@ export const getPaymentButtonText = (cart: StoreCart) => {
 
   return isOrder ? "Passer la commande" : "Demander un devis";
 };
+
+export const getCheckoutRedirectUrl = (cart: StoreCart, orderId: string) => {
+  const countryCode = cart.shipping_address?.country_code?.toLowerCase();
+  const checkoutMode = getCheckoutMode(cart);
+  const isOrder = checkoutMode === CheckoutMode.ORDER;
+
+  return isOrder
+    ? `/${countryCode}/order/${orderId}/confirmed`
+    : `/${countryCode}/quote/${orderId}/confirmed`;
+};

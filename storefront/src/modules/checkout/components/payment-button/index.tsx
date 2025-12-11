@@ -165,7 +165,7 @@ const ManualTestPaymentButton = ({
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const onPaymentCompleted = async () => {
-    await checkout()
+    await checkout(cart)
       .catch((err) => {
         setErrorMessage(err.message);
       })
