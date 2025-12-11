@@ -1,7 +1,21 @@
 import { clx } from "@medusajs/ui";
-import { VariantPrice } from "types/global";
 
-export default async function PreviewPrice({ price }: { price: VariantPrice }) {
+type ExtendedVariantPrice = {
+  calculated_price_number: number;
+  calculated_price: string;
+  original_price_number: number | null;
+  original_price: string;
+  currency_code: string | null;
+  price_type: string | null;
+  percentage_diff: string;
+  is_tax_inclusive: boolean | undefined;
+};
+
+export default async function PreviewPrice({
+  price,
+}: {
+  price: ExtendedVariantPrice;
+}) {
   if (!price) {
     return null;
   }
@@ -21,6 +35,7 @@ export default async function PreviewPrice({ price }: { price: VariantPrice }) {
       >
         {price.calculated_price}
       </p>
+      {price.is_tax_inclusive ? null : <span className="text-xs">HT</span>}
     </>
   );
 }

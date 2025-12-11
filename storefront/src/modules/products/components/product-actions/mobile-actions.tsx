@@ -1,19 +1,17 @@
+import React, { Fragment, useMemo } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Button, clx } from "@medusajs/ui";
-import React, { Fragment, useMemo } from "react";
-
 import useToggleState from "@lib/hooks/use-toggle-state";
 import ChevronDown from "@modules/common/icons/chevron-down";
 import X from "@modules/common/icons/x";
-
 import { getProductPrice } from "@lib/util/get-product-price";
 import OptionSelect from "./option-select";
-import { HttpTypes } from "@medusajs/types";
+import { StoreProduct, StoreProductVariant } from "@medusajs/types";
 import { isSimpleProduct } from "@lib/util/product";
 
-type MobileActionsProps = {
-  product: HttpTypes.StoreProduct;
-  variant?: HttpTypes.StoreProductVariant;
+type Props = {
+  product: StoreProduct;
+  variant?: StoreProductVariant;
   options: Record<string, string | undefined>;
   updateOptions: (title: string, value: string) => void;
   inStock?: boolean;
@@ -23,7 +21,7 @@ type MobileActionsProps = {
   optionsDisabled: boolean;
 };
 
-const MobileActions: React.FC<MobileActionsProps> = ({
+const MobileActions = ({
   product,
   variant,
   options,
@@ -33,7 +31,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
   isAdding,
   show,
   optionsDisabled,
-}) => {
+}: Props) => {
   const { state, open, close } = useToggleState();
 
   const price = getProductPrice({
@@ -77,7 +75,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
               <span data-testid="mobile-title">{product.title}</span>
               <span>—</span>
               {selectedPrice ? (
-                <div className="flex items-end gap-x-2 text-ui-fg-base">
+                <div className="flex gap-x-1 text-ui-fg-base">
                   {selectedPrice.price_type === "sale" && (
                     <p>
                       <span className="text-small-regular line-through">
@@ -93,6 +91,9 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                   >
                     {selectedPrice.calculated_price}
                   </span>
+                  {selectedPrice.is_tax_inclusive ? null : (
+                    <span className="text-xs">HT</span>
+                  )}
                 </div>
               ) : (
                 <div></div>

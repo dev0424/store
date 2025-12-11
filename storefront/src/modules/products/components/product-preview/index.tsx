@@ -1,5 +1,5 @@
 import { getProductPrice } from "@lib/util/get-product-price";
-import { HttpTypes } from "@medusajs/types";
+import { StoreProduct, StoreRegion } from "@medusajs/types";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import Thumbnail from "../thumbnail";
 import PreviewPrice from "./price";
@@ -10,20 +10,11 @@ export default async function ProductPreview({
   region,
   size = "full",
 }: {
-  product: HttpTypes.StoreProduct;
+  product: StoreProduct;
   isFeatured?: boolean;
-  region: HttpTypes.StoreRegion;
+  region: StoreRegion;
   size?: "small" | "full" | "medium" | "large" | "square" | undefined;
 }) {
-  // const pricedProduct = await listProducts({
-  //   regionId: region.id,
-  //   queryParams: { id: [product.id!] },
-  // }).then(({ response }) => response.products[0])
-
-  // if (!pricedProduct) {
-  //   return null
-  // }
-
   const { cheapestPrice } = getProductPrice({
     product,
   });
@@ -42,7 +33,7 @@ export default async function ProductPreview({
           <p className="text-md text-ui-fg-subtle" data-testid="product-title">
             {product.title}
           </p>
-          <div className="flex items-center gap-x-2">
+          <div className="flex gap-x-1">
             {cheapestPrice && <PreviewPrice price={cheapestPrice} />}
           </div>
         </div>

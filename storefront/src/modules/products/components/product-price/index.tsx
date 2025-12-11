@@ -1,15 +1,14 @@
 import { clx } from "@medusajs/ui";
 
 import { getProductPrice } from "@lib/util/get-product-price";
-import { HttpTypes } from "@medusajs/types";
+import { StoreProduct, StoreProductVariant } from "@medusajs/types";
 
-export default function ProductPrice({
-  product,
-  variant,
-}: {
-  product: HttpTypes.StoreProduct;
-  variant?: HttpTypes.StoreProductVariant;
-}) {
+type Props = {
+  product: StoreProduct;
+  variant?: StoreProductVariant;
+};
+
+export default function ProductPrice({ product, variant }: Props) {
   const { cheapestPrice, variantPrice } = getProductPrice({
     product,
     variantId: variant?.id,
@@ -24,7 +23,7 @@ export default function ProductPrice({
   return (
     <div className="flex flex-col text-ui-fg-base">
       <span
-        className={clx("text-xl-semi", {
+        className={clx("text-xl-semi flex gap-x-1", {
           "text-ui-fg-interactive": selectedPrice.price_type === "sale",
         })}
       >
@@ -35,6 +34,9 @@ export default function ProductPrice({
         >
           {selectedPrice.calculated_price}
         </span>
+        {selectedPrice.is_tax_inclusive ? null : (
+          <span className="text-xs">HT</span>
+        )}
       </span>
       {selectedPrice.price_type === "sale" && (
         <>
