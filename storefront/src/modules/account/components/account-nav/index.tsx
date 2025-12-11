@@ -11,8 +11,14 @@ import Package from "@modules/common/icons/package";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import { signout } from "@lib/data/customer";
 import { ExtendedCustomer } from "@types/customer";
+import { StoreOrder } from "@medusajs/types";
 
-const AccountNav = ({ customer }: { customer: ExtendedCustomer | null }) => {
+type Props = {
+  customer: ExtendedCustomer | null;
+  quotes: StoreOrder[];
+};
+
+const AccountNav = ({ customer, quotes }: Props) => {
   const route = usePathname();
   const { countryCode } = useParams() as { countryCode: string };
 
@@ -69,6 +75,24 @@ const AccountNav = ({ customer }: { customer: ExtendedCustomer | null }) => {
                       </div>
                       <ChevronDown className="-rotate-90 transform" />
                     </>
+                  </LocalizedClientLink>
+                </li>
+                <li>
+                  <LocalizedClientLink
+                    href="/account/quotes"
+                    className="flex items-center justify-between border-b border-gray-200 px-8 py-4"
+                    data-testid="quotes-link"
+                  >
+                    <div className="flex items-center gap-x-2">
+                      <Package size={20} />
+                      <span>Devis</span>
+                      {quotes.length ? (
+                        <div className="text-small-regular flex h-6 w-6 items-center justify-center rounded-full bg-accent-primary text-white">
+                          <span>{quotes.length}</span>
+                        </div>
+                      ) : null}
+                    </div>
+                    <ChevronDown className="-rotate-90 transform" />
                   </LocalizedClientLink>
                 </li>
                 <li>
@@ -144,6 +168,22 @@ const AccountNav = ({ customer }: { customer: ExtendedCustomer | null }) => {
                   data-testid="bank-account-link"
                 >
                   Compte bancaire
+                </AccountNavLink>
+              </li>
+              <li>
+                <AccountNavLink
+                  href="/account/quotes"
+                  route={route!}
+                  data-testid="quotes-link"
+                >
+                  <div className="flex items-center gap-2">
+                    <span>Devis</span>
+                    {quotes.length ? (
+                      <div className="text-small-regular flex h-6 w-6 items-center justify-center rounded-full bg-accent-primary text-white">
+                        <span>{quotes.length}</span>
+                      </div>
+                    ) : null}
+                  </div>
                 </AccountNavLink>
               </li>
               <li>

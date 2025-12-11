@@ -1,21 +1,24 @@
 "use client";
 
 import { Button } from "@medusajs/ui";
-
 import OrderCard from "../order-card";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
-import { HttpTypes } from "@medusajs/types";
+import { StoreOrder } from "@medusajs/types";
 
-const OrderOverview = ({ orders }: { orders: HttpTypes.StoreOrder[] }) => {
+type Props = {
+  orders: StoreOrder[];
+};
+
+const OrderOverview = ({ orders }: Props) => {
   if (orders?.length) {
     return (
       <div className="flex w-full flex-col gap-y-8">
-        {orders.map((o) => (
+        {orders.map((order) => (
           <div
-            key={o.id}
+            key={order.id}
             className="border-b border-gray-200 pb-6 last:border-none last:pb-0"
           >
-            <OrderCard order={o} />
+            <OrderCard order={order} />
           </div>
         ))}
       </div>
