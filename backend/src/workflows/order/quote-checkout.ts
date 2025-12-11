@@ -4,6 +4,7 @@ import {
     createOrderWorkflow,
     type CreateOrderWorkflowInput,
     useQueryGraphStep,
+    emitEventStep,
 } from '@medusajs/medusa/core-flows';
 import { cartFields, customerFields } from './query-config';
 
@@ -58,6 +59,15 @@ export const quoteCheckoutWorkflow = createWorkflow('quote-checkout', (input: Wo
 
     const { id } = createOrderWorkflow.runAsStep({
         input: orderInput,
+    });
+
+    emitEventStep({
+        eventName: 'quote.created',
+        data: {
+            id,
+            cart_id: input.cart_id,
+            customer_id: input.customer_id,
+        },
     });
 
     return new WorkflowResponse({ id });
