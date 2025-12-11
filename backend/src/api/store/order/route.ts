@@ -1,10 +1,11 @@
 import { AuthenticatedMedusaRequest, MedusaResponse } from '@medusajs/framework/http';
-import { checkoutWorkflow } from '../../../workflows/order/create-order';
+import { checkoutWorkflow } from '../../../workflows/order/checkout';
 import { CheckoutCartRequest } from './validators';
 import { getOrdersListWorkflow } from '@medusajs/core-flows';
 
 export const GET = async (request: AuthenticatedMedusaRequest, response: MedusaResponse) => {
     const customerId = request.auth_context?.actor_id;
+    const isDraftOrder = request.query?.is_draft_order;
 
     const { result: orders } = await getOrdersListWorkflow(request.scope).run({
         input: {
@@ -12,6 +13,7 @@ export const GET = async (request: AuthenticatedMedusaRequest, response: MedusaR
             variables: {
                 filters: {
                     customer_id: customerId,
+                    ...(isDraftOrder && { is_draft_order: isDraftOrder }),
                 },
             },
         },
@@ -34,5 +36,5 @@ export const POST = async (
         },
     });
 
-    return response.json({ order });
+    return response.json({ order_id: order.id });
 };
