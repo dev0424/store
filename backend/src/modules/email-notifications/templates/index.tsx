@@ -11,6 +11,7 @@ import PaymentCapturedEmail, { PAYMENT_CAPTURED } from './payment-captured';
 import ShipmentCreatedEmail, { SHIPMENT_CREATED } from './shipment-created';
 import OrderCanceledEmail, { ORDER_CANCELED } from './order-canceled';
 import QuoteCreatedEmail, { QUOTE_CREATED } from './quote-created';
+import ShippingAddedEmail, { SHIPPING_ADDED } from './shipping-added';
 
 export const EmailTemplates = {
     INVITE_USER,
@@ -24,6 +25,7 @@ export const EmailTemplates = {
     SHIPMENT_CREATED,
     ORDER_CANCELED,
     QUOTE_CREATED,
+    SHIPPING_ADDED,
 } as const;
 
 export function generateEmailTemplate(
@@ -130,6 +132,17 @@ export function generateEmailTemplate(
 
         case EmailTemplates.QUOTE_CREATED:
             return <QuoteCreatedEmail {...data} publicUrl={publicUrl} />;
+
+        case EmailTemplates.SHIPPING_ADDED:
+            return (
+                <ShippingAddedEmail
+                    firstName={data.firstName}
+                    lastName={data.lastName}
+                    orderId={data.orderId}
+                    loginUrl={data.loginUrl}
+                    publicUrl={publicUrl}
+                />
+            );
 
         default:
             throw new MedusaError(
