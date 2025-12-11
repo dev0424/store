@@ -1,6 +1,7 @@
 import { SubscriberArgs, type SubscriberConfig } from '@medusajs/framework';
 import { Modules } from '@medusajs/framework/utils';
 import { EmailTemplates } from 'modules/email-notifications/templates';
+import { IOrderModuleService } from '@medusajs/framework/types';
 
 export default async function shippingAddedHandler({
     event: { data },
@@ -8,11 +9,17 @@ export default async function shippingAddedHandler({
 }: SubscriberArgs<{ order_id: string }>) {
     const customerModuleService = container.resolve(Modules.CUSTOMER);
     const notificationModuleService = container.resolve(Modules.NOTIFICATION);
+    const orderModuleService: IOrderModuleService = container.resolve(Modules.ORDER);
     const replyTo = process.env.CONTACT_FORM_EMAIL || undefined;
     const loginUrl = `${process.env.STOREFRONT_URL}/account`;
+
     const orderId = data.order_id;
 
-    const customer = await customerModuleService.retrieveCustomer(data.id);
+    const order = await orderModuleService.retrieveOrder(orderId, {
+        relations: ['items', 'summary', 'shipping_address'],
+    });
+
+    const customer = await customerModuleService.retrieveCustomer(order.customer_id);
 
     try {
         await notificationModuleService.createNotifications({
