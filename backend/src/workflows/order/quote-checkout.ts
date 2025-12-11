@@ -7,6 +7,7 @@ import {
     emitEventStep,
 } from '@medusajs/medusa/core-flows';
 import { cartFields, customerFields } from './query-config';
+import { CreateOrderLineItemDTO } from '@medusajs/types';
 
 type WorkflowInput = {
     cart_id: string;
@@ -40,7 +41,16 @@ export const quoteCheckoutWorkflow = createWorkflow('quote-checkout', (input: Wo
         const cart = carts[0];
         const customer = customers[0];
 
+        // Manually build line items to avoid Medusa tax calculation bug - https://github.com/medusajs/medusa/issues/13405
+        const items = (cart.items as CreateOrderLineItemDTO[]).map(item => ({
+            variant_id: item.variant_id,
+            quantity: item.quantity,
+            title: item.title,
+            unit_price: item.unit_price,
+        }));
+
         return {
+            items,
             is_draft_order: true,
             status: OrderStatus.DRAFT,
             sales_channel_id: cart.sales_channel_id || undefined,
@@ -48,7 +58,6 @@ export const quoteCheckoutWorkflow = createWorkflow('quote-checkout', (input: Wo
             customer_id: customer.id || undefined,
             billing_address: cart.billing_address,
             shipping_address: cart.shipping_address,
-            items: (cart.items || []) as CreateOrderWorkflowInput['items'],
             region_id: cart.region_id || undefined,
             promo_codes: cart.promotions?.map(promo => promo?.code),
             currency_code: cart.currency_code,
