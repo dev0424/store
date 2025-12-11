@@ -5,8 +5,6 @@ import {
     type CreateOrderWorkflowInput,
     useQueryGraphStep,
 } from '@medusajs/medusa/core-flows';
-import { determineCheckoutMode } from '../../lib/cart';
-import { CheckoutMode } from '../../lib/types';
 import { cartFields, customerFields } from './query-config';
 
 type WorkflowInput = {
@@ -14,7 +12,11 @@ type WorkflowInput = {
     customer_id: string;
 };
 
-export const checkoutWorkflow = createWorkflow('checkout', (input: WorkflowInput) => {
+/*
+ * Workflow that creates a draft "quote" order from a cart and customer.
+ * Unlike standard order workflow, it doesn't reserve the cart items from the inventory.
+ */
+export const quoteCheckoutWorkflow = createWorkflow('quote-checkout', (input: WorkflowInput) => {
     const { data: carts } = useQueryGraphStep({
         entity: 'cart',
         fields: cartFields,
@@ -36,13 +38,10 @@ export const checkoutWorkflow = createWorkflow('checkout', (input: WorkflowInput
     const orderInput = transform({ carts, customers }, ({ carts, customers }) => {
         const cart = carts[0];
         const customer = customers[0];
-        const checkoutMode = determineCheckoutMode(cart);
-        const isDraftOrder = checkoutMode === CheckoutMode.QUOTE;
-        const status = isDraftOrder ? OrderStatus.DRAFT : OrderStatus.PENDING;
 
         return {
-            status,
-            is_draft_order: isDraftOrder,
+            is_draft_order: true,
+            status: OrderStatus.DRAFT,
             sales_channel_id: cart.sales_channel_id || undefined,
             email: customer.email || undefined,
             customer_id: customer.id || undefined,
@@ -52,13 +51,14 @@ export const checkoutWorkflow = createWorkflow('checkout', (input: WorkflowInput
             region_id: cart.region_id || undefined,
             promo_codes: cart.promotions?.map(promo => promo?.code),
             currency_code: cart.currency_code,
-            shipping_methods: cart.shipping_methods || [],
+            // We intentionally leave out cart.shipping_methods to show the customer that a shipping price has not been applied by the admin yet.
+            shipping_methods: [],
         } as CreateOrderWorkflowInput;
     });
 
-    const order = createOrderWorkflow.runAsStep({
+    const { id } = createOrderWorkflow.runAsStep({
         input: orderInput,
     });
 
-    return new WorkflowResponse(order);
+    return new WorkflowResponse({ id });
 });

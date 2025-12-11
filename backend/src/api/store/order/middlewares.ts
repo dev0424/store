@@ -5,17 +5,17 @@ import { getOrdersQueryConfig, getOrderQueryConfig } from './query-config';
 
 export const ordersMiddleware: MiddlewareRoute[] = [
     {
-        matcher: '/store/orders',
+        matcher: '/store/order',
         methods: ['GET'],
         middlewares: [validateAndTransformQuery(GetOrdersParams, getOrdersQueryConfig)],
     },
     {
-        matcher: '/store/orders/:id',
+        matcher: '/store/order/:id',
         methods: ['GET'],
         middlewares: [validateAndTransformQuery(GetOrderParams, getOrderQueryConfig)],
     },
     {
-        matcher: '/store/orders',
+        matcher: '/store/order',
         methods: ['POST'],
         middlewares: [validateAndTransformBody(CheckoutCartRequest)],
     },
