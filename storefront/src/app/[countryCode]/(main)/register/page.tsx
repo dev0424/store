@@ -4,6 +4,13 @@ import { getRegion } from "@lib/data/regions";
 import { getActivities } from "@lib/data/activities";
 import { getCustomPaymentMethods } from "@lib/data/custom-payment-methods";
 import { getBillingCycles } from "@lib/data/billing-cycle";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Création de compte",
+  description:
+    "Créez votre profil de membre et accédez à une expérience d'achat améliorée.",
+};
 
 const RegistrationPage = async (props: {
   params: Promise<{ countryCode: string }>;
