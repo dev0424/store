@@ -1,6 +1,6 @@
 import { Text, Section, Hr } from '@react-email/components';
-import { Base } from './base';
-import { ContactForm } from '../../../lib/types';
+import { Base } from '../../base';
+import { ContactForm } from '../../../../../lib/types';
 
 export const CONTACT_FORM = 'contact-form';
 

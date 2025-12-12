@@ -1,11 +1,11 @@
 import { Text, Section, Hr, Img } from '@react-email/components';
 import * as React from 'react';
-import { Base } from './base';
+import { Base } from '../../base';
 import { OrderDTO, OrderAddressDTO } from '@medusajs/framework/types';
 
-export const QUOTE_CREATED = 'quote-created';
+export const ORDER_PLACED = 'order-placed';
 
-interface QuoteCreatedPreviewProps {
+interface OrderPlacedPreviewProps {
     order: OrderDTO & {
         display_id: string;
         summary: { raw_current_order_total: { value: number } };
@@ -14,7 +14,7 @@ interface QuoteCreatedPreviewProps {
     publicUrl: string;
 }
 
-export interface QuoteCreatedTemplateProps {
+export interface OrderPlacedTemplateProps {
     order: OrderDTO & {
         display_id: string;
         summary: { raw_current_order_total: { value: number } };
@@ -24,9 +24,12 @@ export interface QuoteCreatedTemplateProps {
     publicUrl: string;
 }
 
-const QuoteCreatedEmail: React.FC<QuoteCreatedTemplateProps> & {
-    PreviewProps: QuoteCreatedPreviewProps;
-} = ({ order, shippingAddress, publicUrl, preview = 'Confirmation de votre devis' }) => {
+export const isOrderPlacedTemplateData = (data: any): data is OrderPlacedTemplateProps =>
+    typeof data.order === 'object' && typeof data.shippingAddress === 'object';
+
+const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> & {
+    PreviewProps: OrderPlacedPreviewProps;
+} = ({ order, shippingAddress, publicUrl, preview = 'Confirmation de votre commande' }) => {
     return (
         <Base preview={preview}>
             <Section className="mt-[32px]">
@@ -41,39 +44,34 @@ const QuoteCreatedEmail: React.FC<QuoteCreatedTemplateProps> & {
                         margin: '32px 0 32px',
                     }}
                 >
-                    Devis créé avec succès
+                    Commande réussie
                 </Text>
                 <Text>
                     Bonjour {shippingAddress.first_name} {shippingAddress.last_name},
                 </Text>
                 <Text>
-                    Votre demande de devis n° <span className="font-bold">{order.display_id}</span>{' '}
-                    a été créée avec succès.
+                    Votre commande n° <span className="font-bold">{order.display_id}</span> a été
+                    enregistrée avec succès.
                 </Text>
                 <Text>
-                    Notre équipe RSPI procède actuellement au calcul des frais de livraison. Vous
-                    recevrez un e-mail dès que le montant des frais de livraison aura été déterminé.
+                    Elle est actuellement en cours de traitement par nos équipes. Vous serez
+                    informé(e) des étapes suivantes.
                 </Text>
-                <Text>
-                    Une fois le devis finalisé, vous pourrez vous connecter à votre compte afin de
-                    consulter et accepter le devis.
-                </Text>
-                <Text>Nous vous remercions pour votre confiance.</Text>
+                <Text>Nous vous remercions pour votre collaboration.</Text>
                 <Text className="m-0">Cordialement,</Text>
                 <Text className="m-0">L’équipe RSPI</Text>
             </Section>
             <Hr style={{ margin: '20px 0' }} />
             <Section className="mt-4">
                 <Text style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 10px' }}>
-                    Résumé du devis
+                    Résumé de la commande
                 </Text>
-                <Text style={{ margin: '0 0 5px' }}>Numéro de devis: {order.display_id}</Text>
+                <Text style={{ margin: '0 0 5px' }}>Numéro de commande: {order.display_id}</Text>
                 <Text style={{ margin: '0 0 5px' }}>
-                    Date de création: {new Date(order.created_at).toLocaleDateString()}
+                    Date de commande: {new Date(order.created_at).toLocaleDateString()}
                 </Text>
                 <Text style={{ margin: '0 0 20px' }}>
-                    Total (hors frais de livraison): {order.summary.raw_current_order_total.value}{' '}
-                    {order.currency_code}
+                    Total: {order.summary.raw_current_order_total.value} {order.currency_code}
                 </Text>
 
                 <Hr style={{ margin: '20px 0' }} />
@@ -90,7 +88,7 @@ const QuoteCreatedEmail: React.FC<QuoteCreatedTemplateProps> & {
                 <Hr style={{ margin: '20px 0' }} />
 
                 <Text style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 15px' }}>
-                    Articles demandés
+                    Articles commandés
                 </Text>
 
                 <div
@@ -139,7 +137,7 @@ const QuoteCreatedEmail: React.FC<QuoteCreatedTemplateProps> & {
     );
 };
 
-QuoteCreatedEmail.PreviewProps = {
+OrderPlacedTemplate.PreviewProps = {
     publicUrl: 'https://bucket-production-654a.up.railway.app/public',
     order: {
         id: 'test-order-id',
@@ -183,6 +181,6 @@ QuoteCreatedEmail.PreviewProps = {
         postal_code: '12345',
         country_code: 'US',
     },
-} as QuoteCreatedPreviewProps;
+} as OrderPlacedPreviewProps;
 
-export default QuoteCreatedEmail;
+export default OrderPlacedTemplate;

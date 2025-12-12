@@ -1,37 +1,42 @@
-import { Text, Section, Link, Button } from '@react-email/components';
-import { Base } from './base';
-import { PasswordResetRequest } from '../../../lib/types';
+import * as React from 'react';
+import { Text, Section, Link, Button, Img } from '@react-email/components';
+import { Base } from '../../base';
+import { PasswordResetRequest } from '../../../../../lib/types';
 
 export const PASSWORD_RESET = 'password-reset';
 
 type Props = {
     reset_url: string;
+    publicUrl: string;
 };
 
 export const isPasswordResetTemplateData = (data: any): data is PasswordResetRequest =>
     typeof data.reset_url === 'string';
 
-const PasswordResetEmail = ({ reset_url }: Props) => {
+const PasswordResetEmail = ({ reset_url, publicUrl }: Props) => {
     return (
-        <Base preview="Reset your password">
+        <Base preview="Réinitialisez votre mot de passe">
+            <Section className="mt-[32px]">
+                <Img src={`${publicUrl}/RSPI_logo_email.png`} alt="RSPI" className="mx-auto w-28" />
+            </Section>
             <Section>
                 <Text
                     style={{
                         fontSize: '24px',
                         fontWeight: 'bold',
                         textAlign: 'center',
-                        margin: '0 0 30px',
+                        margin: '32px 0 32px',
                     }}
                 >
-                    Reset Your Password
+                    Réinitialisez votre mot de passe
                 </Text>
             </Section>
 
             <Section>
-                <Text className="text-black text-[14px] leading-[24px]">Hello,</Text>
+                <Text className="text-black text-[14px] leading-[24px]">Bonjour,</Text>
                 <Text className="text-black text-[14px] leading-[24px]">
-                    We received a request to reset your password. Click the button below to create a
-                    new password for your account.
+                    Nous avons reçu une demande de réinitialisation de votre mot de passe. Cliquez
+                    sur le bouton ci-dessous pour créer un nouveau mot de passe pour votre compte.
                 </Text>
             </Section>
 
@@ -40,13 +45,13 @@ const PasswordResetEmail = ({ reset_url }: Props) => {
                     className="bg-[#000000] rounded text-white text-[12px] font-semibold no-underline text-center px-5 py-3"
                     href={reset_url}
                 >
-                    Reset Password
+                    Réinitialiser le mot de passe
                 </Button>
             </Section>
 
             <Section className="my-[32px]">
                 <Text className="text-black text-[14px] leading-[24px]">
-                    Or copy and paste this URL into your browser:
+                    Ou copiez et collez cette URL dans votre navigateur :
                 </Text>
                 <Link
                     href={reset_url}
@@ -58,18 +63,19 @@ const PasswordResetEmail = ({ reset_url }: Props) => {
 
             <Section className="my-[32px]">
                 <Text className="text-[#666666] text-[12px] leading-[24px]">
-                    This password reset link will expire soon for security reasons.
+                    Pour des raisons de sécurité, ce lien de réinitialisation expirera bientôt.
                 </Text>
                 <Text className="text-[#666666] text-[12px] leading-[24px] mt-2">
-                    If you didn't request a password reset, you can safely ignore this email. Your
-                    password will remain unchanged.
+                    Si vous n’avez pas demandé de réinitialisation, vous pouvez ignorer cet e-mail
+                    en toute sécurité. Votre mot de passe restera inchangé.
                 </Text>
             </Section>
 
             <Section className="mt-[32px] pt-[20px] border-t border-solid border-[#eaeaea]">
                 <Text className="text-[#666666] text-[12px] leading-[24px]">
-                    For security reasons, never share this reset link with anyone. If you're having
-                    trouble with the button above, copy and paste the URL into your web browser.
+                    Pour des raisons de sécurité, ne partagez jamais ce lien de réinitialisation
+                    avec qui que ce soit. Si vous rencontrez des problèmes avec le bouton ci-dessus,
+                    copiez et collez l’URL dans votre navigateur.
                 </Text>
             </Section>
         </Base>
@@ -79,6 +85,7 @@ const PasswordResetEmail = ({ reset_url }: Props) => {
 PasswordResetEmail.PreviewProps = {
     reset_url: 'http://localhost:9000',
     email: 'test@test.com',
+    publicUrl: 'https://bucket-production-654a.up.railway.app/public',
 };
 
 export default PasswordResetEmail;

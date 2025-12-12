@@ -1,17 +1,28 @@
 import { ReactNode } from 'react';
 import { MedusaError } from '@medusajs/framework/utils';
-import InviteUserEmail, { INVITE_USER, isInviteUserData } from './invite-user';
-import OrderPlacedTemplate, { ORDER_PLACED, isOrderPlacedTemplateData } from './order-placed';
-import { CONTACT_FORM, ContactFormEmail, isContactFormTemplateData } from './contact-form';
-import PasswordResetEmail, { isPasswordResetTemplateData, PASSWORD_RESET } from './password-reset';
-import CustomerCreatedEmail, { CUSTOMER_CREATED } from './customer-created';
-import CustomerApprovedEmail, { CUSTOMER_APPROVED } from './customer-approved';
-import CustomerDeclinedEmail, { CUSTOMER_DECLINED } from './customer-declined';
-import PaymentCapturedEmail, { PAYMENT_CAPTURED } from './payment-captured';
-import ShipmentCreatedEmail, { SHIPMENT_CREATED } from './shipment-created';
-import OrderCanceledEmail, { ORDER_CANCELED } from './order-canceled';
-import QuoteCreatedEmail, { QUOTE_CREATED } from './quote-created';
-import ShippingAddedEmail, { SHIPPING_ADDED } from './shipping-added';
+import InviteUserEmail, { INVITE_USER, isInviteUserData } from './auth/admin/invite-user';
+import OrderPlacedTemplate, {
+    ORDER_PLACED,
+    isOrderPlacedTemplateData,
+} from './order/customer/order-placed';
+import {
+    CONTACT_FORM,
+    ContactFormEmail,
+    isContactFormTemplateData,
+} from './contact/admin/contact-form';
+import PasswordResetEmail, {
+    isPasswordResetTemplateData,
+    PASSWORD_RESET,
+} from './auth/customer/password-reset';
+import CustomerCreatedEmail, { CUSTOMER_CREATED } from './auth/customer/customer-created';
+import CustomerApprovedEmail, { CUSTOMER_APPROVED } from './auth/customer/customer-approved';
+import CustomerDeclinedEmail, { CUSTOMER_DECLINED } from './auth/customer/customer-declined';
+import PaymentCapturedEmail, { PAYMENT_CAPTURED } from './payment/customer/payment-captured';
+import ShipmentCreatedEmail, { SHIPMENT_CREATED } from './shipping/customer/shipment-created';
+import OrderCanceledEmail, { ORDER_CANCELED } from './order/admin/order-canceled';
+import QuoteCreatedEmail, { QUOTE_CREATED } from './quote/customer/quote-created';
+import ShippingAddedEmail, { SHIPPING_ADDED } from './shipping/customer/shipping-added';
+import AdminOrderPlacedTemplate, { ADMIN_ORDER_PLACED } from './order/admin/order-placed';
 
 export const EmailTemplates = {
     INVITE_USER,
@@ -26,6 +37,7 @@ export const EmailTemplates = {
     ORDER_CANCELED,
     QUOTE_CREATED,
     SHIPPING_ADDED,
+    ADMIN_ORDER_PLACED,
 } as const;
 
 export function generateEmailTemplate(
@@ -52,6 +64,9 @@ export function generateEmailTemplate(
             }
             return <OrderPlacedTemplate {...data} publicUrl={publicUrl} />;
 
+        case EmailTemplates.ADMIN_ORDER_PLACED:
+            return <AdminOrderPlacedTemplate {...data} publicUrl={publicUrl} />;
+
         case EmailTemplates.CONTACT_FORM:
             if (!isContactFormTemplateData(data)) {
                 throw new MedusaError(
@@ -68,7 +83,7 @@ export function generateEmailTemplate(
                     `Invalid data for template "${EmailTemplates.PASSWORD_RESET}"`,
                 );
             }
-            return <PasswordResetEmail {...data} />;
+            return <PasswordResetEmail {...data} publicUrl={publicUrl} />;
 
         case EmailTemplates.CUSTOMER_CREATED:
             return (
