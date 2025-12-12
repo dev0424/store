@@ -8,7 +8,7 @@ import { RegistrationFormValues } from "@modules/account/components/registration
 import { StoreRegion } from "@medusajs/types";
 
 type Props = {
-  region: StoreRegion;
+  region: StoreRegion | null | undefined;
 };
 
 const AddressSection = ({ region }: Props) => {

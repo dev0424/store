@@ -111,4 +111,12 @@ export const SIGN_UP_SCHEMA = {
       },
     },
   },
+  documents: {
+    rib: {
+      required: "Ce champ est obligatoire",
+    },
+    kbis: {
+      required: "Ce champ est obligatoire",
+    },
+  },
 };

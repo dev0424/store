@@ -20,6 +20,7 @@ import ClientInfoSection from "@modules/account/components/registration-form/com
 import BankInfoSection from "@modules/account/components/registration-form/components/bank-info";
 import AddressSection from "@modules/account/components/registration-form/components/address-info";
 import AdministrativeSection from "@modules/account/components/registration-form/components/administrative-info";
+import Documents from "@modules/account/components/registration-form/components/documents";
 
 export type RegistrationFormValues = {
   email: string;
@@ -32,6 +33,10 @@ export type RegistrationFormValues = {
   bank_account: BankAccount;
   customer_profile: CustomerProfile;
   address: StoreCustomerAddress;
+  documents: {
+    rib: File;
+    kbis: File;
+  };
 };
 
 type Props = {
@@ -97,6 +102,8 @@ const RegistrationForm = ({
             billingCycles={billingCycles}
             activities={activities}
           />
+          <Divider />
+          <Documents />
         </div>
         {error ? (
           <ErrorMessage error={error} data-testid="register-error" />
