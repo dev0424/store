@@ -1,11 +1,11 @@
-import { Text, Section, Hr, Img } from '@react-email/components';
 import * as React from 'react';
-import { Base } from '../../base';
-import { OrderDTO, OrderAddressDTO } from '@medusajs/framework/types';
+import { Base } from 'modules/email-notifications/templates/base';
+import { Hr, Img, Section, Text } from '@react-email/components';
+import { OrderAddressDTO, OrderDTO } from '@medusajs/framework/types';
 
-export const ORDER_PLACED = 'order-placed';
+export const ADMIN_ORDER_PLACED = 'admin-order-placed';
 
-interface OrderPlacedPreviewProps {
+interface PreviewProps {
     order: OrderDTO & {
         display_id: string;
         summary: { raw_current_order_total: { value: number } };
@@ -14,7 +14,7 @@ interface OrderPlacedPreviewProps {
     publicUrl: string;
 }
 
-export interface OrderPlacedTemplateProps {
+export interface Props {
     order: OrderDTO & {
         display_id: string;
         summary: { raw_current_order_total: { value: number } };
@@ -24,16 +24,13 @@ export interface OrderPlacedTemplateProps {
     publicUrl: string;
 }
 
-export const isOrderPlacedTemplateData = (data: any): data is OrderPlacedTemplateProps =>
-    typeof data.order === 'object' && typeof data.shippingAddress === 'object';
-
-const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> & {
-    PreviewProps: OrderPlacedPreviewProps;
-} = ({
+const AdminOrderPlacedTemplate = ({
     order,
     shippingAddress,
     publicUrl,
-    preview = `Confirmation de votre commande #${order.display_id}`,
+    preview = `New order received – Order #${order.display_id}`,
+}: Props & {
+    PreviewProps: PreviewProps;
 }) => {
     return (
         <Base preview={preview}>
@@ -49,32 +46,24 @@ const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> & {
                         margin: '32px 0 32px',
                     }}
                 >
-                    Commande réussie
+                    New order received
                 </Text>
-                <Text>
-                    Bonjour {shippingAddress.first_name} {shippingAddress.last_name},
-                </Text>
-                <Text>
-                    Votre commande n° <span className="font-bold">{order.display_id}</span> a été
-                    enregistrée avec succès.
-                </Text>
-                <Text>
-                    Elle est actuellement en cours de traitement par nos équipes. Vous serez
-                    informé(e) des étapes suivantes.
-                </Text>
-                <Text>Nous vous remercions pour votre collaboration.</Text>
-                <Text className="m-0">Cordialement,</Text>
-                <Text className="m-0">L’équipe RSPI</Text>
+                <Text>A new order has just been placed on the store.</Text>
+                <Text>Please log in to the admin dashboard to review and process this order.</Text>
             </Section>
             <Hr style={{ margin: '20px 0' }} />
             <Section className="mt-4">
                 <Text style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 10px' }}>
-                    Résumé de la commande
+                    Order details
                 </Text>
-                <Text style={{ margin: '0 0 5px' }}>Numéro de commande: {order.display_id}</Text>
+                <Text style={{ margin: '0 0 5px' }}>Order number: {order.display_id}</Text>
                 <Text style={{ margin: '0 0 5px' }}>
-                    Date de commande: {new Date(order.created_at).toLocaleDateString()}
+                    Order date: {new Date(order.created_at).toLocaleDateString()}
                 </Text>
+                <Text style={{ margin: '0 0 5px' }}>
+                    Customer name: {shippingAddress.first_name} {shippingAddress.last_name}
+                </Text>
+                <Text style={{ margin: '0 0 5px' }}>Customer email: {order.email}</Text>
                 <Text style={{ margin: '0 0 20px' }}>
                     Total: {order.summary.raw_current_order_total.value} {order.currency_code}
                 </Text>
@@ -82,7 +71,7 @@ const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> & {
                 <Hr style={{ margin: '20px 0' }} />
 
                 <Text style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 10px' }}>
-                    Adresse de livraison
+                    Shipping address
                 </Text>
                 <Text style={{ margin: '0 0 5px' }}>{shippingAddress.address_1}</Text>
                 <Text style={{ margin: '0 0 5px' }}>
@@ -93,7 +82,7 @@ const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> & {
                 <Hr style={{ margin: '20px 0' }} />
 
                 <Text style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 15px' }}>
-                    Articles commandés
+                    Items ordered
                 </Text>
 
                 <div
@@ -113,9 +102,9 @@ const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> & {
                             borderBottom: '1px solid #ddd',
                         }}
                     >
-                        <Text style={{ fontWeight: 'bold' }}>Article</Text>
-                        <Text style={{ fontWeight: 'bold' }}>Quantité</Text>
-                        <Text style={{ fontWeight: 'bold' }}>Prix</Text>
+                        <Text style={{ fontWeight: 'bold' }}>Item</Text>
+                        <Text style={{ fontWeight: 'bold' }}>Quantity</Text>
+                        <Text style={{ fontWeight: 'bold' }}>Price</Text>
                     </div>
                     {order.items.map(item => (
                         <div
@@ -142,7 +131,7 @@ const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> & {
     );
 };
 
-OrderPlacedTemplate.PreviewProps = {
+AdminOrderPlacedTemplate.PreviewProps = {
     publicUrl: 'https://bucket-production-654a.up.railway.app/public',
     order: {
         id: 'test-order-id',
@@ -186,6 +175,6 @@ OrderPlacedTemplate.PreviewProps = {
         postal_code: '12345',
         country_code: 'US',
     },
-} as OrderPlacedPreviewProps;
+} as PreviewProps;
 
-export default OrderPlacedTemplate;
+export default AdminOrderPlacedTemplate;
