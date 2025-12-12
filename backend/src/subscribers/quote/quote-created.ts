@@ -21,22 +21,38 @@ export default async function quoteCreatedHandler({
     const replyTo = process.env.CONTACT_FORM_EMAIL || undefined;
 
     try {
-        await notificationModuleService.createNotifications({
-            to: order.email,
-            channel: 'email',
-            template: EmailTemplates.QUOTE_CREATED,
-            data: {
-                emailOptions: {
-                    replyTo,
-                    subject: 'Confirmation de votre devis',
+        await notificationModuleService.createNotifications([
+            {
+                to: order.email,
+                channel: 'email',
+                template: EmailTemplates.QUOTE_CREATED,
+                data: {
+                    emailOptions: {
+                        replyTo,
+                        subject: `Confirmation de votre devis #${order.display_id}`,
+                    },
+                    order,
+                    shippingAddress,
+                    preview: `Confirmation de votre devis #${order.display_id}`,
                 },
-                order,
-                shippingAddress,
-                preview: 'Confirmation de votre devis',
             },
-        });
+            {
+                to: replyTo,
+                channel: 'email',
+                template: EmailTemplates.ADMIN_QUOTE_CREATED,
+                data: {
+                    emailOptions: {
+                        replyTo,
+                        subject: `New quote received – Quote #${order.display_id}`,
+                    },
+                    order,
+                    shippingAddress,
+                    preview: `New quote received – Quote #${order.display_id}`,
+                },
+            },
+        ]);
     } catch (error) {
-        console.error('Error sending quote confirmation notification:', error);
+        console.error('Error sending quote confirmation notifications:', error);
     }
 }
 

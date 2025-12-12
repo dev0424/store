@@ -19,10 +19,11 @@ import CustomerApprovedEmail, { CUSTOMER_APPROVED } from './auth/customer/custom
 import CustomerDeclinedEmail, { CUSTOMER_DECLINED } from './auth/customer/customer-declined';
 import PaymentCapturedEmail, { PAYMENT_CAPTURED } from './payment/customer/payment-captured';
 import ShipmentCreatedEmail, { SHIPMENT_CREATED } from './shipping/customer/shipment-created';
-import OrderCanceledEmail, { ORDER_CANCELED } from './order/admin/order-canceled';
+import OrderCanceledEmail, { ORDER_CANCELED } from './order/customer/order-canceled';
 import QuoteCreatedEmail, { QUOTE_CREATED } from './quote/customer/quote-created';
 import ShippingAddedEmail, { SHIPPING_ADDED } from './shipping/customer/shipping-added';
 import AdminOrderPlacedTemplate, { ADMIN_ORDER_PLACED } from './order/admin/order-placed';
+import AdminQuoteCreatedTemplate, { ADMIN_QUOTE_CREATED } from './quote/admin/quote-created';
 
 export const EmailTemplates = {
     INVITE_USER,
@@ -38,6 +39,7 @@ export const EmailTemplates = {
     QUOTE_CREATED,
     SHIPPING_ADDED,
     ADMIN_ORDER_PLACED,
+    ADMIN_QUOTE_CREATED,
 } as const;
 
 export function generateEmailTemplate(
@@ -147,6 +149,9 @@ export function generateEmailTemplate(
 
         case EmailTemplates.QUOTE_CREATED:
             return <QuoteCreatedEmail {...data} publicUrl={publicUrl} />;
+
+        case EmailTemplates.ADMIN_QUOTE_CREATED:
+            return <AdminQuoteCreatedTemplate {...data} publicUrl={publicUrl} />;
 
         case EmailTemplates.SHIPPING_ADDED:
             return (
