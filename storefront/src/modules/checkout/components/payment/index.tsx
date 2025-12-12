@@ -9,17 +9,16 @@ import ErrorMessage from "@modules/checkout/components/error-message";
 import PaymentContainer, {
   StripeCardContainer,
 } from "@modules/checkout/components/payment-container";
-import Divider from "@modules/common/components/divider";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import { StoreCart, StorePaymentProvider } from "@medusajs/types";
 
-const Payment = ({
-  cart,
-  availablePaymentMethods,
-}: {
-  cart: any;
-  availablePaymentMethods: any[];
-}) => {
+type Props = {
+  cart: StoreCart;
+  availablePaymentMethods: StorePaymentProvider[];
+};
+
+const Payment = ({ cart, availablePaymentMethods }: Props) => {
   const activeSession = cart.payment_collection?.payment_sessions?.find(
     (paymentSession: any) => paymentSession.status === "pending",
   );
@@ -120,7 +119,9 @@ const Payment = ({
           )}
         >
           Paiement
-          {!isOpen && paymentReady && <CheckCircleSolid />}
+          {!isOpen && paymentReady && (
+            <CheckCircleSolid className="text-accent-primary" />
+          )}
         </Heading>
         {!isOpen && paymentReady && (
           <Text>
@@ -205,7 +206,7 @@ const Payment = ({
         <div className={isOpen ? "hidden" : "block"}>
           {cart && paymentReady && activeSession ? (
             <div className="flex w-full items-start gap-x-1">
-              <div className="flex w-1/3 flex-col">
+              <div className="flex w-1/2 flex-col">
                 <Text className="txt-medium-plus mb-1 text-ui-fg-base">
                   Méthode de paiement
                 </Text>
@@ -217,7 +218,7 @@ const Payment = ({
                     activeSession?.provider_id}
                 </Text>
               </div>
-              <div className="flex w-1/3 flex-col">
+              <div className="flex w-1/2 flex-col">
                 <Text className="txt-medium-plus mb-1 text-ui-fg-base">
                   Détails de paiement
                 </Text>
@@ -253,7 +254,6 @@ const Payment = ({
           ) : null}
         </div>
       </div>
-      <Divider className="mt-8" />
     </div>
   );
 };

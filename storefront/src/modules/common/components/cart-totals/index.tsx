@@ -22,10 +22,10 @@ const CartTotals = ({ cart }: Props) => {
 
   return (
     <div>
-      <div className="txt-medium flex flex-col gap-y-2 text-ui-fg-subtle">
+      <div className="txt-medium flex flex-col gap-y-2 font-sans text-ui-fg-subtle">
         <div className="flex items-center justify-between">
           <span className="flex items-center gap-x-1">
-            Sous-total (hors frais de livraison et taxes)
+            Sous-total (hors frais de livraison et TVA)
           </span>
           <span data-testid="cart-subtotal" data-value={subtotal || 0}>
             {convertToLocale({ amount: subtotal ?? 0, currency_code })}
@@ -52,7 +52,7 @@ const CartTotals = ({ cart }: Props) => {
           <span>{getShippingOptionText(cart)}</span>
         </div>
         <div className="flex justify-between">
-          <span className="flex items-center gap-x-1">Taxes</span>
+          <span className="flex items-center gap-x-1">TVA</span>
           <span data-testid="cart-taxes" data-value={tax_total || 0}>
             {convertToLocale({ amount: tax_total ?? 0, currency_code })}
           </span>
@@ -72,10 +72,10 @@ const CartTotals = ({ cart }: Props) => {
         )}
       </div>
       <div className="my-4 h-px w-full border-b border-gray-200" />
-      <div className="txt-medium mb-2 flex items-center justify-between text-ui-fg-base">
+      <div className="txt-medium mb-2 flex items-center justify-between font-sans text-ui-fg-base">
         <span>Total</span>
         <span
-          className="txt-xlarge-plus"
+          className="txt-xlarge-plus font-sans font-bold"
           data-testid="cart-total"
           data-value={total || 0}
         >

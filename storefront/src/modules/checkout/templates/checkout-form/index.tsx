@@ -5,14 +5,14 @@ import Addresses from "@modules/checkout/components/addresses";
 import Payment from "@modules/checkout/components/payment";
 import Review from "@modules/checkout/components/review";
 import Shipping from "@modules/checkout/components/shipping";
+import Divider from "@modules/common/components/divider";
 
-export default async function CheckoutForm({
-  cart,
-  customer,
-}: {
+type Props = {
   cart: StoreCart | null;
   customer: StoreCustomer | null;
-}) {
+};
+
+export default async function CheckoutForm({ cart, customer }: Props) {
   if (!cart) {
     return null;
   }
@@ -27,8 +27,11 @@ export default async function CheckoutForm({
   return (
     <div className="grid w-full grid-cols-1 gap-y-8">
       <Addresses cart={cart} customer={customer} />
+      <Divider />
       <Shipping cart={cart} availableShippingMethods={shippingMethods} />
+      <Divider />
       <Payment cart={cart} availablePaymentMethods={paymentMethods} />
+      <Divider />
       <Review cart={cart} />
     </div>
   );

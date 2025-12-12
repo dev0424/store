@@ -1,9 +1,9 @@
 import { convertToLocale } from "@lib/util/money";
-import { HttpTypes } from "@medusajs/types";
+import { StoreCartLineItem, StoreOrderLineItem } from "@medusajs/types";
 import { clx } from "@medusajs/ui";
 
-type LineItemUnitPriceProps = {
-  item: HttpTypes.StoreCartLineItem | HttpTypes.StoreOrderLineItem;
+type Props = {
+  item: StoreCartLineItem | StoreOrderLineItem;
   style?: "default" | "tight";
   currencyCode: string;
 };
@@ -12,7 +12,7 @@ const LineItemUnitPrice = ({
   item,
   style = "default",
   currencyCode,
-}: LineItemUnitPriceProps) => {
+}: Props) => {
   const { total, original_total } = item;
   const hasReducedPrice = total < original_total;
 
@@ -21,7 +21,7 @@ const LineItemUnitPrice = ({
   );
 
   return (
-    <div className="flex h-full flex-col justify-center text-ui-fg-muted">
+    <div className="flex h-full flex-col justify-center font-sans text-ui-fg-muted">
       {hasReducedPrice && (
         <>
           <p>

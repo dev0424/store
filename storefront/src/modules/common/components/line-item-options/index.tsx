@@ -1,22 +1,22 @@
-import { HttpTypes } from "@medusajs/types";
+import { StoreProductVariant } from "@medusajs/types";
 import { Text } from "@medusajs/ui";
 
-type LineItemOptionsProps = {
-  variant: HttpTypes.StoreProductVariant | undefined;
+type Props = {
+  variant: StoreProductVariant | undefined;
   "data-testid"?: string;
-  "data-value"?: HttpTypes.StoreProductVariant;
+  "data-value"?: StoreProductVariant;
 };
 
 const LineItemOptions = ({
   variant,
   "data-testid": dataTestid,
   "data-value": dataValue,
-}: LineItemOptionsProps) => {
+}: Props) => {
   return (
     <Text
       data-testid={dataTestid}
       data-value={dataValue}
-      className="txt-medium inline-block w-full overflow-hidden text-ellipsis text-ui-fg-subtle"
+      className="txt-medium inline-block w-full overflow-hidden text-ellipsis font-sans text-ui-fg-subtle"
     >
       Variante: {variant?.title}
     </Text>

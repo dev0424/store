@@ -12,7 +12,6 @@ import {
 } from "@medusajs/types";
 import { Button, Heading, Text, clx } from "@medusajs/ui";
 import ErrorMessage from "@modules/checkout/components/error-message";
-import Divider from "@modules/common/components/divider";
 import MedusaRadio from "@modules/common/components/radio";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -165,7 +164,7 @@ const Shipping = ({ cart, availableShippingMethods }: Props) => {
         >
           Livraison
           {!isOpen && (cart.shipping_methods?.length ?? 0) > 0 && (
-            <CheckCircleSolid />
+            <CheckCircleSolid className="text-accent-primary" />
           )}
         </Heading>
         {!isOpen &&
@@ -187,10 +186,10 @@ const Shipping = ({ cart, availableShippingMethods }: Props) => {
         <>
           <div className="grid">
             <div className="flex flex-col">
-              <span className="txt-medium font-medium text-ui-fg-base">
+              <span className="txt-medium font-sans font-medium text-ui-fg-base">
                 Méthode de livraison
               </span>
-              <span className="txt-medium mb-4 text-ui-fg-muted">
+              <span className="txt-medium mb-4 font-sans text-ui-fg-muted">
                 Comment souhaitez-vous que votre commande soit livrée?
               </span>
             </div>
@@ -381,7 +380,7 @@ const Shipping = ({ cart, availableShippingMethods }: Props) => {
         <div>
           <div className="text-small-regular">
             {cart && (cart.shipping_methods?.length ?? 0) > 0 && (
-              <div className="flex w-1/3 flex-col">
+              <div className="flex w-full flex-col">
                 <Text className="txt-medium-plus mb-1 text-ui-fg-base">
                   Méthode
                 </Text>
@@ -389,14 +388,16 @@ const Shipping = ({ cart, availableShippingMethods }: Props) => {
                   {cart.shipping_methods?.at(-1)?.name} {/*{convertToLocale({*/}
                   {/*  amount: cart.shipping_methods.at(-1)?.amount!,*/}
                   {/*  currency_code: cart?.currency_code,*/}
-                  {/*})}*/}({getShippingOptionText(cart)})
+                  {/*})}*/}
+                </Text>
+                <Text className="txt-medium text-ui-fg-subtle">
+                  ({getShippingOptionText(cart)})
                 </Text>
               </div>
             )}
           </div>
         </div>
       )}
-      <Divider className="mt-8" />
     </div>
   );
 };

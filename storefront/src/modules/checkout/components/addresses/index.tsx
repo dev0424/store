@@ -3,9 +3,8 @@
 import { setAddresses } from "@lib/data/cart";
 import compareAddresses from "@lib/util/compare-addresses";
 import { CheckCircleSolid } from "@medusajs/icons";
-import { HttpTypes } from "@medusajs/types";
+import { StoreCart, StoreCustomer } from "@medusajs/types";
 import { Heading, Text, useToggleState } from "@medusajs/ui";
-import Divider from "@modules/common/components/divider";
 import Spinner from "@modules/common/icons/spinner";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useActionState } from "react";
@@ -14,13 +13,12 @@ import ErrorMessage from "../error-message";
 import ShippingAddress from "../shipping-address";
 import { SubmitButton } from "../submit-button";
 
-const Addresses = ({
-  cart,
-  customer,
-}: {
-  cart: HttpTypes.StoreCart | null;
-  customer: HttpTypes.StoreCustomer | null;
-}) => {
+type Props = {
+  cart: StoreCart | null;
+  customer: StoreCustomer | null;
+};
+
+const Addresses = ({ cart, customer }: Props) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -47,7 +45,7 @@ const Addresses = ({
           className="text-3xl-regular flex flex-row items-baseline gap-x-2"
         >
           Adresse de livraison
-          {!isOpen && <CheckCircleSolid />}
+          {!isOpen && <CheckCircleSolid className="text-accent-primary" />}
         </Heading>
         {!isOpen && cart?.shipping_address && (
           <Text>
@@ -180,7 +178,6 @@ const Addresses = ({
           </div>
         </div>
       )}
-      <Divider className="mt-8" />
     </div>
   );
 };

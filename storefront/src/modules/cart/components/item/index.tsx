@@ -122,7 +122,9 @@ const Item = ({ item, type = "full", currencyCode, inventory }: Props) => {
           {type === "preview" && (
             <span className="flex items-center gap-x-1">
               <div className="flex h-full flex-col justify-center text-ui-fg-muted">
-                <span className="text-base-regular">{item.quantity}x </span>
+                <span className="text-base-regular font-sans">
+                  {item.quantity}x{" "}
+                </span>
               </div>
               <LineItemUnitPrice
                 item={item}

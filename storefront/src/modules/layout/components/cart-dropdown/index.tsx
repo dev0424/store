@@ -7,7 +7,7 @@ import {
   Transition,
 } from "@headlessui/react";
 import { convertToLocale } from "@lib/util/money";
-import { HttpTypes } from "@medusajs/types";
+import { StoreCart } from "@medusajs/types";
 import { Button } from "@medusajs/ui";
 import DeleteButton from "@modules/common/components/delete-button";
 import LineItemOptions from "@modules/common/components/line-item-options";
@@ -19,11 +19,11 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { HiOutlineShoppingCart as ShoppingCartIcon } from "react-icons/hi";
 import NavLink from "@modules/layout/components/nav-link";
 
-const CartDropdown = ({
-  cart: cartState,
-}: {
-  cart?: HttpTypes.StoreCart | null;
-}) => {
+type Props = {
+  cart?: StoreCart | null;
+};
+
+const CartDropdown = ({ cart: cartState }: Props) => {
   const [activeTimer, setActiveTimer] = useState<NodeJS.Timer | undefined>(
     undefined,
   );
@@ -113,7 +113,7 @@ const CartDropdown = ({
             data-testid="nav-cart-dropdown"
           >
             <div className="flex items-center justify-center p-4">
-              <h3 className="text-large-semi">Panier</h3>
+              <h3 className="text-large-semi font-sans">Panier</h3>
             </div>
             {cartState && cartState.items?.length ? (
               <>
@@ -144,7 +144,7 @@ const CartDropdown = ({
                           <div className="flex flex-1 flex-col">
                             <div className="flex items-start justify-between">
                               <div className="mr-4 flex w-[180px] flex-col overflow-ellipsis whitespace-nowrap">
-                                <h3 className="text-base-regular overflow-hidden text-ellipsis">
+                                <h3 className="text-base-regular overflow-hidden text-ellipsis font-sans">
                                   <LocalizedClientLink
                                     href={`/products/${item.product_handle}`}
                                     data-testid="product-link"
@@ -184,11 +184,10 @@ const CartDropdown = ({
                       </div>
                     ))}
                 </div>
-                <div className="text-small-regular flex flex-col gap-y-4 p-4">
+                <div className="text-small-regular flex flex-col gap-y-4 p-4 font-sans">
                   <div className="flex items-center justify-between">
                     <span className="font-semibold text-ui-fg-base">
-                      Sous-total{" "}
-                      <span className="font-normal">(hors taxes)</span>
+                      Sous-total <span className="font-normal">(hors TVA)</span>
                     </span>
                     <span
                       className="text-large-semi"
