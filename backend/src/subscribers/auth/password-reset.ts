@@ -1,6 +1,6 @@
 import { SubscriberArgs, type SubscriberConfig } from '@medusajs/medusa';
 import { Modules } from '@medusajs/framework/utils';
-import { EmailTemplates } from '../modules/email-notifications/templates';
+import { EmailTemplates } from '../../modules/email-notifications/templates';
 
 export default async function resetPasswordTokenHandler({
     event: {

@@ -26,7 +26,12 @@ export interface QuoteCreatedTemplateProps {
 
 const QuoteCreatedEmail: React.FC<QuoteCreatedTemplateProps> & {
     PreviewProps: QuoteCreatedPreviewProps;
-} = ({ order, shippingAddress, publicUrl, preview = 'Confirmation de votre devis' }) => {
+} = ({
+    order,
+    shippingAddress,
+    publicUrl,
+    preview = `Confirmation de votre devis #${order.display_id}`,
+}) => {
     return (
         <Base preview={preview}>
             <Section className="mt-[32px]">

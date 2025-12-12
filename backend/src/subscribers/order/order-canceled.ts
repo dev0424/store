@@ -1,7 +1,7 @@
 import { SubscriberArgs, type SubscriberConfig } from '@medusajs/framework';
 import { INotificationModuleService, IOrderModuleService } from '@medusajs/framework/types';
 import { Modules } from '@medusajs/framework/utils';
-import { EmailTemplates } from 'modules/email-notifications/templates';
+import { EmailTemplates } from '../../modules/email-notifications/templates';
 
 export default async function orderCanceledHandler({
     event: { data },
@@ -29,12 +29,12 @@ export default async function orderCanceledHandler({
             data: {
                 emailOptions: {
                     replyTo,
-                    subject: 'Annulation de votre commande',
+                    subject: `Annulation de votre commande #${order.display_id}`,
                 },
                 firstName: customer.first_name,
                 lastName: customer.last_name,
                 orderId: order.display_id,
-                preview: 'Annulation de votre commande',
+                preview: `Annulation de votre commande #${order.display_id}`,
             },
         });
     } catch (error) {

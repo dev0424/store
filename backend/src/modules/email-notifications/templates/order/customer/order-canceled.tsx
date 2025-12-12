@@ -17,7 +17,7 @@ const OrderCanceledEmail = ({
     firstName,
     lastName,
     orderId,
-    preview = 'Annulation de votre commande',
+    preview = `Annulation de votre commande #${orderId}`,
 }: Props) => {
     return (
         <Base preview={preview}>
