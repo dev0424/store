@@ -90,7 +90,7 @@ importers:
         specifier: ^0.0.15
         version: 0.0.15
       minio:
-        specifier: ^8.0.6
+        specifier: ^8.0.3
         version: 8.0.6
       multer:
         specifier: ^2.0.2
