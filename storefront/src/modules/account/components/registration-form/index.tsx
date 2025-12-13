@@ -21,6 +21,7 @@ import BankInfoSection from "@modules/account/components/registration-form/compo
 import AddressSection from "@modules/account/components/registration-form/components/address-info";
 import AdministrativeSection from "@modules/account/components/registration-form/components/administrative-info";
 import Documents from "@modules/account/components/registration-form/components/documents";
+import { uploadFile } from "@lib/data/upload-file";
 
 export type RegistrationFormValues = {
   email: string;
@@ -33,7 +34,7 @@ export type RegistrationFormValues = {
   bank_account: BankAccount;
   customer_profile: CustomerProfile;
   address: StoreCustomerAddress;
-  documents: {
+  files: {
     rib: File;
     kbis: File;
   };
@@ -75,6 +76,7 @@ const RegistrationForm = ({
       ],
     };
 
+    // const files = await uploadFile([data.files.kbis, data.files.rib]);
     const message = await signup(formData);
 
     if (message) {

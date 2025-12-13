@@ -1,6 +1,5 @@
 import {
     defineMiddlewares,
-    authenticate,
     validateAndTransformBody,
     MedusaNextFunction,
 } from '@medusajs/framework/http';
@@ -22,10 +21,6 @@ export default defineMiddlewares({
     routes: [
         ...adminMiddlewares,
         ...storeMiddlewares,
-        {
-            matcher: '/store/register*',
-            middlewares: [authenticate('customer', ['bearer'], { allowUnregistered: true })],
-        },
         {
             matcher: '/admin/product-document',
             method: 'POST',

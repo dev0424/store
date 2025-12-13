@@ -9,18 +9,18 @@ const Documents = () => {
     <Section title="Documents">
       <Grid>
         <FileUpload
-          name="documents.rib"
+          name="files.rib"
           label="RIB"
           accept={{ "application/pdf": [] }}
-          rules={SIGN_UP_SCHEMA.documents.rib}
+          rules={SIGN_UP_SCHEMA.files.rib}
           maxSizeMB={5}
           required
         />
         <FileUpload
-          name="documents.kbis"
+          name="files.kbis"
           label="KBIS"
           accept={{ "application/pdf": [] }}
-          rules={SIGN_UP_SCHEMA.documents.kbis}
+          rules={SIGN_UP_SCHEMA.files.kbis}
           maxSizeMB={5}
           required
         />

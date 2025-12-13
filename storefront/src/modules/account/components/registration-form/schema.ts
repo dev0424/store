@@ -111,7 +111,7 @@ export const SIGN_UP_SCHEMA = {
       },
     },
   },
-  documents: {
+  files: {
     rib: {
       required: "Ce champ est obligatoire",
     },
