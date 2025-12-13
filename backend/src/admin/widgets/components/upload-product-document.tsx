@@ -53,7 +53,7 @@ const UploadProductDocument = ({ productId, onSuccess }: Props) => {
                 method: 'POST',
                 credentials: 'include',
                 body: formData,
-            });
+            }).then(response => response.json());
 
             // Create new document
             const response: UploadDocumentResponse = await sdk.client.fetch(
