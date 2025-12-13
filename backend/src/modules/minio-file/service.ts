@@ -159,7 +159,7 @@ class MinioFileProviderService extends AbstractFileProviderService {
             await this.client.putObject(this.bucket, fileKey, content, content.length, {
                 'Content-Type': file.mimeType,
                 'x-amz-meta-original-filename': file.filename,
-                'x-amz-acl': file.access === 'public' ? 'public-read' : 'private',
+                'x-amz-acl': 'public-read',
             });
 
             // Generate URL using the endpoint and bucket
