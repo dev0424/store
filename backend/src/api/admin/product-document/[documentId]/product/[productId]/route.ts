@@ -1,5 +1,5 @@
 import { MedusaRequest, MedusaResponse } from '@medusajs/framework/http';
-import { deleteProductDocumentWorkflow } from '../../../../../../workflows/delete-product-document';
+import { deleteProductDocumentWorkflow } from '../../../../../../workflows/document/delete-product-document';
 import { deleteFilesWorkflow } from '@medusajs/medusa/core-flows';
 import { getFileNameFromUrl } from '../../../../product-document/utils';
 

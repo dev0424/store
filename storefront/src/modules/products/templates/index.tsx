@@ -5,7 +5,7 @@ import ProductInfo from "@modules/products/templates/product-info";
 import SkeletonRelatedProducts from "@modules/skeletons/templates/skeleton-related-products";
 import { notFound } from "next/navigation";
 import ProductActionsWrapper from "./product-actions-wrapper";
-import { HttpTypes } from "@medusajs/types";
+import { StoreRegion } from "@medusajs/types";
 import ImageCarousel from "@modules/products/components/image-carousel";
 import { ProductWithDocument } from "../../../types/product";
 import ProductSpecs from "@modules/products/components/product-specs";
@@ -13,17 +13,13 @@ import ProductDocuments from "@modules/products/components/product-documents";
 import ContactBanner from "@modules/account/components/contact-banner";
 import ProductBenefits from "@modules/products/components/product-benefits";
 
-type ProductTemplateProps = {
+type Props = {
   product: ProductWithDocument;
-  region: HttpTypes.StoreRegion;
+  region: StoreRegion;
   countryCode: string;
 };
 
-const ProductTemplate: React.FC<ProductTemplateProps> = ({
-  product,
-  region,
-  countryCode,
-}) => {
+const ProductTemplate = ({ product, region, countryCode }: Props) => {
   if (!product || !product.id) {
     return notFound();
   }

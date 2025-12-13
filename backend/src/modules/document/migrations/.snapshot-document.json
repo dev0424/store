@@ -42,6 +42,24 @@
           "nullable": true,
           "mappedType": "text"
         },
+        "mime_type": {
+          "name": "mime_type",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "text"
+        },
+        "size": {
+          "name": "size",
+          "type": "integer",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "integer"
+        },
         "created_at": {
           "name": "created_at",
           "type": "timestamptz",
@@ -75,20 +93,20 @@
           "mappedType": "datetime"
         }
       },
-      "name": "product_document",
+      "name": "document",
       "schema": "public",
       "indexes": [
         {
-          "keyName": "IDX_product_document_deleted_at",
+          "keyName": "IDX_document_deleted_at",
           "columnNames": [],
           "composite": false,
           "constraint": false,
           "primary": false,
           "unique": false,
-          "expression": "CREATE INDEX IF NOT EXISTS \"IDX_product_document_deleted_at\" ON \"product_document\" (deleted_at) WHERE deleted_at IS NULL"
+          "expression": "CREATE INDEX IF NOT EXISTS \"IDX_document_deleted_at\" ON \"document\" (\"deleted_at\") WHERE deleted_at IS NULL"
         },
         {
-          "keyName": "product_document_pkey",
+          "keyName": "document_pkey",
           "columnNames": [
             "id"
           ],

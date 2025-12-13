@@ -11,7 +11,7 @@ export type ProductDocument = {
 };
 
 export type ProductWithDocument = HttpTypes.StoreProduct & {
-  product_document?: ProductDocument[];
+  documents?: ProductDocument[];
 };
 
 export type ProductPriceRange = {

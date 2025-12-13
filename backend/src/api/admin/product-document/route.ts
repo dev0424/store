@@ -1,5 +1,5 @@
 import { MedusaRequest, MedusaResponse } from '@medusajs/framework/http';
-import { createProductDocumentWorkflow } from '../../../workflows/create-product-document';
+import { createProductDocumentWorkflow } from '../../../workflows/document/create-product-document';
 
 type PostAdminCreateProductDocumentType = {
     url: string;

@@ -15,9 +15,9 @@ const ProductDocuments = ({ product }: Props) => {
         <h1 className="text-left text-2xl text-ui-fg-base">Téléchargements</h1>
         <Divider />
       </div>
-      {toArray(product.product_document)?.length ? (
+      {toArray(product.documents)?.length ? (
         <div className="flex flex-col gap-4">
-          {toArray(product.product_document)?.map((document) => (
+          {toArray(product.documents)?.map((document) => (
             <ProductDocument key={document.id} document={document} />
           ))}
         </div>

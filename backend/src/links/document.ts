@@ -1,5 +1,5 @@
 import ProductModule from '@medusajs/medusa/product';
-import ProductDocumentModule from 'modules/product-document';
+import DocumentModule from 'modules/document';
 import { defineLink } from '@medusajs/framework/utils';
 
 export default defineLink(
@@ -8,12 +8,13 @@ export default defineLink(
         isList: true,
     },
     {
-        linkable: ProductDocumentModule.linkable.productDocument,
+        linkable: DocumentModule.linkable.document,
         deleteCascade: true,
+        isList: true,
     },
     {
         database: {
-            table: 'product_document_product',
+            table: 'document_product',
         },
     },
 );

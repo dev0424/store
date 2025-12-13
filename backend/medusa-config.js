@@ -49,7 +49,7 @@ const medusaConfig = {
     },
     modules: [
         {
-            resolve: './src/modules/product-document',
+            resolve: './src/modules/document',
         },
         {
             resolve: './src/modules/bank-account',

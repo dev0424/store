@@ -2,9 +2,13 @@ import { updateProductsWorkflow } from '@medusajs/medusa/core-flows';
 import { StepResponse } from '@medusajs/framework/workflows-sdk';
 import { Modules } from '@medusajs/framework/utils';
 import { LinkDefinition } from '@medusajs/framework/types';
-import ProductDocumentModuleService from '../../modules/product-document/services/service';
-import { PRODUCT_DOCUMENT_MODULE } from '../../modules/product-document/index';
+import DocumentModuleService from '../../modules/document/services/service';
+import { DOCUMENT_MODULE } from '../../modules/document/index';
 
+/*
+ * Workflow hook which runs when a product is updated.
+ * It attaches document id (if found) to the product when uploading product documents from the admin panel.
+ */
 updateProductsWorkflow.hooks.productsUpdated(
     // Link product document ids to product
     async ({ products, additional_data }, { container }) => {
@@ -14,11 +18,10 @@ updateProductsWorkflow.hooks.productsUpdated(
 
         const product_document_id = additional_data?.product_document_id as string;
 
-        const productDocumentModuleService: ProductDocumentModuleService =
-            container.resolve(PRODUCT_DOCUMENT_MODULE);
+        const documentModuleService: DocumentModuleService = container.resolve(DOCUMENT_MODULE);
 
         // Validate product document id exist
-        await productDocumentModuleService.retrieveProductDocument(product_document_id);
+        await documentModuleService.retrieveDocument(product_document_id);
 
         const link = container.resolve('link');
         const logger = container.resolve('logger');
@@ -30,8 +33,8 @@ updateProductsWorkflow.hooks.productsUpdated(
                 [Modules.PRODUCT]: {
                     product_id: product.id,
                 },
-                [PRODUCT_DOCUMENT_MODULE]: {
-                    product_document_id: product_document_id,
+                [DOCUMENT_MODULE]: {
+                    document_id: product_document_id,
                 },
             });
         }

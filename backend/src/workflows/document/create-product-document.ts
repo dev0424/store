@@ -4,8 +4,8 @@ import {
     createWorkflow,
     WorkflowResponse,
 } from '@medusajs/framework/workflows-sdk';
-import ProductDocumentModuleService from '../modules/product-document/services/service';
-import { PRODUCT_DOCUMENT_MODULE } from '../modules/product-document/index';
+import DocumentModuleService from '../../modules/document/services/service';
+import { DOCUMENT_MODULE } from '../../modules/document';
 
 export type CreateProductDocumentStepInput = {
     url: string;
@@ -20,20 +20,18 @@ type CreateProductDocumentWorkflowInput = {
 export const createProductDocumentStep = createStep(
     'create-product-document-step',
     async (input: CreateProductDocumentStepInput, { container }) => {
-        const productDocumentModuleService: ProductDocumentModuleService =
-            container.resolve(PRODUCT_DOCUMENT_MODULE);
+        const documentModuleService: DocumentModuleService = container.resolve(DOCUMENT_MODULE);
 
-        const productDocument = await productDocumentModuleService.createProductDocuments(input);
+        const productDocument = await documentModuleService.createDocuments(input);
 
         return new StepResponse(productDocument, productDocument.id);
     },
 
     // Compensation function
     async (id: string, { container }) => {
-        const productDocumentModuleService: ProductDocumentModuleService =
-            container.resolve(PRODUCT_DOCUMENT_MODULE);
+        const documentModuleService: DocumentModuleService = container.resolve(DOCUMENT_MODULE);
 
-        await productDocumentModuleService.deleteProductDocuments(id);
+        await documentModuleService.deleteDocuments(id);
     },
 );
 

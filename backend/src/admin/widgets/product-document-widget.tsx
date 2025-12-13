@@ -17,7 +17,7 @@ const ProductDocumentWidget = ({ data: product }: DetailWidgetProps<AdminProduct
     } = useQuery({
         queryFn: () =>
             sdk.admin.product.retrieve(product.id, {
-                fields: '+product_document.*',
+                fields: '+documents.*',
             }) as Promise<AdminProductWithDocument>,
         queryKey: [['product', product.id, 'custom']],
     });
@@ -44,9 +44,9 @@ const ProductDocumentWidget = ({ data: product }: DetailWidgetProps<AdminProduct
 
             <div>
                 {/* product document can be an object or an array */}
-                {toArray(productWithDocument.product.product_document)?.length ? (
+                {toArray(productWithDocument.product.documents)?.length ? (
                     <div className="flex flex-col divide-y">
-                        {toArray(productWithDocument.product.product_document).map(document => (
+                        {toArray(productWithDocument.product.documents).map(document => (
                             <div
                                 key={document.id}
                                 className="flex justify-between items-center py-4 px-6"

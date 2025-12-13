@@ -1,9 +1,12 @@
 import { AdminCustomer, AdminProduct } from '@medusajs/types';
 
-export type ProductDocument = {
+export type Document = {
     id: string;
     type: string;
     name?: string;
+    url: string;
+    mime_type?: string;
+    size?: number;
     created_at: string;
     updated_at: string;
     deleted_at: string;
@@ -11,7 +14,7 @@ export type ProductDocument = {
 
 export type AdminProductWithDocument = {
     product: AdminProduct & {
-        product_document?: ProductDocument[];
+        documents?: Document[];
     };
 };
 
