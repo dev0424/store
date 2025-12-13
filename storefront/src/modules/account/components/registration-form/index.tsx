@@ -76,8 +76,8 @@ const RegistrationForm = ({
       ],
     };
 
-    // const files = await uploadFile([data.files.kbis, data.files.rib]);
     const message = await signup(formData);
+    await uploadFile([data.files.kbis, data.files.rib]);
 
     if (message) {
       setError(message);

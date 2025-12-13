@@ -1,15 +1,7 @@
-import type {
-    MedusaResponse,
-    AuthenticatedMedusaRequest,
-    MedusaRequest,
-} from '@medusajs/framework';
+import type { MedusaResponse, AuthenticatedMedusaRequest } from '@medusajs/framework';
 import { uploadFilesWorkflow } from '@medusajs/medusa/core-flows';
-import { BankAccount, CustomerProfile } from '../../../lib/types';
-import { CreateCustomerDTO } from '@medusajs/types';
 
-type CreateCustomerRequest = CreateCustomerDTO & {
-    bank_account: BankAccount;
-    customer_profile: CustomerProfile;
+type UploadFilesRequest = {
     files: {
         rib: File;
         kbis: File;
@@ -17,11 +9,11 @@ type CreateCustomerRequest = CreateCustomerDTO & {
 };
 
 export async function POST(
-    request: MedusaRequest<CreateCustomerRequest>,
+    request: AuthenticatedMedusaRequest<UploadFilesRequest>,
     response: MedusaResponse,
 ) {
-    // TODO validate request body
-    const customerData = request.body;
+    // todo store files for customerId
+    const customerId = request.auth_context?.actor_id;
     const files = request.files as Express.Multer.File[];
 
     const { result } = await uploadFilesWorkflow(request.scope).run({
@@ -34,6 +26,5 @@ export async function POST(
             })),
         },
     });
-    console.log(result);
     response.send(result);
 }
