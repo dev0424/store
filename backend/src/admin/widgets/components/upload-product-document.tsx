@@ -44,10 +44,15 @@ const UploadProductDocument = ({ productId, onSuccess }: Props) => {
     });
 
     const onSubmit = async (values: ProductDocumentForm) => {
+        const formData = new FormData();
+        formData.set('files', values.file);
+
         try {
             // Upload file to storage bucket
-            const fileUploadResponse = await sdk.admin.upload.create({
-                files: [values.file],
+            const fileUploadResponse = await fetch('/admin/uploads', {
+                method: 'POST',
+                credentials: 'include',
+                body: formData,
             });
 
             // Create new document
