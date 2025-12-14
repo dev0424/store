@@ -1,5 +1,5 @@
 import { AbstractFileProviderService, MedusaError } from '@medusajs/framework/utils';
-import { Logger } from '@medusajs/framework/types';
+import { Logger, ProviderGetPresignedUploadUrlDTO } from '@medusajs/framework/types';
 import {
     ProviderUploadFileDTO,
     ProviderDeleteFileDTO,
@@ -117,11 +117,18 @@ class MinioFileProviderService extends AbstractFileProviderService {
                         Version: '2012-10-17',
                         Statement: [
                             {
-                                Sid: 'PublicRead',
+                                Sid: 'PublicRoot',
                                 Effect: 'Allow',
                                 Principal: '*',
                                 Action: ['s3:GetObject'],
                                 Resource: [`arn:aws:s3:::${this.bucket}/*`],
+                            },
+                            {
+                                Sid: 'DenyCustomerFiles',
+                                Effect: 'Deny',
+                                Principal: '*',
+                                Action: ['s3:GetObject'],
+                                Resource: [`arn:aws:s3:::${this.bucket}/private/*`],
                             },
                         ],
                     };
@@ -219,6 +226,32 @@ class MinioFileProviderService extends AbstractFileProviderService {
             throw new MedusaError(
                 MedusaError.Types.UNEXPECTED_STATE,
                 `Failed to generate presigned URL: ${error.message}`,
+            );
+        }
+    }
+
+    async getPresignedUploadUrl(
+        fileData: ProviderGetPresignedUploadUrlDTO,
+    ): Promise<ProviderFileResultDTO> {
+        if (!fileData?.filename) {
+            throw new MedusaError(MedusaError.Types.INVALID_DATA, 'No filename provided');
+        }
+
+        try {
+            const fileKey = fileData.filename;
+
+            // Generate presigned PUT URL that expires in 15 minutes
+            const url = await this.client.presignedPutObject(this.bucket, fileKey, 15 * 60);
+
+            return {
+                url,
+                key: fileKey,
+            };
+        } catch (error) {
+            this.logger_.error(`Failed to generate presigned upload URL: ${error.message}`);
+            throw new MedusaError(
+                MedusaError.Types.UNEXPECTED_STATE,
+                `Failed to generate presigned upload URL: ${error.message}`,
             );
         }
     }
