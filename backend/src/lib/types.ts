@@ -73,6 +73,15 @@ export type AccountStatus = {
     is_searchable: boolean;
 };
 
+export type CustomerDocument = {
+    id: string;
+    url: string;
+    type: string;
+    name?: string;
+    mime_type?: string;
+    size?: number;
+};
+
 export type AdminCustomerExtended = {
     customer: AdminCustomer & {
         bank_account: BankAccount;
@@ -80,6 +89,7 @@ export type AdminCustomerExtended = {
         customer_profile: CustomerProfile;
         account_status: AccountStatus;
         location: Location;
+        documents: CustomerDocument[];
     };
 };
 

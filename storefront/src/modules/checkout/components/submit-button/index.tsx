@@ -11,6 +11,7 @@ type Props = {
   "data-testid"?: string;
   disabled?: boolean;
   onClick?: VoidFunction;
+  isLoading?: boolean;
 };
 
 export function SubmitButton({
@@ -20,6 +21,7 @@ export function SubmitButton({
   "data-testid": dataTestId,
   disabled,
   onClick,
+  isLoading,
 }: Props) {
   const { pending } = useFormStatus();
 
@@ -28,7 +30,7 @@ export function SubmitButton({
       size="large"
       className={className}
       type="submit"
-      isLoading={pending}
+      isLoading={pending || isLoading}
       variant={variant || "primary"}
       data-testid={dataTestId}
       disabled={disabled}

@@ -1,11 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useTransition, useState } from "react";
 import ErrorMessage from "@modules/checkout/components/error-message";
 import { SubmitButton } from "@modules/checkout/components/submit-button";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import { signup } from "@lib/data/signup";
-import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { BankAccount } from "@types/bank-account";
 import { CustomerProfile } from "@types/customer-profile";
@@ -21,7 +20,6 @@ import BankInfoSection from "@modules/account/components/registration-form/compo
 import AddressSection from "@modules/account/components/registration-form/components/address-info";
 import AdministrativeSection from "@modules/account/components/registration-form/components/administrative-info";
 import Documents from "@modules/account/components/registration-form/components/documents";
-import { uploadFile } from "@lib/data/upload-file";
 
 export type RegistrationFormValues = {
   email: string;
@@ -55,6 +53,8 @@ const RegistrationForm = ({
 }: Props) => {
   const [error, setError] = useState<string | undefined>(undefined);
   const [accepted, setAccepted] = useState<boolean>(false);
+  const [isPending, startTransition] = useTransition();
+
   const router = useRouter();
 
   const methods = useForm<RegistrationFormValues>();
@@ -76,14 +76,15 @@ const RegistrationForm = ({
       ],
     };
 
-    const message = await signup(formData);
-    await uploadFile([data.files.kbis, data.files.rib]);
+    startTransition(async () => {
+      const message = await signup(formData);
 
-    if (message) {
-      setError(message);
-    } else {
-      router.push("/account");
-    }
+      if (message) {
+        setError(message);
+      } else {
+        router.push("/account");
+      }
+    });
   };
 
   return (
@@ -132,6 +133,7 @@ const RegistrationForm = ({
           onChange={toggleAccepted}
         />
         <SubmitButton
+          isLoading={isPending}
           disabled={!accepted}
           className="mt-6 h-10 w-full font-sans font-bold tracking-wide shadow-none"
           data-testid="register-button"
