@@ -1,15 +1,25 @@
 import type { MedusaResponse, AuthenticatedMedusaRequest } from '@medusajs/framework';
 import { createCustomerAccountWorkflow } from '@medusajs/medusa/core-flows';
-import { createBankAccountWorkflow } from '../../../workflows/create-bank-account';
-import { BankAccount, CustomerProfile, ApplicationStatus } from '../../../lib/types';
+import { createBankAccountWorkflow } from '../../../../workflows/create-bank-account';
+import { BankAccount, CustomerProfile, ApplicationStatus } from '../../../../lib/types';
 import { CreateCustomerDTO } from '@medusajs/types';
-import { createCustomerProfileWorkflow } from '../../../workflows/create-customer-profile';
-import { createAccountStatusWorkflow } from '../../../workflows/account-status/create-account-status';
-import { createLocationWorkflow } from '../../../workflows/location/create-location';
+import { createCustomerProfileWorkflow } from '../../../../workflows/create-customer-profile';
+import { createAccountStatusWorkflow } from '../../../../workflows/account-status/create-account-status';
+import { createLocationWorkflow } from '../../../../workflows/location/create-location';
+import { Modules } from '@medusajs/framework/utils';
+import { createCustomerDocumentWorkflow } from '../../../../workflows/document/create-customer-document';
 
 type CreateCustomerRequest = CreateCustomerDTO & {
     bank_account: BankAccount;
     customer_profile: CustomerProfile;
+    files: {
+        rib: {
+            filename: string;
+        };
+        kbis: {
+            filename: string;
+        };
+    };
 };
 
 const DEFAULT_ACCOUNT_STATUS = {
@@ -37,6 +47,7 @@ export async function POST(
     // TODO validate request body
     const customerData = request.body;
     const authIdentityId = request.auth_context.auth_identity_id;
+    const fileModuleService = request.scope.resolve(Modules.FILE);
 
     // Create customer account with addresses
     const { result: createdCustomer } = await createCustomerAccountWorkflow(request.scope).run({
@@ -77,11 +88,40 @@ export async function POST(
         },
     });
 
+    // Create customer documents and attach to customer account
+    const customerDocuments = await createCustomerDocumentWorkflow(request.scope).run({
+        input: {
+            customer_id: createdCustomer.id,
+            documents: [
+                {
+                    url: `private/customers/${createdCustomer.id}/${customerData.files.rib.filename}`,
+                    type: 'rib',
+                },
+                {
+                    url: `private/customers/${createdCustomer.id}/${customerData.files.kbis.filename}`,
+                    type: 'kbis',
+                },
+            ],
+        },
+    });
+
+    // Generate presigned upload url for storefront
+    const presignedUrls = await fileModuleService.getUploadFileUrls([
+        {
+            filename: `private/customers/${createdCustomer.id}/${customerData.files.rib.filename}`,
+        },
+        {
+            filename: `private/customers/${createdCustomer.id}/${customerData.files.kbis.filename}`,
+        },
+    ]);
+
     response.send({
         ...createdCustomer,
         ...bankAccount,
         ...customerProfile,
         ...accountStatus,
         ...location,
+        ...customerDocuments,
+        presigned_urls: presignedUrls,
     });
 }
