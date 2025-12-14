@@ -17,6 +17,14 @@ export const DOCUMENT_TYPE_METADATA = [
         type: 'productSheetNoPrice',
         label: 'Product sheet without price',
     },
+    {
+        type: 'rib',
+        label: 'RIB',
+    },
+    {
+        type: 'kbis',
+        label: 'KBIS',
+    },
 ];
 
 export const APPLICATION_STATUS_METADATA: Record<

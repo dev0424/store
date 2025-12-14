@@ -17,7 +17,7 @@ const AccountStatusWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer
     } = useQuery({
         queryFn: () =>
             sdk.admin.customer.retrieve(customer.id, {
-                fields: '+bank_account.*,+customer_profile.*,+account_status.*,+location.*',
+                fields: '+bank_account.*,+customer_profile.*,+account_status.*,+location.*,+documents.*',
             }) as Promise<AdminCustomerExtended>,
         queryKey: [['customer', customer.id, 'custom']],
     });

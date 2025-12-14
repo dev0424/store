@@ -101,6 +101,7 @@ export default defineMiddlewares({
                         'customer_profile',
                         'account_status',
                         'location',
+                        'documents',
                     );
                     next();
                 },
