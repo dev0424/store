@@ -2,12 +2,14 @@ import React, { ReactNode } from "react";
 
 type Props = {
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 const Section = ({ title, children }: Props) => (
   <div className="flex w-full flex-col gap-2">
-    <p>{title}</p>
+    <p className="text-xl-semi text-center text-ui-fg-base sm:text-left">
+      {title}
+    </p>
     {children}
   </div>
 );

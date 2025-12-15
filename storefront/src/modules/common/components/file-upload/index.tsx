@@ -107,7 +107,7 @@ export const FileUpload = ({
               <div
                 {...getRootProps()}
                 className={clx(
-                  "flex cursor-pointer flex-col items-center justify-center rounded-md border border-dashed border-gray-300 bg-gray-50 p-8 text-gray-600 hover:border-blue-400",
+                  "flex cursor-pointer flex-col items-center justify-center rounded-md border border-dashed border-gray-300 bg-ui-bg-field p-8 text-gray-600 hover:border-blue-400 hover:bg-ui-bg-field-hover",
                   { "border-red-500": !!fieldError },
                 )}
               >

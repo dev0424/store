@@ -7,7 +7,10 @@ import Input from "@modules/common/components/input";
 import { toast, Toaster } from "@medusajs/ui";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { PASSWORD_SCHEMA } from "@modules/account/components/registration-form/schema";
+import {
+  PASSWORD_SCHEMA,
+  REQUIRED_FIELD_MESSAGE,
+} from "@modules/account/components/registration-form/schema";
 
 type ResetPasswordFormValues = {
   confirm_password: string;
@@ -81,7 +84,7 @@ function ResetPasswordForm() {
         />
         <Input
           {...register("confirm_password", {
-            required: "Ce champ est obligatoire",
+            required: REQUIRED_FIELD_MESSAGE,
             validate: (value) =>
               value === password || "Les mots de passe ne correspondent pas",
           })}

@@ -1,6 +1,6 @@
-import { Label } from "@medusajs/ui";
 import React, { useEffect, useImperativeHandle, useState } from "react";
-
+import { Label } from "@medusajs/ui";
+import { clx } from "@medusajs/ui";
 import Eye from "@modules/common/icons/eye";
 import EyeOff from "@modules/common/icons/eye-off";
 import ErrorMessage from "@modules/checkout/components/error-message";
@@ -59,14 +59,19 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             name={name}
             placeholder=" "
             required={!disableNativeValidation && required}
-            className="mt-0 block h-11 w-full appearance-none rounded-md border border-ui-border-base bg-ui-bg-field px-4 pb-1 pt-4 font-sans hover:bg-ui-bg-field-hover focus:shadow-borders-interactive-with-active focus:outline-none focus:ring-0"
+            className="mt-0 block h-11 w-full appearance-none rounded-md border border-ui-border-base bg-ui-bg-field px-4 pb-1 pt-4 font-sans hover:bg-ui-bg-field-hover focus:shadow-borders-interactive-with-active focus:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:hover:bg-ui-bg-field"
             {...props}
             ref={inputRef}
           />
           <label
             htmlFor={name}
             onClick={() => inputRef.current?.focus()}
-            className="-z-1 origin-0 absolute top-3 mx-3 flex translate-y-[2px] items-center justify-center px-1 font-sans text-ui-fg-subtle transition-all duration-300"
+            className={clx(
+              "-z-1 origin-0 absolute top-3 mx-3 flex translate-y-[2px] items-center justify-center px-1 font-sans text-ui-fg-subtle transition-all duration-300",
+              props.disabled
+                ? "cursor-not-allowed text-gray-400"
+                : "cursor-text",
+            )}
           >
             {label}
             {required && <span className="text-rose-500">*</span>}

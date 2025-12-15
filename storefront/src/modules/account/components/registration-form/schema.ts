@@ -1,5 +1,7 @@
+export const REQUIRED_FIELD_MESSAGE = "Ce champ est obligatoire";
+
 export const PASSWORD_SCHEMA = {
-  required: "Ce champ est obligatoire",
+  required: REQUIRED_FIELD_MESSAGE,
   pattern: {
     value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/,
     message:
@@ -9,76 +11,76 @@ export const PASSWORD_SCHEMA = {
 
 export const SIGN_UP_SCHEMA = {
   first_name: {
-    required: "Ce champ est obligatoire",
+    required: REQUIRED_FIELD_MESSAGE,
   },
   last_name: {
-    required: "Ce champ est obligatoire",
+    required: REQUIRED_FIELD_MESSAGE,
   },
   email: {
-    required: "Ce champ est obligatoire",
+    required: REQUIRED_FIELD_MESSAGE,
     pattern: {
       value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
       message: "S'il vous plaît, mettez une adresse email valide",
     },
   },
   phone: {
-    required: "Ce champ est obligatoire",
+    required: REQUIRED_FIELD_MESSAGE,
     pattern: {
       value: /^[+]?[\d\s\-()]{7,20}$/,
       message: "Veuillez saisir un numéro de téléphone valide",
     },
   },
   company_name: {
-    required: "Ce champ est obligatoire",
+    required: REQUIRED_FIELD_MESSAGE,
   },
   password: PASSWORD_SCHEMA,
   bank_account: {
     bank_name: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
     bank_code: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
     branch_code: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
     city: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
     address: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
     account_number: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
     account_holder: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
     iban: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
     bic: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
     rib_key: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
   },
   address: {
     address_1: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
     address_2: {
       required: false,
     },
     postal_code: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
     city: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
     country_code: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
     province: {
       required: false,
@@ -86,37 +88,63 @@ export const SIGN_UP_SCHEMA = {
   },
   customer_profile: {
     vat_number: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
     siret_number: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
     ape_code: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
     activity: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
     billing_cycle: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
     payment_method: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
     invoice_email: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
       pattern: {
         value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
         message: "S'il vous plaît, mettez une adresse email valide",
       },
     },
   },
+  account_group: {
+    is_centralized_billing: {
+      required: REQUIRED_FIELD_MESSAGE,
+    },
+    corporate_status: {
+      required: REQUIRED_FIELD_MESSAGE,
+    },
+    is_purchasing_group_member: {
+      required: REQUIRED_FIELD_MESSAGE,
+    },
+    membership_number: {
+      required: REQUIRED_FIELD_MESSAGE,
+    },
+    is_agency_or_branch: {
+      required: REQUIRED_FIELD_MESSAGE,
+    },
+    parent_group_name: {
+      required: REQUIRED_FIELD_MESSAGE,
+    },
+    is_platform_client: {
+      required: REQUIRED_FIELD_MESSAGE,
+    },
+    platform_name: {
+      required: REQUIRED_FIELD_MESSAGE,
+    },
+  },
   files: {
     rib: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
     kbis: {
-      required: "Ce champ est obligatoire",
+      required: REQUIRED_FIELD_MESSAGE,
     },
   },
 };

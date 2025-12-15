@@ -76,6 +76,9 @@ const medusaConfig = {
             resolve: './src/modules/billing-cycle',
         },
         {
+            resolve: './src/modules/account-group',
+        },
+        {
             key: Modules.FILE,
             resolve: '@medusajs/file',
             options: {

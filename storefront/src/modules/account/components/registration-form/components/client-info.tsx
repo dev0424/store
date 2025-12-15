@@ -2,7 +2,10 @@ import { useFormContext } from "react-hook-form";
 import Input from "@modules/common/components/input";
 import Section from "@modules/account/components/registration-form/components/section";
 import Grid from "@modules/account/components/registration-form/components/grid";
-import { SIGN_UP_SCHEMA } from "@modules/account/components/registration-form/schema";
+import {
+  REQUIRED_FIELD_MESSAGE,
+  SIGN_UP_SCHEMA,
+} from "@modules/account/components/registration-form/schema";
 
 const ClientInfoSection = () => {
   const {
@@ -70,7 +73,7 @@ const ClientInfoSection = () => {
         />
         <Input
           {...register("confirm_password", {
-            required: "Ce champ est obligatoire",
+            required: REQUIRED_FIELD_MESSAGE,
             validate: (value) =>
               value === password || "Les mots de passe ne correspondent pas",
           })}
