@@ -1,6 +1,6 @@
 import type { MedusaResponse } from '@medusajs/framework/http';
 import { AuthenticatedMedusaRequest } from '@medusajs/framework';
-import { updateBankAccountWorkflow } from 'workflows/bank-account/update-bank-account';
+import { updateBankAccountWorkflow } from '../../../../../workflows/bank-account/update-bank-account';
 import { BankAccount } from 'lib/types';
 
 type UpdateBankAccountRequest = Partial<BankAccount>;
