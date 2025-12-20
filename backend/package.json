@@ -83,5 +83,10 @@
   },
   "peerDependencies": {
     "@tanstack/react-query": "5.64.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "next": "^15.1.11"
+    }
   }
 }
