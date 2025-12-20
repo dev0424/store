@@ -46,7 +46,7 @@ const AccountInfo = ({
       <div className="flex items-end justify-between">
         <div className="flex flex-col">
           <span className="uppercase text-ui-fg-base">{label}</span>
-          <div className="flex flex-1 basis-0 items-center justify-end gap-x-4">
+          <div className="flex flex-1 basis-0 items-center gap-x-4">
             {typeof currentInfo === "string" ? (
               <span className="font-semibold" data-testid="current-info">
                 {currentInfo}
