@@ -42,7 +42,7 @@
     "leaflet-defaulticon-compatibility": "^0.1.2",
     "lodash": "^4.17.21",
     "medusajs-launch-utils": "latest",
-    "next": "^15.3.6",
+    "next": "15.5.9",
     "pg": "^8.11.3",
     "qs": "^6.12.1",
     "radix-ui": "^1.4.1",
