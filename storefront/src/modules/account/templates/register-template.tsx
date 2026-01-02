@@ -21,7 +21,7 @@ const RegisterTemplate = ({
 }: Props) => {
   return (
     <div
-      className="flex w-full max-w-xl flex-col items-center justify-center"
+      className="flex w-full flex-col items-center justify-center"
       data-testid="register-page"
     >
       <h1 className="text-xl-semi text-center text-ui-fg-base sm:text-left">

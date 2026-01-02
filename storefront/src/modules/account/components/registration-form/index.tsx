@@ -22,6 +22,8 @@ import AdministrativeSection from "@modules/account/components/registration-form
 import Documents from "@modules/account/components/registration-form/components/documents";
 import AccountGroupSection from "@modules/account/components/registration-form/components/account-group";
 import { AccountGroup } from "@types/account-group";
+import { ContactPerson } from "@types/contact-person";
+import ContactPersonsSection from "@modules/account/components/registration-form/components/contact-persons";
 
 export type RegistrationFormValues = {
   email: string;
@@ -35,6 +37,7 @@ export type RegistrationFormValues = {
   customer_profile: CustomerProfile;
   address: StoreCustomerAddress;
   account_group: AccountGroup;
+  contact_persons: ContactPerson[];
   files: {
     rib: File;
     kbis: File;
@@ -110,6 +113,8 @@ const RegistrationForm = ({
           />
           <Divider />
           <AccountGroupSection />
+          <Divider />
+          <ContactPersonsSection />
           <Divider />
           <Documents />
         </div>

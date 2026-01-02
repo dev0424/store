@@ -9,6 +9,14 @@ export const PASSWORD_SCHEMA = {
   },
 };
 
+export const EMAIL_SCHEMA = {
+  required: REQUIRED_FIELD_MESSAGE,
+  pattern: {
+    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    message: "S'il vous plaît, mettez une adresse email valide",
+  },
+};
+
 export const SIGN_UP_SCHEMA = {
   first_name: {
     required: REQUIRED_FIELD_MESSAGE,
@@ -16,13 +24,7 @@ export const SIGN_UP_SCHEMA = {
   last_name: {
     required: REQUIRED_FIELD_MESSAGE,
   },
-  email: {
-    required: REQUIRED_FIELD_MESSAGE,
-    pattern: {
-      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      message: "S'il vous plaît, mettez une adresse email valide",
-    },
-  },
+  email: EMAIL_SCHEMA,
   phone: {
     required: REQUIRED_FIELD_MESSAGE,
     pattern: {
@@ -105,13 +107,7 @@ export const SIGN_UP_SCHEMA = {
     payment_method: {
       required: REQUIRED_FIELD_MESSAGE,
     },
-    invoice_email: {
-      required: REQUIRED_FIELD_MESSAGE,
-      pattern: {
-        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-        message: "S'il vous plaît, mettez une adresse email valide",
-      },
-    },
+    invoice_email: EMAIL_SCHEMA,
     revenue_previous_year: {
       required: false,
       valueAsNumber: true,
@@ -146,6 +142,24 @@ export const SIGN_UP_SCHEMA = {
     platform_name: {
       required: REQUIRED_FIELD_MESSAGE,
     },
+  },
+  contact_persons: {
+    role: {
+      required: REQUIRED_FIELD_MESSAGE,
+    },
+    title: {
+      required: REQUIRED_FIELD_MESSAGE,
+    },
+    first_name: {
+      required: REQUIRED_FIELD_MESSAGE,
+    },
+    last_name: {
+      required: REQUIRED_FIELD_MESSAGE,
+    },
+    phone: {
+      required: REQUIRED_FIELD_MESSAGE,
+    },
+    email: EMAIL_SCHEMA,
   },
   files: {
     rib: {
