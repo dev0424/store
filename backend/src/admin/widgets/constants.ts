@@ -27,10 +27,7 @@ export const DOCUMENT_TYPE_METADATA = [
     },
 ];
 
-export const APPLICATION_STATUS_METADATA: Record<
-    ApplicationStatus,
-    { label: string; color: 'green' | 'red' | 'blue' }
-> = {
+export const APPLICATION_STATUS_METADATA = {
     PENDING: {
         label: 'Pending',
         color: 'blue',
@@ -43,4 +40,4 @@ export const APPLICATION_STATUS_METADATA: Record<
         label: 'Declined',
         color: 'red',
     },
-};
+} satisfies Record<ApplicationStatus, { label: string; color: 'green' | 'red' | 'blue' }>;

@@ -82,6 +82,19 @@ export type CustomerDocument = {
     size?: number;
 };
 
+export type AccountGroup = {
+    id?: string;
+    is_centralized_billing: boolean;
+    corporate_status: 'subsidiary' | 'independent';
+    is_purchasing_group_member: boolean;
+    purchasing_group_name: string;
+    membership_number: string;
+    is_agency_or_branch: boolean;
+    parent_group_name: string;
+    is_platform_client: boolean;
+    platform_name: string;
+};
+
 export type AdminCustomerExtended = {
     customer: AdminCustomer & {
         bank_account: BankAccount;
@@ -90,6 +103,7 @@ export type AdminCustomerExtended = {
         account_status: AccountStatus;
         location: Location;
         documents: CustomerDocument[];
+        account_group: AccountGroup;
     };
 };
 

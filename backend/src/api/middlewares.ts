@@ -102,6 +102,7 @@ export default defineMiddlewares({
                         'account_status',
                         'location',
                         'documents',
+                        'account_group',
                     );
                     next();
                 },

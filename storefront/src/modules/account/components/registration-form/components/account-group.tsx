@@ -55,10 +55,10 @@ const AccountGroup = () => {
             placeholder="Statut"
             defaultValue={""}
           >
-            <option key="filiale" value="filiale">
+            <option key="subsidiary" value="subsidiary">
               Filiale
             </option>
-            <option key="indépendant" value="indépendant">
+            <option key="independent" value="independent">
               Indépendant
             </option>
           </NativeSelect>

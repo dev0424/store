@@ -1,13 +1,19 @@
 import type { MedusaResponse, AuthenticatedMedusaRequest } from '@medusajs/framework';
 import { createCustomerAccountWorkflow } from '@medusajs/medusa/core-flows';
 import { createBankAccountWorkflow } from '../../../../workflows/create-bank-account';
-import { BankAccount, CustomerProfile, ApplicationStatus } from '../../../../lib/types';
+import {
+    BankAccount,
+    CustomerProfile,
+    ApplicationStatus,
+    AccountGroup,
+} from '../../../../lib/types';
 import { CreateCustomerDTO } from '@medusajs/types';
 import { createCustomerProfileWorkflow } from '../../../../workflows/create-customer-profile';
 import { createAccountStatusWorkflow } from '../../../../workflows/account-status/create-account-status';
 import { createLocationWorkflow } from '../../../../workflows/location/create-location';
 import { Modules } from '@medusajs/framework/utils';
 import { createCustomerDocumentWorkflow } from '../../../../workflows/document/create-customer-document';
+import { createAccountGroupWorkflow } from '../../../../workflows/account-group/create-account-group';
 
 type CreateCustomerRequest = CreateCustomerDTO & {
     bank_account: BankAccount;
@@ -20,6 +26,7 @@ type CreateCustomerRequest = CreateCustomerDTO & {
             filename: string;
         };
     };
+    account_group: AccountGroup;
 };
 
 const DEFAULT_ACCOUNT_STATUS = {
@@ -88,6 +95,14 @@ export async function POST(
         },
     });
 
+    // Create account group and attach to customer account
+    const accountGroup = await createAccountGroupWorkflow(request.scope).run({
+        input: {
+            customer: createdCustomer,
+            account_group: customerData.account_group,
+        },
+    });
+
     // Create customer documents and attach to customer account
     const customerDocuments = await createCustomerDocumentWorkflow(request.scope).run({
         input: {
@@ -122,6 +137,7 @@ export async function POST(
         ...accountStatus,
         ...location,
         ...customerDocuments,
+        ...accountGroup,
         presigned_urls: presignedUrls,
     });
 }
