@@ -6,6 +6,7 @@ import {
     CustomerProfile,
     ApplicationStatus,
     AccountGroup,
+    ContactPerson,
 } from '../../../../lib/types';
 import { CreateCustomerDTO } from '@medusajs/types';
 import { createCustomerProfileWorkflow } from '../../../../workflows/create-customer-profile';
@@ -14,6 +15,7 @@ import { createLocationWorkflow } from '../../../../workflows/location/create-lo
 import { Modules } from '@medusajs/framework/utils';
 import { createCustomerDocumentWorkflow } from '../../../../workflows/document/create-customer-document';
 import { createAccountGroupWorkflow } from '../../../../workflows/account-group/create-account-group';
+import { createContactPersonWorkflow } from 'workflows/contact-person/create-contact-person';
 
 type CreateCustomerRequest = CreateCustomerDTO & {
     bank_account: BankAccount;
@@ -27,6 +29,7 @@ type CreateCustomerRequest = CreateCustomerDTO & {
         };
     };
     account_group: AccountGroup;
+    contact_persons: ContactPerson[];
 };
 
 const DEFAULT_ACCOUNT_STATUS = {
@@ -119,6 +122,14 @@ export async function POST(
             ],
         },
     });
+    console.log('CREATE CONTACT PERSONS', customerData.contact_persons);
+    // Create contact persons and attach to customer account
+    const contactPersons = await createContactPersonWorkflow(request.scope).run({
+        input: {
+            customer: createdCustomer,
+            contact_persons: customerData.contact_persons,
+        },
+    });
 
     // Generate presigned upload url for storefront
     const presignedUrls = await fileModuleService.getUploadFileUrls([
@@ -138,6 +149,7 @@ export async function POST(
         ...location,
         ...customerDocuments,
         ...accountGroup,
+        ...contactPersons,
         presigned_urls: presignedUrls,
     });
 }

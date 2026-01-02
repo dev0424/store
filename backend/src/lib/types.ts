@@ -97,6 +97,16 @@ export type AccountGroup = {
     platform_name: string;
 };
 
+export type ContactPerson = {
+    id?: string;
+    title: string;
+    first_name: string;
+    last_name: string;
+    role: string;
+    phone: string;
+    email: string;
+};
+
 export type AdminCustomerExtended = {
     customer: AdminCustomer & {
         bank_account: BankAccount;

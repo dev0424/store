@@ -79,6 +79,9 @@ const medusaConfig = {
             resolve: './src/modules/account-group',
         },
         {
+            resolve: './src/modules/contact-person',
+        },
+        {
             key: Modules.FILE,
             resolve: '@medusajs/file',
             options: {
