@@ -65,6 +65,14 @@ const CustomerProfileWidget = ({ data: customer }: DetailWidgetProps<AdminCustom
                 title="Invoice email"
                 value={customerData.customer.customer_profile.invoice_email}
             />
+            <SectionRow
+                title="Revenue previous year"
+                value={customerData.customer.customer_profile.revenue_previous_year}
+            />
+            <SectionRow
+                title="Number of employees"
+                value={customerData.customer.customer_profile.employee_count}
+            />
         </Container>
     );
 };

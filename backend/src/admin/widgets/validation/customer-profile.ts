@@ -24,4 +24,12 @@ export const CUSTOMER_PROFILE_RULES = {
             message: 'Please enter a valid email address',
         },
     },
+    revenue_previous_year: {
+        required: false,
+        valueAsNumber: true,
+    },
+    employee_count: {
+        required: false,
+        valueAsNumber: true,
+    },
 };

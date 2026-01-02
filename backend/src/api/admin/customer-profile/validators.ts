@@ -9,6 +9,8 @@ export const UpdateCustomerProfileRequest = z.object({
     billing_cycle: z.string(),
     payment_method: z.string(),
     invoice_email: z.string(),
+    revenue_previous_year: z.number().optional().nullable(),
+    employee_count: z.number().optional().nullable(),
     created_at: z.string().optional().nullable(),
     updated_at: z.string().optional().nullable(),
     deleted_at: z.string().optional().nullable(),

@@ -72,6 +72,30 @@ const AdministrativeSection = ({
           required={true}
           disableNativeValidation={true}
         />
+        <Input
+          type="number"
+          {...register(
+            "customer_profile.revenue_previous_year",
+            SIGN_UP_SCHEMA.customer_profile.revenue_previous_year,
+          )}
+          label="Chiffre d’affaires N-1"
+          name="customer_profile.revenue_previous_year"
+          errors={errors?.customer_profile?.revenue_previous_year}
+          required={false}
+          disableNativeValidation={true}
+        />
+        <Input
+          type="number"
+          {...register(
+            "customer_profile.employee_count",
+            SIGN_UP_SCHEMA.customer_profile.employee_count,
+          )}
+          label="NB de salariés"
+          name="customer_profile.employee_count"
+          errors={errors?.customer_profile?.employee_count}
+          required={false}
+          disableNativeValidation={true}
+        />
         <NativeSelect
           {...register(
             "customer_profile.activity",

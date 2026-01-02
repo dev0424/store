@@ -9,4 +9,6 @@ export const CustomerProfile = model.define('customer_profile', {
     billing_cycle: model.text(),
     payment_method: model.text(),
     invoice_email: model.text(),
+    revenue_previous_year: model.float().nullable(),
+    employee_count: model.number().nullable(),
 });

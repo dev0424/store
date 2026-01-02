@@ -5,7 +5,7 @@ import Section from "@modules/account/components/registration-form/components/se
 import Grid from "@modules/account/components/registration-form/components/grid";
 import Input from "@modules/common/components/input";
 import {
-  REQUIRED_FIELD_MESSAGE,
+  optionalText,
   SIGN_UP_SCHEMA,
 } from "@modules/account/components/registration-form/schema";
 import Checkbox from "@modules/common/components/checkbox";
@@ -79,11 +79,10 @@ const AccountGroup = () => {
         />
         <Grid>
           <Input
-            {...register("account_group.purchasing_group_name", {
-              required: isPurchasingGroupMember
-                ? REQUIRED_FIELD_MESSAGE
-                : false,
-            })}
+            {...register(
+              "account_group.purchasing_group_name",
+              optionalText(isPurchasingGroupMember),
+            )}
             label="Nom du groupement"
             name="account_group.purchasing_group_name"
             errors={errors?.account_group?.purchasing_group_name}
@@ -92,11 +91,10 @@ const AccountGroup = () => {
             disabled={!isPurchasingGroupMember}
           />
           <Input
-            {...register("account_group.membership_number", {
-              required: isPurchasingGroupMember
-                ? REQUIRED_FIELD_MESSAGE
-                : false,
-            })}
+            {...register(
+              "account_group.membership_number",
+              optionalText(isPurchasingGroupMember),
+            )}
             label="Numéro adhérent"
             name="account_group.membership_number"
             errors={errors?.account_group?.membership_number}
@@ -121,9 +119,10 @@ const AccountGroup = () => {
             )}
           />
           <Input
-            {...register("account_group.parent_group_name", {
-              required: isAgencyOrGroup ? REQUIRED_FIELD_MESSAGE : false,
-            })}
+            {...register(
+              "account_group.parent_group_name",
+              optionalText(isAgencyOrGroup),
+            )}
             label="Nom du groupe"
             name="account_group.parent_group_name"
             errors={errors?.account_group?.parent_group_name}
@@ -148,9 +147,10 @@ const AccountGroup = () => {
             )}
           />
           <Input
-            {...register("account_group.platform_name", {
-              required: isPlatformClient ? REQUIRED_FIELD_MESSAGE : false,
-            })}
+            {...register(
+              "account_group.platform_name",
+              optionalText(isPlatformClient),
+            )}
             label="Si oui, lesquels"
             name="account_group.platform_name"
             errors={errors?.account_group?.platform_name}

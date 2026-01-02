@@ -120,6 +120,20 @@ const UpdateCustomerProfile = ({ onSuccess, customerProfile }: Props) => {
                                     defaultValue={customerProfile.invoice_email}
                                     rules={CUSTOMER_PROFILE_RULES.invoice_email}
                                 />
+                                <FormInput
+                                    type="number"
+                                    label="Revenue previous year"
+                                    name="revenue_previous_year"
+                                    defaultValue={customerProfile.revenue_previous_year}
+                                    rules={CUSTOMER_PROFILE_RULES.revenue_previous_year}
+                                />
+                                <FormInput
+                                    type="number"
+                                    label="Number of employees"
+                                    name="employee_count"
+                                    defaultValue={customerProfile.employee_count}
+                                    rules={CUSTOMER_PROFILE_RULES.employee_count}
+                                />
                             </div>
                         </Drawer.Body>
                         <Drawer.Footer>

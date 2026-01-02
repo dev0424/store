@@ -112,6 +112,14 @@ export const SIGN_UP_SCHEMA = {
         message: "S'il vous plaît, mettez une adresse email valide",
       },
     },
+    revenue_previous_year: {
+      required: false,
+      valueAsNumber: true,
+    },
+    employee_count: {
+      required: false,
+      valueAsNumber: true,
+    },
   },
   account_group: {
     is_centralized_billing: {
@@ -148,3 +156,8 @@ export const SIGN_UP_SCHEMA = {
     },
   },
 };
+
+export const optionalText = (isRequired?: boolean) => ({
+  required: isRequired ? REQUIRED_FIELD_MESSAGE : false,
+  setValueAs: (v: string) => (v === "" ? null : v),
+});
