@@ -1,4 +1,4 @@
-import * as Sentry from '@sentry/node';
+import Sentry from '@sentry/node';
 import otelApi from '@opentelemetry/api';
 import { registerOtel } from '@medusajs/medusa';
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-grpc';
