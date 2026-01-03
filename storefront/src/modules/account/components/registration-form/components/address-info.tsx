@@ -45,6 +45,17 @@ const AddressSection = ({ region }: Props) => {
           disableNativeValidation={true}
         />
         <Input
+          {...register("address.phone", SIGN_UP_SCHEMA.phone)}
+          label="Téléphone"
+          name="address.phone"
+          type="tel"
+          autoComplete="tel"
+          data-testid="phone-input"
+          errors={errors?.address?.phone}
+          required={true}
+          disableNativeValidation={true}
+        />
+        <Input
           {...register(
             "address.postal_code",
             SIGN_UP_SCHEMA.address.postal_code,
