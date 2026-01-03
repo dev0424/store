@@ -7,6 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import { sdk } from '../../lib/config';
 import { AdminCustomerExtended } from '../../lib/types';
 import UpdateBankAccount from './components/update-bank-account';
+import { Spinner } from '@medusajs/icons';
 
 const BankAccountWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) => {
     const {
@@ -28,7 +29,9 @@ const BankAccountWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>)
                     <Heading level="h2" className="px-6 py-4">
                         Bank account
                     </Heading>
-                    <Text className="px-6 py-4">Loading...</Text>
+                    <div className="w-full flex items-center justify-center p-4">
+                        <Spinner className="text-ui-fg-interactive animate-spin" />
+                    </div>
                 </div>
             </Container>
         );

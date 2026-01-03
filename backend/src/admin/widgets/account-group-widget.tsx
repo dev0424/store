@@ -6,6 +6,7 @@ import { AdminCustomerExtended } from 'lib/types';
 import { Container, Heading, Text } from '@medusajs/ui';
 import { defineWidgetConfig } from '@medusajs/admin-sdk';
 import { SectionRow } from '../components/SectionRow';
+import { Spinner } from '@medusajs/icons';
 
 const AccountGroupWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) => {
     const {
@@ -27,7 +28,9 @@ const AccountGroupWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>
                     <Heading level="h2" className="px-6 py-4">
                         Account group
                     </Heading>
-                    <Text className="px-6 py-4">Loading...</Text>
+                    <div className="w-full flex items-center justify-center p-4">
+                        <Spinner className="text-ui-fg-interactive animate-spin" />
+                    </div>
                 </div>
             </Container>
         );

@@ -7,6 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import { sdk } from '../../lib/config';
 import { AdminCustomerExtended } from '../../lib/types';
 import UpdateCustomerProfile from '../widgets/components/update-customer-profile';
+import { Spinner } from '@medusajs/icons';
 
 const CustomerProfileWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) => {
     const {
@@ -28,7 +29,9 @@ const CustomerProfileWidget = ({ data: customer }: DetailWidgetProps<AdminCustom
                     <Heading level="h2" className="px-6 py-4">
                         Customer profile
                     </Heading>
-                    <Text className="px-6 py-4">Loading...</Text>
+                    <div className="w-full flex items-center justify-center p-4">
+                        <Spinner className="text-ui-fg-interactive animate-spin" />
+                    </div>
                 </div>
             </Container>
         );

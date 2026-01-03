@@ -8,6 +8,7 @@ import { APPLICATION_STATUS_METADATA } from '../widgets/constants';
 import { AdminCustomerExtended } from '../../lib/types';
 import { useQuery } from '@tanstack/react-query';
 import { sdk } from '../../lib/config';
+import { Spinner } from '@medusajs/icons';
 
 const AccountStatusWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) => {
     const {
@@ -29,7 +30,9 @@ const AccountStatusWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer
                     <Heading level="h2" className="px-6 py-4">
                         Account status
                     </Heading>
-                    <Text className="px-6 py-4">Loading...</Text>
+                    <div className="w-full flex items-center justify-center p-4">
+                        <Spinner className="text-ui-fg-interactive animate-spin" />
+                    </div>
                 </div>
             </Container>
         );

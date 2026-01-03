@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { sdk } from '../../lib/config';
 import { AdminCustomerExtended } from '../../lib/types';
 import { findDocument } from '../../lib/utils';
+import { Spinner } from '@medusajs/icons';
 
 const CustomerDocumentsWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) => {
     const { data: customerData, isLoading } = useQuery({
@@ -37,7 +38,9 @@ const CustomerDocumentsWidget = ({ data: customer }: DetailWidgetProps<AdminCust
                     <Heading level="h2" className="px-6 py-4">
                         Documents
                     </Heading>
-                    <Text className="px-6 py-4">Loading...</Text>
+                    <div className="w-full flex items-center justify-center p-4">
+                        <Spinner className="text-ui-fg-interactive animate-spin" />
+                    </div>
                 </div>
             </Container>
         );

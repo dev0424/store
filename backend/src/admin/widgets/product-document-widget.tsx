@@ -8,6 +8,7 @@ import UploadProductDocument from './components/upload-product-document';
 import { findDocument, toArray } from '../../lib/utils';
 import DeleteProductDocument from './components/delete-product-document';
 import { AdminProductWithDocument } from '../../lib/types';
+import { Spinner } from '@medusajs/icons';
 
 const ProductDocumentWidget = ({ data: product }: DetailWidgetProps<AdminProduct>) => {
     const {
@@ -29,7 +30,9 @@ const ProductDocumentWidget = ({ data: product }: DetailWidgetProps<AdminProduct
                     <Heading level="h2" className="px-6 py-4">
                         Documents
                     </Heading>
-                    <Text className="px-6 py-4">Loading...</Text>
+                    <div className="w-full flex items-center justify-center p-4">
+                        <Spinner className="text-ui-fg-interactive animate-spin" />
+                    </div>
                 </div>
             </Container>
         );

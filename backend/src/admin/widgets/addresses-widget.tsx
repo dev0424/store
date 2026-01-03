@@ -4,6 +4,7 @@ import { Container, Heading, Text } from '@medusajs/ui';
 import { AdminCustomer, DetailWidgetProps } from '@medusajs/types';
 import { useQuery } from '@tanstack/react-query';
 import { sdk } from '../../lib/config';
+import { Spinner } from '@medusajs/icons';
 
 const AddressesWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) => {
     const {
@@ -15,7 +16,7 @@ const AddressesWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) =
             sdk.client.fetch<AdminCustomer>(`/admin/customers/${customer.id}/addresses`, {
                 method: 'GET',
                 query: {
-                    fields: 'id,address_name,is_default_shipping,is_default_billing,address_1,address_2,city,country_code,province,postal_code',
+                    fields: 'id,address_name,is_default_shipping,is_default_billing,address_1,address_2,city,country_code,province,postal_code,phone',
                 },
             }),
         queryKey: [['customer-address', customer.id]],
@@ -28,7 +29,9 @@ const AddressesWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) =
                     <Heading level="h2" className="px-6 py-4">
                         Addresses
                     </Heading>
-                    <Text className="px-6 py-4">Loading...</Text>
+                    <div className="w-full flex items-center justify-center p-4">
+                        <Spinner className="text-ui-fg-interactive animate-spin" />
+                    </div>
                 </div>
             </Container>
         );
@@ -88,6 +91,12 @@ const AddressesWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) =
                             </Text>
                             <Text size="small" leading="compact">
                                 {address.province || '-'}
+                            </Text>
+                            <Text size="small" leading="compact">
+                                Phone
+                            </Text>
+                            <Text size="small" leading="compact">
+                                {address.phone || '-'}
                             </Text>
                         </div>
                     </div>

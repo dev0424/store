@@ -7,6 +7,7 @@ import UpdateLocation from './components/update-location';
 import { useQuery } from '@tanstack/react-query';
 import { sdk } from '../../lib/config';
 import { AdminCustomerExtended } from 'lib/types';
+import { Spinner } from '@medusajs/icons';
 
 const LocationWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) => {
     const {
@@ -28,7 +29,9 @@ const LocationWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) =>
                     <Heading level="h2" className="px-6 py-4">
                         Store location
                     </Heading>
-                    <Text className="px-6 py-4">Loading...</Text>
+                    <div className="w-full flex items-center justify-center p-4">
+                        <Spinner className="text-ui-fg-interactive animate-spin" />
+                    </div>
                 </div>
             </Container>
         );
