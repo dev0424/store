@@ -143,7 +143,7 @@ export const SIGN_UP_SCHEMA = {
       required: REQUIRED_FIELD_MESSAGE,
     },
   },
-  contact_persons: {
+  contacts: {
     role: {
       required: REQUIRED_FIELD_MESSAGE,
     },

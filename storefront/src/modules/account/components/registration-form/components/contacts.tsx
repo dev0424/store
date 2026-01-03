@@ -8,7 +8,7 @@ import { Button, IconButton } from "@medusajs/ui";
 import { XMark } from "@medusajs/icons";
 import NativeSelect from "@modules/common/components/native-select";
 
-const ContactPersonsSection = () => {
+const ContactsSection = () => {
   const {
     control,
     register,
@@ -17,7 +17,7 @@ const ContactPersonsSection = () => {
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "contact_persons",
+    name: "contacts",
   });
 
   const onClickAdd = () =>
@@ -54,11 +54,11 @@ const ContactPersonsSection = () => {
           >
             <NativeSelect
               {...register(
-                `contact_persons.${index}.role`,
-                SIGN_UP_SCHEMA.contact_persons.role,
+                `contacts.${index}.role`,
+                SIGN_UP_SCHEMA.contacts.role,
               )}
-              name={`contact_persons.${index}.role`}
-              errors={errors?.contact_persons?.[index]?.role}
+              name={`contacts.${index}.role`}
+              errors={errors?.contacts?.[index]?.role}
               placeholder="Fonction"
               defaultValue={""}
             >
@@ -83,52 +83,52 @@ const ContactPersonsSection = () => {
             </NativeSelect>
             <Input
               {...register(
-                `contact_persons.${index}.title`,
-                SIGN_UP_SCHEMA.contact_persons.title,
+                `contacts.${index}.title`,
+                SIGN_UP_SCHEMA.contacts.title,
               )}
               label="Civilité"
-              errors={errors?.contact_persons?.[index]?.title}
+              errors={errors?.contacts?.[index]?.title}
               required={true}
               disableNativeValidation={true}
             />
             <Input
               {...register(
-                `contact_persons.${index}.first_name`,
-                SIGN_UP_SCHEMA.contact_persons.first_name,
+                `contacts.${index}.first_name`,
+                SIGN_UP_SCHEMA.contacts.first_name,
               )}
               label="Nom"
-              errors={errors?.contact_persons?.[index]?.first_name}
+              errors={errors?.contacts?.[index]?.first_name}
               required={true}
               disableNativeValidation={true}
             />
             <Input
               {...register(
-                `contact_persons.${index}.last_name`,
-                SIGN_UP_SCHEMA.contact_persons.last_name,
+                `contacts.${index}.last_name`,
+                SIGN_UP_SCHEMA.contacts.last_name,
               )}
               label="Prénom"
-              errors={errors?.contact_persons?.[index]?.last_name}
+              errors={errors?.contacts?.[index]?.last_name}
               required={true}
               disableNativeValidation={true}
             />
             <Input
               {...register(
-                `contact_persons.${index}.phone`,
-                SIGN_UP_SCHEMA.contact_persons.phone,
+                `contacts.${index}.phone`,
+                SIGN_UP_SCHEMA.contacts.phone,
               )}
               label="Téléphone"
-              errors={errors?.contact_persons?.[index]?.phone}
+              errors={errors?.contacts?.[index]?.phone}
               required={true}
               disableNativeValidation={true}
             />
             <Input
               type="email"
               {...register(
-                `contact_persons.${index}.email`,
-                SIGN_UP_SCHEMA.contact_persons.email,
+                `contacts.${index}.email`,
+                SIGN_UP_SCHEMA.contacts.email,
               )}
               label="Email"
-              errors={errors?.contact_persons?.[index]?.email}
+              errors={errors?.contacts?.[index]?.email}
               required={true}
               disableNativeValidation={true}
             />
@@ -145,4 +145,4 @@ const ContactPersonsSection = () => {
   );
 };
 
-export default ContactPersonsSection;
+export default ContactsSection;

@@ -79,7 +79,7 @@ const medusaConfig = {
             resolve: './src/modules/account-group',
         },
         {
-            resolve: './src/modules/contact-person',
+            resolve: './src/modules/contact',
         },
         {
             key: Modules.FILE,

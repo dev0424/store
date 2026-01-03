@@ -102,20 +102,20 @@
           "mappedType": "datetime"
         }
       },
-      "name": "contact_person",
+      "name": "contact",
       "schema": "public",
       "indexes": [
         {
-          "keyName": "IDX_contact_person_deleted_at",
+          "keyName": "IDX_contact_deleted_at",
           "columnNames": [],
           "composite": false,
           "constraint": false,
           "primary": false,
           "unique": false,
-          "expression": "CREATE INDEX IF NOT EXISTS \"IDX_contact_person_deleted_at\" ON \"contact_person\" (\"deleted_at\") WHERE deleted_at IS NULL"
+          "expression": "CREATE INDEX IF NOT EXISTS \"IDX_contact_deleted_at\" ON \"contact\" (\"deleted_at\") WHERE deleted_at IS NULL"
         },
         {
-          "keyName": "contact_person_pkey",
+          "keyName": "contact_pkey",
           "columnNames": [
             "id"
           ],

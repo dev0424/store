@@ -6,7 +6,7 @@ import {
     CustomerProfile,
     ApplicationStatus,
     AccountGroup,
-    ContactPerson,
+    Contact,
 } from '../../../../lib/types';
 import { CreateCustomerDTO } from '@medusajs/types';
 import { createCustomerProfileWorkflow } from '../../../../workflows/create-customer-profile';
@@ -15,7 +15,7 @@ import { createLocationWorkflow } from '../../../../workflows/location/create-lo
 import { Modules } from '@medusajs/framework/utils';
 import { createCustomerDocumentWorkflow } from '../../../../workflows/document/create-customer-document';
 import { createAccountGroupWorkflow } from '../../../../workflows/account-group/create-account-group';
-import { createContactPersonWorkflow } from 'workflows/contact-person/create-contact-person';
+import { createContactsWorkflow } from '../../../../workflows/contact/create-contact';
 
 type CreateCustomerRequest = CreateCustomerDTO & {
     bank_account: BankAccount;
@@ -29,7 +29,7 @@ type CreateCustomerRequest = CreateCustomerDTO & {
         };
     };
     account_group: AccountGroup;
-    contact_persons: ContactPerson[];
+    contacts: Contact[];
 };
 
 const DEFAULT_ACCOUNT_STATUS = {
@@ -122,12 +122,12 @@ export async function POST(
             ],
         },
     });
-    console.log('CREATE CONTACT PERSONS', customerData.contact_persons);
-    // Create contact persons and attach to customer account
-    const contactPersons = await createContactPersonWorkflow(request.scope).run({
+
+    // Create contacts and attach to customer account
+    const contacts = await createContactsWorkflow(request.scope).run({
         input: {
             customer: createdCustomer,
-            contact_persons: customerData.contact_persons,
+            contacts: customerData.contacts,
         },
     });
 
@@ -149,7 +149,7 @@ export async function POST(
         ...location,
         ...customerDocuments,
         ...accountGroup,
-        ...contactPersons,
+        ...contacts,
         presigned_urls: presignedUrls,
     });
 }

@@ -1,6 +1,6 @@
 import { model } from '@medusajs/framework/utils';
 
-export const ContactPerson = model.define('contact_person', {
+export const Contact = model.define('contact', {
     id: model.id().primaryKey(),
     title: model.text(),
     first_name: model.text(),

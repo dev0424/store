@@ -16,7 +16,7 @@ const LocationWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) =>
     } = useQuery({
         queryFn: () =>
             sdk.admin.customer.retrieve(customer.id, {
-                fields: '+bank_account.*,+customer_profile.*,+account_status.*,+location.*,+documents.*,+account_group.*',
+                fields: '+bank_account.*,+customer_profile.*,+account_status.*,+location.*,+documents.*,+account_group.*,+contacts.*',
             }) as Promise<AdminCustomerExtended>,
         queryKey: [['customer', customer.id, 'custom']],
     });
@@ -43,37 +43,16 @@ const LocationWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) =>
                     onSuccess={refreshCustomer}
                 />
             </div>
-            <SectionRow
-                title="Latitude"
-                value={customerData.customer.location.latitude || 'Not set'}
-            />
-            <SectionRow
-                title="Longitude"
-                value={customerData.customer.location.longitude || 'Not set'}
-            />
-            <SectionRow
-                title="Address 1"
-                value={customerData.customer.location.address_1 || 'Not set'}
-            />
-            <SectionRow
-                title="Address 2"
-                value={customerData.customer.location.address_2 || 'Not set'}
-            />
-            <SectionRow title="City" value={customerData.customer.location.city || 'Not set'} />
-            <SectionRow
-                title="Country code"
-                value={customerData.customer.location.country_code || 'Not set'}
-            />
-            <SectionRow
-                title="Province"
-                value={customerData.customer.location.province || 'Not set'}
-            />
-            <SectionRow
-                title="Postal code"
-                value={customerData.customer.location.postal_code || 'Not set'}
-            />
-            <SectionRow title="Phone" value={customerData.customer.location.phone || 'Not set'} />
-            <SectionRow title="Email" value={customerData.customer.location.email || 'Not set'} />
+            <SectionRow title="Latitude" value={customerData.customer.location.latitude} />
+            <SectionRow title="Longitude" value={customerData.customer.location.longitude} />
+            <SectionRow title="Address 1" value={customerData.customer.location.address_1} />
+            <SectionRow title="Address 2" value={customerData.customer.location.address_2} />
+            <SectionRow title="City" value={customerData.customer.location.city} />
+            <SectionRow title="Country code" value={customerData.customer.location.country_code} />
+            <SectionRow title="Province" value={customerData.customer.location.province} />
+            <SectionRow title="Postal code" value={customerData.customer.location.postal_code} />
+            <SectionRow title="Phone" value={customerData.customer.location.phone} />
+            <SectionRow title="Email" value={customerData.customer.location.email} />
         </Container>
     );
 };

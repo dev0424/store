@@ -97,7 +97,7 @@ export type AccountGroup = {
     platform_name: string;
 };
 
-export type ContactPerson = {
+export type Contact = {
     id?: string;
     title: string;
     first_name: string;
@@ -116,6 +116,7 @@ export type AdminCustomerExtended = {
         location: Location;
         documents: CustomerDocument[];
         account_group: AccountGroup;
+        contacts: Contact[];
     };
 };
 

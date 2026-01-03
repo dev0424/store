@@ -103,6 +103,7 @@ export default defineMiddlewares({
                         'location',
                         'documents',
                         'account_group',
+                        'contacts',
                     );
                     next();
                 },

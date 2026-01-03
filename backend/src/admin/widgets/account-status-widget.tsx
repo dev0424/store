@@ -17,7 +17,7 @@ const AccountStatusWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer
     } = useQuery({
         queryFn: () =>
             sdk.admin.customer.retrieve(customer.id, {
-                fields: '+bank_account.*,+customer_profile.*,+account_status.*,+location.*,+documents.*,+account_group.*',
+                fields: '+bank_account.*,+customer_profile.*,+account_status.*,+location.*,+documents.*,+account_group.*,+contacts.*',
             }) as Promise<AdminCustomerExtended>,
         queryKey: [['customer', customer.id, 'custom']],
     });
@@ -77,7 +77,7 @@ const AccountStatusWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer
 };
 
 export const config = defineWidgetConfig({
-    zone: 'customer.details.before',
+    zone: 'customer.details.side.before',
 });
 
 export default AccountStatusWidget;
