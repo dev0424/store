@@ -4,18 +4,8 @@ import ProductPreview from "@modules/products/components/product-preview";
 import { Pagination } from "@modules/store/components/pagination";
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products";
 import NoResult from "../components/no-result";
-
-const PRODUCT_LIMIT = 12;
-
-type PaginatedProductsParams = {
-  limit: number;
-  collection_id?: string[];
-  category_id?: string[];
-  id?: string[];
-  order?: string;
-  min_price?: string;
-  max_price?: string;
-};
+import { buildProductsQuery } from "@lib/util/query";
+import { PRODUCT_LIMIT } from "@lib/constants";
 
 export default async function PaginatedProducts({
   sortBy,
@@ -36,33 +26,14 @@ export default async function PaginatedProducts({
   minPrice?: string;
   maxPrice?: string;
 }) {
-  const queryParams: PaginatedProductsParams = {
-    limit: PRODUCT_LIMIT,
-  };
-
-  if (collectionId) {
-    queryParams["collection_id"] = [collectionId];
-  }
-
-  if (categoryIds) {
-    queryParams["category_id"] = categoryIds;
-  }
-
-  if (productsIds) {
-    queryParams["id"] = productsIds;
-  }
-
-  if (sortBy === "created_at") {
-    queryParams["order"] = "created_at";
-  }
-
-  if (minPrice) {
-    queryParams["min_price"] = minPrice;
-  }
-
-  if (maxPrice) {
-    queryParams["max_price"] = maxPrice;
-  }
+  const queryParams = buildProductsQuery(
+    collectionId,
+    categoryIds,
+    productsIds,
+    minPrice,
+    maxPrice,
+    sortBy,
+  );
 
   const region = await getRegion(countryCode);
 

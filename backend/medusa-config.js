@@ -247,6 +247,7 @@ const medusaConfig = {
                               categories: {
                                   type: 'categories',
                                   enabled: true,
+                                  fields: ['id', 'name', 'description', 'handle'],
                                   indexSettings: {
                                       searchableAttributes: ['name', 'description'],
                                       displayedAttributes: ['id', 'name', 'handle'],
