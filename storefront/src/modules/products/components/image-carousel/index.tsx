@@ -143,10 +143,6 @@ const ImageCarousel = ({ images }: Props) => {
         slides={lightboxSlides}
         index={selectedIndex}
         plugins={[Fullscreen, Zoom, Thumbnail, Counter]}
-        styles={{
-          container: { backgroundColor: "rgba(255,255,255,1)" },
-          thumbnailsContainer: { backgroundColor: "rgba(255,255,255,1)" },
-        }}
       />
     </>
   );
