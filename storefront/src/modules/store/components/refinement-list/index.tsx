@@ -34,14 +34,15 @@ const RefinementList = ({
       {categories.length ? (
         <>
           <CategoryFilter categories={categories} />
-          <Divider />
+          {/*<Divider />*/}
         </>
       ) : null}
-      <PriceRange
-        minPrice={minPrice}
-        maxPrice={maxPrice}
-        priceRange={priceRange}
-      />
+      {/* Disable price range filter until Medusa doesn't support it*/}
+      {/*<PriceRange*/}
+      {/*  minPrice={minPrice}*/}
+      {/*  maxPrice={maxPrice}*/}
+      {/*  priceRange={priceRange}*/}
+      {/*/>*/}
     </div>
   );
 };
