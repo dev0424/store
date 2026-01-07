@@ -13,7 +13,7 @@ type Props = {
 const DeleteProductDocument = ({ documentId, productId, onSuccess }: Props) => {
     const { mutateAsync } = useMutation({
         mutationFn: () =>
-            sdk.client.fetch(`/admin/product-document/${documentId}/product/${productId}`, {
+            sdk.client.fetch(`/admin/products/${productId}/documents/${documentId}`, {
                 method: 'DELETE',
                 credentials: 'include',
             }),
