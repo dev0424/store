@@ -13,13 +13,20 @@ type ProductDocumentForm = {
 };
 
 type UploadDocumentResponse = {
-    productDocument: {
+    file: {
         id: string;
         url: string;
         type: string;
+        mime_type: string;
+        name: string;
+        size: number;
         created_at: string;
         updated_at: string;
         deleted_at: string;
+    };
+    presignedUrl: {
+        key: string;
+        url: string;
     };
 };
 
@@ -44,34 +51,25 @@ const UploadProductDocument = ({ productId, onSuccess }: Props) => {
     });
 
     const onSubmit = async (values: ProductDocumentForm) => {
-        const formData = new FormData();
-        formData.set('files', values.file);
-
         try {
-            // Upload file to storage bucket
-            const fileUploadResponse = await fetch('/admin/uploads', {
-                method: 'POST',
-                credentials: 'include',
-                body: formData,
-            }).then(response => response.json());
-
-            // Create new document
             const response: UploadDocumentResponse = await sdk.client.fetch(
-                `/admin/product-document`,
+                `/admin/products/${productId}/documents/upload`,
                 {
                     method: 'POST',
                     credentials: 'include',
                     body: {
                         type: values.type,
-                        url: fileUploadResponse.files[0].url,
+                        filename: values.file.name,
                     },
                 },
             );
 
-            // Link new document to the product
-            await sdk.admin.product.update(productId, {
-                additional_data: {
-                    product_document_id: response.productDocument.id,
+            // Upload files to bucket with presigned url
+            await fetch(response.presignedUrl.url, {
+                method: 'PUT',
+                body: values.file,
+                headers: {
+                    'Content-Type': values.file.type,
                 },
             });
 
@@ -80,7 +78,8 @@ const UploadProductDocument = ({ productId, onSuccess }: Props) => {
             toast.success('Success', {
                 description: 'Document uploaded successfully',
             });
-        } catch (error: any) {
+        } catch (error) {
+            console.error(`Error uploading ${values.file.name}:`, error);
             toast.error('Error', {
                 description: error.message,
             });

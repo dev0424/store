@@ -6,20 +6,18 @@ import {
 } from '@medusajs/framework/workflows-sdk';
 import DocumentModuleService from '../../modules/document/services/service';
 import { DOCUMENT_MODULE } from '../../modules/document';
+import { createRemoteLinkStep } from '@medusajs/core-flows';
+import { Modules } from '@medusajs/utils';
 
-export type CreateProductDocumentStepInput = {
+export type WorkflowInput = {
     url: string;
     type: string;
-};
-
-type CreateProductDocumentWorkflowInput = {
-    url: string;
-    type: string;
+    productId: string;
 };
 
 export const createProductDocumentStep = createStep(
     'create-product-document-step',
-    async (input: CreateProductDocumentStepInput, { container }) => {
+    async (input: WorkflowInput, { container }) => {
         const documentModuleService: DocumentModuleService = container.resolve(DOCUMENT_MODULE);
 
         const productDocument = await documentModuleService.createDocuments(input);
@@ -37,8 +35,21 @@ export const createProductDocumentStep = createStep(
 
 export const createProductDocumentWorkflow = createWorkflow(
     'create-product-document',
-    (input: CreateProductDocumentWorkflowInput) => {
+    (input: WorkflowInput) => {
+        // Create the document
         const productDocument = createProductDocumentStep(input);
+
+        // Link the document to the product
+        createRemoteLinkStep([
+            {
+                [Modules.PRODUCT]: {
+                    product_id: input.productId,
+                },
+                [DOCUMENT_MODULE]: {
+                    document_id: productDocument.id,
+                },
+            },
+        ]);
 
         return new WorkflowResponse(productDocument);
     },
