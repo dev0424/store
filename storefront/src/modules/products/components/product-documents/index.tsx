@@ -18,7 +18,11 @@ const ProductDocuments = ({ product }: Props) => {
       {toArray(product.documents)?.length ? (
         <div className="flex flex-col gap-4">
           {toArray(product.documents)?.map((document) => (
-            <ProductDocument key={document.id} document={document} />
+            <ProductDocument
+              key={document.id}
+              document={document}
+              productId={product.id}
+            />
           ))}
         </div>
       ) : (

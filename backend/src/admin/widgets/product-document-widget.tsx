@@ -23,6 +23,20 @@ const ProductDocumentWidget = ({ data: product }: DetailWidgetProps<AdminProduct
         queryKey: [['product', product.id, 'custom']],
     });
 
+    const onClickDownload = async (documentId: string) => {
+        try {
+            const { url } = await sdk.client.fetch<{ url: string }>(
+                `/admin/products/${product.id}/documents/${documentId}`,
+                {
+                    method: 'GET',
+                },
+            );
+            window.open(url, '_blank', 'noopener,noreferrer');
+        } catch (err) {
+            console.error('Failed to download document', err);
+        }
+    };
+
     if (isLoading) {
         return (
             <Container className="p-0">
@@ -54,11 +68,12 @@ const ProductDocumentWidget = ({ data: product }: DetailWidgetProps<AdminProduct
                                 key={document.id}
                                 className="flex justify-between items-center py-4 px-6"
                             >
-                                <a href={document.url}>
-                                    <Text className="text-sm text-blue-500 underline">
-                                        {findDocument(document.type).label}
-                                    </Text>
-                                </a>
+                                <Text
+                                    className="text-sm text-blue-500 underline cursor-pointer"
+                                    onClick={() => onClickDownload(document.id)}
+                                >
+                                    {findDocument(document.type).label}
+                                </Text>
                                 <DeleteProductDocument
                                     productId={product.id}
                                     documentId={document.id}
