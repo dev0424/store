@@ -117,7 +117,7 @@ export const STANDARD_PRODUCT_TYPE = 'Standard';
 /**
  * Shipping amount value to define the checkout workflow
  */
-export const FREE_SHIPPING_MIN_TOTAL = 250;
+export const FREE_SHIPPING_MIN_TOTAL = 500;
 
 /**
  * Maximum file size allowed to be uploaded by the customer.
