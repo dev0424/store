@@ -7,6 +7,7 @@ import { Container, Heading, Text } from '@medusajs/ui';
 import { defineWidgetConfig } from '@medusajs/admin-sdk';
 import { SectionRow } from '../components/SectionRow';
 import { Spinner } from '@medusajs/icons';
+import UpdateAccountGroup from './components/customer/account-group/update-account-group';
 
 const AccountGroupWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) => {
     const {
@@ -40,6 +41,11 @@ const AccountGroupWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>
         <Container className="divide-y p-0">
             <div className="flex justify-between items-center px-6 py-4">
                 <Heading level="h2">Account group</Heading>
+                <UpdateAccountGroup
+                    customerId={customerData.customer.id}
+                    onSuccess={refreshCustomer}
+                    accountGroup={customerData.customer.account_group}
+                />
             </div>
             <SectionRow
                 title="Centralized billing"
