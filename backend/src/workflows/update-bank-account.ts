@@ -8,17 +8,22 @@ import {
 import BankAccountModuleService from '../modules/bank-account/services/service';
 import { BANK_ACCOUNT_MODULE } from '../modules/bank-account';
 
+type WorkflowInput = {
+    customerId: string;
+    bankAccount: BankAccount;
+};
+
 export const updateBankAccountStep = createStep(
     'update-bank-account-step',
-    async (input: BankAccount, { container }) => {
+    async (input: WorkflowInput, { container }) => {
         const bankAccountModuleService: BankAccountModuleService =
             container.resolve(BANK_ACCOUNT_MODULE);
 
         // Retrieve the original data before updating
-        const prevData = await bankAccountModuleService.retrieveBankAccount(input.id);
+        const prevData = await bankAccountModuleService.retrieveBankAccount(input.bankAccount.id);
 
         // Perform the update
-        const bankAccount = await bankAccountModuleService.updateBankAccounts(input);
+        const bankAccount = await bankAccountModuleService.updateBankAccounts(input.bankAccount);
 
         // Pass the original data to the compensation function
         return new StepResponse(bankAccount, prevData);
@@ -38,10 +43,10 @@ export const updateBankAccountStep = createStep(
 );
 
 export const updateBankAccountWorkflow = createWorkflow<
-    BankAccount,
+    WorkflowInput,
     { bankAccount: BankAccount },
     any
->('update-bank-account-workflow', (input: BankAccount) => {
+>('update-bank-account-workflow', (input: WorkflowInput) => {
     const bankAccount = updateBankAccountStep(input);
     return new WorkflowResponse({ bankAccount });
 });

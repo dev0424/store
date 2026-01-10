@@ -10,9 +10,10 @@ import { sdk } from '../../../lib/config';
 type Props = {
     onSuccess: VoidFunction;
     bankAccount: BankAccount;
+    customerId: string;
 };
 
-const UpdateBankAccount = ({ onSuccess, bankAccount }: Props) => {
+const UpdateBankAccount = ({ onSuccess, bankAccount, customerId }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const methods = useForm<BankAccount>({
@@ -22,7 +23,7 @@ const UpdateBankAccount = ({ onSuccess, bankAccount }: Props) => {
     const onSubmit = async (values: BankAccount) => {
         try {
             // Update customer bank account
-            await sdk.client.fetch(`/admin/bank-account/${bankAccount.id}`, {
+            await sdk.client.fetch(`/admin/customer/${customerId}/bank-account`, {
                 method: 'PUT',
                 credentials: 'include',
                 body: values,

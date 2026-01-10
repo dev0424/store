@@ -3,7 +3,6 @@ import {
     validateAndTransformBody,
     MedusaNextFunction,
 } from '@medusajs/framework/http';
-import { UpdateBankAccount } from 'api/admin/bank-account/validators';
 import { z } from 'zod';
 import { MedusaRequest, MedusaResponse } from '@medusajs/framework';
 import { UpdateCustomerProfileRequest } from 'api/admin/customer-profile/validators';
@@ -20,11 +19,6 @@ export default defineMiddlewares({
     routes: [
         ...adminMiddlewares,
         ...storeMiddlewares,
-        {
-            matcher: '/admin/bank-account/:id',
-            method: 'PUT',
-            middlewares: [validateAndTransformBody(UpdateBankAccount)],
-        },
         {
             matcher: '/admin/products',
             method: ['POST'],

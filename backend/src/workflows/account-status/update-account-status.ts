@@ -11,14 +11,14 @@ import AccountStatusModuleService from '../../modules/account-status/services/se
 import { emitEventStep } from '@medusajs/core-flows';
 import { ApplicationStatusEnum } from '../../modules/account-status/constants';
 
-type UpdateAccountStatusWorkflowInput = {
+type WorkflowInput = {
     customerId: string;
     accountStatus: AccountStatus;
 };
 
 export const updateAccountStatusStep = createStep(
     'update-account-status-step',
-    async (input: UpdateAccountStatusWorkflowInput, { container }) => {
+    async (input: WorkflowInput, { container }) => {
         const accountStatusModuleService: AccountStatusModuleService =
             container.resolve(ACCOUNT_STATUS_MODULE);
 
@@ -48,7 +48,7 @@ export const updateAccountStatusStep = createStep(
 
 export const updateAccountStatusWorkflow = createWorkflow(
     'update-account-status',
-    (input: UpdateAccountStatusWorkflowInput) => {
+    (input: WorkflowInput) => {
         const updatedAccountStatus = updateAccountStatusStep(input);
 
         // Emit customer.approved when status becomes APPROVED

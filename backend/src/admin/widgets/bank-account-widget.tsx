@@ -44,6 +44,7 @@ const BankAccountWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>)
                 <UpdateBankAccount
                     onSuccess={refreshCustomer}
                     bankAccount={customerData.customer.bank_account}
+                    customerId={customer.id}
                 />
             </div>
             <SectionRow title="Bank name" value={customerData.customer.bank_account.bank_name} />
