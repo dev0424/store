@@ -9,7 +9,6 @@ import AccountGroupModuleService from 'modules/account-group/services/service';
 import { ACCOUNT_GROUP_MODULE } from 'modules/account-group';
 
 type WorkflowInput = {
-    customer_id: string;
     accountGroup: Partial<AccountGroup>;
 };
 
