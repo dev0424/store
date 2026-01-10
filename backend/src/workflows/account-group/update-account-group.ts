@@ -41,7 +41,7 @@ export const updateAccountGroupStep = createStep(
     },
 );
 
-export const updateAccountGroupWorkflow = createWorkflow<WorkflowInput, any>(
+export const updateAccountGroupWorkflow = createWorkflow<WorkflowInput, any, any>(
     'update-account-group-workflow',
     (input: WorkflowInput) => {
         const account_group = updateAccountGroupStep(input);
