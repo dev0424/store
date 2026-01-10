@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Button, Drawer, IconButton, toast, Toaster } from '@medusajs/ui';
 import { EllipsisHorizontal } from '@medusajs/icons';
 import { FormProvider, useForm } from 'react-hook-form';
-import { BankAccount } from '../../../lib/types';
-import { BANK_ACCOUNT_RULES } from '../validation/bank-account';
-import FormInput from '../../components/FormInput';
-import { sdk } from '../../../lib/config';
+import { BankAccount } from '../../../../../lib/types';
+import { BANK_ACCOUNT_RULES } from '../../../validation/bank-account';
+import FormInput from '../../../../components/FormInput';
+import { sdk } from '../../../../../lib/config';
 
 type Props = {
     onSuccess: VoidFunction;

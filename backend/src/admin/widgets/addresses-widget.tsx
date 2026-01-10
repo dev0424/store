@@ -41,10 +41,6 @@ const AddressesWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) =
         <Container className="divide-y p-0">
             <div className="flex justify-between items-center px-6 py-4">
                 <Heading level="h2">Addresses</Heading>
-                {/*<UpdateBillingAddress*/}
-                {/*    onSuccess={refreshCustomer}*/}
-                {/*    billingAddress={customerData.customer.billing_address}*/}
-                {/*/>*/}
             </div>
             <div className="p-4 grid grid-cols-3 gap-4">
                 {customerData.addresses.map(address => (

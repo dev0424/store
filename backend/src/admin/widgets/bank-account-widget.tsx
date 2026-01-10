@@ -6,7 +6,7 @@ import { AdminCustomer, DetailWidgetProps } from '@medusajs/types';
 import { useQuery } from '@tanstack/react-query';
 import { sdk } from '../../lib/config';
 import { AdminCustomerExtended } from '../../lib/types';
-import UpdateBankAccount from './components/update-bank-account';
+import UpdateBankAccount from './components/customer/bank-account/update-bank-account';
 import { Spinner } from '@medusajs/icons';
 
 const BankAccountWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) => {

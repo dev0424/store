@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Button, Drawer, IconButton, Select, toast, Toaster, Label, Checkbox } from '@medusajs/ui';
 import { EllipsisHorizontal } from '@medusajs/icons';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
-import { AccountStatus } from '../../../lib/types';
-import { sdk } from '../../../lib/config';
-import { APPLICATION_STATUS_METADATA } from '../../widgets/constants';
+import { AccountStatus } from '../../../../../lib/types';
+import { sdk } from '../../../../../lib/config';
+import { APPLICATION_STATUS_METADATA } from '../../../constants';
 
 type Props = {
     onSuccess: VoidFunction;

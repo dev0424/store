@@ -2,7 +2,7 @@ import React from 'react';
 import { defineWidgetConfig } from '@medusajs/admin-sdk';
 import { Container, Heading, StatusBadge, Text } from '@medusajs/ui';
 import { SectionRow } from '../components/SectionRow';
-import UpdateAccountStatus from './components/update-account-status';
+import UpdateAccountStatus from './components/customer/account-status/update-account-status';
 import { AdminCustomer, DetailWidgetProps } from '@medusajs/types';
 import { APPLICATION_STATUS_METADATA } from '../widgets/constants';
 import { AdminCustomerExtended } from '../../lib/types';

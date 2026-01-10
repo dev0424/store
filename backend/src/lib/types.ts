@@ -32,16 +32,6 @@ export type BankAccount = {
     rib_key: string;
 };
 
-export type BillingAddress = {
-    id: string;
-    address_1: string;
-    address_2?: string;
-    postal_code: string;
-    city: string;
-    country_code: string;
-    province?: string;
-};
-
 export type CustomerProfile = {
     id: string;
     vat_number: string;
@@ -110,7 +100,6 @@ export type Contact = {
 export type AdminCustomerExtended = {
     customer: AdminCustomer & {
         bank_account: BankAccount;
-        billing_address: BillingAddress;
         customer_profile: CustomerProfile;
         account_status: AccountStatus;
         location: Location;

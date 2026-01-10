@@ -1,9 +1,9 @@
 import React from 'react';
 import { defineWidgetConfig } from '@medusajs/admin-sdk';
 import { AdminCustomer, DetailWidgetProps } from '@medusajs/types';
-import { Container, Heading, Text } from '@medusajs/ui';
+import { Container, Heading } from '@medusajs/ui';
 import { SectionRow } from '../components/SectionRow';
-import UpdateLocation from './components/update-location';
+import UpdateLocation from './components/customer/location/update-location';
 import { useQuery } from '@tanstack/react-query';
 import { sdk } from '../../lib/config';
 import { AdminCustomerExtended } from 'lib/types';

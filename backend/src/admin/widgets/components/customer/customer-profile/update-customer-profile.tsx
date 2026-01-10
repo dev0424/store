@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Button, Drawer, IconButton, toast, Toaster } from '@medusajs/ui';
 import { EllipsisHorizontal } from '@medusajs/icons';
 import { FormProvider, useForm } from 'react-hook-form';
-import { CustomerProfile } from '../../../lib/types';
-import FormInput from '../../components/FormInput';
-import { CUSTOMER_PROFILE_RULES } from '../../widgets/validation/customer-profile';
-import FormSelect from '../../components/FormSelect';
-import { sdk } from '../../../lib/config';
+import { CustomerProfile } from '../../../../../lib/types';
+import FormInput from '../../../../components/FormInput';
+import { CUSTOMER_PROFILE_RULES } from '../../../validation/customer-profile';
+import FormSelect from '../../../../components/FormSelect';
+import { sdk } from '../../../../../lib/config';
 
 type Props = {
     onSuccess: VoidFunction;

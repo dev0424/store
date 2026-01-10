@@ -6,7 +6,7 @@ import { AdminCustomer, DetailWidgetProps } from '@medusajs/types';
 import { useQuery } from '@tanstack/react-query';
 import { sdk } from '../../lib/config';
 import { AdminCustomerExtended } from '../../lib/types';
-import UpdateCustomerProfile from '../widgets/components/update-customer-profile';
+import UpdateCustomerProfile from './components/customer/customer-profile/update-customer-profile';
 import { Spinner } from '@medusajs/icons';
 
 const CustomerProfileWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) => {

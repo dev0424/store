@@ -2,7 +2,7 @@ import React from 'react';
 import { IconButton, Prompt, toast, Toaster } from '@medusajs/ui';
 import { Trash } from '@medusajs/icons';
 import { useMutation } from '@tanstack/react-query';
-import { sdk } from '../../../lib/config';
+import { sdk } from '../../../../../lib/config';
 
 type Props = {
     documentId: string;
