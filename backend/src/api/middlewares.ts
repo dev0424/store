@@ -9,9 +9,6 @@ import { UpdateCustomerProfileRequest } from 'api/admin/customer-profile/validat
 import { UpdateLocationRequest } from 'api/admin/location/validators';
 import { CreateSystemFlagRequest, UpdateSystemFlagRequest } from 'api/admin/system-flag/validators';
 import { ContactFormRequest } from 'api/store/contact/validators';
-import { CreateActivityRequest } from 'api/admin/activity/validators';
-import { CreateCustomPaymentMethodRequest } from 'api/admin/custom-payment-method/validators';
-import { CreateBillingCycleRequest } from 'api/admin/billing-cycle/validators';
 import { adminMiddlewares } from './admin/middlewares';
 import { storeMiddlewares } from './store/middlewares';
 
@@ -45,21 +42,6 @@ export default defineMiddlewares({
             matcher: '/admin/system-flag/:id',
             method: 'PUT',
             middlewares: [validateAndTransformBody(UpdateSystemFlagRequest)],
-        },
-        {
-            matcher: '/admin/activity',
-            method: 'POST',
-            middlewares: [validateAndTransformBody(CreateActivityRequest)],
-        },
-        {
-            matcher: '/admin/custom-payment-method',
-            method: 'POST',
-            middlewares: [validateAndTransformBody(CreateCustomPaymentMethodRequest)],
-        },
-        {
-            matcher: '/admin/billing-cycle',
-            method: 'POST',
-            middlewares: [validateAndTransformBody(CreateBillingCycleRequest)],
         },
         {
             matcher: '/store/contact',

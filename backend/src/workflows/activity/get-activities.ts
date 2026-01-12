@@ -4,9 +4,9 @@ import {
     createStep,
     StepResponse,
 } from '@medusajs/framework/workflows-sdk';
-import ActivityModuleService from '../modules/activity/services/service';
-import { ACTIVITY_MODULE } from '../modules/activity/index';
-import { Activity } from '../lib/types';
+import ActivityModuleService from '../../modules/activity/services/service';
+import { ACTIVITY_MODULE } from '../../modules/activity';
+import { Activity } from '../../lib/types';
 
 const getActivitiesStep = createStep('get-activities', async (_input, { container }) => {
     const activityModuleService: ActivityModuleService = container.resolve(ACTIVITY_MODULE);

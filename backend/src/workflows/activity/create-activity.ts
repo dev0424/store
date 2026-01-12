@@ -4,8 +4,8 @@ import {
     createWorkflow,
     WorkflowResponse,
 } from '@medusajs/framework/workflows-sdk';
-import { ACTIVITY_MODULE } from '../modules/activity/index';
-import ActivityModuleService from '../modules/activity/services/service';
+import { ACTIVITY_MODULE } from '../../modules/activity';
+import ActivityModuleService from '../../modules/activity/services/service';
 
 type CreateActivityWorkflowInput = {
     name: string;

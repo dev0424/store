@@ -7,6 +7,9 @@ import FormInput from '../../../../components/FormInput';
 import { CUSTOMER_PROFILE_RULES } from '../../../validation/customer-profile';
 import FormSelect from '../../../../components/FormSelect';
 import { sdk } from '../../../../../lib/config';
+import useActivities from '../../../../hooks/useActivities';
+import useBillingCycles from '../../../../hooks/useBillingCycles';
+import useCustomPaymentMethods from '../../../../hooks/useCustomPaymentMethods';
 
 type Props = {
     onSuccess: VoidFunction;
@@ -19,6 +22,10 @@ const UpdateCustomerProfile = ({ onSuccess, customerProfile }: Props) => {
     const methods = useForm<CustomerProfile>({
         defaultValues: customerProfile,
     });
+
+    const { activities } = useActivities();
+    const { billingCycles } = useBillingCycles();
+    const { customPaymentMethods } = useCustomPaymentMethods();
 
     const onSubmit = async (values: CustomerProfile) => {
         try {
@@ -89,30 +96,21 @@ const UpdateCustomerProfile = ({ onSuccess, customerProfile }: Props) => {
                                     defaultValue={customerProfile.activity}
                                     label="Activity"
                                     rules={CUSTOMER_PROFILE_RULES.activity}
-                                    items={[
-                                        { key: 'activity-1', label: 'Activity 1' },
-                                        { key: 'activity-2', label: 'Activity 2' },
-                                    ]}
+                                    items={activities}
                                 />
                                 <FormSelect
                                     name="billing_cycle"
                                     defaultValue={customerProfile.billing_cycle}
                                     label="Billing cycle"
                                     rules={CUSTOMER_PROFILE_RULES.billing_cycle}
-                                    items={[
-                                        { key: 'billing-cycle-1', label: 'Billing cycle 1' },
-                                        { key: 'billing-cycle-2', label: 'Billing cycle 2' },
-                                    ]}
+                                    items={billingCycles}
                                 />
                                 <FormSelect
                                     name="payment_method"
                                     defaultValue={customerProfile.payment_method}
                                     label="Payment method"
                                     rules={CUSTOMER_PROFILE_RULES.payment_method}
-                                    items={[
-                                        { key: 'payment-method-1', label: 'Payment method 1' },
-                                        { key: 'payment-method-2', label: 'Payment method 2' },
-                                    ]}
+                                    items={customPaymentMethods}
                                 />
                                 <FormInput
                                     label="Invoice email"
