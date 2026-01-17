@@ -44,6 +44,7 @@ const CustomerProfileWidget = ({ data: customer }: DetailWidgetProps<AdminCustom
                 <UpdateCustomerProfile
                     customerProfile={customerData.customer.customer_profile}
                     onSuccess={refreshCustomer}
+                    customerId={customer.id}
                 />
             </div>
             <SectionRow

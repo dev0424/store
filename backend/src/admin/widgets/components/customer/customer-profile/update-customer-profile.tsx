@@ -14,9 +14,10 @@ import useCustomPaymentMethods from '../../../../hooks/useCustomPaymentMethods';
 type Props = {
     onSuccess: VoidFunction;
     customerProfile: CustomerProfile;
+    customerId: string;
 };
 
-const UpdateCustomerProfile = ({ onSuccess, customerProfile }: Props) => {
+const UpdateCustomerProfile = ({ onSuccess, customerProfile, customerId }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const methods = useForm<CustomerProfile>({
@@ -30,7 +31,7 @@ const UpdateCustomerProfile = ({ onSuccess, customerProfile }: Props) => {
     const onSubmit = async (values: CustomerProfile) => {
         try {
             // Update customer profile
-            await sdk.client.fetch(`/admin/customer-profile/${customerProfile.id}`, {
+            await sdk.client.fetch(`/admin/customer/${customerId}/customer-profile`, {
                 method: 'PUT',
                 credentials: 'include',
                 body: values,
