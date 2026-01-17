@@ -9,7 +9,7 @@ import {
     Contact,
 } from '../../../../lib/types';
 import { CreateCustomerDTO } from '@medusajs/types';
-import { createCustomerProfileWorkflow } from '../../../../workflows/create-customer-profile';
+import { createCustomerProfileWorkflow } from '../../../../workflows/customer-profile/create-customer-profile';
 import { createAccountStatusWorkflow } from '../../../../workflows/account-status/create-account-status';
 import { createLocationWorkflow } from '../../../../workflows/location/create-location';
 import { Modules } from '@medusajs/framework/utils';

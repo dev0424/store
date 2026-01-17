@@ -1,55 +1,82 @@
+import React from "react";
 import { Metadata } from "next";
-
-import ProfilePhone from "@modules/account//components/profile-phone";
-import ProfileBillingAddress from "@modules/account/components/profile-billing-address";
-import ProfileEmail from "@modules/account/components/profile-email";
-import ProfileName from "@modules/account/components/profile-name";
-import ProfilePassword from "@modules/account/components/profile-password";
-
 import { notFound } from "next/navigation";
-import { listRegions } from "@lib/data/regions";
+import { getRegion } from "@lib/data/regions";
 import { retrieveCustomer } from "@lib/data/customer";
+import { Divider } from "@medusajs/ui";
+import VatNumberForm from "@modules/account/components/profile-customer/vat-number";
+import SiretNumberForm from "@modules/account/components/profile-customer/siret-number";
+import ApeCodeForm from "@modules/account/components/profile-customer/ape-code";
+import InvoiceEmailForm from "@modules/account/components/profile-customer/invoice-email";
+import RevenuePreviousYearForm from "@modules/account/components/profile-customer/revenue-previous-year";
+import EmployeeCountForm from "@modules/account/components/profile-customer/employee-count";
+import ActivityForm from "@modules/account/components/profile-customer/activity";
+import { getActivities } from "@lib/data/activities";
+import { getCustomPaymentMethods } from "@lib/data/custom-payment-methods";
+import { getBillingCycles } from "@lib/data/billing-cycle";
+import BillingCycleForm from "@modules/account/components/profile-customer/billing-cycle";
+import PaymentMethodForm from "@modules/account/components/profile-customer/payment-method";
 
 export const metadata: Metadata = {
-  title: "Profil",
-  description: "Consultez et modifiez votre profil RSPI.",
+  title: "Informations administratives",
+  description:
+    "Renseignez les informations légales, fiscales et de facturation de votre entreprise.",
 };
 
-export default async function Profile() {
+export default async function Profile(props: {
+  params: Promise<{ countryCode: string }>;
+}) {
+  const params = await props.params;
+  const { countryCode } = params;
   const customer = await retrieveCustomer();
-  const regions = await listRegions();
+  const region = await getRegion(countryCode);
+  const activities = await getActivities();
+  const paymentMethods = await getCustomPaymentMethods();
+  const billingCycles = await getBillingCycles();
 
-  if (!customer || !regions) {
+  if (!customer || !region) {
     notFound();
   }
 
   return (
-    <div className="w-full" data-testid="profile-page-wrapper">
+    <div className="w-full" data-testid="addresses-page-wrapper">
       <div className="mb-8 flex flex-col gap-y-4">
-        <h1 className="text-2xl-semi">Profil</h1>
+        <h1 className="text-2xl-semi">Informations administratives</h1>
         <p className="text-base-regular">
-          Consultez et mettez à jour les informations de votre profil, notamment
-          votre nom, votre adresse e-mail et votre numéro de téléphone. Vous
-          pouvez également modifier votre adresse de facturation ou vos
-          coordonnées bancaires.
+          Renseignez les informations légales, fiscales et de facturation de
+          votre entreprise.
         </p>
       </div>
       <div className="flex w-full flex-col gap-y-8">
-        <ProfileName customer={customer} />
+        <VatNumberForm value={customer.customer_profile.vat_number} />
         <Divider />
-        <ProfileEmail customer={customer} />
+        <SiretNumberForm value={customer.customer_profile.siret_number} />
         <Divider />
-        <ProfilePhone customer={customer} />
+        <ApeCodeForm value={customer.customer_profile.ape_code} />
         <Divider />
-        {/* <ProfilePassword customer={customer} />
-        <Divider /> */}
-        <ProfileBillingAddress customer={customer} regions={regions} />
+        <InvoiceEmailForm value={customer.customer_profile.invoice_email} />
+        <Divider />
+        <RevenuePreviousYearForm
+          value={customer.customer_profile.revenue_previous_year}
+        />
+        <Divider />
+        <EmployeeCountForm value={customer.customer_profile.employee_count} />
+        <Divider />
+        <ActivityForm
+          activities={activities}
+          value={customer.customer_profile.activity}
+        />
+        <Divider />
+        <BillingCycleForm
+          billingCycles={billingCycles}
+          value={customer.customer_profile.billing_cycle}
+        />
+        <Divider />
+        <PaymentMethodForm
+          paymentMethods={paymentMethods}
+          value={customer.customer_profile.payment_method}
+        />
       </div>
     </div>
   );
 }
-
-const Divider = () => {
-  return <div className="h-px w-full bg-gray-200" />;
-};
-``;

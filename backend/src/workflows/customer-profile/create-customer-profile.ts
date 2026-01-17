@@ -5,12 +5,12 @@ import {
     WorkflowResponse,
     when,
 } from '@medusajs/framework/workflows-sdk';
-import { CUSTOMER_PROFILE_MODULE } from '../modules/customer-profile/index';
+import { CUSTOMER_PROFILE_MODULE } from '../../modules/customer-profile';
 import { createRemoteLinkStep } from '@medusajs/core-flows';
 import { Modules } from '@medusajs/utils';
 import { CustomerDTO } from '@medusajs/types';
-import { CustomerProfile } from '../lib/types';
-import CustomerProfileModuleService from '../modules/customer-profile/services/service';
+import { CustomerProfile } from '../../lib/types';
+import CustomerProfileModuleService from '../../modules/customer-profile/services/service';
 
 type CreateCustomerProfileWorkflowInput = {
     customer: CustomerDTO;

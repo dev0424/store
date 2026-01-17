@@ -5,4 +5,8 @@ export const customerMiddlewares: MiddlewareRoute[] = [
         matcher: '/store/customers/me/bank-account',
         methods: ['PATCH'],
     },
+    {
+        matcher: '/store/customers/me/customer-profile',
+        methods: ['PATCH'],
+    },
 ];

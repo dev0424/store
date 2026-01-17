@@ -49,14 +49,14 @@ const AccountNav = ({ customer, quotes }: Props) => {
               <ul>
                 <li>
                   <LocalizedClientLink
-                    href="/account/profile"
+                    href="/account/account"
                     className="flex items-center justify-between border-b border-gray-200 px-8 py-4"
                     data-testid="profile-link"
                   >
                     <>
                       <div className="flex items-center gap-x-2">
                         <User size={20} />
-                        <span>Profil</span>
+                        <span>Compte</span>
                       </div>
                       <ChevronDown className="-rotate-90 transform" />
                     </>
@@ -145,11 +145,11 @@ const AccountNav = ({ customer, quotes }: Props) => {
               </li>
               <li>
                 <AccountNavLink
-                  href="/account/profile"
+                  href="/account/account"
                   route={route!}
                   data-testid="profile-link"
                 >
-                  Profil
+                  Compte
                 </AccountNavLink>
               </li>
               <li>
@@ -168,6 +168,11 @@ const AccountNav = ({ customer, quotes }: Props) => {
                   data-testid="bank-account-link"
                 >
                   Compte bancaire
+                </AccountNavLink>
+              </li>
+              <li>
+                <AccountNavLink href="/account/profile" route={route!}>
+                  Administratif
                 </AccountNavLink>
               </li>
               <li>
