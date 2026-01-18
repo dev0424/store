@@ -5,7 +5,6 @@ import {
 } from '@medusajs/framework/http';
 import { z } from 'zod';
 import { MedusaRequest, MedusaResponse } from '@medusajs/framework';
-import { UpdateLocationRequest } from 'api/admin/location/validators';
 import { CreateSystemFlagRequest, UpdateSystemFlagRequest } from 'api/admin/system-flag/validators';
 import { ContactFormRequest } from 'api/store/contact/validators';
 import { adminMiddlewares } from './admin/middlewares';
@@ -21,11 +20,6 @@ export default defineMiddlewares({
             additionalDataValidator: {
                 product_document_id: z.string().optional(),
             },
-        },
-        {
-            matcher: '/admin/location/:id',
-            method: 'PUT',
-            middlewares: [validateAndTransformBody(UpdateLocationRequest)],
         },
         {
             matcher: '/admin/system-flag',

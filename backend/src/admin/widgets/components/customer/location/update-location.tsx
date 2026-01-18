@@ -9,9 +9,10 @@ import { sdk } from '../../../../../lib/config';
 type Props = {
     location: Location;
     onSuccess: VoidFunction;
+    customerId: string;
 };
 
-const UpdateLocation = ({ location, onSuccess }: Props) => {
+const UpdateLocation = ({ location, onSuccess, customerId }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const methods = useForm<Location>({
@@ -21,7 +22,7 @@ const UpdateLocation = ({ location, onSuccess }: Props) => {
     const onSubmit = async (values: Location) => {
         try {
             // Update customer location
-            await sdk.client.fetch(`/admin/location/${location.id}`, {
+            await sdk.client.fetch(`/admin/customer/${customerId}/location`, {
                 method: 'PUT',
                 credentials: 'include',
                 body: {

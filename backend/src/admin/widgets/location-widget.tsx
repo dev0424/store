@@ -44,6 +44,7 @@ const LocationWidget = ({ data: customer }: DetailWidgetProps<AdminCustomer>) =>
                 <UpdateLocation
                     location={customerData.customer.location}
                     onSuccess={refreshCustomer}
+                    customerId={customer.id}
                 />
             </div>
             <SectionRow title="Latitude" value={customerData.customer.location.latitude} />

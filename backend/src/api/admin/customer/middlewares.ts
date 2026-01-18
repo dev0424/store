@@ -4,6 +4,7 @@ import { UpdateAccountStatusRequest } from './[id]/account-status/validators';
 import { UpdateBankAccount } from './[id]/bank-account/validators';
 import { UpdateAccountGroupRequest } from './[id]/account-group/validators';
 import { UpdateCustomerProfileRequest } from './[id]/customer-profile/validators';
+import { UpdateLocationRequest } from 'api/admin/customer/[id]/location/validators';
 
 export const adminCustomerMiddlewares: MiddlewareRoute[] = [
     {
@@ -25,5 +26,10 @@ export const adminCustomerMiddlewares: MiddlewareRoute[] = [
         matcher: '/admin/customer/:id/customer-profile',
         methods: ['PUT'],
         middlewares: [validateAndTransformBody(UpdateCustomerProfileRequest)],
+    },
+    {
+        matcher: '/admin/customer/:id/location',
+        methods: ['PUT'],
+        middlewares: [validateAndTransformBody(UpdateLocationRequest)],
     },
 ];
