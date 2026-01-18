@@ -38,6 +38,7 @@ const CheckboxWithLabel: React.FC<CheckboxProps> = ({
       >
         {label}
       </Label>
+      <input type="hidden" name={name} value={checked ? "true" : "false"} />
     </div>
   );
 };

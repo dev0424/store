@@ -8,7 +8,8 @@ export async function PUT(
 ) {
     const { result } = await updateAccountGroupWorkflow(request.scope).run({
         input: {
-            accountGroup: request.validatedBody,
+            customer_id: request.params.id,
+            update: request.validatedBody,
         },
     });
 

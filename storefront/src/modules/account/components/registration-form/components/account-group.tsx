@@ -151,7 +151,7 @@ const AccountGroup = () => {
               "account_group.platform_name",
               optionalText(isPlatformClient),
             )}
-            label="Si oui, lesquels"
+            label="Nom de la plateforme"
             name="account_group.platform_name"
             errors={errors?.account_group?.platform_name}
             required={isPlatformClient}

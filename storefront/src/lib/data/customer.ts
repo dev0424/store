@@ -35,7 +35,8 @@ export const retrieveCustomer = async (): Promise<ExtendedCustomer | null> => {
     .fetch<{ customer: ExtendedCustomer }>(`/store/customers/me`, {
       method: "GET",
       query: {
-        fields: "*orders,+bank_account.*,+customer_profile.*,+account_status.*",
+        fields:
+          "*orders,+bank_account.*,+customer_profile.*,+account_status.*,+account_group.*",
       },
       headers,
       next,

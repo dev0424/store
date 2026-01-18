@@ -176,6 +176,11 @@ const AccountNav = ({ customer, quotes }: Props) => {
                 </AccountNavLink>
               </li>
               <li>
+                <AccountNavLink href="/account/group" route={route!}>
+                  Informations complémentaires
+                </AccountNavLink>
+              </li>
+              <li>
                 <AccountNavLink
                   href="/account/quotes"
                   route={route!}

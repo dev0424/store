@@ -8,7 +8,12 @@ export const customerMiddlewares: MiddlewareRoute[] = [
         matcher: '/store/customers/me',
         middlewares: [
             (request: MedusaRequest, response: MedusaResponse, next: MedusaNextFunction) => {
-                (request.allowed ??= []).push('bank_account', 'customer_profile', 'account_status');
+                (request.allowed ??= []).push(
+                    'bank_account',
+                    'customer_profile',
+                    'account_status',
+                    'account_group',
+                );
                 next();
             },
         ],
@@ -19,6 +24,10 @@ export const customerMiddlewares: MiddlewareRoute[] = [
     },
     {
         matcher: '/store/customers/me/customer-profile',
+        methods: ['PATCH'],
+    },
+    {
+        matcher: '/store/customers/me/account-group',
         methods: ['PATCH'],
     },
 ];
