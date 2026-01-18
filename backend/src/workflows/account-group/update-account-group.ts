@@ -5,10 +5,10 @@ import {
     WorkflowResponse,
 } from '@medusajs/framework/workflows-sdk';
 import { AccountGroup, BankAccount } from 'lib/types';
-import AccountGroupModuleService from 'modules/account-group/services/service';
-import { ACCOUNT_GROUP_MODULE } from 'modules/account-group';
+import AccountGroupModuleService from '../../modules/account-group/services/service';
+import { ACCOUNT_GROUP_MODULE } from '../../modules/account-group';
 import { useQueryGraphStep } from '@medusajs/medusa/core-flows';
-import AccountGroupLink from 'links/account-group';
+import AccountGroupLink from '../../links/account-group';
 
 type WorkflowInput = {
     customer_id: string;
