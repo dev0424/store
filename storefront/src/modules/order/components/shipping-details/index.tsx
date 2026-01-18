@@ -2,8 +2,6 @@ import { convertToLocale } from "@lib/util/money";
 import { StoreOrder } from "@medusajs/types";
 import { Heading, Text } from "@medusajs/ui";
 
-import Divider from "@modules/common/components/divider";
-
 type Props = {
   order: StoreOrder;
 };
@@ -73,7 +71,6 @@ const ShippingDetails = ({ order }: Props) => {
           )}
         </div>
       </div>
-      <Divider className="mt-8" />
     </div>
   );
 };

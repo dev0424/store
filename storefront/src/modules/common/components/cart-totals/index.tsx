@@ -18,6 +18,7 @@ const CartTotals = ({ cart }: Props) => {
     discount_total,
     gift_card_total,
     shipping_subtotal,
+    shipping_total,
   } = cart;
 
   return (
@@ -25,10 +26,13 @@ const CartTotals = ({ cart }: Props) => {
       <div className="txt-medium flex flex-col gap-y-2 font-sans text-ui-fg-subtle">
         <div className="flex items-center justify-between">
           <span className="flex items-center gap-x-1">
-            Sous-total (hors frais de livraison et TVA)
+            Sous-total (hors TVA)
           </span>
           <span data-testid="cart-subtotal" data-value={subtotal || 0}>
-            {convertToLocale({ amount: subtotal ?? 0, currency_code })}
+            {convertToLocale({
+              amount: cart.item_subtotal ?? 0,
+              currency_code,
+            })}
           </span>
         </div>
         {!!discount_total && (
@@ -49,7 +53,14 @@ const CartTotals = ({ cart }: Props) => {
           {/*<span data-testid="cart-shipping" data-value={shipping_subtotal || 0}>*/}
           {/*  {convertToLocale({ amount: shipping_subtotal ?? 0, currency_code })}*/}
           {/*</span>*/}
-          <span>{getShippingOptionText(cart)}</span>
+          <span>
+            {shipping_subtotal
+              ? convertToLocale({
+                  amount: shipping_subtotal ?? 0,
+                  currency_code,
+                })
+              : getShippingOptionText(cart)}
+          </span>
         </div>
         <div className="flex justify-between">
           <span className="flex items-center gap-x-1">TVA</span>

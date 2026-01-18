@@ -24,8 +24,8 @@ const QuoteSummary = ({ quote }: Props) => {
       <h2 className="text-base-semi">Résumé du devis</h2>
       <div className="text-small-regular my-2 text-ui-fg-base">
         <div className="text-base-regular mb-2 flex items-center justify-between text-ui-fg-base">
-          <span>Sous-total</span>
-          <span>{getAmount(quote.subtotal)}</span>
+          <span>Sous-total (hors TVA)</span>
+          <span>{getAmount(quote.item_subtotal)}</span>
         </div>
         <div className="flex flex-col gap-y-1">
           {quote.discount_total > 0 && (
@@ -43,13 +43,13 @@ const QuoteSummary = ({ quote }: Props) => {
           <div className="flex items-center justify-between">
             <span>Livraison</span>
             {isShippingAdded ? (
-              <span>{getAmount(quote.shipping_total)}</span>
+              <span>{getAmount(quote.shipping_subtotal)}</span>
             ) : (
               <span>RSPI calcule actuellement le prix de livraison.</span>
             )}
           </div>
           <div className="flex items-center justify-between">
-            <span>Taxes</span>
+            <span>TVA</span>
             <span>{getAmount(quote.tax_total)}</span>
           </div>
         </div>

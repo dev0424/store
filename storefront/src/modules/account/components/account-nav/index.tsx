@@ -128,94 +128,89 @@ const AccountNav = ({ customer, quotes }: Props) => {
         )}
       </div>
       <div className="hidden small:block" data-testid="account-nav">
-        <div>
-          <div className="pb-4">
-            <h3 className="text-base-semi">Compte</h3>
-          </div>
-          <div className="text-base-regular">
-            <ul className="mb-0 flex flex-col items-start justify-start gap-y-4">
-              <li>
-                <AccountNavLink
-                  href="/account"
-                  route={route!}
-                  data-testid="overview-link"
-                >
-                  Aperçu
-                </AccountNavLink>
-              </li>
-              <li>
-                <AccountNavLink
-                  href="/account/account"
-                  route={route!}
-                  data-testid="profile-link"
-                >
-                  Compte
-                </AccountNavLink>
-              </li>
-              <li>
-                <AccountNavLink
-                  href="/account/addresses"
-                  route={route!}
-                  data-testid="addresses-link"
-                >
-                  Adresses
-                </AccountNavLink>
-              </li>
-              <li>
-                <AccountNavLink
-                  href="/account/bank-account"
-                  route={route!}
-                  data-testid="bank-account-link"
-                >
-                  Compte bancaire
-                </AccountNavLink>
-              </li>
-              <li>
-                <AccountNavLink href="/account/profile" route={route!}>
-                  Administratif
-                </AccountNavLink>
-              </li>
-              <li>
-                <AccountNavLink href="/account/group" route={route!}>
-                  Informations complémentaires
-                </AccountNavLink>
-              </li>
-              <li>
-                <AccountNavLink
-                  href="/account/quotes"
-                  route={route!}
-                  data-testid="quotes-link"
-                >
-                  <div className="flex items-center gap-2">
-                    <span>Devis</span>
-                    {quotes.length ? (
-                      <div className="text-small-regular flex h-6 w-6 items-center justify-center rounded-full bg-accent-primary text-white">
-                        <span>{quotes.length}</span>
-                      </div>
-                    ) : null}
-                  </div>
-                </AccountNavLink>
-              </li>
-              <li>
-                <AccountNavLink
-                  href="/account/orders"
-                  route={route!}
-                  data-testid="orders-link"
-                >
-                  Commandes
-                </AccountNavLink>
-              </li>
-              <li className="text-grey-700">
-                <button
-                  type="button"
-                  onClick={handleLogout}
-                  data-testid="logout-button"
-                >
-                  Déconnexion
-                </button>
-              </li>
-            </ul>
-          </div>
+        <div className="text-base-regular">
+          <ul className="mb-0 flex flex-col items-start justify-start gap-y-4">
+            <li>
+              <AccountNavLink
+                href="/account"
+                route={route!}
+                data-testid="overview-link"
+              >
+                Aperçu
+              </AccountNavLink>
+            </li>
+            <li>
+              <AccountNavLink
+                href="/account/account"
+                route={route!}
+                data-testid="profile-link"
+              >
+                Compte
+              </AccountNavLink>
+            </li>
+            <li>
+              <AccountNavLink
+                href="/account/addresses"
+                route={route!}
+                data-testid="addresses-link"
+              >
+                Adresses
+              </AccountNavLink>
+            </li>
+            <li>
+              <AccountNavLink
+                href="/account/bank-account"
+                route={route!}
+                data-testid="bank-account-link"
+              >
+                Compte bancaire
+              </AccountNavLink>
+            </li>
+            <li>
+              <AccountNavLink href="/account/profile" route={route!}>
+                Administratif
+              </AccountNavLink>
+            </li>
+            <li>
+              <AccountNavLink href="/account/group" route={route!}>
+                Infos complémentaires
+              </AccountNavLink>
+            </li>
+            <li>
+              <AccountNavLink
+                href="/account/quotes"
+                route={route!}
+                data-testid="quotes-link"
+              >
+                <div className="flex items-center gap-2">
+                  <span>Devis</span>
+                  {quotes.length ? (
+                    <div className="text-small-regular flex h-6 w-6 items-center justify-center rounded-full bg-accent-primary text-white">
+                      <span>{quotes.length}</span>
+                    </div>
+                  ) : null}
+                </div>
+              </AccountNavLink>
+            </li>
+            <li>
+              <AccountNavLink
+                href="/account/orders"
+                route={route!}
+                data-testid="orders-link"
+              >
+                Commandes
+              </AccountNavLink>
+            </li>
+            <li className="text-grey-700">
+              <button
+                type="button"
+                onClick={handleLogout}
+                data-testid="logout-button"
+              >
+                Déconnexion
+              </button>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

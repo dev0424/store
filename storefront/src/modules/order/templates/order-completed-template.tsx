@@ -3,7 +3,6 @@ import CartTotals from "@modules/common/components/cart-totals";
 import Items from "@modules/order/components/items";
 import OrderDetails from "@modules/order/components/order-details";
 import ShippingDetails from "@modules/order/components/shipping-details";
-import PaymentDetails from "@modules/order/components/payment-details";
 import { StoreOrder } from "@medusajs/types";
 
 type Props = {
@@ -31,7 +30,7 @@ export default async function OrderCompletedTemplate({ order }: Props) {
           <Items order={order} />
           <CartTotals cart={order} />
           <ShippingDetails order={order} />
-          <PaymentDetails order={order} />
+          {/*<PaymentDetails order={order} />*/}
         </div>
       </div>
     </div>

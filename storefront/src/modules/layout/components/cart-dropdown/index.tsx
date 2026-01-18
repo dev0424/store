@@ -219,7 +219,7 @@ const CartDropdown = ({ cart: cartState }: Props) => {
                   </div>
                   <span>Votre panier est vide.</span>
                   <div>
-                    <LocalizedClientLink href="/store">
+                    <LocalizedClientLink href="/collections/featured-products">
                       <>
                         <span className="sr-only">
                           Aller à la page des produits
