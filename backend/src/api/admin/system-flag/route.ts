@@ -1,6 +1,6 @@
 import type { MedusaRequest, MedusaResponse } from '@medusajs/framework/http';
-import { getSystemFlagsWorkflow } from '../../../workflows/get-system-flags';
-import { createSystemFlagWorkflow } from '../../../workflows/create-system-flag';
+import { getSystemFlagsWorkflow } from '../../../workflows/system-flag/get-system-flags';
+import { createSystemFlagWorkflow } from '../../../workflows/system-flag/create-system-flag';
 import { SystemFlag } from '../../../lib/types';
 
 export const GET = async (request: MedusaRequest, response: MedusaResponse) => {

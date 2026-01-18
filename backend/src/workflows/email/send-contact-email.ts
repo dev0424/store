@@ -6,7 +6,7 @@ import {
 } from '@medusajs/framework/workflows-sdk';
 import { Modules } from '@medusajs/framework/utils';
 import type { CreateNotificationDTO } from '@medusajs/framework/types';
-import { ContactForm } from '../lib/types';
+import { ContactForm } from '../../lib/types';
 
 const sendContactNotificationStep = createStep(
     'send-contact-notification',

@@ -1,5 +1,5 @@
 import { MedusaResponse } from '@medusajs/framework/http';
-import { updateBankAccountWorkflow } from '../../../../../workflows/update-bank-account';
+import { updateBankAccountWorkflow } from '../../../../../workflows/bank-account/update-bank-account';
 import { BankAccount } from '../../../../../lib/types';
 import type { AuthenticatedMedusaRequest } from '@medusajs/framework';
 
@@ -9,8 +9,8 @@ export const PUT = async (
 ) => {
     const { result } = await updateBankAccountWorkflow(request.scope).run({
         input: {
-            customerId: request.params.id,
-            bankAccount: request.validatedBody,
+            customer_id: request.params.id,
+            update: request.body,
         },
     });
 

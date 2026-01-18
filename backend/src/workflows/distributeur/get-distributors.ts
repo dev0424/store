@@ -4,7 +4,7 @@ import {
     createStep,
     StepResponse,
 } from '@medusajs/framework/workflows-sdk';
-import { ApplicationStatusEnum } from '../modules/account-status/constants';
+import { ApplicationStatusEnum } from '../../modules/account-status/constants';
 
 const getDistributorsStep = createStep('get-distributors-step', async ({}, { container }) => {
     const query = container.resolve('query');

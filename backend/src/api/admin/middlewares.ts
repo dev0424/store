@@ -5,6 +5,7 @@ import { validateAndTransformBody } from '@medusajs/framework/http';
 import { CreateActivityRequest } from 'api/admin/activities/validators';
 import { CreateCustomPaymentMethodRequest } from 'api/admin/custom-payment-methods/validators';
 import { CreateBillingCycleRequest } from 'api/admin/billing-cycles/validators';
+import { CreateSystemFlagRequest, UpdateSystemFlagRequest } from 'api/admin/system-flag/validators';
 
 export const adminMiddlewares: MiddlewareRoute[] = [
     ...adminCustomerMiddlewares,
@@ -23,5 +24,15 @@ export const adminMiddlewares: MiddlewareRoute[] = [
         matcher: '/admin/billing-cycles',
         methods: ['POST'],
         middlewares: [validateAndTransformBody(CreateBillingCycleRequest)],
+    },
+    {
+        matcher: '/admin/system-flag',
+        methods: ['POST'],
+        middlewares: [validateAndTransformBody(CreateSystemFlagRequest)],
+    },
+    {
+        matcher: '/admin/system-flag/:id',
+        methods: ['PUT'],
+        middlewares: [validateAndTransformBody(UpdateSystemFlagRequest)],
     },
 ];

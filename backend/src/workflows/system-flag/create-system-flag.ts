@@ -4,9 +4,9 @@ import {
     createWorkflow,
     WorkflowResponse,
 } from '@medusajs/framework/workflows-sdk';
-import { SYSTEM_FLAG_MODULE } from '../modules/system-flag/index';
-import SystemFlagModuleService from '../modules/system-flag/services/service';
-import { SystemFlag } from '../lib/types';
+import { SYSTEM_FLAG_MODULE } from '../../modules/system-flag';
+import SystemFlagModuleService from '../../modules/system-flag/services/service';
+import { SystemFlag } from '../../lib/types';
 
 const createSystemFlagStep = createStep(
     'create-system-flag',

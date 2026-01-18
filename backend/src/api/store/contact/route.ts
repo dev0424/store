@@ -1,5 +1,5 @@
 import type { MedusaRequest, MedusaResponse } from '@medusajs/framework/http';
-import { sendContactEmailWorkflow } from '../../../workflows/send-contact-email';
+import { sendContactEmailWorkflow } from '../../../workflows/email/send-contact-email';
 import { ContactForm } from '../../../lib/types';
 
 export const POST = async (request: MedusaRequest<ContactForm>, response: MedusaResponse) => {

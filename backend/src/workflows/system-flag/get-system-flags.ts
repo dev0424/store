@@ -4,9 +4,9 @@ import {
     createStep,
     StepResponse,
 } from '@medusajs/framework/workflows-sdk';
-import SystemFlagModuleService from '../modules/system-flag/services/service';
-import { SYSTEM_FLAG_MODULE } from '../modules/system-flag/index';
-import { SystemFlag } from '../lib/types';
+import SystemFlagModuleService from '../../modules/system-flag/services/service';
+import { SYSTEM_FLAG_MODULE } from '../../modules/system-flag';
+import { SystemFlag } from '../../lib/types';
 
 const getSystemFlagsStep = createStep('get-system-flags', async (_input, { container }) => {
     const systemFlagModuleService: SystemFlagModuleService = container.resolve(SYSTEM_FLAG_MODULE);

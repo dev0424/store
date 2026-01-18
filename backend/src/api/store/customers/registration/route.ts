@@ -1,6 +1,6 @@
 import type { MedusaResponse, AuthenticatedMedusaRequest } from '@medusajs/framework';
 import { createCustomerAccountWorkflow } from '@medusajs/medusa/core-flows';
-import { createBankAccountWorkflow } from '../../../../workflows/create-bank-account';
+import { createBankAccountWorkflow } from '../../../../workflows/bank-account/create-bank-account';
 import {
     BankAccount,
     CustomerProfile,
