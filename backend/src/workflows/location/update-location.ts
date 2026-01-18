@@ -8,7 +8,7 @@ import {
 import LocationModuleService from '../../modules/location/services/service';
 import { LOCATION_MODULE } from '../../modules/location';
 import { useQueryGraphStep } from '@medusajs/medusa/core-flows';
-import LocationLink from 'links/location';
+import LocationLink from '../../links/location';
 
 type WorkflowInput = {
     customer_id: string;
