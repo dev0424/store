@@ -8,6 +8,7 @@ import { getProductPrice } from "@lib/util/get-product-price";
 import OptionSelect from "./option-select";
 import { StoreProduct, StoreProductVariant } from "@medusajs/types";
 import { isSimpleProduct } from "@lib/util/product";
+import { HiOutlineShoppingCart as ShoppingCartIcon } from "react-icons/hi";
 
 type Props = {
   product: StoreProduct;
@@ -71,7 +72,7 @@ const MobileActions = ({
             className="text-large-regular flex h-full w-full flex-col items-center justify-center gap-y-3 border-t border-gray-200 bg-white p-4"
             data-testid="mobile-actions"
           >
-            <div className="flex items-center gap-x-2">
+            <div className="flex items-center gap-x-2 text-sm">
               <span data-testid="mobile-title">{product.title}</span>
               <span>—</span>
               {selectedPrice ? (
@@ -124,10 +125,11 @@ const MobileActions = ({
               <Button
                 onClick={handleAddToCart}
                 disabled={!inStock || !variant}
-                className="w-full"
+                className="text-md h-10 w-full py-1 font-sans font-bold text-white shadow-none disabled:shadow-none"
                 isLoading={isAdding}
                 data-testid="mobile-cart-button"
               >
+                <ShoppingCartIcon size={20} />
                 {!variant
                   ? "Sélectionnez la variante"
                   : !inStock

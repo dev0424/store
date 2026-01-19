@@ -9,7 +9,7 @@ type Props = {
 
 const ProductDocuments = ({ product }: Props) => {
   return (
-    <div className="text-small-regular flex flex-col gap-4 p-4">
+    <div className="text-small-regular flex flex-col gap-4 pt-2.5">
       {toArray(product.documents)?.length ? (
         <div className="flex flex-col gap-4">
           {toArray(product.documents)?.map((document) => (

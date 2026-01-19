@@ -11,6 +11,10 @@ import { useParams } from "next/navigation";
 import { useMemo, useRef, useState } from "react";
 import ProductPrice from "../product-price";
 import MobileActions from "./mobile-actions";
+import {
+  HiOutlineUser as UserIcon,
+  HiOutlineShoppingCart as ShoppingCartIcon,
+} from "react-icons/hi";
 
 type Props = {
   product: HttpTypes.StoreProduct;
@@ -143,6 +147,7 @@ export default function ProductActions({
           variant="primary"
           className="text-md h-10 w-full py-1 font-sans font-bold text-white shadow-none disabled:shadow-none"
         >
+          <UserIcon size={20} />
           Se connecter pour acheter
         </Button>
       </div>
@@ -158,6 +163,7 @@ export default function ProductActions({
           variant="primary"
           className="text-md h-10 w-full py-1 font-sans font-bold text-white shadow-none disabled:shadow-none"
         >
+          <UserIcon size={20} />
           Approbation en attente
         </Button>
       </div>
@@ -205,6 +211,7 @@ export default function ProductActions({
           isLoading={isAdding}
           data-testid="add-product-button"
         >
+          <ShoppingCartIcon size={20} />
           {!selectedVariant && !options
             ? "Sélectionnez la variante"
             : !inStock || !isValidVariant

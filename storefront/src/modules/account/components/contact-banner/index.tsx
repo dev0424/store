@@ -13,7 +13,7 @@ const ContactBanner = () => {
             <p className="text-2xl font-black text-accent-primary sm:text-4xl">
               Vous êtes distributeur ?
             </p>
-            <p className="text-2xl sm:text-xl">
+            <p className="text-xl">
               Contactez notre équipe pour devenir partenaire RSPI.
             </p>
           </div>

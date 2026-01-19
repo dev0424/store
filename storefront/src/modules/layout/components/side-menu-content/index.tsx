@@ -57,7 +57,7 @@ const SideMenuContent = ({
             <LocalizedClientLink
               href="/register"
               className="text-lg leading-10 hover:text-accent-primary"
-              onClick={close}
+              onClick={onClickMenuItem}
             >
               Créer un compte
             </LocalizedClientLink>
@@ -65,7 +65,7 @@ const SideMenuContent = ({
             <LocalizedClientLink
               href="#"
               className="text-lg leading-10 hover:text-accent-primary"
-              onClick={close}
+              onClick={onClickMenuItem}
             >
               Catalogue
             </LocalizedClientLink>
@@ -73,7 +73,7 @@ const SideMenuContent = ({
             <LocalizedClientLink
               href="/distributors"
               className="text-lg leading-10 hover:text-accent-primary"
-              onClick={close}
+              onClick={onClickMenuItem}
             >
               Trouver un distributeur
             </LocalizedClientLink>
@@ -81,7 +81,7 @@ const SideMenuContent = ({
             <LocalizedClientLink
               href="/about"
               className="text-lg leading-10 hover:text-accent-primary"
-              onClick={close}
+              onClick={onClickMenuItem}
             >
               À propos
             </LocalizedClientLink>
@@ -89,7 +89,7 @@ const SideMenuContent = ({
             <LocalizedClientLink
               href="/contact"
               className="text-lg leading-10 hover:text-accent-primary"
-              onClick={close}
+              onClick={onClickMenuItem}
             >
               Contact
             </LocalizedClientLink>
