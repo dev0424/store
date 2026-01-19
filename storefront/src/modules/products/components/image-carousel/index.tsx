@@ -9,8 +9,6 @@ import ImageCarouselThumbnails from "@modules/products/components/image-carousel
 import Lightbox from "yet-another-react-lightbox";
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import Thumbnail from "yet-another-react-lightbox/plugins/thumbnails";
-import Counter from "yet-another-react-lightbox/plugins/counter";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/plugins/counter.css";
@@ -142,7 +140,31 @@ const ImageCarousel = ({ images }: Props) => {
         close={toggleLightbox}
         slides={lightboxSlides}
         index={selectedIndex}
-        plugins={[Fullscreen, Zoom, Thumbnail, Counter]}
+        plugins={[Fullscreen, Zoom]}
+        styles={{
+          container: {
+            backgroundColor: "#ffffff",
+          },
+          button: {
+            color: "#52525b",
+            filter: "none",
+            boxShadow: "none",
+          },
+          icon: {
+            color: "#52525b",
+            filter: "none",
+            boxShadow: "none",
+          },
+          toolbar: {
+            boxShadow: "none",
+          },
+          navigationPrev: {
+            boxShadow: "none",
+          },
+          navigationNext: {
+            boxShadow: "none",
+          },
+        }}
       />
     </>
   );
