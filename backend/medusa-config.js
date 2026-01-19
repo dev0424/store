@@ -216,9 +216,10 @@ const medusaConfig = {
                                       'handle',
                                       'thumbnail',
                                       'variants.prices.*',
+                                      'external_id',
                                   ],
                                   indexSettings: {
-                                      searchableAttributes: ['title', 'description'],
+                                      searchableAttributes: ['title', 'description', 'external_id'],
                                       displayedAttributes: [
                                           'id',
                                           'handle',
@@ -229,6 +230,7 @@ const medusaConfig = {
                                           'max_price',
                                           'currency_code',
                                           'has_variants',
+                                          'external_id',
                                       ],
                                       filterableAttributes: [
                                           'id',
