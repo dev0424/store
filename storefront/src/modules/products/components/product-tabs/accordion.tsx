@@ -57,7 +57,7 @@ const Item: React.FC<AccordionItemProps> = ({
           <div className="flex flex-col">
             <div className="flex w-full items-center justify-between">
               <div className="flex items-center gap-4">
-                <Text className="text-sm text-ui-fg-subtle">{title}</Text>
+                <Text className="text-xl text-ui-fg-subtle">{title}</Text>
               </div>
               {customTrigger || <MorphingTrigger />}
             </div>

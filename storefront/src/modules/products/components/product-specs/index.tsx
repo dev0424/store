@@ -16,8 +16,7 @@ type Props = {
 const ProductSpecs = ({ product }: Props) => {
   return (
     <div className="flex flex-col gap-2">
-      <h1 className="text-left text-2xl text-ui-fg-base">Caractéristiques</h1>
-      <div className={"flex flex-col gap-2 divide-y text-sm"}>
+      <div className="flex flex-col gap-2 divide-y text-sm">
         {product.metadata ? (
           Object.entries(product.metadata).map(([key, value]) => (
             <ProductSpec

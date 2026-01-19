@@ -12,6 +12,7 @@ import ProductSpecs from "@modules/products/components/product-specs";
 import ProductDocuments from "@modules/products/components/product-documents";
 import ContactBanner from "@modules/account/components/contact-banner";
 import ProductBenefits from "@modules/products/components/product-benefits";
+import Accordion from "@modules/products/components/product-tabs/accordion";
 
 type Props = {
   product: ProductWithDocument;
@@ -31,7 +32,15 @@ const ProductTemplate = ({ product, region, countryCode }: Props) => {
         <div className="order-1 flex flex-col gap-8 md:order-1 md:border-r md:pr-8">
           <ImageCarousel images={product.images || []} />
           <div className="hidden md:block">
-            <ProductSpecs product={product} />
+            <Accordion
+              type="single"
+              defaultValue="Caractéristiques"
+              collapsible
+            >
+              <Accordion.Item title="Caractéristiques" value="Caractéristiques">
+                <ProductSpecs product={product} />
+              </Accordion.Item>
+            </Accordion>
           </div>
         </div>
 
@@ -51,14 +60,34 @@ const ProductTemplate = ({ product, region, countryCode }: Props) => {
             >
               <ProductActionsWrapper id={product.id} region={region} />
             </Suspense>
-            <ProductDocuments product={product} />
             <ProductBenefits />
+            {product.documents?.length ? (
+              <div className="hidden md:block">
+                <Accordion type="single" collapsible>
+                  <Accordion.Item
+                    title="Téléchargements"
+                    value="Téléchargements"
+                  >
+                    <ProductDocuments product={product} />
+                  </Accordion.Item>
+                </Accordion>
+              </div>
+            ) : null}
           </div>
         </div>
 
         {/* Mobile: Product specs below actions */}
         <div className="sm-only:content-container order-3 block md:hidden">
-          <ProductSpecs product={product} />
+          <Accordion type="multiple">
+            {product.documents?.length ? (
+              <Accordion.Item title="Téléchargements" value="Téléchargements">
+                <ProductDocuments product={product} />
+              </Accordion.Item>
+            ) : null}
+            <Accordion.Item title="Caractéristiques" value="Caractéristiques">
+              <ProductSpecs product={product} />
+            </Accordion.Item>
+          </Accordion>
         </div>
       </div>
 

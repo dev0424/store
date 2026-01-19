@@ -2,7 +2,6 @@ import React from "react";
 import { toArray } from "@lib/util/toArray";
 import { ProductWithDocument } from "../../../../types/product";
 import ProductDocument from "@modules/products/components/product-document";
-import Divider from "@modules/common/components/divider";
 
 type Props = {
   product: ProductWithDocument;
@@ -10,11 +9,7 @@ type Props = {
 
 const ProductDocuments = ({ product }: Props) => {
   return (
-    <div className="text-small-regular flex flex-col gap-4 rounded-md bg-[#F4F4F5] p-4">
-      <div>
-        <h1 className="text-left text-2xl text-ui-fg-base">Téléchargements</h1>
-        <Divider />
-      </div>
+    <div className="text-small-regular flex flex-col gap-4 p-4">
       {toArray(product.documents)?.length ? (
         <div className="flex flex-col gap-4">
           {toArray(product.documents)?.map((document) => (
