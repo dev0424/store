@@ -43,14 +43,14 @@ const Hero = async () => {
       <div className="absolute inset-0 z-10 bg-black/40" />
 
       <div className="content-container relative z-10 grid h-full grid-cols-1 items-center justify-center gap-8 p-6 text-center sm:inset-0 sm:grid-cols-[1.5fr_1fr] sm:text-left">
-        <span className={"flex flex-col gap-2"}>
-          <h1 className={"text-3xl font-black text-accent-primary sm:text-5xl"}>
+        <span className="flex flex-col">
+          <h1 className="text-2xl font-black text-accent-primary sm:text-5xl">
             L’innovation dans vos mains
           </h1>
-          <h2 className={"text-xl font-black text-white sm:text-4xl"}>
+          <h2 className="text-xl font-black text-white sm:text-5xl">
             Pour ceux qui font rouler le monde.
           </h2>
-          <h2 className={"text-xl font-normal text-white sm:text-xl"}>
+          <h2 className="text-md mt-2 font-light text-white sm:text-xl">
             Des équipements et outils techniques conçus pour les professionnels
             de l’automobile et du poids lourd.
           </h2>

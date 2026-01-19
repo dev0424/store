@@ -8,12 +8,12 @@ const WhyChooseUs = () => {
       <div className="content-container py-8 sm:py-16">
         <div className="flex flex-col gap-8">
           <div className="text-center">
-            <h1 className="text-4xl font-black text-accent-primary">
+            <h1 className="text-2xl-semi sm:text-4xl-semi font-black text-accent-primary">
               Pourquoi choisir RSPI ?
             </h1>
           </div>
-          <div className="grid grid-cols-1 gap-16 font-light text-white sm:grid-cols-4">
-            <div className="flex flex-col items-center gap-4">
+          <div className="grid grid-cols-1 gap-8 font-light text-white sm:grid-cols-4 sm:gap-16">
+            <div className="flex flex-col items-center gap-2 sm:gap-4">
               <HiCheckCircle size={48} className="text-accent-primary" />
               <div className="flex flex-col gap-1">
                 <p className="text-center font-black">
@@ -25,7 +25,7 @@ const WhyChooseUs = () => {
                 </p>
               </div>
             </div>
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-2 sm:gap-4">
               <BsFillBoxFill size={40} className="mb-2 text-accent-primary" />
               <div className="flex flex-col gap-1">
                 <p className="text-center font-black">
@@ -36,7 +36,7 @@ const WhyChooseUs = () => {
                 </p>
               </div>
             </div>
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-2 sm:gap-4">
               <HiTruck size={48} className="text-accent-primary" />
               <div className="flex flex-col gap-1">
                 <p className="text-center font-black">
@@ -48,7 +48,7 @@ const WhyChooseUs = () => {
                 </p>
               </div>
             </div>
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-2 sm:gap-4">
               <HiChat size={48} className="text-accent-primary" />
               <div className="flex flex-col gap-1">
                 <p className="text-center font-black">

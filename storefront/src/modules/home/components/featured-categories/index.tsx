@@ -9,8 +9,8 @@ const FeaturedCategories = async () => {
   const categories = filterMainCategories(product_categories);
 
   return (
-    <div className={"flex flex-col gap-4"}>
-      <h1 className="text-xl-semi text-center text-ui-fg-base sm:text-left">
+    <div className="flex flex-col gap-4">
+      <h1 className="text-xl-semi px-6 text-left text-ui-fg-base">
         Top catégories
       </h1>
       <Carousel>

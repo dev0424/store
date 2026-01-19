@@ -15,12 +15,14 @@ const CategoryHeader = ({ name, description, thumbnail }: Props) => {
         </div>
         {description ? (
           <div>
-            <p className="text-sm leading-6 sm:text-base">{description}</p>
+            <p className="text-sm font-light leading-6 sm:text-base">
+              {description}
+            </p>
           </div>
         ) : null}
       </div>
       {thumbnail ? (
-        <div className="flex w-full items-center justify-center">
+        <div className="hidden w-full items-center justify-center sm:flex">
           <img
             src={thumbnail}
             alt={name}

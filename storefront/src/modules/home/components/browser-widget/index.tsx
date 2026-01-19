@@ -50,7 +50,6 @@ const BrowserWidget = ({ categories }: Props) => {
 
   return (
     <div className="flex h-fit flex-col gap-4 rounded-md bg-background-primary p-6 text-white">
-      <h2 className="text-center text-lg font-bold">Découvrez la gamme RSPI</h2>
       <CategorySelect
         placeholder="Sélectionner une catégorie"
         categories={mainCategories}
