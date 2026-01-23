@@ -43,7 +43,7 @@ const WhyChooseUs = () => {
                   Livraison rapide et gratuite
                 </p>
                 <p className="text-center">
-                  Livraison offerte dès 250 € d’achat, expédiée sous 48 à 72 h
+                  Livraison offerte dès 500 € d’achat, expédiée sous 48 à 72 h
                   en France métropolitaine.
                 </p>
               </div>

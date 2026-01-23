@@ -45,10 +45,10 @@ const Hero = async () => {
       <div className="content-container relative z-10 grid h-full grid-cols-1 items-center justify-center gap-8 p-6 text-center sm:inset-0 sm:grid-cols-[1.5fr_1fr] sm:text-left">
         <span className="flex flex-col">
           <h1 className="text-2xl font-black text-accent-primary sm:text-5xl">
-            L’innovation dans vos mains
+            RSPI redonne la parole
           </h1>
-          <h2 className="text-xl font-black text-white sm:text-5xl">
-            Pour ceux qui font rouler le monde.
+          <h2 className="text-2xl font-black text-white sm:text-5xl">
+            aux professionnels
           </h2>
           <h2 className="text-md mt-2 font-light text-white sm:text-xl">
             Des équipements et outils techniques conçus pour les professionnels
