@@ -22,17 +22,12 @@ const AboutPage = () => {
   return (
     <section>
       <PageHeaderBanner imageSrc={"/images/hero.webp"}>
-        <Image
-          src={"/images/logo.png"}
-          width={200}
-          height={200}
-          alt="RSPI logo"
-          className="max-w-64 object-cover"
-        />
-        <h1 className="text-left text-3xl font-black text-ui-fg-base text-white">
-          Partenaire des{" "}
-          <span className="text-accent-primary">
-            distributeurs professionnels.
+        <h1 className="max-w-2xl">
+          <span className="text-2xl font-black text-accent-primary sm:text-5xl">
+            Partenaire des{" "}
+          </span>
+          <span className="text-2xl font-black text-white sm:text-5xl">
+            distributeurs professionnels
           </span>
         </h1>
       </PageHeaderBanner>

@@ -27,10 +27,10 @@ const PageHeaderBanner = ({ imageSrc, children }: Props) => {
   };
 
   return (
-    <section className={"relative h-[25vh] w-full"}>
+    <section className="relative h-[25vh] w-full">
       <div className="absolute inset-0 z-0 block" style={style} />
       {/* Dark overlay */}
-      <div className="absolute inset-0 z-10 bg-black/40" />
+      <div className="absolute inset-0 z-10 bg-black/60" />
       <div className="content-container relative z-10 flex h-full flex-col items-center justify-center gap-2 p-6 text-center">
         {children}
       </div>

@@ -111,10 +111,15 @@ const SearchDistributors = ({ distributors }: Props) => {
   return (
     <div>
       <PageHeaderBanner imageSrc={"/images/hero.webp"}>
-        <h1 className="text-left text-3xl font-black text-ui-fg-base text-white">
-          Trouver un <span className="text-accent-primary">distributeur</span>
+        <h1 className="max-w-2xl">
+          <span className="text-2xl font-black text-accent-primary sm:text-5xl">
+            Trouver un{" "}
+          </span>
+          <span className="text-2xl font-black text-white sm:text-5xl">
+            distributeur
+          </span>
         </h1>
-        <div className="flex w-full items-center">
+        <div className="grid w-full grid-cols-1 items-center gap-2 sm:grid-cols-[1fr_auto] sm:gap-0">
           <div className="relative w-full">
             <HiOutlineSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-xl text-gray-400" />
             <input
@@ -133,7 +138,7 @@ const SearchDistributors = ({ distributors }: Props) => {
             )}
           </div>
           <SubmitButton
-            className="whitespace-nowrap rounded-l-none font-sans font-bold tracking-wide"
+            className="text-md flex h-10 w-full items-center whitespace-nowrap py-1 font-sans font-bold shadow-none sm:w-max sm:rounded-l-none"
             onClick={onClickGeoLocationButton}
           >
             <div className="flex items-center gap-1">
