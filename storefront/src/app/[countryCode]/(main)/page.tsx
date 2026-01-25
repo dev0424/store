@@ -35,7 +35,7 @@ export default async function Home(props: {
   return (
     <div className="flex flex-col gap-8 sm:gap-16">
       <Hero />
-      <section className="sm:content-container">
+      <section className="content-container">
         <FeaturedCategories />
       </section>
       <section className="sm:content-container">
