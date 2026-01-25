@@ -11,7 +11,14 @@ const Documents = () => {
         <FileUpload
           name="files.rib"
           label="RIB"
-          accept={{ "application/pdf": [] }}
+          accept={{
+            "application/pdf": [],
+            "image/*": [],
+            "text/*": [],
+            "application/msword": [],
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+              [],
+          }}
           rules={SIGN_UP_SCHEMA.files.rib}
           maxSizeMB={5}
           required
@@ -19,7 +26,14 @@ const Documents = () => {
         <FileUpload
           name="files.kbis"
           label="KBIS"
-          accept={{ "application/pdf": [] }}
+          accept={{
+            "application/pdf": [],
+            "image/*": [],
+            "text/*": [],
+            "application/msword": [],
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+              [],
+          }}
           rules={SIGN_UP_SCHEMA.files.kbis}
           maxSizeMB={5}
           required

@@ -87,18 +87,19 @@ export const FileUpload = ({
         return (
           <section className="flex flex-col gap-2">
             {hasFile ? (
-              <aside className="flex items-center justify-between rounded-md border bg-gray-50 p-3 text-xs">
+              <aside className="relative flex flex-col items-center justify-between rounded-md border bg-gray-50 p-8 text-gray-600">
                 <p>
-                  <span className="font-bold">{label}: </span>
-                  <span>
-                    {multiple
-                      ? field.value.map((f: File) => f.name).join(", ")
-                      : field.value.name}
-                  </span>
+                  <span>{label}</span>
+                  {required && <span className="text-red-500">*</span>}
+                </p>
+                <p className="mt-2 text-xs">
+                  {multiple
+                    ? field.value.map((f: File) => f.name).join(", ")
+                    : field.value.name}
                 </p>
                 <IconButton
                   onClick={onDelete}
-                  className="text-red-500 hover:text-red-700"
+                  className="absolute right-2 top-2 text-red-500 hover:text-red-700"
                 >
                   <XMark className="h-4 w-4" />
                 </IconButton>
