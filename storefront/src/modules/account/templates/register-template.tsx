@@ -24,7 +24,7 @@ const RegisterTemplate = ({
       className="flex w-full flex-col items-center justify-center"
       data-testid="register-page"
     >
-      <h1 className="text-xl-semi text-center text-ui-fg-base sm:text-left">
+      <h1 className="text-center text-2xl font-black text-ui-fg-base sm:text-left">
         Demande de création de compte
       </h1>
       <p className="mb-8 text-center text-ui-fg-subtle">

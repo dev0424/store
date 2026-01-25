@@ -8,9 +8,11 @@ import { filterMainCategories } from "@lib/util/categories";
 import SideMenuFooter from "@modules/layout/components/side-menu-footer";
 import MenuToggleButton from "@modules/layout/components/menu-toggle-button";
 import SideMenuContent from "@modules/layout/components/side-menu-content";
+import { ExtendedCustomer } from "@types/customer";
 
 type Props = {
   defaultCategories: StoreProductCategory[];
+  customer: ExtendedCustomer | null;
 };
 
 export type View = {
@@ -18,7 +20,7 @@ export type View = {
   direction: "forward" | "backward";
 };
 
-const SideMenu = ({ defaultCategories }: Props) => {
+const SideMenu = ({ defaultCategories, customer }: Props) => {
   const rootCategories = filterMainCategories(defaultCategories);
 
   const [view, setView] = useState<View>({
@@ -51,7 +53,7 @@ const SideMenu = ({ defaultCategories }: Props) => {
       categoryStack: [
         {
           id: "products",
-          name: "Products",
+          name: "Produits",
           category_children: rootCategories,
         } as StoreProductCategory,
       ],
@@ -86,6 +88,7 @@ const SideMenu = ({ defaultCategories }: Props) => {
                 className="flex h-full flex-col justify-between bg-background-primary p-6"
               >
                 <SideMenuContent
+                  customer={customer}
                   rootCategories={rootCategories}
                   onClickMenuItem={() => {
                     close();

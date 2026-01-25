@@ -41,13 +41,15 @@ export default async function ProductCarouselTemplate({
   return (
     <section className="flex flex-col gap-4 py-4">
       <div>
-        <div className="flex flex-row items-center justify-between px-6">
-          <h1 className="text-xl-semi text-ui-fg-base">{collection.title}</h1>
+        <div className="flex flex-row items-center justify-between px-6 sm:px-0">
+          <h1 className="text-2xl font-black text-ui-fg-base">
+            {collection.title}
+          </h1>
           <InteractiveLink href={`/collections/${collection.handle}`}>
             Voir tout
           </InteractiveLink>
         </div>
-        <p className="px-6 text-ui-fg-subtle">
+        <p className="px-6 text-ui-fg-subtle sm:px-0">
           {collection?.metadata?.description as string}
         </p>
       </div>

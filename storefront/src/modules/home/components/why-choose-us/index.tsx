@@ -8,7 +8,7 @@ const WhyChooseUs = () => {
       <div className="content-container py-8 sm:py-16">
         <div className="flex flex-col gap-8">
           <div className="text-center">
-            <h1 className="text-2xl-semi sm:text-4xl-semi font-black text-accent-primary">
+            <h1 className="text-2xl font-black text-accent-primary sm:text-4xl">
               Pourquoi choisir RSPI ?
             </h1>
           </div>

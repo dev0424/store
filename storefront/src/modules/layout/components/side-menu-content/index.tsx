@@ -6,6 +6,7 @@ import Divider from "@modules/common/components/divider";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import { StoreProductCategory } from "@medusajs/types";
 import { View } from "@modules/layout/components/side-menu";
+import { ExtendedCustomer } from "@types/customer";
 
 type Props = {
   currentCategory: StoreProductCategory | null;
@@ -15,6 +16,7 @@ type Props = {
   rootCategories: StoreProductCategory[];
   openProductsRoot: VoidFunction;
   onClickMenuItem: VoidFunction;
+  customer: ExtendedCustomer | null;
 };
 
 const SideMenuContent = ({
@@ -25,6 +27,7 @@ const SideMenuContent = ({
   rootCategories,
   openProductsRoot,
   onClickMenuItem,
+  customer,
 }: Props) => {
   return (
     <AnimatePresence initial={false} mode="wait">
@@ -52,15 +55,17 @@ const SideMenuContent = ({
           />
         ) : (
           <div className="flex flex-col gap-2">
-            <ForwardButton title="Products" onClick={openProductsRoot} />
+            <ForwardButton title="Produits" onClick={openProductsRoot} />
             <Divider className="my-1 border-background-secondary" />
-            <LocalizedClientLink
-              href="/register"
-              className="text-lg leading-10 hover:text-accent-primary"
-              onClick={onClickMenuItem}
-            >
-              Créer un compte
-            </LocalizedClientLink>
+            {customer ? null : (
+              <LocalizedClientLink
+                href="/register"
+                className="text-lg leading-10 hover:text-accent-primary"
+                onClick={onClickMenuItem}
+              >
+                Créer un compte
+              </LocalizedClientLink>
+            )}
             <Divider className="my-1 border-background-secondary" />
             <LocalizedClientLink
               href="#"

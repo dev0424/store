@@ -20,13 +20,13 @@ const CategoriesPanel = ({
   onClick,
 }: Props) => {
   return (
-    <div className={"flex flex-col gap-4"}>
+    <div className="flex flex-col gap-4">
       <div>
         <BackwardButton
           onClick={onNavigateBackward}
           title={currentCategory?.name || "Back"}
         />
-        <Divider className={"mt-2 border-background-secondary"} />
+        <Divider className="mt-2 border-background-secondary" />
       </div>
       <ProductCategories
         categories={

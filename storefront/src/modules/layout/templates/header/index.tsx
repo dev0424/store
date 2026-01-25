@@ -31,7 +31,7 @@ export default async function Header({ customer }: Props) {
         <header className="content-container relative mx-auto flex flex-col gap-4 pb-2 pt-4 duration-200">
           <nav className="text-small-regular txt-xsmall-plus flex h-full w-full flex-wrap items-center justify-between gap-4 sm:flex-nowrap">
             <div className="flex h-full flex-1 basis-0 items-center sm:hidden">
-              <SideMenu defaultCategories={categories} />
+              <SideMenu defaultCategories={categories} customer={customer} />
             </div>
 
             <LocalizedClientLink href="/" data-testid="nav-store-link">

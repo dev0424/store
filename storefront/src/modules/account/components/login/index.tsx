@@ -13,7 +13,7 @@ const Login = () => {
       className="flex w-full max-w-sm flex-col items-center"
       data-testid="login-page"
     >
-      <h1 className="text-xl-semi text-center text-ui-fg-base sm:text-left">
+      <h1 className="text-center text-2xl font-black text-ui-fg-base sm:text-left">
         Accès client
       </h1>
       <p className="mb-8 text-ui-fg-subtle">
