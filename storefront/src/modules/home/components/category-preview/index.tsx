@@ -15,7 +15,7 @@ const CategoryPreview = ({ category }: Props) => {
       href={`/categories/${category.handle}`}
       className="group relative flex h-60 w-auto overflow-hidden rounded-md bg-gradient-to-br from-background-primary to-background-secondary hover:shadow-elevation-card-hover sm:h-80 sm:w-48"
     >
-      <p className="relative z-20 w-full p-4 text-left text-xl font-black text-white sm:text-2xl">
+      <p className="sm:text-xl-semi relative z-20 w-full p-4 text-left text-xl font-black text-white">
         {category.name}
       </p>
 
